@@ -33,6 +33,12 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+docs = [
+  "mkdocs~=1.5",
+  "mkdocs-include-markdown-plugin~=6.0",
+  "mkdocs-material~=9.3",
+  "mkdocstrings[python]~=0.23",
+]
 lint = [
   "mypy~=1.6",
   "pre-commit~=3.5",
@@ -87,6 +93,13 @@ all = [
   "style",
   "typing",
 ]
+
+[tool.hatch.envs.docs]
+features = ["docs"]
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build --verbose"
+serve = "mkdocs serve --verbose"
+deploy = "mkdocs gh-deploy --force --verbose"
 
 # black
 # Ref: https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#configuration-via-a-file

@@ -5,6 +5,7 @@ This is a community maintained fork of the original [sickle](https://github.com/
 |     |     |
 | --- | --- |
 | CI | [![ci][ci-badge]][ci-workflow] |
+| Docs | [![docs][docs-badge]][docs-workflow] |
 | Meta | [![hatch][hatch-badge]][hatch] [![pre-commit enabled][pre-commit-badge]][pre-commit] [![ruff][ruff-badge]][ruff] [![black][black-badge]][black] |
 
 oaipmh-scythe is a lightweight [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html)
@@ -38,7 +39,7 @@ python -m pip install oaipmh-scythe
 
 ## Documentation
 
-The [documentation](https://afuetterer.github.io/oaipmh-scythe) is made with [Material for MkDocs](https://github.com/squidfunk/mkdocs-material) and is hosted by [GitHub Pages](https://docs.github.com/en/pages).
+The [documentation][docs-url] is made with [Material for MkDocs](https://github.com/squidfunk/mkdocs-material) and is hosted by [GitHub Pages](https://docs.github.com/en/pages).
 
 ## License
 
@@ -48,6 +49,9 @@ oaipmh-scythe is distributed under the terms of the [BSD](https://spdx.org/licen
 <!-- dynamic -->
 [ci-workflow]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/main.yml
 [ci-badge]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/main.yml/badge.svg
+[docs-url]: https://afuetterer.github.io/oaipmh-scythe
+[docs-workflow]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/docs.yml
+[docs-badge]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/docs.yml/badge.svg
 <!-- static -->
 [license]: https://opensource.org/licenses/MIT
 [black]: https://github.com/psf/black

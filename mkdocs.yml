@@ -1,0 +1,39 @@
+# mkdocs
+# Ref: https://www.mkdocs.org/user-guide/configuration/
+# ------------------------------------------------------------------------------
+
+site_name: oaipmh-scythe
+site_description: oaipmh-scythe
+repo_name: afuetterer/oaipmh-scythe
+repo_url: https://github.com/afuetterer/oaipmh-scythe
+watch: [README.md]
+
+nav:
+- Home: index.md
+- Tutorial: tutorial.md
+- OAI-PMH Primer: oaipmh.md
+- API: api.md
+- Harvesting other Metadata Formats than OAI-DC: customizing.md
+- Changelog: changelog.md
+- License: license.md
+
+theme:
+  name: material
+  features:
+  - content.code.annotate
+  - content.code.copy
+
+plugins:
+- search
+- include-markdown
+- mkdocstrings
+
+markdown_extensions:
+- admonition
+- pymdownx.highlight:
+    anchor_linenums: true
+    line_spans: __span
+    pygments_lang_class: true
+- pymdownx.inlinehilite
+- pymdownx.snippets
+- pymdownx.superfences
