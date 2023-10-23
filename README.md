@@ -31,6 +31,10 @@ client library written in Python. It has been designed for conveniently retrievi
 
 [Python](https://www.python.org/downloads/) >= 3.8
 
+oaipmh-scythe is built with:
+- [httpx](https://github.com/encode/httpx)
+- [lxml](https://github.com/lxml/lxml)
+
 ## Installation
 
 ```console

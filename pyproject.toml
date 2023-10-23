@@ -34,8 +34,8 @@ dynamic = [
   "version",
 ]
 dependencies = [
+  "httpx>=0.25",
   "lxml~=4.9",
-  "requests",
 ]
 [project.optional-dependencies]
 dev = [

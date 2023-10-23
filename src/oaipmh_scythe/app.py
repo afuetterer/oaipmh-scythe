@@ -10,14 +10,14 @@ import time
 import warnings
 from typing import TYPE_CHECKING, Iterable
 
-import requests
+import httpx
 
 from oaipmh_scythe.iterator import BaseOAIIterator, OAIItemIterator
 from oaipmh_scythe.models import Header, Identify, MetadataFormat, OAIItem, Record, Set
 from oaipmh_scythe.response import OAIResponse
 
 if TYPE_CHECKING:
-    from requests.models import Response
+    from httpx import Response
 
 logger = logging.getLogger(__name__)
 
@@ -125,8 +125,8 @@ class Scythe:
 
     def _request(self, kwargs: str) -> Response:
         if self.http_method == "GET":
-            return requests.get(self.endpoint, timeout=self.timeout, params=kwargs, **self.request_args)
-        return requests.post(self.endpoint, data=kwargs, timeout=self.timeout, **self.request_args)
+            return httpx.get(self.endpoint, timeout=self.timeout, params=kwargs, **self.request_args)
+        return httpx.post(self.endpoint, data=kwargs, timeout=self.timeout, **self.request_args)
 
     def list_records(self, ignore_deleted: bool = False, **kwargs: str) -> BaseOAIIterator:
         """Issue a ListRecords request.

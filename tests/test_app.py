@@ -8,7 +8,7 @@ from contextlib import suppress
 from typing import TYPE_CHECKING
 
 import pytest
-from requests import HTTPError
+from httpx import HTTPStatusError
 
 from oaipmh_scythe import Scythe
 
@@ -41,13 +41,15 @@ def mock_response_200(mocker: MockerFixture) -> Mock:
 @pytest.fixture
 def mock_response_503(mocker: MockerFixture) -> Mock:
     return mocker.Mock(
-        status_code=503, headers={"retry-after": "10"}, raise_for_status=mocker.Mock(side_effect=HTTPError)
+        status_code=503,
+        headers={"retry-after": "10"},
+        raise_for_status=mocker.Mock(side_effect=HTTPStatusError(message="500", request="500", response="500")),
     )
 
 
 @pytest.fixture
 def mock_get(mocker: MockerFixture) -> MagicMock:
-    return mocker.patch("oaipmh_scythe.app.requests.get")
+    return mocker.patch("oaipmh_scythe.app.httpx.get")
 
 
 def test_pass_request_args(mock_get: MagicMock, mock_response_200: Mock) -> None:
@@ -66,7 +68,7 @@ def test_override_encoding(mock_get: MagicMock, mock_response_200: Mock) -> None
 
 
 def test_post_request(mocker: MockerFixture) -> None:
-    mock_post = mocker.patch("oaipmh_scythe.app.requests.post")
+    mock_post = mocker.patch("oaipmh_scythe.app.httpx.post")
     harvester = Scythe("url", encoding="encoding")
     harvester.http_method = "POST"
     params = {"verb": "ListSets"}
@@ -87,7 +89,7 @@ def test_422(mock_get: MagicMock, mocker) -> None:
 def test_no_retry(mock_get: MagicMock, mock_response_503: Mock) -> None:
     mock_get.return_value = mock_response_503
     harvester = Scythe("url")
-    with suppress(HTTPError):
+    with suppress(HTTPStatusError):
         harvester.list_records()
     assert mock_get.call_count == 1
     mock_response_503.raise_for_status.assert_called_once()
@@ -97,7 +99,7 @@ def test_retry_on_503(mocker: MockerFixture, mock_get: MagicMock, mock_response_
     mock_get.return_value = mock_response_503
     harvester = Scythe("url", max_retries=3, default_retry_after=0)
     mock_sleep = mocker.patch("time.sleep")
-    with suppress(HTTPError):
+    with suppress(HTTPStatusError):
         harvester.list_records()
     assert mock_get.call_count == 4
     assert mock_sleep.call_count == 3
@@ -111,17 +113,20 @@ def test_retry_on_503_withour_retry_after_header(
     mock_response_503.headers = {}
     harvester = Scythe("url", max_retries=3, default_retry_after=0)
     mock_sleep = mocker.patch("time.sleep")
-    with suppress(HTTPError):
+    with suppress(HTTPStatusError):
         harvester.list_records()
     assert mock_get.call_count == 4
     assert mock_sleep.call_count == 3
 
 
 def test_retry_on_custom_code(mocker: MockerFixture, mock_get: MagicMock) -> None:
-    mock_response_500 = mocker.Mock(status_code=500, raise_for_status=mocker.Mock(side_effect=HTTPError))
+    mock_response_500 = mocker.Mock(
+        status_code=500,
+        raise_for_status=mocker.Mock(side_effect=HTTPStatusError(message="500", request="500", response="500")),
+    )
     mock_get.return_value = mock_response_500
     harvester = Scythe("url", max_retries=3, default_retry_after=0, retry_status_codes=(503, 500))
-    with suppress(HTTPError):
+    with suppress(HTTPStatusError):
         harvester.list_records()
     mock_get.assert_called_with("url", params={"verb": "ListRecords"}, timeout=60)
     assert mock_get.call_count == 4

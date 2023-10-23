@@ -95,4 +95,4 @@ def harvester(mocker: MockerFixture) -> Scythe:
 
 @pytest.fixture
 def mock_get(mocker: MockerFixture) -> MagicMock:
-    return mocker.patch("oaipmh_scythe.app.requests.get")
+    return mocker.patch("oaipmh_scythe.app.httpx.get")
