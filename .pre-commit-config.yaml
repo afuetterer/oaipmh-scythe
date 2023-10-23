@@ -34,8 +34,8 @@ repos:
   hooks:
   - id: black
 
-- repo: https://github.com/charliermarsh/ruff-pre-commit
-  rev: 382100c524aa3fa39218d6262f0cbf02dffae4db  # frozen: v0.1.0
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: 51ae37a7805e6d6f791a373b7d7752d023ea6c0f  # frozen: v0.1.1
   hooks:
   - id: ruff
     args: [--fix, --exit-non-zero-on-fix]
