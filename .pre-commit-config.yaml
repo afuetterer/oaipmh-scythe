@@ -24,6 +24,12 @@ repos:
   - id: pretty-format-yaml
     args: [--autofix, --indent, '2']
 
+- repo: https://github.com/python-jsonschema/check-jsonschema
+  rev: e7d0eab291c8a1565ca729002d82b077097115b8  # frozen: 0.27.0
+  hooks:
+  - id: check-dependabot
+  - id: check-github-workflows
+
 - repo: https://github.com/tox-dev/pyproject-fmt
   rev: 753f84434c360a0ef86ca8401331a1b1ff491e61    # frozen: 1.2.0
   hooks:
