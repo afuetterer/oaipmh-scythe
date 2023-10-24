@@ -1,0 +1,8 @@
+# {{ version.as_tag() }} ({{ release.tagged_date.strftime("%Y-%m-%d") }})
+
+{% for type_, commits in release["elements"] | dictsort %}{% if type_ != "unknown" %}
+## {{ type_ | capitalize }}
+{% for commit in commits %}
+* {{ commit.commit.summary }} ([`{{ commit.short_hash }}`]({{ commit.commit.hexsha | commit_hash_url }}))
+{%- endfor %}
+{% endif %}{% endfor %}
