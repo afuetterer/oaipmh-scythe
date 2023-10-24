@@ -43,7 +43,6 @@ jobs:
       uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38   # v5.0.2
       with:
         branch: pre-commit-autoupdate
-        base: dependency-updates
         committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
         author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
         title: 'build: update pre-commit hooks'
