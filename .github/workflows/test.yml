@@ -25,17 +25,40 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         cache: pip
-    - run: python -m pip install --upgrade pip setuptools wheel
-    - run: python -m pip install hatch
-    - run: hatch run cov
+    - name: Install pre-requisites
+      run: |
+        python -m pip install --upgrade pip setuptools wheel
+        python -m pip install hatch
+    - name: Run test suite
+      run: hatch run cov
     - name: Generate coverage report
       run: |
         hatch run cov-summary-json
         export TOTAL_COV=$(hatch run cov-total)
+        echo "TOTAL_COV=$TOTAL_COV" >> $GITHUB_ENV
         hatch run cov-report-markdown
         echo "### Total coverage: ${TOTAL_COV}%" >> $GITHUB_STEP_SUMMARY
         cat coverage.md >> $GITHUB_STEP_SUMMARY
       if: matrix.python-version == '3.12'
+    - name: Generate coverage badge
+      uses: schneegans/dynamic-badges-action@e9a478b16159b4d31420099ba146cdc50f134483 # v1.7.0
+      with:
+        # GIST_TOKEN is a GitHub personal access token with scope "gist".
+        auth: ${{ secrets.GIST_TOKEN }}
+        gistID: a31f257644a9eb5e0a9e375a64914ed5
+        filename: coverage-badge.json
+        label: Coverage
+        namedLogo: python
+        message: ${{ env.TOTAL_COV }}%
+        minColorRange: 50
+        maxColorRange: 90
+        valColorRange: ${{ env.TOTAL_COV }}
+      # only update coverage badge:
+      # when push to main branch of the project -> not in forks
+      if: >-
+        matrix.python-version == '3.12'
+        && github.repository == 'afuetterer/oaipmh-scythe'
+        && github.ref == 'refs/heads/main'
 
   dev-setup:
     # Ref: structlog (MIT License) <https://github.com/hynek/structlog/blob/main/.github/workflows/ci.yml>
