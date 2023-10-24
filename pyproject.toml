@@ -90,6 +90,9 @@ features = [
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
 cov = "pytest --cov {args:src}"
+cov-report-markdown = "python -m coverage report --format=markdown > coverage.md"
+cov-summary-json = "python -m coverage json"
+cov-total = """python -c "import json;print(json.load(open('coverage.json'))['totals']['percent_covered_display'])""""
 
 [tool.hatch.envs.lint]
 features = [
@@ -164,6 +167,9 @@ source = ["oaipmh_scythe"]
 exclude_lines = [
   "if TYPE_CHECKING:",
 ]
+fail_under = 90
+show_missing = true
+skip_covered = true
 skip_empty = true
 
 # licensecheck

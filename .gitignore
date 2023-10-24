@@ -38,22 +38,15 @@ pip-delete-this-directory.txt
 
 # Unit test / coverage reports
 htmlcov/
-.tox/
-.nox/
 .coverage
 .coverage.*
 .cache
-nosetests.xml
-coverage.xml
+coverage.*
 *.cover
 *.py,cover
 .hypothesis/
 .pytest_cache/
 cover/
-
-# Translations
-*.mo
-*.pot
 
 # PyBuilder
 .pybuilder/
@@ -87,12 +80,6 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype static type analyzer
-.pytype/
 
 # Cython debug symbols
 cython_debug/

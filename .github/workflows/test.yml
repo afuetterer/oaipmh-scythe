@@ -28,6 +28,14 @@ jobs:
     - run: python -m pip install --upgrade pip setuptools wheel
     - run: python -m pip install hatch
     - run: hatch run cov
+    - name: Generate coverage report
+      run: |
+        hatch run cov-summary-json
+        export TOTAL_COV=$(hatch run cov-total)
+        hatch run cov-report-markdown
+        echo "### Total coverage: ${TOTAL_COV}%" >> $GITHUB_STEP_SUMMARY
+        cat coverage.md >> $GITHUB_STEP_SUMMARY
+      if: matrix.python-version == '3.12'
 
   dev-setup:
     # Ref: structlog (MIT License) <https://github.com/hynek/structlog/blob/main/.github/workflows/ci.yml>
