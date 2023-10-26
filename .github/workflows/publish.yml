@@ -1,0 +1,29 @@
+name: Publish
+
+on:
+  release:
+    types: [created]
+
+concurrency:
+  group: publish-${{ github.head_ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    # disables this workflow from running in a repository that is not part of the indicated organization/user
+    if: github.repository_owner == 'afuetterer'
+    runs-on: ubuntu-22.04
+    environment:
+      name: publish
+      url: https://test.pypi.org/p/oaipmh-scythe/
+    permissions:
+      id-token: write  # needed for trusted publishing
+    steps:
+    - name: Publish package to TestPyPI
+      uses: pypa/gh-action-pypi-publish@b7f401de30cb6434a1e19f805ff006643653240e   # v1.8.10
+      with:
+        repository-url: https://test.pypi.org/legacy/
+        verbose: true
