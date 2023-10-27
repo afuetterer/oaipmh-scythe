@@ -1,5 +1,10 @@
 # Changelog
 
+All notable changes to this project will be documented in this file.
+
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
+[conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
+
 ## [Unreleased](https://github.com/afuetterer/oaipmh-scythe/compare/0.7.0...main)
 
 - rename project to oaipmh-scythe when forking it from [mloesch/sickle](https://github.com/mloesch/sickle) to [afuetterer/oaipmh-scythe](https://github.com/afuetterer/oaipmh-scythe)
