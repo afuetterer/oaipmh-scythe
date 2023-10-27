@@ -194,6 +194,9 @@ tag_format = "{version}"
 version_variables = [
   "src/oaipmh_scythe/__init__.py:__version__",
 ]
+build_command = """
+python -m build
+"""
 
 [tool.semantic_release.changelog]
 exclude_commit_patterns = [
