@@ -32,12 +32,12 @@ repos:
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 753f84434c360a0ef86ca8401331a1b1ff491e61    # frozen: 1.2.0
+  rev: c62cf3f1b4e12a69a98c556fedfa2b3f4d6b085c  # frozen: 1.3.0
   hooks:
   - id: pyproject-fmt
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 51ae37a7805e6d6f791a373b7d7752d023ea6c0f  # frozen: v0.1.1
+  rev: 8a43105c597ef7067b5507451f4f1b07e5f6e26d  # frozen: v0.1.3
   hooks:
   - id: ruff-format
   - id: ruff
