@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
-## [Unreleased](https://github.com/afuetterer/oaipmh-scythe/compare/0.7.1...main)
+## [Unreleased](https://github.com/afuetterer/oaipmh-scythe/compare/0.8.0...main)
 
+      ## [0.8.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.7.1...0.8.0) (2023-10-27)
+        ### Feature
+          * feat: psr ([`a8cf066`](https://github.com/afuetterer/oaipmh-scythe/commit/a8cf06607a2f29bfff3d56ef7a62d282da0be5d3))
+        ### Fix
+          * fix: psr ([`1706597`](https://github.com/afuetterer/oaipmh-scythe/commit/1706597dd275f22a821e8710e08b681576f5ec20))
       ## [0.7.1](https://github.com/afuetterer/oaipmh-scythe/compare/0.7.0...0.7.1) (2023-10-27)
         ### Documentation
           * docs(readme): add license badge to readme ([`2446ba4`](https://github.com/afuetterer/oaipmh-scythe/commit/2446ba4a3bafc43412f828b773d49231fc2e69c2))
