@@ -195,7 +195,6 @@ version_variables = [
   "src/oaipmh_scythe/__init__.py:__version__",
 ]
 build_command = """
-python -m pip list
 python -m pip install build
 python -m build
 """

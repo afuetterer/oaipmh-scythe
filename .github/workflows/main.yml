@@ -42,16 +42,36 @@ jobs:
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
         git_committer_name: github-actions[bot]
         git_committer_email: 41898282+github-actions[bot]@users.noreply.github.com
-
-    - run: ls -R
-
-    - run: ls dist
-
-
     - name: Upload wheel and sdist
       uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32 # v3.1.3
       with:
+        name: dist
         path: |
           dist/*.tar.gz
           dist/*.whl
         if-no-files-found: error
+        retention-days: 1
+
+  publish:
+    # disables this workflow from running in a repository that is not part of the indicated organization/user
+    if: github.repository_owner == 'afuetterer'
+    runs-on: ubuntu-22.04
+    needs:
+    - release
+    environment:
+      name: publish
+      url: https://test.pypi.org/p/oaipmh-scythe/
+    permissions:
+      id-token: write  # needed for trusted publishing
+    steps:
+    - name: Download wheel and sdist
+      uses: actions/download-artifact@v3
+      with:
+        name: dist
+    - name: Display structure of downloaded files
+      run: ls -R
+    - name: Publish package to TestPyPI
+      uses: pypa/gh-action-pypi-publish@b7f401de30cb6434a1e19f805ff006643653240e   # v1.8.10
+      with:
+        repository-url: https://test.pypi.org/legacy/
+        verbose: true
