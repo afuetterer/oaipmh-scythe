@@ -45,7 +45,7 @@ the records of a repository:
 
 ```python
 records = scythe.list_records(metadataPrefix="oai_dc")
-records.next()
+next(records)
 # <Record oai:zenodo.org:4574771>
 ```
 
@@ -55,19 +55,19 @@ These are: [list_records()][oaipmh_scythe.scythe.Scythe.list_records],
 and [list_metadata_formats()][oaipmh_scythe.scythe.Scythe.list_metadata_formats].
 
 The following example shows how to iterate over the headers returned by
-`ListIdentifiers`:
+`list_identifiers()`:
 
 ```python
 headers = scythe.list_identifiers(metadataPrefix="oai_dc")
-headers.next()
+next(headers)
 # <Header oai:zenodo.org:4574771>
 ```
 
-Iterating over the sets returned by `ListSets` works similarly:
+Iterating over the sets returned by `list_sets()` works similarly:
 
 ```python
 sets = scythe.list_sets()
-sets.next()
+next(sets)
 # <Set European Middleware Initiative>
 ```
 
@@ -113,7 +113,7 @@ to pass the [OAIResponseIterator][oaipmh_scythe.iterator.OAIResponseIterator] du
 from oaipmh_scythe.iterator import OAIResponseIterator
 scythe = Scythe("https://zenodo.org/oai2d", iterator=OAIResponseIterator)
 responses = scythe.list_records(metadataPrefix="oai_dc")
-responses.next()
+next(responses)
 # <OAIResponse ListRecords>
 ```
 
@@ -121,7 +121,7 @@ You could then save the returned responses to disk:
 
 ```python
 with open("response.xml", "w") as f:
-    f.write(responses.next().raw.encode("utf8"))
+    f.write(next(responses).raw.encode("utf8"))
 ```
 
 ## Ignoring Deleted Records

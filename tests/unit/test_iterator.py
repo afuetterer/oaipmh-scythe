@@ -1,39 +1,39 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import pytest
 
+from oaipmh_scythe import OAIResponse, Scythe
 from oaipmh_scythe.iterator import OAIItemIterator, OAIResponseIterator
-from oaipmh_scythe.models import Record
-from oaipmh_scythe.response import OAIResponse
-
-if TYPE_CHECKING:
-    from oaipmh_scythe import Scythe
+from oaipmh_scythe.models import Header
 
 
-@pytest.fixture
-def oairesponse_iterator(harvester: Scythe) -> OAIResponseIterator:
-    params = {"verb": "ListRecords"}
-    return OAIResponseIterator(harvester, params)
+@pytest.fixture(scope="module")
+def vcr_config() -> dict[str, str]:
+    return {"cassette_library_dir": "tests/cassettes"}
 
 
 @pytest.fixture
-def oaiitem_iterator(harvester: Scythe) -> OAIItemIterator:
-    params = {"verb": "ListRecords"}
-    return OAIItemIterator(harvester, params)
+def scythe() -> Scythe:
+    return Scythe("https://zenodo.org/oai2d")
 
 
-def test_oairesponse_iterator_str(oairesponse_iterator: OAIResponseIterator) -> None:
-    expected = "ListRecords"
-    assert expected in str(oairesponse_iterator)
+@pytest.mark.default_cassette("list_identifiers.yaml")
+@pytest.mark.vcr
+def test_oai_response_iterator(scythe: Scythe) -> None:
+    params = {"metadataPrefix": "oai_dc", "verb": "ListIdentifiers"}
+    iterator = OAIResponseIterator(scythe, params)
+    responses = list(iterator)
+    assert isinstance(responses[0], OAIResponse)
+    # there are 3 canned responses in list_identifiers.yaml
+    assert len(responses) == 3
 
 
-def test_oairesponse_iterator_next(oairesponse_iterator: OAIResponseIterator) -> None:
-    response = oairesponse_iterator.next()
-    assert isinstance(response, OAIResponse)
-
-
-def test_oaiitem_iterator(oaiitem_iterator: OAIItemIterator) -> None:
-    response = oaiitem_iterator.next()
-    assert isinstance(response, Record)
+@pytest.mark.default_cassette("list_identifiers.yaml")
+@pytest.mark.vcr
+def test_oai_item_iterator(scythe: Scythe) -> None:
+    params = {"metadataPrefix": "oai_dc", "verb": "ListIdentifiers"}
+    iterator = OAIItemIterator(scythe, params)
+    identifiers = list(iterator)
+    assert isinstance(identifiers[0], Header)
+    # there are 15 canned identifiers in list_identifiers.yaml
+    assert len(identifiers) == 15

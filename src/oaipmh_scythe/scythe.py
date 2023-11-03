@@ -42,7 +42,7 @@ class Scythe:
 
         >>> scythe = Scythe("https://zenodo.org/oai2d")
         >>> records = scythe.list_records(metadataPrefix="oai_dc")
-        >>> records.next()
+        >>> next(records)
         <Record oai:zenodo.org:4574771>
 
     :param endpoint: The endpoint of the OAI interface.
@@ -77,11 +77,11 @@ class Scythe:
         endpoint: str,
         http_method: str = "GET",
         protocol_version: str = "2.0",
-        iterator: BaseOAIIterator = OAIItemIterator,
+        iterator: type[BaseOAIIterator] = OAIItemIterator,
         max_retries: int = 0,
         retry_status_codes: Iterable[int] | None = None,
         default_retry_after: int = 60,
-        class_mapping: dict[str, OAIItem] | None = None,
+        class_mapping: dict[str, type[OAIItem]] | None = None,
         encoding: str | None = None,
         timeout: int = 60,
         **request_args: str,
@@ -100,7 +100,7 @@ class Scythe:
         self.max_retries = max_retries
         self.retry_status_codes = retry_status_codes or (503,)
         self.default_retry_after = default_retry_after
-        self.oai_namespace = OAI_NAMESPACE % self.protocol_version
+        self.oai_namespace: str = OAI_NAMESPACE % self.protocol_version
         self.class_mapping = class_mapping or DEFAULT_CLASS_MAP
         self.encoding = encoding
         self.timeout = timeout
@@ -136,7 +136,7 @@ class Scythe:
         """
         params = kwargs
         params.update({"verb": "ListRecords"})
-        return self.iterator(self, params, ignore_deleted=ignore_deleted)
+        yield from self.iterator(self, params, ignore_deleted=ignore_deleted)
 
     def list_identifiers(self, ignore_deleted: bool = False, **kwargs: str) -> BaseOAIIterator:
         """Issue a ListIdentifiers request.
@@ -146,13 +146,13 @@ class Scythe:
         """
         params = kwargs
         params.update({"verb": "ListIdentifiers"})
-        return self.iterator(self, params, ignore_deleted=ignore_deleted)
+        yield from self.iterator(self, params, ignore_deleted=ignore_deleted)
 
     def list_sets(self, **kwargs: str) -> BaseOAIIterator:
         """Issue a ListSets request."""
         params = kwargs
         params.update({"verb": "ListSets"})
-        return self.iterator(self, params)
+        yield from self.iterator(self, params)
 
     def identify(self) -> Identify:
         """Issue an Identify request."""
@@ -163,14 +163,13 @@ class Scythe:
         """Issue a GetRecord request."""
         params = kwargs
         params.update({"verb": "GetRecord"})
-        record = self.iterator(self, params).next()
-        return record
+        return next(iter(self.iterator(self, params)))
 
     def list_metadata_formats(self, **kwargs: str) -> BaseOAIIterator:
         """Issue a ListMetadataFormats request."""
         params = kwargs
         params.update({"verb": "ListMetadataFormats"})
-        return self.iterator(self, params)
+        yield from self.iterator(self, params)
 
     def ListRecords(self, ignore_deleted: bool = False, **kwargs: str) -> BaseOAIIterator:
         warnings.warn("ListRecords is deprecated, use list_records instead", DeprecationWarning, stacklevel=2)

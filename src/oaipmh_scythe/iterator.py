@@ -11,11 +11,14 @@ from oaipmh_scythe import exceptions
 from oaipmh_scythe.models import ResumptionToken
 
 if TYPE_CHECKING:
-    from oaipmh_scythe import Scythe
+    from collections.abc import Iterator
 
+    from oaipmh_scythe import Scythe
+    from oaipmh_scythe.models import OAIItem
+    from oaipmh_scythe.response import OAIResponse
 
 # Map OAI verbs to the XML elements
-VERBS_ELEMENTS = {
+VERBS_ELEMENTS: dict[str, str] = {
     "GetRecord": "record",
     "ListRecords": "record",
     "ListIdentifiers": "header",
@@ -32,80 +35,65 @@ class BaseOAIIterator(ABC):
 
     :param scythe: The Scythe object that issued the first request.
     :param params: The OAI arguments.
-    :type params:  dict
     :param ignore_deleted: Flag for whether to ignore deleted records.
-    :type ignore_deleted: bool
     """
 
     def __init__(self, scythe: Scythe, params: dict[str, str], ignore_deleted: bool = False) -> None:
         self.scythe = scythe
         self.params = params
         self.ignore_deleted = ignore_deleted
-        self.verb = self.params.get("verb")
-        self.resumption_token = None
+        self.verb: str = self.params.get("verb")
+        self.resumption_token: ResumptionToken | None = None
         self._next_response()
 
+    @abstractmethod
     def __iter__(self):
-        return self
-
-    def __next__(self):
-        return self.next()
+        pass
 
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__} {self.verb}>"
 
-    def _get_resumption_token(self) -> ResumptionToken:
+    def _get_resumption_token(self) -> ResumptionToken | None:
         """Extract and store the resumptionToken from the last response."""
-        resumption_token_element = self.oai_response.xml.find(".//" + self.scythe.oai_namespace + "resumptionToken")
-        if resumption_token_element is None:
-            return None
-        token = resumption_token_element.text
-        cursor = resumption_token_element.attrib.get("cursor")
-        complete_list_size = resumption_token_element.attrib.get("completeListSize")
-        expiration_date = resumption_token_element.attrib.get("expirationDate")
-        resumption_token = ResumptionToken(
-            token=token,
-            cursor=cursor,
-            complete_list_size=complete_list_size,
-            expiration_date=expiration_date,
-        )
-        return resumption_token
+        ns = self.scythe.oai_namespace
+        if (token_element := self.oai_response.xml.find(f".//{ns}resumptionToken")) is not None:
+            return ResumptionToken(
+                token=token_element.text,
+                cursor=token_element.attrib.get("cursor"),
+                complete_list_size=token_element.attrib.get("completeListSize"),
+                expiration_date=token_element.attrib.get("expirationDate"),
+            )
+        return None
 
-    def _next_response(self):
-        """Get the next response from the OAI server."""
-        params = self.params
+    def _next_response(self) -> None:
         if self.resumption_token:
-            params = {"resumptionToken": self.resumption_token.token, "verb": self.verb}
-        self.oai_response = self.scythe.harvest(**params)
-        error = self.oai_response.xml.find(".//" + self.scythe.oai_namespace + "error")
-        if error is not None:
+            self.params = {"resumptionToken": self.resumption_token.token, "verb": self.verb}
+        self.oai_response = self.scythe.harvest(**self.params)
+
+        if (error := self.oai_response.xml.find(f".//{self.scythe.oai_namespace}error")) is not None:
             code = error.attrib.get("code", "UNKNOWN")
             description = error.text or ""
             try:
-                raise getattr(exceptions, code[0].upper() + code[1:])(description)
+                exception_name = code[0].upper() + code[1:]
+                raise getattr(exceptions, exception_name)(description)
             except AttributeError as exc:
                 raise exceptions.OAIError(description) from exc
         self.resumption_token = self._get_resumption_token()
-
-    @abstractmethod
-    def next(self):
-        pass
 
 
 class OAIResponseIterator(BaseOAIIterator):
     """Iterator over OAI responses."""
 
-    def next(self):
-        """Return the next response."""
+    def __iter__(self) -> Iterator[OAIResponse]:
+        """Yield the next response."""
         while True:
             if self.oai_response:
-                response = self.oai_response
+                yield self.oai_response
                 self.oai_response = None
-                return response
             elif self.resumption_token and self.resumption_token.token:
                 self._next_response()
             else:
-                raise StopIteration
+                return
 
 
 class OAIItemIterator(BaseOAIIterator):
@@ -115,28 +103,28 @@ class OAIItemIterator(BaseOAIIterator):
 
     :param scythe: The Scythe object that issued the first request.
     :param params: The OAI arguments.
-    :type params:  dict
     :param ignore_deleted: Flag for whether to ignore deleted records.
     """
 
     def __init__(self, scythe: Scythe, params: dict[str, str], ignore_deleted: bool = False) -> None:
-        self.mapper = scythe.class_mapping[params.get("verb")]
-        self.element = VERBS_ELEMENTS[params.get("verb")]
+        self.verb = params.get("verb")
+        self.mapper = scythe.class_mapping[self.verb]
+        self.element = VERBS_ELEMENTS[self.verb]
         super().__init__(scythe, params, ignore_deleted)
 
-    def _next_response(self):
+    def _next_response(self) -> None:
         super()._next_response()
-        self._items = self.oai_response.xml.iterfind(".//" + self.scythe.oai_namespace + self.element)
+        self._items = self.oai_response.xml.iterfind(f".//{self.scythe.oai_namespace}{self.element}")
 
-    def next(self):
-        """Return the next record/header/set."""
+    def __iter__(self) -> Iterator[OAIItem]:
+        """Yield the next record/header/set."""
         while True:
             for item in self._items:
                 mapped = self.mapper(item)
                 if self.ignore_deleted and mapped.deleted:
                     continue
-                return mapped
+                yield mapped
             if self.resumption_token and self.resumption_token.token:
                 self._next_response()
             else:
-                raise StopIteration
+                return

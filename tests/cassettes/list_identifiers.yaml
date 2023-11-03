@@ -1,0 +1,188 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - python-httpx/0.25.0
+    method: GET
+    uri: https://zenodo.org/oai2d?metadataPrefix=oai_dc&verb=ListIdentifiers
+  response:
+    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-07T18:35:57Z</responseDate>\n  <request verb=\"ListIdentifiers\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n  <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:6538892</identifier>\n      <datestamp>2022-05-11T13:49:36Z</datestamp>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:5783992</identifier>\n      <datestamp>2021-12-16T01:48:40Z</datestamp>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:6615642</identifier>\n      <datestamp>2022-06-06T01:50:36Z</datestamp>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:6524784</identifier>\n      <datestamp>2022-05-07T01:49:14Z</datestamp>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:7726619</identifier>\n      <datestamp>2023-03-15T02:26:42Z</datestamp>\n    </header>\n    <resumptionToken expirationDate=\"2023-11-07T18:37:57Z\" cursor=\"0\" completeListSize=\"3749956\">.eJytzNtOgzAYAOB3-a-JoeWQQLKLLdIqGlQWWunN0tFykEoVtoAue_fpCxgv9j3Ad4JJawWxexP6Uej6buAFIfY8N3DgQzYaYuxAP8uxmSA-wbs-SCUP8nnUdbdADFZ2O1XB2YGpGq0xu-4nA0LNscQLEpTVJY6OijJfkQgpbvrbgSDxmgaMtmbfC6NoZtdL-bVN0F3G87JApNgici-NaPOhrRlNN-tfMvmsloYXPH1QOP0u3ja54KjOhhf0yFjylCCr_v3YKz3z38-8WsH5Anc6ciI.ZUqDjQ.oInMC3B8nj6-brYV9z_hKq4-9J4</resumptionToken>\n  </ListIdentifiers>\n</OAI-PMH>\n"
+    headers:
+      cache-control:
+      - private
+      content-encoding:
+      - gzip
+      content-security-policy:
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Tue, 07 Nov 2023 18:35:57 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '60'
+      server:
+      - nginx
+      set-cookie:
+      - session=226d29c5ba968285_654a838d.0zVaJxzcD_s7cQWTwLVWD4BuMYE; Expires=Fri, 08 Dec 2023 18:35:57 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - 5569e5a730cade8ff2b54f1e815f3670=5a4a85fc36e964375d0c090b2f0b558d; path=/; HttpOnly; Secure; SameSite=None
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      - max-age=15768000
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '120'
+      x-ratelimit-remaining:
+      - '105'
+      x-ratelimit-reset:
+      - '1699382218'
+      x-request-id:
+      - 6ca73861b84666cbaff1a565f6e96710
+      x-xss-protection:
+      - 1; mode=block
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - python-httpx/0.25.0
+    method: GET
+    uri: https://zenodo.org/oai2d?resumptionToken=.eJytzNtOgzAYAOB3-a-JoeWQQLKLLdIqGlQWWunN0tFykEoVtoAue_fpCxgv9j3Ad4JJawWxexP6Uej6buAFIfY8N3DgQzYaYuxAP8uxmSA-wbs-SCUP8nnUdbdADFZ2O1XB2YGpGq0xu-4nA0LNscQLEpTVJY6OijJfkQgpbvrbgSDxmgaMtmbfC6NoZtdL-bVN0F3G87JApNgici-NaPOhrRlNN-tfMvmsloYXPH1QOP0u3ja54KjOhhf0yFjylCCr_v3YKz3z38-8WsH5Anc6ciI.ZUqDjQ.oInMC3B8nj6-brYV9z_hKq4-9J4&verb=ListIdentifiers
+  response:
+    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-07T18:35:57Z</responseDate>\n  <request resumptionToken=\".eJytzNtOgzAYAOB3-a-JoeWQQLKLLdIqGlQWWunN0tFykEoVtoAue_fpCxgv9j3Ad4JJawWxexP6Uej6buAFIfY8N3DgQzYaYuxAP8uxmSA-wbs-SCUP8nnUdbdADFZ2O1XB2YGpGq0xu-4nA0LNscQLEpTVJY6OijJfkQgpbvrbgSDxmgaMtmbfC6NoZtdL-bVN0F3G87JApNgici-NaPOhrRlNN-tfMvmsloYXPH1QOP0u3ja54KjOhhf0yFjylCCr_v3YKz3z38-8WsH5Anc6ciI.ZUqDjQ.oInMC3B8nj6-brYV9z_hKq4-9J4\" verb=\"ListIdentifiers\">https://zenodo.org/oai2d</request>\n  <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:2647848</identifier>\n      <datestamp>2020-01-20T12:04:02Z</datestamp>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:2829973</identifier>\n      <datestamp>2020-01-20T13:00:00Z</datestamp>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:2554049</identifier>\n      <datestamp>2020-01-25T07:23:40Z</datestamp>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:1117169</identifier>\n      <datestamp>2020-01-20T13:34:00Z</datestamp>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:1084139</identifier>\n      <datestamp>2020-01-20T17:08:55Z</datestamp>\n    </header>\n    <resumptionToken expirationDate=\"2023-11-07T18:37:58Z\" cursor=\"100\" completeListSize=\"3749956\">.eJytzN1OgzAYANB3-a6JWQvbgGQXW6RVZlBZaKU3S0fLz6hUYQvosndXX8B44XmAc4FBawXh7Ab7no_dWeB7wXKxdBcOvMlKQ-g60I6yrwYIL_CqT1LJk3zqddlMEIKVzV4VcHVgKHprzL75zoBQc87xhARlZY6Ds6LMUyRAipv2tiNIvMRzRmtzaIVRNLHrKf_YRegu4WmeIZLtELmXRtRpV5eMxpv1Dxm9F1PFMx5vFY4_s-MmFRyVSfeMHhiLHiNk1Z8f-0_P-PszrlZw_QKZInI8.ZUqDjg.R3fT3l5Jl4eZrovehF97gFnEVCU</resumptionToken>\n  </ListIdentifiers>\n</OAI-PMH>\n"
+    headers:
+      cache-control:
+      - private
+      content-encoding:
+      - gzip
+      content-security-policy:
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Tue, 07 Nov 2023 18:35:58 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '59'
+      server:
+      - nginx
+      set-cookie:
+      - session=a06d38f78f6a1a1e_654a838e.k7FjaN-bRgVnsKMUe5AytCgH0lM; Expires=Fri, 08 Dec 2023 18:35:58 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - 5569e5a730cade8ff2b54f1e815f3670=ff6a8e89222c0f0e844c4f6c85e16281; path=/; HttpOnly; Secure; SameSite=None
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      - max-age=15768000
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '120'
+      x-ratelimit-remaining:
+      - '104'
+      x-ratelimit-reset:
+      - '1699382218'
+      x-request-id:
+      - 92201b4fe31e9ffcce52920060d3f356
+      x-xss-protection:
+      - 1; mode=block
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - python-httpx/0.25.0
+    method: GET
+    uri: https://zenodo.org/oai2d?resumptionToken=.eJytzN1OgzAYANB3-a6JWQvbgGQXW6RVZlBZaKU3S0fLz6hUYQvosndXX8B44XmAc4FBawXh7Ab7no_dWeB7wXKxdBcOvMlKQ-g60I6yrwYIL_CqT1LJk3zqddlMEIKVzV4VcHVgKHprzL75zoBQc87xhARlZY6Ds6LMUyRAipv2tiNIvMRzRmtzaIVRNLHrKf_YRegu4WmeIZLtELmXRtRpV5eMxpv1Dxm9F1PFMx5vFY4_s-MmFRyVSfeMHhiLHiNk1Z8f-0_P-PszrlZw_QKZInI8.ZUqDjg.R3fT3l5Jl4eZrovehF97gFnEVCU&verb=ListIdentifiers
+  response:
+    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-07T18:35:58Z</responseDate>\n  <request resumptionToken=\".eJytzN1OgzAYANB3-a6JWQvbgGQXW6RVZlBZaKU3S0fLz6hUYQvosndXX8B44XmAc4FBawXh7Ab7no_dWeB7wXKxdBcOvMlKQ-g60I6yrwYIL_CqT1LJk3zqddlMEIKVzV4VcHVgKHprzL75zoBQc87xhARlZY6Ds6LMUyRAipv2tiNIvMRzRmtzaIVRNLHrKf_YRegu4WmeIZLtELmXRtRpV5eMxpv1Dxm9F1PFMx5vFY4_s-MmFRyVSfeMHhiLHiNk1Z8f-0_P-PszrlZw_QKZInI8.ZUqDjg.R3fT3l5Jl4eZrovehF97gFnEVCU\" verb=\"ListIdentifiers\">https://zenodo.org/oai2d</request>\n  <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:2194633</identifier>\n      <datestamp>2020-01-20T14:17:18Z</datestamp>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:2813056</identifier>\n      <datestamp>2019-05-14T11:24:14Z</datestamp>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:2205257</identifier>\n      <datestamp>2020-01-20T14:19:19Z</datestamp>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:2233255</identifier>\n      <datestamp>2020-01-20T14:12:23Z</datestamp>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:2230835</identifier>\n      <datestamp>2020-01-20T17:33:29Z</datestamp>\n    </header>\n    </ListIdentifiers>\n</OAI-PMH>\n"
+    headers:
+      cache-control:
+      - private
+      content-encoding:
+      - gzip
+      content-security-policy:
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Tue, 07 Nov 2023 18:35:58 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '60'
+      server:
+      - nginx
+      set-cookie:
+      - session=cbfff9f5a430922d_654a838e.3G7VN87Y9l4v8lRQ9-HC1fW7BFw; Expires=Fri, 08 Dec 2023 18:35:58 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - 5569e5a730cade8ff2b54f1e815f3670=ff6a8e89222c0f0e844c4f6c85e16281; path=/; HttpOnly; Secure; SameSite=None
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      - max-age=15768000
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '120'
+      x-ratelimit-remaining:
+      - '103'
+      x-ratelimit-reset:
+      - '1699382219'
+      x-request-id:
+      - e2f53c7a3e14a643e0b50ee4d2e2d701
+      x-xss-protection:
+      - 1; mode=block
+    http_version: HTTP/1.1
+    status_code: 200
+version: 1
