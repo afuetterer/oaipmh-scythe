@@ -168,6 +168,7 @@ source = ["oaipmh_scythe"]
 [tool.coverage.report]
 exclude_lines = [
   "if TYPE_CHECKING:",
+  "@abstractmethod",
 ]
 fail_under = 90
 show_missing = true

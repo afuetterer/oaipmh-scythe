@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
 from oaipmh_scythe import exceptions
@@ -24,7 +25,7 @@ VERBS_ELEMENTS = {
 }
 
 
-class BaseOAIIterator:
+class BaseOAIIterator(ABC):
     """Iterator over OAI records/identifiers/sets transparently aggregated via OAI-PMH.
 
     Can be used to conveniently iterate through the records of a repository.
@@ -86,9 +87,9 @@ class BaseOAIIterator:
                 raise exceptions.OAIError(description) from exc
         self.resumption_token = self._get_resumption_token()
 
+    @abstractmethod
     def next(self):
-        """Must be implemented by subclasses."""
-        raise NotImplementedError
+        pass
 
 
 class OAIResponseIterator(BaseOAIIterator):
