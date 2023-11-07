@@ -96,3 +96,13 @@ def harvester(mocker: MockerFixture) -> Scythe:
 @pytest.fixture
 def mock_get(mocker: MockerFixture) -> MagicMock:
     return mocker.patch("oaipmh_scythe.scythe.httpx.get")
+
+
+@pytest.fixture(scope="module")
+def vcr_config() -> dict[str, str]:
+    return {"cassette_library_dir": "tests/cassettes"}
+
+
+@pytest.fixture
+def scythe() -> Scythe:
+    return Scythe("https://zenodo.org/oai2d")

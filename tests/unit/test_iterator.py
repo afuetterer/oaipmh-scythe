@@ -7,16 +7,6 @@ from oaipmh_scythe.iterator import OAIItemIterator, OAIResponseIterator
 from oaipmh_scythe.models import Header
 
 
-@pytest.fixture(scope="module")
-def vcr_config() -> dict[str, str]:
-    return {"cassette_library_dir": "tests/cassettes"}
-
-
-@pytest.fixture
-def scythe() -> Scythe:
-    return Scythe("https://zenodo.org/oai2d")
-
-
 @pytest.mark.default_cassette("list_identifiers.yaml")
 @pytest.mark.vcr
 def test_oai_response_iterator(scythe: Scythe) -> None:
