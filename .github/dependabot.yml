@@ -17,7 +17,6 @@ updates:
     github-actions:
       patterns:
       - '*'
-
 - package-ecosystem: pip
   directory: /
   schedule:
@@ -29,3 +28,17 @@ updates:
   labels:
   - 'type: build'
   - 'deps: python'
+- package-ecosystem: pip
+  directory: /.github/workflows
+  schedule:
+    interval: monthly
+  commit-message:
+    prefix: ci
+  open-pull-requests-limit: 10
+  labels:
+  - 'type: ci'
+  - 'deps: python'
+  groups:
+    constraints:
+      patterns:
+      - '*'
