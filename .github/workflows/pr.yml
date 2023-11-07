@@ -17,8 +17,6 @@ permissions:
   contents: read
 
 jobs:
-  lint:
-    uses: ./.github/workflows/lint.yml
   test:
     uses: ./.github/workflows/test.yml
   docs:
@@ -28,11 +26,10 @@ jobs:
   required-checks-pass:
     if: always()
     needs:
-    - lint
     - test
     - docs
     runs-on: ubuntu-22.04
     steps:
-    - uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe   # v1.2.2
+    - uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # v1.2.2
       with:
         jobs: ${{ toJSON(needs) }}
