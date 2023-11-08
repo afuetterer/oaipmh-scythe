@@ -42,7 +42,8 @@ class BaseOAIIterator(ABC):
         self.scythe = scythe
         self.params = params
         self.ignore_deleted = ignore_deleted
-        self.verb: str = self.params.get("verb")
+        self.verb: str = self.params["verb"]
+        self.oai_response: OAIResponse | None = None
         self.resumption_token: ResumptionToken | None = None
         self._next_response()
 
@@ -56,7 +57,10 @@ class BaseOAIIterator(ABC):
     def _get_resumption_token(self) -> ResumptionToken | None:
         """Extract and store the resumptionToken from the last response."""
         ns = self.scythe.oai_namespace
-        if (token_element := self.oai_response.xml.find(f".//{ns}resumptionToken")) is not None:
+        if (
+            self.oai_response is not None
+            and (token_element := self.oai_response.xml.find(f".//{ns}resumptionToken")) is not None
+        ):
             return ResumptionToken(
                 token=token_element.text,
                 cursor=token_element.attrib.get("cursor"),
@@ -107,14 +111,17 @@ class OAIItemIterator(BaseOAIIterator):
     """
 
     def __init__(self, scythe: Scythe, params: dict[str, str], ignore_deleted: bool = False) -> None:
-        self.verb = params.get("verb")
+        self.verb = params["verb"]
         self.mapper = scythe.class_mapping[self.verb]
         self.element = VERBS_ELEMENTS[self.verb]
         super().__init__(scythe, params, ignore_deleted)
 
     def _next_response(self) -> None:
         super()._next_response()
-        self._items = self.oai_response.xml.iterfind(f".//{self.scythe.oai_namespace}{self.element}")
+        if self.oai_response is not None:
+            self._items = self.oai_response.xml.iterfind(f".//{self.scythe.oai_namespace}{self.element}")
+        else:
+            self._items = iter(())
 
     def __iter__(self) -> Iterator[OAIItem]:
         """Yield the next record/header/set."""

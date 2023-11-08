@@ -1,22 +1,28 @@
 # SPDX-FileCopyrightText: 2015 Mathias Loesch
 #
 # SPDX-License-Identifier: BSD-3-Clause
+from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from lxml import etree
 
+from oaipmh_scythe.response import OAIResponse
 from oaipmh_scythe.utils import get_namespace, xml_to_dict
+
+if TYPE_CHECKING:
+    from collections.abc import Iterator
 
 
 @dataclass
 class ResumptionToken:
     """Represents a resumption token."""
 
-    token: str = ""
-    cursor: str = ""
-    complete_list_size: str = ""
-    expiration_date: str = ""
+    token: str | None = None
+    cursor: str | None = None
+    complete_list_size: str | None = None
+    expiration_date: str | None = None
 
     def __repr__(self) -> str:
         return f"<ResumptionToken {self.token}>"
@@ -30,10 +36,10 @@ class OAIItem:
                      element names in the dictionary representation.
     """
 
-    def __init__(self, xml, strip_ns: bool = True) -> None:
+    def __init__(self, xml: etree._Element, strip_ns: bool = True) -> None:
         super().__init__()
 
-        #: The original parsed XML
+        # The original parsed XML
         self.xml = xml
         self._strip_ns = strip_ns
         self._oai_namespace = get_namespace(self.xml)
@@ -57,10 +63,9 @@ class Identify(OAIItem):
     from a :class:`sickle.response.OAIResponse` instead of an XML element.
 
     :param identify_response: The response for an Identify request.
-    :type identify_response: :class:`sickle.OAIResponse`
     """
 
-    def __init__(self, identify_response) -> None:
+    def __init__(self, identify_response: OAIResponse) -> None:
         super().__init__(identify_response.xml, strip_ns=True)
         self.xml = self.xml.find(".//" + self._oai_namespace + "Identify")
         self._identify_dict = xml_to_dict(self.xml, strip_ns=True)
@@ -70,7 +75,7 @@ class Identify(OAIItem):
     def __repr__(self) -> str:
         return "<Identify>"
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator:
         return iter(self._identify_dict.items())
 
 
@@ -78,10 +83,9 @@ class Header(OAIItem):
     """Represents an OAI Header.
 
     :param header_element: The XML element 'header'.
-    :type header_element: :class:`lxml.etree._Element`
     """
 
-    def __init__(self, header_element) -> None:
+    def __init__(self, header_element: etree._Element) -> None:
         super().__init__(header_element, strip_ns=True)
         self.deleted = self.xml.attrib.get("status") == "deleted"
         _identifier_element = self.xml.find(self._oai_namespace + "identifier")
@@ -96,7 +100,7 @@ class Header(OAIItem):
             return f"<Header {self.identifier} [deleted]>"
         return f"<Header {self.identifier}>"
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator:
         return iter(
             [
                 ("identifier", self.identifier),
@@ -110,7 +114,6 @@ class Record(OAIItem):
     """Represents an OAI record.
 
     :param record_element: The XML element 'record'.
-    :type record_element: :class:`lxml.etree._Element`
     :param strip_ns: Flag for whether to remove the namespaces from the
                      element names.
     """
@@ -127,7 +130,7 @@ class Record(OAIItem):
             return f"<Record {self.header.identifier} [deleted]>"
         return f"<Record {self.header.identifier}>"
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator:
         return iter(self.metadata.items())
 
     def get_metadata(self):
@@ -156,7 +159,7 @@ class Set(OAIItem):
     def __repr__(self) -> str:
         return f"<Set {self.setName}>"
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator:
         return iter(self._set_dict.items())
 
 
@@ -177,5 +180,5 @@ class MetadataFormat(OAIItem):
     def __repr__(self) -> str:
         return f"<MetadataFormat {self.metadataPrefix}>"
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator:
         return iter(self._mdf_dict.items())

@@ -136,13 +136,3 @@ def test_retry_on_custom_code(mocker: MockerFixture, mock_get: MagicMock) -> Non
         records = list(records)
     mock_get.assert_called_with("url", params={"verb": "ListRecords"}, timeout=60)
     assert mock_get.call_count == 4
-
-
-@pytest.mark.filterwarnings("ignore::DeprecationWarning")
-def test_deprecated_methods(harvester: Scythe):
-    harvester.Identify()
-    harvester.GetRecord()
-    harvester.ListIdentifiers()
-    harvester.ListMetadataFormats()
-    harvester.ListRecords()
-    harvester.ListSets()

@@ -29,6 +29,7 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: Implementation :: CPython",
   "Topic :: Text Processing :: Markup :: XML",
+  "Typing :: Typed",
 ]
 dynamic = [
   "version",
@@ -49,7 +50,6 @@ docs = [
   "mkdocstrings[python]~=0.23",
 ]
 lint = [
-  "mypy~=1.6",
   "pre-commit~=3.5",
 ]
 test = [
@@ -102,8 +102,8 @@ features = [
   "lint",
 ]
 [tool.hatch.envs.lint.scripts]
-style = "pre-commit run --all-files --color=always"
-typing = "mypy src tests"
+style = "SKIP=mypy pre-commit run --all-files --color=always"
+typing = "pre-commit run --all-files --color=always mypy"
 all = [
   "style",
   # "typing",
@@ -167,6 +167,23 @@ fail_under = 90
 show_missing = true
 skip_covered = true
 skip_empty = true
+
+# mypy
+# Ref: https://mypy.readthedocs.io/en/stable/config_file.html#using-a-pyproject-toml-file
+# ------------------------------------------------------------------------------
+
+[tool.mypy]
+python_version = "3.8"
+pretty = true
+show_column_numbers = true
+show_error_codes = true
+show_error_context = true
+
+[[tool.mypy.overrides]]
+module = [
+  "oaipmh_scythe.*",
+]
+ignore_errors = true
 
 # licensecheck
 # Ref: https://github.com/FHPythonUtils/LicenseCheck/#example-1-pyprojecttoml

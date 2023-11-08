@@ -7,7 +7,6 @@ from __future__ import annotations
 import inspect
 import logging
 import time
-import warnings
 from typing import TYPE_CHECKING, Iterable
 
 import httpx
@@ -17,6 +16,8 @@ from oaipmh_scythe.models import Header, Identify, MetadataFormat, OAIItem, Reco
 from oaipmh_scythe.response import OAIResponse
 
 if TYPE_CHECKING:
+    from collections.abc import Iterator
+
     from httpx import Response
 
 logger = logging.getLogger(__name__)
@@ -128,7 +129,7 @@ class Scythe:
             return httpx.get(self.endpoint, timeout=self.timeout, params=kwargs, **self.request_args)
         return httpx.post(self.endpoint, data=kwargs, timeout=self.timeout, **self.request_args)
 
-    def list_records(self, ignore_deleted: bool = False, **kwargs: str) -> BaseOAIIterator:
+    def list_records(self, ignore_deleted: bool = False, **kwargs: str) -> Iterator[OAIResponse | OAIItem]:
         """Issue a ListRecords request.
 
         :param ignore_deleted: If set to :obj:`True`, the resulting
@@ -138,7 +139,7 @@ class Scythe:
         params.update({"verb": "ListRecords"})
         yield from self.iterator(self, params, ignore_deleted=ignore_deleted)
 
-    def list_identifiers(self, ignore_deleted: bool = False, **kwargs: str) -> BaseOAIIterator:
+    def list_identifiers(self, ignore_deleted: bool = False, **kwargs: str) -> Iterator[OAIResponse | OAIItem]:
         """Issue a ListIdentifiers request.
 
         :param ignore_deleted: If set to :obj:`True`, the resulting
@@ -148,7 +149,7 @@ class Scythe:
         params.update({"verb": "ListIdentifiers"})
         yield from self.iterator(self, params, ignore_deleted=ignore_deleted)
 
-    def list_sets(self, **kwargs: str) -> BaseOAIIterator:
+    def list_sets(self, **kwargs: str) -> Iterator[OAIResponse | OAIItem]:
         """Issue a ListSets request."""
         params = kwargs
         params.update({"verb": "ListSets"})
@@ -159,43 +160,17 @@ class Scythe:
         params = {"verb": "Identify"}
         return Identify(self.harvest(**params))
 
-    def get_record(self, **kwargs: str) -> Record:
+    def get_record(self, **kwargs: str) -> OAIResponse | Record:
         """Issue a GetRecord request."""
         params = kwargs
         params.update({"verb": "GetRecord"})
         return next(iter(self.iterator(self, params)))
 
-    def list_metadata_formats(self, **kwargs: str) -> BaseOAIIterator:
+    def list_metadata_formats(self, **kwargs: str) -> Iterator[OAIResponse | OAIItem]:
         """Issue a ListMetadataFormats request."""
         params = kwargs
         params.update({"verb": "ListMetadataFormats"})
         yield from self.iterator(self, params)
-
-    def ListRecords(self, ignore_deleted: bool = False, **kwargs: str) -> BaseOAIIterator:
-        warnings.warn("ListRecords is deprecated, use list_records instead", DeprecationWarning, stacklevel=2)
-        return self.list_records(ignore_deleted, **kwargs)
-
-    def ListIdentifiers(self, ignore_deleted: bool = False, **kwargs: str) -> BaseOAIIterator:
-        warnings.warn("ListIdentifiers is deprecated, use list_identifiers instead", DeprecationWarning, stacklevel=2)
-        return self.list_identifiers(ignore_deleted, **kwargs)
-
-    def ListSets(self, **kwargs: str) -> BaseOAIIterator:
-        warnings.warn("ListSets is deprecated, use list_sets instead", DeprecationWarning, stacklevel=2)
-        return self.list_sets(**kwargs)
-
-    def Identify(self) -> Identify:
-        warnings.warn("Identify is deprecated, use identify instead", DeprecationWarning, stacklevel=2)
-        return self.identify()
-
-    def GetRecord(self, **kwargs: str) -> Record:
-        warnings.warn("GetRecord is deprecated, use get_record instead", DeprecationWarning, stacklevel=2)
-        return self.get_record(**kwargs)
-
-    def ListMetadataFormats(self, **kwargs: str) -> BaseOAIIterator:
-        warnings.warn(
-            "ListMetadataFormats is deprecated, use list_metadataformats instead", DeprecationWarning, stacklevel=2
-        )
-        return self.list_metadata_formats(**kwargs)
 
     def get_retry_after(self, http_response: Response) -> int:
         if http_response.status_code == 503:

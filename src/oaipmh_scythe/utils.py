@@ -17,19 +17,18 @@ def get_namespace(element: etree._Element) -> str | None:
 
     :param element: An XML element.
     """
-    return re.search(r"(\{.*\})", element.tag).group(1)
+    match = re.search(r"(\{.*\})", element.tag)
+    return match.group(1) if match else None
 
 
 def xml_to_dict(
     tree: etree._Element, paths: list[str] | None = None, nsmap: dict[str, str] | None = None, strip_ns: bool = False
-):
+) -> dict[str, list[str | None]]:
     """Convert an XML tree to a dictionary.
 
     :param tree: etree Element
     :param paths: An optional list of XPath expressions applied on the XML tree.
-    :type paths: list[basestring]
     :param nsmap: An optional prefix-namespace mapping for conciser spec of paths.
-    :type nsmap: dict
     :param strip_ns: Flag for whether to remove the namespaces from the tags.
     """
     paths = paths or [".//"]

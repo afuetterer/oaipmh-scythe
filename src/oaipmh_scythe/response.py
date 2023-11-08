@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 from lxml import etree
 
 if TYPE_CHECKING:
-    from requests.models import Response
+    from httpx import Response
 
 XMLParser = etree.XMLParser(remove_blank_text=True, recover=True, resolve_entities=False)
 
