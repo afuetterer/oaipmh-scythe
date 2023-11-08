@@ -36,7 +36,7 @@ Related issue: #ISSUE_NUMBER
 ## Checklist
 <!--- Go over all the following points, and remove the lines, that do not apply. --->
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! --->
-- I have read the [contributor guide](https://github.com/afuetterer/oaipmh-scythe/blob/main/CONTRIBUTING.md).
+- I have read the [contributor guide](https://github.com/afuetterer/oaipmh-scythe/blob/main/.github/CONTRIBUTING.md).
 - My code follows the code style of this project.
 - My change requires a change to the documentation.
 - I have updated the documentation accordingly.
