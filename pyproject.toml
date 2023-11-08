@@ -158,7 +158,7 @@ parallel = true
 source = ["oaipmh_scythe"]
 
 [tool.coverage.report]
-exclude_lines = [
+exclude_also = [
   "if TYPE_CHECKING:",
   "@abstractmethod",
 ]
