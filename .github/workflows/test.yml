@@ -73,4 +73,4 @@ jobs:
         python-version: '3.12'
         cache: pip
     - run: python -Im pip install --editable .[dev]
-    - run: python -Ic 'import oaipmh_scythe; print(oaipmh_scythe.__version__)'
+    - run: python -Ic 'import oaipmh_scythe.__about__; print(oaipmh_scythe.__about__.__version__)'

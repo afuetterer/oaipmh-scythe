@@ -11,5 +11,3 @@ __all__ = [
     "Scythe",
     "OAIResponse",
 ]
-
-__version__ = "0.7.0"

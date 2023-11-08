@@ -81,7 +81,7 @@ include = [
 packages = ["src/oaipmh_scythe"]
 
 [tool.hatch.version]
-path = "src/oaipmh_scythe/__init__.py"
+path = "src/oaipmh_scythe/__about__.py"
 
 [tool.hatch.envs.default]
 features = [
