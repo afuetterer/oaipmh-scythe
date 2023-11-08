@@ -30,6 +30,7 @@ theme:
   features:
   - content.code.annotate
   - content.code.copy
+  - navigation.footer
   palette:
   - media: '(prefers-color-scheme: light)'
     scheme: default
