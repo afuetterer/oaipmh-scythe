@@ -1,33 +1,52 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 import pytest
-from conftest import MockHttpResponse
 from lxml import etree
 
 from oaipmh_scythe.response import OAIResponse
 
-
-@pytest.fixture(scope="module")
-def http_response() -> MockHttpResponse:
-    return MockHttpResponse("ListRecords.xml")
+if TYPE_CHECKING:
+    from pytest_mock import MockerFixture
 
 
-@pytest.fixture(scope="module")
-def oai_response(http_response) -> OAIResponse:
-    params = {"verb": "ListRecords"}
-    return OAIResponse(http_response, params)
+IDENTIFY_XML: str = """
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <responseDate>2023-11-09T09:53:46Z</responseDate>
+    <request verb="Identify">https://zenodo.org/oai2d</request>
+    <Identify>
+        <repositoryName>Zenodo</repositoryName>
+        <baseURL>https://zenodo.org/oai2d</baseURL>
+        <protocolVersion>2.0</protocolVersion>
+    </Identify>
+</OAI-PMH>
+"""
 
 
-def test_oairesponse_raw(oai_response: OAIResponse) -> None:
-    assert isinstance(oai_response.raw, str)
-    expected = "<identifier>oai:test.example.com:1585310</identifier>"
-    assert expected in oai_response.raw
+@pytest.fixture
+def mock_response(mocker: MockerFixture):
+    response = mocker.Mock()
+    response.text = IDENTIFY_XML
+    response.content = response.text.encode()
+    return response
 
 
-def test_oairesponse_xml(oai_response: OAIResponse) -> None:
+def test_oai_response_raw(mock_response) -> None:
+    params = {"verb": "Identify"}
+    oai_response = OAIResponse(http_response=mock_response, params=params)
+    assert oai_response.raw == mock_response.text
+
+
+def test_oai_response_xml(mock_response):
+    params = {"verb": "Identify"}
+    oai_response = OAIResponse(http_response=mock_response, params=params)
     assert isinstance(oai_response.xml, etree._Element)
-    expected = "{http://www.openarchives.org/OAI/2.0/}OAI-PMH"
-    assert oai_response.xml.tag == expected
+    assert oai_response.xml.tag == "{http://www.openarchives.org/OAI/2.0/}OAI-PMH"
 
 
-def test_oairesponse_str(oai_response: OAIResponse) -> None:
-    expected = "ListRecords"
-    assert expected in str(oai_response)
+def test_oai_response_str(mock_response):
+    params = {"verb": "Identify"}
+    oai_response = OAIResponse(http_response=mock_response, params=params)
+    assert str(oai_response) == "<OAIResponse Identify>"

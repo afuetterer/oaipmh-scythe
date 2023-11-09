@@ -7,6 +7,7 @@ from __future__ import annotations
 from collections.abc import Iterator
 
 import pytest
+from httpx import HTTPStatusError
 from lxml import etree
 
 from oaipmh_scythe import OAIResponse, Scythe
@@ -32,6 +33,16 @@ def test_list_identifiers(scythe: Scythe) -> None:
     assert identifier.identifier == "oai:zenodo.org:6538892"
 
 
+@pytest.mark.default_cassette("list_identifiers.yaml")
+@pytest.mark.vcr
+def test_list_identifiers_ignore_deleted(scythe: Scythe) -> None:
+    identifiers = scythe.list_identifiers(metadataPrefix="oai_dc", ignore_deleted=True)
+    identifiers = list(identifiers)
+    # there are 15 canned responses in list_identifiers.yaml
+    # one of them is manually set to "status=deleted"
+    assert len(identifiers) == 14
+
+
 @pytest.mark.default_cassette("list_records.yaml")
 @pytest.mark.vcr
 def test_list_records(scythe: Scythe) -> None:
@@ -48,6 +59,13 @@ def test_get_record(scythe: Scythe) -> None:
     record = scythe.get_record(identifier="oai:zenodo.org:6538892", metadataPrefix="oai_dc")
     assert isinstance(record, Record)
     assert record.metadata["title"][0] == "INFORMATION YOU KNOW AND DON'T KNOW ABOUT THE UNIVERSE"
+
+
+@pytest.mark.default_cassette("id_does_not_exist.yaml")
+@pytest.mark.vcr
+def test_get_record_invalid_id(scythe: Scythe) -> None:
+    with pytest.raises(HTTPStatusError):
+        scythe.get_record(identifier="oai:zenodo.org:XXX", metadataPrefix="oai_dc")
 
 
 @pytest.mark.default_cassette("list_sets.yaml")

@@ -20,8 +20,6 @@ repos:
   hooks:
   - id: check-ast
   - id: check-toml
-  - id: check-xml
-    exclude: tests/data/ListRecordsBroken.xml
   - id: check-yaml
   - id: end-of-file-fixer
   - id: trailing-whitespace

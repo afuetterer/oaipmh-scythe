@@ -59,6 +59,7 @@ test = [
   "pytest-randomly~=3.1",
   "pytest-recording~=0.13",
   "pytest-xdist~=3.3",
+  "respx~=0.20",
 ]
 [project.urls]
 Changelog = "https://github.com/afuetterer/oaipmh-scythe/blob/main/CHANGELOG.md"
@@ -157,6 +158,9 @@ testpaths = "tests"
 branch = true
 parallel = true
 source = ["oaipmh_scythe"]
+omit = [
+  "__about__.py",
+]
 
 [tool.coverage.report]
 exclude_also = [
