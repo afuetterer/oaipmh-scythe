@@ -61,9 +61,10 @@ test = [
   "pytest-xdist~=3.3",
 ]
 [project.urls]
-changelog = "https://github.com/afuetterer/oaipmh-scythe/blob/master/CHANGELOG.md"
-issues = "https://github.com/afuetterer/oaipmh-scythe/issues"
-repository = "https://github.com/afuetterer/oaipmh-scythe.git"
+Changelog = "https://github.com/afuetterer/oaipmh-scythe/blob/main/CHANGELOG.md"
+Documentation = "https://afuetterer.github.io/oaipmh-scythe"
+Issues = "https://github.com/afuetterer/oaipmh-scythe/issues"
+Repository = "https://github.com/afuetterer/oaipmh-scythe.git"
 
 [build-system]
 build-backend = "hatchling.build"
