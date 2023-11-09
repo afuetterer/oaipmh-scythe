@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING, Iterable
 
 import httpx
 
+from oaipmh_scythe.__about__ import __version__
 from oaipmh_scythe.iterator import BaseOAIIterator, OAIItemIterator
 from oaipmh_scythe.models import Header, Identify, MetadataFormat, OAIItem, Record, Set
 from oaipmh_scythe.response import OAIResponse
@@ -22,6 +23,7 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+USER_AGENT: str = f"oaipmh-scythe/{__version__}"
 OAI_NAMESPACE: str = "{http://www.openarchives.org/OAI/%s/}"
 
 
@@ -125,9 +127,11 @@ class Scythe:
         return OAIResponse(http_response, params=kwargs)
 
     def _request(self, kwargs: str) -> Response:
-        if self.http_method == "GET":
-            return httpx.get(self.endpoint, timeout=self.timeout, params=kwargs, **self.request_args)
-        return httpx.post(self.endpoint, data=kwargs, timeout=self.timeout, **self.request_args)
+        headers = {"user-agent": USER_AGENT}
+        with httpx.Client(headers=headers, timeout=self.timeout) as client:
+            if self.http_method == "GET":
+                return client.get(self.endpoint, params=kwargs, **self.request_args)
+            return client.post(self.endpoint, data=kwargs, **self.request_args)
 
     def list_records(self, ignore_deleted: bool = False, **kwargs: str) -> Iterator[OAIResponse | OAIItem]:
         """Issue a ListRecords request.

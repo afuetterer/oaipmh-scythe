@@ -11,7 +11,7 @@ interactions:
       host:
       - zenodo.org
       user-agent:
-      - python-httpx/0.25.0
+      - oaipmh-scythe/0.7.0
     method: GET
     uri: https://zenodo.org/oai2d?identifier=oai%3Azenodo.org%3A6538892&metadataPrefix=oai_dc&verb=GetRecord
   response:
