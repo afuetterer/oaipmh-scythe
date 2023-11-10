@@ -2,6 +2,13 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
+"""The scythe module provides a client interface for interacting with OAI-PMH services.
+
+This module defines the Scythe class, which facilitates the harvesting of records, identifiers, and sets
+from OAI-PMH compliant repositories. It handles various OAI-PMH requests, manages pagination with resumption tokens,
+and supports customizable error handling and retry logic.
+"""
+
 from __future__ import annotations
 
 import inspect
@@ -39,40 +46,30 @@ DEFAULT_CLASS_MAP = {
 
 
 class Scythe:
-    """Client for harvesting OAI interfaces.
+    """A client for interacting with OAI-PMH interfaces, facilitating the harvesting of records, identifiers, and sets.
 
-    Use it like this:
+    The Scythe class is designed to simplify the process of making OAI-PMH requests and processing the responses.
+    It supports various OAI-PMH verbs and handles pagination through resumption tokens, error handling, and retry logic.
 
+    Attributes:
+        endpoint: The base URL of the OAI-PMH service.
+        http_method: The HTTP method to use for requests (either 'GET' or 'POST').
+        protocol_version: The version of the OAI-PMH protocol being used.
+        iterator: The iterator class to be used for iterating over responses.
+        max_retries: The maximum number of retries for a request in case of failures.
+        retry_status_codes: The HTTP status codes on which to retry the request.
+        default_retry_after: The default wait time (in seconds) between retries if no 'retry-after' header is present.
+        class_mapping: A mapping from OAI verbs to classes representing OAI items.
+        encoding: The character encoding for decoding responses. Defaults to the server's specified encoding.
+        timeout: The timeout (in seconds) for HTTP requests.
+        request_args: Additional arguments to be passed to the HTTP request.
+
+    Examples:
         >>> scythe = Scythe("https://zenodo.org/oai2d")
         >>> records = scythe.list_records(metadataPrefix="oai_dc")
-        >>> next(records)
-        <Record oai:zenodo.org:4574771>
+        >>> for record in records:
+        >>>     print(record)
 
-    :param endpoint: The endpoint of the OAI interface.
-    :param http_method: Method used for requests (GET or POST, default: GET).
-    :param protocol_version: The OAI protocol version.
-    :param iterator: The type of the returned iterator
-           (default: :class:`sickle.iterator.OAIItemIterator`)
-    :param max_retries: Number of retry attempts if an HTTP request fails (default: 0 = request only once). Sickle will
-                        use the value from the retry-after header (if present) and will wait the specified number of
-                        seconds between retries.
-    :param retry_status_codes: HTTP status codes to retry (default will only retry on 503)
-    :param default_retry_after: default number of seconds to wait between retries in case no retry-after header is found
-                                on the response (defaults to 60 seconds)
-    :param class_mapping: A dictionary that maps OAI verbs to classes representing
-                          OAI items. If not provided,
-                          :data:`sickle.scythe.DEFAULT_CLASS_MAPPING` will be used.
-    :param encoding:     Can be used to override the encoding used when decoding
-                         the server response. If not specified, `requests` will
-                         use the encoding returned by the server in the
-                         `content-type` header. However, if the `charset`
-                         information is missing, `requests` will fallback to
-                         `'ISO-8859-1'`.
-    :param request_args: Arguments to be passed to requests when issuing HTTP
-                         requests. Useful examples are `auth=('username', 'password')`
-                         for basic auth-protected endpoints or `timeout=<int>`.
-                         See the `documentation of requests <http://docs.python-requests.org/en/master/api/#main-interface>`_
-                         for all available parameters.
     """
 
     def __init__(
@@ -110,9 +107,19 @@ class Scythe:
         self.request_args: dict[str, str] = request_args
 
     def harvest(self, **kwargs: str) -> OAIResponse:
-        """Make HTTP requests to the OAI server.
+        """Perform an HTTP request to the OAI server with the given parameters.
 
-        :param kwargs: OAI HTTP parameters.
+        Send an OAI-PMH request to the server using the specified parameters. Handle retry logic
+        for failed requests based on the configured retry settings and response status codes.
+
+        Args:
+            **kwargs: Arbitrary keyword arguments representing OAI-PMH request parameters.
+
+        Returns:
+            An OAIResponse object encapsulating the server's response.
+
+        Raises:
+            HTTPError: If the HTTP request fails after the maximum number of retries.
         """
         http_response = self._request(kwargs)
         for _ in range(self.max_retries):
@@ -127,56 +134,121 @@ class Scythe:
         return OAIResponse(http_response, params=kwargs)
 
     def _request(self, kwargs: dict[str, str]) -> Response:
+        """Send an HTTP request to the OAI server using the configured HTTP method and additional request arguments.
+
+        Args:
+            kwargs: A dictionary containing the request parameters.
+
+        Returns:
+            A Response object representing the server's response to the HTTP request.
+        """
         headers = {"user-agent": USER_AGENT}
         with httpx.Client(headers=headers, timeout=self.timeout) as client:
             if self.http_method == "GET":
                 return client.get(self.endpoint, params=kwargs, **self.request_args)  # type: ignore [arg-type]
             return client.post(self.endpoint, data=kwargs, **self.request_args)  # type: ignore [arg-type]
 
-    def list_records(self, ignore_deleted: bool = False, **kwargs: str) -> Iterator[OAIResponse | OAIItem]:
-        """Issue a ListRecords request.
+    def list_records(self, ignore_deleted: bool = False, **kwargs: str) -> Iterator[OAIResponse | Record]:
+        """Issue a ListRecords request to the OAI server.
 
-        :param ignore_deleted: If set to :obj:`True`, the resulting
-                              iterator will skip records flagged as deleted.
+        Send a request to list records from the OAI server, optionally ignoring deleted records.
+
+        Args:
+            ignore_deleted: If True, skip records flagged as deleted in the response.
+            **kwargs: Additional OAI-PMH request parameters.
+
+        Yields:
+            An iterator over OAIResponse or Record objects representing individual records or responses.
         """
         params = kwargs
         params.update({"verb": "ListRecords"})
         yield from self.iterator(self, params, ignore_deleted=ignore_deleted)
 
-    def list_identifiers(self, ignore_deleted: bool = False, **kwargs: str) -> Iterator[OAIResponse | OAIItem]:
-        """Issue a ListIdentifiers request.
+    def list_identifiers(self, ignore_deleted: bool = False, **kwargs: str) -> Iterator[OAIResponse | Header]:
+        """Issue a ListIdentifiers request to the OAI server.
 
-        :param ignore_deleted: If set to :obj:`True`, the resulting
-                              iterator will skip records flagged as deleted.
+        Send a request to list identifiers from the OAI server, optionally ignoring deleted records.
+
+        Args:
+            ignore_deleted: If True, skip records flagged as deleted in the response.
+            **kwargs: Additional OAI-PMH request parameters.
+
+        Yields:
+            An iterator over OAIResponse or Header objects representing individual identifiers or responses.
         """
         params = kwargs
         params.update({"verb": "ListIdentifiers"})
         yield from self.iterator(self, params, ignore_deleted=ignore_deleted)
 
-    def list_sets(self, **kwargs: str) -> Iterator[OAIResponse | OAIItem]:
-        """Issue a ListSets request."""
+    def list_sets(self, **kwargs: str) -> Iterator[OAIResponse | Set]:
+        """Issue a ListSets request to the OAI server.
+
+        Send a request to list sets from the OAI server.
+
+        Args:
+            **kwargs: Additional OAI-PMH request parameters.
+
+        Yields:
+            An iterator over OAIResponse or Set objects representing individual sets or responses.
+        """
         params = kwargs
         params.update({"verb": "ListSets"})
         yield from self.iterator(self, params)
 
     def identify(self) -> Identify:
-        """Issue an Identify request."""
+        """Issue an Identify request to the OAI server.
+
+        Send a request to identify the OAI server and retrieve its information.
+
+        Returns:
+            An Identify object encapsulating the server's identify response.
+        """
         params = {"verb": "Identify"}
         return Identify(self.harvest(**params))
 
     def get_record(self, **kwargs: str) -> OAIResponse | Record:
-        """Issue a GetRecord request."""
+        """Issue a GetRecord request to the OAI server.
+
+        Send a request to retrieve a specific record from the OAI server.
+
+        Args:
+            **kwargs: Additional OAI-PMH request parameters, including the record's identifier.
+
+        Returns:
+            An OAIResponse or Record object representing the requested record.
+        """
         params = kwargs
         params.update({"verb": "GetRecord"})
         return next(iter(self.iterator(self, params)))
 
-    def list_metadata_formats(self, **kwargs: str) -> Iterator[OAIResponse | OAIItem]:
-        """Issue a ListMetadataFormats request."""
+    def list_metadata_formats(self, **kwargs: str) -> Iterator[OAIResponse | MetadataFormat]:
+        """Issue a ListMetadataFormats request to the OAI server.
+
+        Send a request to list metadata formats available from the OAI server.
+
+        Args:
+            **kwargs: Additional OAI-PMH request parameters.
+
+        Yields:
+            An iterator over OAIResponse or MetadataFormat objects representing individual formats or responses.
+        """
         params = kwargs
         params.update({"verb": "ListMetadataFormats"})
         yield from self.iterator(self, params)
 
     def get_retry_after(self, http_response: Response) -> int:
+        """Determine the appropriate time to wait before retrying a request, based on the server's response.
+
+        Check the status code of the provided HTTP response. If it's 503 (Service Unavailable),
+        attempt to parse the 'retry-after' header to find the suggested wait time. If parsing fails
+        or a different status code is received, use the default retry time.
+
+        Args:
+            http_response: The HTTP response received from the server.
+
+        Returns:
+            An integer representing the number of seconds to wait before retrying the request.
+        """
         if http_response.status_code == 503:
             try:
                 return int(http_response.headers.get("retry-after"))
@@ -186,4 +258,15 @@ class Scythe:
 
     @staticmethod
     def _is_error_code(status_code: int) -> bool:
+        """Check if the given status code represents an error.
+
+        Determine whether the provided HTTP status code is indicative of an error condition.
+        In general, any status code equal to or greater than 400 is considered an error.
+
+        Args:
+            status_code: The HTTP status code to evaluate.
+
+        Returns:
+            A boolean indicating whether the status code represents an error.
+        """
         return status_code >= 400

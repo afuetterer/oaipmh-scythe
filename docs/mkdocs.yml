@@ -46,7 +46,8 @@ theme:
 plugins:
 - search
 - include-markdown
-- mkdocstrings
+- mkdocstrings:
+    default_handler: python
 
 markdown_extensions:
 - admonition
