@@ -183,12 +183,6 @@ show_column_numbers = true
 show_error_codes = true
 show_error_context = true
 
-[[tool.mypy.overrides]]
-module = [
-  "oaipmh_scythe.*",
-]
-ignore_errors = true
-
 # licensecheck
 # Ref: https://github.com/FHPythonUtils/LicenseCheck/#example-1-pyprojecttoml
 # ------------------------------------------------------------------------------

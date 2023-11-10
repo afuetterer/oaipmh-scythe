@@ -63,19 +63,19 @@ class BaseOAIIterator(ABC):
         ):
             return ResumptionToken(
                 token=token_element.text,
-                cursor=token_element.attrib.get("cursor"),
-                complete_list_size=token_element.attrib.get("completeListSize"),
-                expiration_date=token_element.attrib.get("expirationDate"),
+                cursor=token_element.attrib.get("cursor"),  # type: ignore [arg-type]
+                complete_list_size=token_element.attrib.get("completeListSize"),  # type: ignore [arg-type]
+                expiration_date=token_element.attrib.get("expirationDate"),  # type: ignore [arg-type]
             )
         return None
 
     def _next_response(self) -> None:
-        if self.resumption_token:
+        if self.resumption_token and self.resumption_token.token:
             self.params = {"resumptionToken": self.resumption_token.token, "verb": self.verb}
         self.oai_response = self.scythe.harvest(**self.params)
 
         if (error := self.oai_response.xml.find(f".//{self.scythe.oai_namespace}error")) is not None:
-            code = error.attrib.get("code", "UNKNOWN")
+            code = str(error.attrib.get("code", "UNKNOWN"))
             description = error.text or ""
             try:
                 exception_name = code[0].upper() + code[1:]

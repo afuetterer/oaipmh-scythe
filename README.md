@@ -6,7 +6,7 @@ This is a community maintained fork of the original [sickle](https://github.com/
 | --- | --- |
 | CI | [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] |
 | Docs | [![docs][docs-badge]][docs-workflow] |
-| Meta | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![pre-commit enabled][pre-commit-badge]][pre-commit] [![ruff][ruff-badge]][ruff] [![License][license-badge]][license] |
+| Meta | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![pre-commit enabled][pre-commit-badge]][pre-commit] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license] |
 
 oaipmh-scythe is a lightweight [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html)
 client library written in Python. It has been designed for conveniently retrieving data from OAI interfaces the Pythonic way:
@@ -68,5 +68,7 @@ oaipmh-scythe is distributed under the terms of the [BSD](https://spdx.org/licen
 [pre-commit-badge]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
 [ruff]: https://github.com/charliermarsh/ruff
 [ruff-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json
+[mypy]: https://mypy-lang.org
+[mypy-badge]: https://img.shields.io/badge/types-mypy-blue.svg
 [test-pypi]: https://test.pypi.org/
 [pip]: https://pip.pypa.io/

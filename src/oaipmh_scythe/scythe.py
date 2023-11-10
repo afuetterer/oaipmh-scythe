@@ -107,7 +107,7 @@ class Scythe:
         self.class_mapping = class_mapping or DEFAULT_CLASS_MAP
         self.encoding = encoding
         self.timeout = timeout
-        self.request_args = request_args
+        self.request_args: dict[str, str] = request_args
 
     def harvest(self, **kwargs: str) -> OAIResponse:
         """Make HTTP requests to the OAI server.
@@ -126,12 +126,12 @@ class Scythe:
             http_response.encoding = self.encoding
         return OAIResponse(http_response, params=kwargs)
 
-    def _request(self, kwargs: str) -> Response:
+    def _request(self, kwargs: dict[str, str]) -> Response:
         headers = {"user-agent": USER_AGENT}
         with httpx.Client(headers=headers, timeout=self.timeout) as client:
             if self.http_method == "GET":
-                return client.get(self.endpoint, params=kwargs, **self.request_args)
-            return client.post(self.endpoint, data=kwargs, **self.request_args)
+                return client.get(self.endpoint, params=kwargs, **self.request_args)  # type: ignore [arg-type]
+            return client.post(self.endpoint, data=kwargs, **self.request_args)  # type: ignore [arg-type]
 
     def list_records(self, ignore_deleted: bool = False, **kwargs: str) -> Iterator[OAIResponse | OAIItem]:
         """Issue a ListRecords request.

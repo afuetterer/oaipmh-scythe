@@ -67,7 +67,10 @@ class Identify(OAIItem):
 
     def __init__(self, identify_response: OAIResponse) -> None:
         super().__init__(identify_response.xml, strip_ns=True)
-        self.xml = self.xml.find(".//" + self._oai_namespace + "Identify")
+        identify_element = self.xml.find(f".//{self._oai_namespace}Identify")
+        if identify_element is None:
+            raise ValueError("Identify element not found in the XML.")
+        self.xml = identify_element
         self._identify_dict = xml_to_dict(self.xml, strip_ns=True)
         for k, v in self._identify_dict.items():
             setattr(self, k.replace("-", "_"), v[0])
@@ -88,17 +91,15 @@ class Header(OAIItem):
     def __init__(self, header_element: etree._Element) -> None:
         super().__init__(header_element, strip_ns=True)
         self.deleted = self.xml.attrib.get("status") == "deleted"
-        _identifier_element = self.xml.find(self._oai_namespace + "identifier")
-        _datestamp_element = self.xml.find(self._oai_namespace + "datestamp")
+        _identifier_element = self.xml.find(f"{self._oai_namespace}identifier")
+        _datestamp_element = self.xml.find(f"{self._oai_namespace}datestamp")
 
         self.identifier = getattr(_identifier_element, "text", None)
         self.datestamp = getattr(_datestamp_element, "text", None)
-        self.setSpecs = [setSpec.text for setSpec in self.xml.findall(self._oai_namespace + "setSpec")]
+        self.setSpecs = [setSpec.text for setSpec in self.xml.findall(f"{self._oai_namespace}setSpec")]
 
     def __repr__(self) -> str:
-        if self.deleted:
-            return f"<Header {self.identifier} [deleted]>"
-        return f"<Header {self.identifier}>"
+        return f"<Header {self.identifier}{' [deleted]' if self.deleted else ''}>"
 
     def __iter__(self) -> Iterator:
         return iter(
@@ -120,15 +121,16 @@ class Record(OAIItem):
 
     def __init__(self, record_element: etree._Element, strip_ns: bool = True) -> None:
         super().__init__(record_element, strip_ns=strip_ns)
-        self.header = Header(self.xml.find(".//" + self._oai_namespace + "header"))
+        header_element = self.xml.find(f".//{self._oai_namespace}header")
+        if header_element is None:
+            raise ValueError("Header element not found in the XML.")
+        self.header = Header(header_element)
         self.deleted = self.header.deleted
         if not self.deleted:
             self.metadata = self.get_metadata()
 
     def __repr__(self) -> str:
-        if self.header.deleted:
-            return f"<Record {self.header.identifier} [deleted]>"
-        return f"<Record {self.header.identifier}>"
+        return f"<Record {self.header.identifier}{' [deleted]' if self.header.deleted else ''}>"
 
     def __iter__(self) -> Iterator:
         return iter(self.metadata.items())
@@ -153,6 +155,7 @@ class Set(OAIItem):
     def __init__(self, set_element: etree._Element) -> None:
         super().__init__(set_element, strip_ns=True)
         self._set_dict = xml_to_dict(self.xml, strip_ns=True)
+        self.setName: str | None = None
         for k, v in self._set_dict.items():
             setattr(self, k.replace("-", "_"), v[0])
 
@@ -167,13 +170,12 @@ class MetadataFormat(OAIItem):
     """Represents an OAI MetadataFormat.
 
     :param mdf_element: The XML element 'metadataFormat'.
-    :type mdf_element: :class:`lxml.etree._Element`
     """
 
     def __init__(self, mdf_element: etree._Element) -> None:
         super().__init__(mdf_element, strip_ns=True)
-        #: The prefix of this format.
         self._mdf_dict = xml_to_dict(self.xml, strip_ns=True)
+        self.metadataPrefix: str | None = None
         for k, v in self._mdf_dict.items():
             setattr(self, k.replace("-", "_"), v[0])
 
