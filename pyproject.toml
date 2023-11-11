@@ -7,8 +7,9 @@ name = "oaipmh-scythe"
 description = "A lightweight OAI client library for Python."
 readme = "README.md"
 keywords = [
-  "oai",
+  "metadata",
   "oai-pmh",
+  "oai-pmh-client",
 ]
 license = "BSD-3-Clause"
 authors = [
