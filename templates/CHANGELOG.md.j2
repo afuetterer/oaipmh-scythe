@@ -1,0 +1,25 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
+[conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
+{% macro version_compare_url(prev_version, version) -%}
+https://github.com/{{ context.repo_owner }}/{{ context.repo_name }}/compare/{{ prev_version }}...{{ version }}
+{%- endmacro %}
+
+{# UNRELEASED -#}
+{% set last_release = context.history.released.items() | first | first -%}
+{% set unreleased = version_compare_url(last_release.as_tag(), "main") -%}
+## [Unreleased]({{ unreleased }})
+
+{# RELEASED #}
+{% for version, release in context.history.released.items() if "unknown" not in release["elements"] or release["elements"]|length > 1 -%}
+{% if version.as_tag() > "0.8.0" -%}{# Generate changelog entries for releases > 0.8.0 #}
+{%- set prev_version = loop.nextitem[0] -%}
+{%- set compare_url = version_compare_url(prev_version, version) -%}
+## [{{ version.as_tag() }}]({{ compare_url }}) ({{ release.tagged_date.strftime("%Y-%m-%d") }})
+{% include ".changes.j2" %}
+{% endif -%}
+{% endfor -%}
+{% include ".changelog.md" %}{# insert manually curated changelog of sickle project -#}

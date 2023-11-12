@@ -20,3 +20,23 @@ jobs:
   test:
     uses: ./.github/workflows/test.yml
     secrets: inherit
+  release:
+    # disables this workflow from running in a repository that is not part of the indicated organization/user
+    if: github.repository_owner == 'afuetterer'
+    runs-on: ubuntu-22.04
+    needs:
+    - lint
+    - test
+    steps:
+    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      with:
+        fetch-depth: 0 # get all commits and tags
+        token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+    - name: Create semantic release
+      uses: python-semantic-release/python-semantic-release@d38d71ef2ae2b3c34066557ddb822385c1730c7f # v8.3.0
+      with:
+        # allows for python-semantic-release to push to protected main branch
+        github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+        git_committer_name: github-actions[bot]
+        git_committer_email: 41898282+github-actions[bot]@users.noreply.github.com
+        root_options: -vv --noop
