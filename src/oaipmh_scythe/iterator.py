@@ -81,7 +81,7 @@ class BaseOAIIterator(ABC):
                 exception_name = code[0].upper() + code[1:]
                 raise getattr(exceptions, exception_name)(description)
             except AttributeError as exc:
-                raise exceptions.OAIError(description) from exc
+                raise exceptions.GeneralOAIPMHError(description) from exc
         self.resumption_token = self._get_resumption_token()
 
 
