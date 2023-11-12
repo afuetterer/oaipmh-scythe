@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 Heinz-Alexander Fuetterer
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
 import pytest
 from lxml import etree
 

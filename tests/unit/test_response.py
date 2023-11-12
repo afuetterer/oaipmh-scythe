@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 Heinz-Alexander Fuetterer
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
