@@ -29,7 +29,7 @@ IDENTIFY_XML: str = """
 """
 
 
-@pytest.fixture
+@pytest.fixture()
 def mock_response(mocker: MockerFixture):
     response = mocker.Mock()
     response.text = IDENTIFY_XML

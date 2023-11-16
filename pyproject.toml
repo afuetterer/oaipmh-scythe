@@ -132,8 +132,12 @@ select = [
   "E",    # pycodestyle
   "F",    # pyflakes
   "I",    # isort
+  "PERF", # #perflint-perf
   "PGH",  # pygrep-hooks
+  "PT",   # flake8-pytest-style-pt
   "RUF",  # ruff
+  "TCH",  # flake8-type-checking-tch
+  "T20",  # flake8-print-t20
   "UP",   # pyupgrade
   "W",    # pycodestyle
   "YTT",  # flake8-2020

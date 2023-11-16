@@ -17,7 +17,7 @@ from oaipmh_scythe.models import Header, Identify, MetadataFormat, Record, Set
 
 
 @pytest.mark.default_cassette("identify.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_identify(scythe: Scythe) -> None:
     identify = scythe.identify()
     assert isinstance(identify, Identify)
@@ -25,7 +25,7 @@ def test_identify(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_list_identifiers(scythe: Scythe) -> None:
     identifiers = scythe.list_identifiers(metadataPrefix="oai_dc")
     assert isinstance(identifiers, Iterator)
@@ -35,7 +35,7 @@ def test_list_identifiers(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_list_identifiers_ignore_deleted(scythe: Scythe) -> None:
     identifiers = scythe.list_identifiers(metadataPrefix="oai_dc", ignore_deleted=True)
     identifiers = list(identifiers)
@@ -45,7 +45,7 @@ def test_list_identifiers_ignore_deleted(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_list_records(scythe: Scythe) -> None:
     records = scythe.list_records(metadataPrefix="oai_dc")
     assert isinstance(records, Iterator)
@@ -55,7 +55,7 @@ def test_list_records(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("get_record.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_get_record(scythe: Scythe) -> None:
     record = scythe.get_record(identifier="oai:zenodo.org:6538892", metadataPrefix="oai_dc")
     assert isinstance(record, Record)
@@ -63,14 +63,14 @@ def test_get_record(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("id_does_not_exist.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_get_record_invalid_id(scythe: Scythe) -> None:
     with pytest.raises(HTTPStatusError):
         scythe.get_record(identifier="oai:zenodo.org:XXX", metadataPrefix="oai_dc")
 
 
 @pytest.mark.default_cassette("list_sets.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_list_sets(scythe: Scythe) -> None:
     sets = scythe.list_sets()
     assert isinstance(sets, Iterator)
@@ -80,7 +80,7 @@ def test_list_sets(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_metadata_formats.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_list_metadata_formats(scythe: Scythe) -> None:
     metadata_formats = scythe.list_metadata_formats()
     assert isinstance(metadata_formats, Iterator)
@@ -90,7 +90,7 @@ def test_list_metadata_formats(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_list_identifiers_oai_response(scythe: Scythe) -> None:
     scythe.iterator = OAIResponseIterator
     responses = scythe.list_identifiers(metadataPrefix="oai_dc")

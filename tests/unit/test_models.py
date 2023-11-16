@@ -14,7 +14,7 @@ def test_resumption_token_repr() -> None:
     assert repr(token) == "<ResumptionToken some-token>"
 
 
-@pytest.fixture
+@pytest.fixture()
 def identify_response(mocker):
     xml = """
     <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/">
@@ -32,7 +32,7 @@ def identify_response(mocker):
     return mock_response
 
 
-@pytest.fixture
+@pytest.fixture()
 def identify(identify_response) -> Identify:
     return Identify(identify_response)
 
@@ -91,12 +91,12 @@ def deleted_header_element():
     return etree.fromstring(xml.encode())
 
 
-@pytest.fixture
+@pytest.fixture()
 def header(header_element):
     return Header(header_element)
 
 
-@pytest.fixture
+@pytest.fixture()
 def deleted_header(deleted_header_element):
     return Header(deleted_header_element)
 
@@ -123,7 +123,7 @@ def test_header_iter(header):
     assert items == {"identifier": "oai:zenodo.org:6538892", "datestamp": "2022-05-11T13:49:36Z", "setSpecs": []}
 
 
-@pytest.fixture
+@pytest.fixture()
 def record_element():
     xml = """
     <record xmlns="http://www.openarchives.org/OAI/2.0/">
@@ -143,7 +143,7 @@ def record_element():
     return etree.fromstring(xml.encode())
 
 
-@pytest.fixture
+@pytest.fixture()
 def deleted_record_lement():
     xml = """
     <record xmlns="http://www.openarchives.org/OAI/2.0/">
@@ -163,12 +163,12 @@ def deleted_record_lement():
     return etree.fromstring(xml.encode())
 
 
-@pytest.fixture
+@pytest.fixture()
 def record(record_element):
     return Record(record_element)
 
 
-@pytest.fixture
+@pytest.fixture()
 def deleted_record(deleted_record_lement):
     return Record(deleted_record_lement)
 
@@ -201,7 +201,7 @@ def test_deleted_record_no_metadata(deleted_record):
         _ = record.metadata
 
 
-@pytest.fixture
+@pytest.fixture()
 def set_element():
     xml = """
     <set>
@@ -213,7 +213,7 @@ def set_element():
     return etree.fromstring(xml.encode())
 
 
-@pytest.fixture
+@pytest.fixture()
 def oai_set(set_element):
     return Set(set_element)
 
@@ -233,7 +233,7 @@ def test_set_iter(oai_set):
     assert set_items["setSpec"] == ["user-emi"]
 
 
-@pytest.fixture
+@pytest.fixture()
 def mdf_element():
     xml = """
     <metadataFormat>
@@ -245,7 +245,7 @@ def mdf_element():
     return etree.fromstring(xml.encode())
 
 
-@pytest.fixture
+@pytest.fixture()
 def mdf(mdf_element):
     return MetadataFormat(mdf_element)
 

@@ -21,12 +21,12 @@ params = {"verb": "ListIdentifiers", "metadataPrefix": "oai_dc"}
 
 
 def test_invalid_http_method() -> None:
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid HTTP method"):
         Scythe("https://localhost", http_method="DELETE")
 
 
 def test_wrong_protocol_version() -> None:
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid protocol version"):
         Scythe("https://localhost", protocol_version="3.0")
 
 

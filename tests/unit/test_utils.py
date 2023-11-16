@@ -9,13 +9,13 @@ from lxml import etree
 from oaipmh_scythe.utils import get_namespace, xml_to_dict
 
 
-@pytest.fixture
+@pytest.fixture()
 def xml_element_with_namespace() -> etree._Element:
     xml = '<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"><request verb="Identify">https://zenodo.org/oai2d</request></OAI-PMH>'
     return etree.fromstring(xml)
 
 
-@pytest.fixture
+@pytest.fixture()
 def xml_element_without_namespace() -> etree._Element:
     xml = '<OAI-PMH><request verb="Identify">https://zenodo.org/oai2d</request></OAI-PMH>'
     return etree.fromstring(xml)

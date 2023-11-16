@@ -14,14 +14,14 @@ params = {"metadataPrefix": "oai_dc", "verb": "ListIdentifiers"}
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_iterator_str(scythe: Scythe) -> None:
     iterator = OAIResponseIterator(scythe, params)
     assert str(iterator) == "<OAIResponseIterator ListIdentifiers>"
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_oai_response_iterator(scythe: Scythe) -> None:
     iterator = OAIResponseIterator(scythe, params)
     responses = list(iterator)
@@ -31,7 +31,7 @@ def test_oai_response_iterator(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_oai_item_iterator(scythe: Scythe) -> None:
     iterator = OAIItemIterator(scythe, params)
     identifiers = list(iterator)
@@ -41,7 +41,7 @@ def test_oai_item_iterator(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_oai_item_iterator_ignore_deleted(scythe: Scythe) -> None:
     iterator = OAIItemIterator(scythe, params, ignore_deleted=True)
     identifiers = list(iterator)
