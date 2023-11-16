@@ -23,8 +23,10 @@ nav:
   - Working with OAI Responses: api/response.md
   - Iterating over OAI Items: api/iterator.md
   - Classes for OAI Items: api/models.md
-- Changelog: changelog.md
-- License: license.md
+- Meta:
+  - Contributor Guide: contributing.md
+  - Changelog: changelog.md
+  - License: license.md
 
 theme:
   name: material
