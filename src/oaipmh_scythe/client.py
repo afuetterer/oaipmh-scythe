@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-"""The scythe module provides a client interface for interacting with OAI-PMH services.
+"""The client module provides a client interface for interacting with OAI-PMH services.
 
 This module defines the Scythe class, which facilitates the harvesting of records, identifiers, and sets
 from OAI-PMH compliant repositories. It handles various OAI-PMH requests, manages pagination with resumption tokens,

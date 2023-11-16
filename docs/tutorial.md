@@ -50,9 +50,9 @@ next(records)
 ```
 
 Note that this works with all verbs that return more than one element.
-These are: [list_records()][oaipmh_scythe.scythe.Scythe.list_records],
-[list_identifiers()][oaipmh_scythe.scythe.Scythe.list_identifiers], [list_sets()][oaipmh_scythe.scythe.Scythe.list_sets],
-and [list_metadata_formats()][oaipmh_scythe.scythe.Scythe.list_metadata_formats].
+These are: [list_records()][oaipmh_scythe.client.Scythe.list_records],
+[list_identifiers()][oaipmh_scythe.client.Scythe.list_identifiers], [list_sets()][oaipmh_scythe.client.Scythe.list_sets],
+and [list_metadata_formats()][oaipmh_scythe.client.Scythe.list_metadata_formats].
 
 The following example shows how to iterate over the headers returned by
 `list_identifiers()`:
@@ -107,7 +107,7 @@ returned objects. The default mode returns OAI-specific *items*
 (records, headers etc.) encoded as Python objects as seen earlier. If
 you want to save the whole XML response returned by the server, you have
 to pass the [OAIResponseIterator][oaipmh_scythe.iterator.OAIResponseIterator] during the instantiation of the
-[Scythe][oaipmh_scythe.scythe.Scythe] object:
+[Scythe][oaipmh_scythe.client.Scythe] object:
 
 ```python
 from oaipmh_scythe.iterator import OAIResponseIterator
@@ -126,8 +126,8 @@ with open("response.xml", "w") as f:
 
 ## Ignoring Deleted Records
 
-The [list_records()][oaipmh_scythe.scythe.Scythe.list_records] and
-[list_identifiers()][oaipmh_scythe.scythe.Scythe.list_identifiers] methods accept an optional parameter `ignore_deleted`.
+The [list_records()][oaipmh_scythe.client.Scythe.list_records] and
+[list_identifiers()][oaipmh_scythe.client.Scythe.list_identifiers] methods accept an optional parameter `ignore_deleted`.
 If set to `True`, the returned [OAIItemIterator][oaipmh_scythe.iterator.OAIItemIterator] will skip deleted records/headers:
 
 ```python

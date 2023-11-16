@@ -3,10 +3,10 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-"""oaipmh-scythe. OAI-PMH for Humans."""
+"""oaipmh-scythe: A Scythe for harvesting OAI-PMH repositories."""
 
+from oaipmh_scythe.client import Scythe
 from oaipmh_scythe.response import OAIResponse
-from oaipmh_scythe.scythe import Scythe
 
 __all__ = [
     "Scythe",
