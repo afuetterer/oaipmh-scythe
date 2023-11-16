@@ -6,8 +6,8 @@
 ci:
   autofix_prs: false
   autoupdate_commit_msg: 'build: update pre-commit hooks'
-  autoupdate_schedule: weekly
-  skip: [licensecheck]
+  autoupdate_schedule: monthly
+  skip: [licensecheck] # does not run on pre-commit.ci, due to sqlite error, runs locally
 
 repos:
   # Ref: https://pre-commit.com/#meta-hooks

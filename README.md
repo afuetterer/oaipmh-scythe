@@ -4,9 +4,9 @@ This is a community maintained fork of the original [sickle](https://github.com/
 
 |     |     |
 | --- | --- |
-| CI | [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] |
+| CI | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] |
 | Docs | [![docs][docs-badge]][docs-workflow] |
-| Meta | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![pre-commit enabled][pre-commit-badge]][pre-commit] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license] |
+| Meta | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license] |
 
 oaipmh-scythe is a lightweight [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html)
 client library written in Python. It has been designed for conveniently retrieving data from OAI interfaces the Pythonic way:
@@ -54,6 +54,8 @@ oaipmh-scythe is distributed under the terms of the [BSD](https://spdx.org/licen
 [ci-workflow]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/main.yml
 [ci-badge]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/main.yml/badge.svg
 [coverage-badge]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/afuetterer/fcb87d45f4d7defdfeffa65eb1d65f63/raw/coverage-badge.json
+[pre-commit-ci-status]: https://results.pre-commit.ci/latest/github/afuetterer/oaipmh-scythe/main
+[pre-commit-ci-badge]: https://results.pre-commit.ci/badge/github/afuetterer/oaipmh-scythe/main.svg
 [docs-url]: https://afuetterer.github.io/oaipmh-scythe
 [docs-workflow]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/docs.yml
 [docs-badge]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/docs.yml/badge.svg
@@ -64,8 +66,6 @@ oaipmh-scythe is distributed under the terms of the [BSD](https://spdx.org/licen
 [license-badge]: https://img.shields.io/badge/License-BSD_3--Clause-blue.svg
 [hatch]: https://github.com/pypa/hatch
 [hatch-badge]: https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
-[pre-commit]: https://pre-commit.com/
-[pre-commit-badge]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
 [ruff]: https://github.com/charliermarsh/ruff
 [ruff-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json
 [mypy]: https://mypy-lang.org
