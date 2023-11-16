@@ -11,6 +11,7 @@ watch:
 - ../src
 docs_dir: .
 site_dir: ../site
+edit_uri: edit/main/docs/
 
 nav:
 - Home: index.md
@@ -28,6 +29,8 @@ nav:
 theme:
   name: material
   features:
+  - content.action.edit
+  - content.action.view
   - content.code.annotate
   - content.code.copy
   - navigation.footer
