@@ -9,7 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [Unreleased](https://github.com/afuetterer/oaipmh-scythe/compare/0.8.0...main)
 
 
-## [0.8.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.7.0...0.8.0) (2023-11-YY)
+## [0.8.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.7.0...0.8.0) (2023-11-16)
 
 Note: Rename project to oaipmh-scythe when forking it from [mloesch/sickle](https://github.com/mloesch/sickle) to
 [afuetterer/oaipmh-scythe](https://github.com/afuetterer/oaipmh-scythe)
