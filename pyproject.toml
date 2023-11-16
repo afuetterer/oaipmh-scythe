@@ -112,7 +112,7 @@ all = [
 [tool.hatch.envs.docs]
 features = ["docs"]
 [tool.hatch.envs.docs.scripts]
-build = "mkdocs build --config-file=docs/mkdocs.yml"
+build = "mkdocs build --strict --config-file=docs/mkdocs.yml"
 serve = "mkdocs serve --config-file=docs/mkdocs.yml"
 deploy = "mkdocs gh-deploy --force --config-file=docs/mkdocs.yml"
 
