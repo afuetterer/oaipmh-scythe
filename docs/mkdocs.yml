@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 site_name: oaipmh-scythe
-site_description: oaipmh-scythe
+site_description: A Scythe for harvesting OAI-PMH repositories.
 repo_name: afuetterer/oaipmh-scythe
 repo_url: https://github.com/afuetterer/oaipmh-scythe
 watch:

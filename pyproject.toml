@@ -4,7 +4,7 @@
 
 [project]
 name = "oaipmh-scythe"
-description = "A lightweight OAI client library for Python."
+description = "A Scythe for harvesting OAI-PMH repositories."
 readme = "README.md"
 keywords = [
   "metadata",

@@ -1,4 +1,4 @@
-# oaipmh-scythe: OAI-PMH for Humans
+# oaipmh-scythe: A Scythe for harvesting OAI-PMH repositories.
 
 This is a community maintained fork of the original [sickle](https://github.com/mloesch/sickle).
 
