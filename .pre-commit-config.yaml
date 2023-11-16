@@ -58,6 +58,13 @@ repos:
     - lxml-stubs==0.4.0
     exclude: tests
 
+- repo: https://github.com/crate-ci/typos
+  rev: c3ac9cd9d119e85eb337a6530a52921d5d7907d4  # frozen: v1.16.23
+  hooks:
+  - id: typos
+    args: [--force-exclude] # default is [--write-changes, --force-exclude]
+    exclude: tests/cassettes
+
 - repo: https://github.com/FHPythonUtils/LicenseCheck/
   rev: 15cc02a0c636c5e0caac505d6bfcfd70e17871e9  # frozen: 2023.5.1
   hooks:

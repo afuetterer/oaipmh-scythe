@@ -212,3 +212,11 @@ show_error_context = true
 [tool.licensecheck]
 using = "PEP631"
 format = "ansi"
+
+# typos
+# Ref: https://github.com/crate-ci/typos/blob/master/docs/reference.md
+# ------------------------------------------------------------------------------
+
+[tool.typos]
+# add "spellchecker:disable-line" to ignore specific lines
+default.extend-ignore-re = ["(?Rm)^.*# spellchecker:disable-line$"]

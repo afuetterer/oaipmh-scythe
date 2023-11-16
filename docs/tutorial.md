@@ -20,7 +20,7 @@ scythe = Scythe("https://zenodo.org/oai2d")
 ## Issuing Requests
 
 oaipmh-scythe provides methods for each of the six OAI verbs (ListRecords,
-GetRecord, Idenitfy, ListSets, ListMetadataFormats, ListIdentifiers).
+GetRecord, Identify, ListSets, ListMetadataFormats, ListIdentifiers).
 
 Start with a ListRecords request:
 
