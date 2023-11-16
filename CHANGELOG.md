@@ -1,10 +1,76 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
+All notable changes to this project will be documented in this file.
 
-## [Unreleased](https://github.com/afuetterer/oaipmh-scythe/compare/0.7.0...main)
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
+[conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
-- rename project to oaipmh-scythe when forking it from [mloesch/sickle](https://github.com/mloesch/sickle) to [afuetterer/oaipmh-scythe](https://github.com/afuetterer/oaipmh-scythe)
+
+## [Unreleased](https://github.com/afuetterer/oaipmh-scythe/compare/0.8.0...main)
+
+
+## [0.8.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.7.0...0.8.0) (2023-11-YY)
+
+Note: Rename project to oaipmh-scythe when forking it from [mloesch/sickle](https://github.com/mloesch/sickle) to
+[afuetterer/oaipmh-scythe](https://github.com/afuetterer/oaipmh-scythe)
+
+### Breaking Changes
+
+- drop support for Python 2
+- drop support for EOL Python 3.7 and below
+- rename Sickle class to Scythe to reflect the change of the project name
+- switch to PEP8 compliant names for methods (ListRecords() -> list_records())
+- remove .next() method from iterator classes
+
+### Features
+
+- set up default custom user agent (oaipmh-scythe/{version})
+
+### Performance Improvements
+
+- make iterator classes yield their responses
+
+### Code Refactoring
+
+- switch from requests to httpx
+- make BaseOAIIterator an ABC
+- move version information to __about__.py
+- add a custom base exception
+
+### Testing
+
+- switch from nose to pytest
+- add tests for Python 3.8 - 3.12 in CI
+- use canned responses from Zenodo to test harvesting logic (vcr.py)
+
+### Documentation
+
+- update license text
+- update authors and contributors
+- update copyright notice in src files
+- add contributor guide
+- add security policy
+- add issue and pull request templates
+- add custom GitHub labels
+- switch from Sphinx to mkdocs-material
+- switch from Read the Docs to GitHub pages
+- switch from reStructuredText to Markdown
+- switch to Zenodo for harvesting examples
+- update README badges
+
+### Other
+
+- switch from Travis CI to Github actions for CI
+- add scheduled dependency updates with Dependabot
+- add pre-commit hooks (e.g. ruff, mypy)
+- switch to src layout
+- switch from setup.py to pyproject.toml
+- switch to hatch for project setup
+- add type annotations
+- switch to Google style docstrings
+- rename first tags of sickle project for consistency (e.g. v0.5 -> 0.5.0)
+- enable CodeQL scanning
+- add OpenSSF Scorecard report
 
 ## [0.7.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.6.5...0.7.0) (2020-05-17)
 
