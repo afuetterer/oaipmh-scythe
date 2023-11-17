@@ -46,6 +46,10 @@ python -m pip install oaipmh-scythe
 
 The [documentation][docs-url] is made with [Material for MkDocs](https://github.com/squidfunk/mkdocs-material) and is hosted by [GitHub Pages](https://docs.github.com/en/pages).
 
+## Acknowledgments
+
+This is a fork of [sickle](https://github.com/mloesch/sickle) which was originally written by Mathias Loesch.
+
 ## License
 
 oaipmh-scythe is distributed under the terms of the [BSD](https://spdx.org/licenses/BSD-3-Clause.html) license.
