@@ -32,8 +32,9 @@ with Scythe("https://zenodo.org/oai2d") as scythe:
 [Python](https://www.python.org/downloads/) >= 3.8
 
 oaipmh-scythe is built with:
-- [httpx](https://github.com/encode/httpx)
-- [lxml](https://github.com/lxml/lxml)
+
+- [httpx](https://github.com/encode/httpx): for issuing HTTP requests
+- [lxml](https://github.com/lxml/lxml): for parsing XML responses
 
 ## Installation
 
