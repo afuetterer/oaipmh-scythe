@@ -13,9 +13,9 @@ client library written in Python. It has been designed for conveniently retrievi
 
 ```python
 from oaipmh_scythe import Scythe
-scythe = Scythe("https://zenodo.org/oai2d")
-records = scythe.list_records(metadataPrefix="oai_dc")
-next(records)
+with Scythe("https://zenodo.org/oai2d") as scythe:
+    records = scythe.list_records(metadataPrefix="oai_dc")
+    next(records)
 # <Record oai:zenodo.org:4574771>
 ```
 

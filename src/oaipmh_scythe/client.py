@@ -15,7 +15,7 @@ from __future__ import annotations
 import inspect
 import logging
 import time
-from typing import TYPE_CHECKING, Iterable
+from typing import TYPE_CHECKING
 
 import httpx
 
@@ -26,6 +26,8 @@ from oaipmh_scythe.response import OAIResponse
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
+    from types import TracebackType
+    from typing import Iterable
 
 logger = logging.getLogger(__name__)
 
@@ -64,10 +66,10 @@ class Scythe:
         request_args: Additional arguments to be passed to the HTTP request.
 
     Examples:
-        >>> scythe = Scythe("https://zenodo.org/oai2d")
-        >>> records = scythe.list_records(metadataPrefix="oai_dc")
-        >>> for record in records:
-        >>>     print(record)
+        >>> with Scythe("https://zenodo.org/oai2d") as scythe:
+        >>>     records = scythe.list_records(metadataPrefix="oai_dc")
+        >>>     for record in records:
+        >>>         print(record)
 
     """
 
@@ -135,6 +137,14 @@ class Scythe:
         """
         if self._client and not self._client.is_closed:
             self._client.close()
+
+    def __enter__(self) -> Scythe:
+        return self
+
+    def __exit__(
+        self, exc_type: type[BaseException] | None, exc_val: type[BaseException] | None, exc_tb: TracebackType | None
+    ) -> None:
+        self.close()
 
     def harvest(self, **kwargs: str) -> OAIResponse:
         """Perform an HTTP request to the OAI server with the given parameters.

@@ -24,6 +24,20 @@ def test_identify(scythe: Scythe) -> None:
     assert identify.repositoryName == "Zenodo"
 
 
+@pytest.mark.default_cassette("identify.yaml")
+@pytest.mark.vcr()
+def test_close(scythe: Scythe) -> None:
+    scythe.identify()
+    scythe.close()
+
+
+@pytest.mark.default_cassette("identify.yaml")
+@pytest.mark.vcr()
+def test_context_manager() -> None:
+    with Scythe("https://zenodo.org/oai2d") as scythe:
+        scythe.identify()
+
+
 @pytest.mark.default_cassette("list_identifiers.yaml")
 @pytest.mark.vcr()
 def test_list_identifiers(scythe: Scythe) -> None:

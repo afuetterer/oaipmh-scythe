@@ -43,6 +43,11 @@ def test_close(scythe: Scythe) -> None:
     assert scythe.close() is None
 
 
+def test_context_manager() -> None:
+    with Scythe("https://zenodo.org/oai2d") as scythe:
+        assert isinstance(scythe, Scythe)
+
+
 def test_wrong_is_error_code(scythe: Scythe) -> None:
     assert not scythe._is_error_code(200)
     assert scythe._is_error_code(400)

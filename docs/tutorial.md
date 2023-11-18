@@ -2,19 +2,36 @@
 
 This section gives a brief overview on how to use oaipmh-scythe for querying OAI interfaces.
 
-## Initialize an OAI Interface
+## Initialize an OAI-PMH Interface
 
-To make a connection to an OAI interface, you need to import the Scythe class:
+To make a connection to an OAI-PMH interface, you need to import the Scythe class:
 
 ```python
 from oaipmh_scythe import Scythe
 ```
 
-Next, you can initialize the connection by passing it the base URL. In
-our example, we use the OAI interface of [Zenodo](https://zenodo.org/oai2d):
+We initialize the connection by passing it the base URL. In our example, we use the
+OAI-PMH interface of [Zenodo](https://zenodo.org/oai2d).
+
+It is recommended to use the Scythe class as a context manager to close established HTTP connections,
+when they are no longer needed.
+
+```python
+with Scythe("https://zenodo.org/oai2d") as scythe:
+    # ... some OAI-PMH harvesting operation(s)
+```
+
+If you want to instantiate the class directly, you can of course do so.
 
 ```python
 scythe = Scythe("https://zenodo.org/oai2d")
+```
+
+In this case make sure to close the connection explicitly, when you are done harvesting.
+
+```python
+# ... some OAI-PMH harvesting operation(s)
+scythe.close()
 ```
 
 ## Issuing Requests
