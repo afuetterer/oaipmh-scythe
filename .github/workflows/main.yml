@@ -32,9 +32,16 @@ jobs:
         fetch-depth: 0 # get all commits and tags
         token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
     - name: Create semantic release
+      id: release
       uses: python-semantic-release/python-semantic-release@d38d71ef2ae2b3c34066557ddb822385c1730c7f # v8.3.0
       with:
         # allows for python-semantic-release to push to protected main branch
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
         git_committer_name: github-actions[bot]
         git_committer_email: 41898282+github-actions[bot]@users.noreply.github.com
+    - name: Publish package to GitHub Release
+      uses: python-semantic-release/upload-to-gh-release@main
+      if: ${{ steps.release.outputs.released }} == 'true'
+      with:
+        github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+        tag: ${{ steps.release.outputs.tag }}
