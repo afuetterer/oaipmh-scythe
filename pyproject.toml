@@ -117,13 +117,14 @@ serve = "mkdocs serve --config-file=docs/mkdocs.yml"
 deploy = "mkdocs gh-deploy --force --config-file=docs/mkdocs.yml"
 
 # ruff
-# Ref: https://beta.ruff.rs/docs/configuration/
+# Ref: https://docs.astral.sh/ruff/configuration/
 # ------------------------------------------------------------------------------
 
 [tool.ruff]
 target-version = "py38"
 line-length = 120
 select = [
+  "A",    # flake8-builtins
   "B",    # flake8-bugbear
   "C4",   # flake8-comprehensions
   "D",    # pydocstyle
@@ -132,10 +133,11 @@ select = [
   "I",    # isort
   "PERF", # #perflint-perf
   "PGH",  # pygrep-hooks
-  "PT",   # flake8-pytest-style-pt
+  "PIE",  # flake8-pie
+  "PT",   # flake8-pytest-style
   "RUF",  # ruff
-  "TCH",  # flake8-type-checking-tch
-  "T20",  # flake8-print-t20
+  "TCH",  # flake8-type-checking
+  "T20",  # flake8-print
   "UP",   # pyupgrade
   "W",    # pycodestyle
   "YTT",  # flake8-2020
