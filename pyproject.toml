@@ -230,6 +230,9 @@ python -m pip install build
 python -m build
 """
 
+[tool.semantic_release.changelog.environment]
+keep_trailing_newline = true
+
 # typos
 # Ref: https://github.com/crate-ci/typos/blob/master/docs/reference.md
 # ------------------------------------------------------------------------------

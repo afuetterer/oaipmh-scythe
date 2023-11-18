@@ -4,9 +4,7 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
-{% macro version_compare_url(prev_version, version) -%}
-https://github.com/{{ context.repo_owner }}/{{ context.repo_name }}/compare/{{ prev_version }}...{{ version }}
-{%- endmacro %}
+{% from ".macros.j2" import version_compare_url %}
 
 {# UNRELEASED -#}
 {% set last_release = context.history.released.items() | first | first -%}

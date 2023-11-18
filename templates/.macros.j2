@@ -1,0 +1,3 @@
+{% macro version_compare_url(prev_version, version) -%}
+https://github.com/{{ context.repo_owner }}/{{ context.repo_name }}/compare/{{ prev_version }}...{{ version }}
+{%- endmacro %}

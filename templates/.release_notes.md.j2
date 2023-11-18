@@ -1,1 +1,7 @@
+{% from ".macros.j2" import version_compare_url %}
+{%- set releases = context.history.released.items() | list -%}
+{%- set prev_version = releases[1][0] -%}
+{%- set full_changelog_url = version_compare_url(prev_version,  version ) -%}
 {% include ".changes.j2" %}
+
+**Full Changelog**: {{ full_changelog_url }}
