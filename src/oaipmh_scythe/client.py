@@ -27,8 +27,6 @@ from oaipmh_scythe.response import OAIResponse
 if TYPE_CHECKING:
     from collections.abc import Iterator
 
-    from httpx import Response
-
 logger = logging.getLogger(__name__)
 
 USER_AGENT: str = f"oaipmh-scythe/{__version__}"
@@ -106,6 +104,37 @@ class Scythe:
         self.encoding = encoding
         self.timeout = timeout
         self.request_args: dict[str, str] = request_args
+        self._client: httpx.Client | None = None
+
+    @property
+    def client(self) -> httpx.Client:
+        """Provide a reusable HTTP client instance for making requests.
+
+        This property ensures that an `httpx.Client` instance is created and maintained for
+        the lifecycle of the `Scythe` instance. It handles the creation of the client and
+        ensures that a new client is created if the existing one is closed.
+
+        Returns:
+            A reusable HTTP client instance for making HTTP requests.
+        """
+        if self._client is None or self._client.is_closed:
+            headers = {"user-agent": USER_AGENT}
+            self._client = httpx.Client(headers=headers, timeout=self.timeout)
+        return self._client
+
+    def close(self) -> None:
+        """Close the internal HTTP client if it exists and is open.
+
+        This method is responsible for explicitly closing the `httpx.Client` instance used
+        by the `Scythe` class. It should be called when the client is no longer needed, to
+        ensure proper cleanup and release of resources.
+
+        Note:
+            It's recommended to call this method at the end of operations or when the `Scythe`
+            instance is no longer in use, especially if it's not being used as a context manager.
+        """
+        if self._client and not self._client.is_closed:
+            self._client.close()
 
     def harvest(self, **kwargs: str) -> OAIResponse:
         """Perform an HTTP request to the OAI server with the given parameters.
@@ -134,7 +163,7 @@ class Scythe:
             http_response.encoding = self.encoding
         return OAIResponse(http_response, params=kwargs)
 
-    def _request(self, kwargs: dict[str, str]) -> Response:
+    def _request(self, kwargs: dict[str, str]) -> httpx.Response:
         """Send an HTTP request to the OAI server using the configured HTTP method and additional request arguments.
 
         Args:
@@ -143,11 +172,9 @@ class Scythe:
         Returns:
             A Response object representing the server's response to the HTTP request.
         """
-        headers = {"user-agent": USER_AGENT}
-        with httpx.Client(headers=headers, timeout=self.timeout) as client:
-            if self.http_method == "GET":
-                return client.get(self.endpoint, params=kwargs, **self.request_args)  # type: ignore [arg-type]
-            return client.post(self.endpoint, data=kwargs, **self.request_args)  # type: ignore [arg-type]
+        if self.http_method == "GET":
+            return self.client.get(self.endpoint, params=kwargs, **self.request_args)  # type: ignore [arg-type]
+        return self.client.post(self.endpoint, data=kwargs, **self.request_args)  # type: ignore [arg-type]
 
     def list_records(self, ignore_deleted: bool = False, **kwargs: str) -> Iterator[OAIResponse | Record]:
         """Issue a ListRecords request to the OAI server.
@@ -237,7 +264,7 @@ class Scythe:
         params.update({"verb": "ListMetadataFormats"})
         yield from self.iterator(self, params)
 
-    def get_retry_after(self, http_response: Response) -> int:
+    def get_retry_after(self, http_response: httpx.Response) -> int:
         """Determine the appropriate time to wait before retrying a request, based on the server's response.
 
         Check the status code of the provided HTTP response. If it's 503 (Service Unavailable),
