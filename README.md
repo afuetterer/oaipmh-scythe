@@ -46,6 +46,20 @@ python -m pip install oaipmh-scythe
 
 The [documentation][docs-url] is made with [Material for MkDocs](https://github.com/squidfunk/mkdocs-material) and is hosted by [GitHub Pages](https://docs.github.com/en/pages).
 
+## Similar Projects
+
+There are a couple of similar projects available on [PyPI](https://pypi.org/search/?q=oai-pmh) and GitHub, e.g. via
+the topics [oai-pmh](https://github.com/topics/oai-pmh) and [oai-pmh-client](https://github.com/topics/oai-pmh-client). Among them are these implementations in Python:
+
+|     |     |      |
+| --- | --- |  --- |
+| [sickle](https://github.com/mloesch/sickle) | oaipmh-scythe is a fork of sickle | ![last-commit](https://img.shields.io/github/last-commit/mloesch/sickle) |
+| [pyoai](https://github.com/infrae/pyoai) | sickle was inspired by pyoai | ![last-commit](https://img.shields.io/github/last-commit/infrae/pyoai) |
+| [pyoaiharvester](https://github.com/vphill/pyoaiharvester) | oai-pmh harvester CLI | ![last-commit](https://img.shields.io/github/last-commit/vphill/pyoaiharvester) |
+| [ddblabs-ometha](https://github.com/Deutsche-Digitale-Bibliothek/ddblabs-ometha) | oai-pmh harvester with CLI and TUI | ![last-commit](https://img.shields.io/github/last-commit/Deutsche-Digitale-Bibliothek/ddblabs-ometha) |
+
+There are also similar projects available in [Java](https://github.com/topics/oai-pmh-client?l=java) and [PHP](https://github.com/topics/oai-pmh-client?l=php).
+
 ## Acknowledgments
 
 This is a fork of [sickle](https://github.com/mloesch/sickle) which was originally written by Mathias Loesch.
