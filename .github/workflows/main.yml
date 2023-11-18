@@ -38,4 +38,3 @@ jobs:
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
         git_committer_name: github-actions[bot]
         git_committer_email: 41898282+github-actions[bot]@users.noreply.github.com
-        root_options: -vv --noop
