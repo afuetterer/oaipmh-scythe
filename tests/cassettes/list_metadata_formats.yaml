@@ -3,7 +3,7 @@ interactions:
     body: ''
     headers:
       accept:
-      - '*/*'
+      - text/xml; charset=utf-8
       accept-encoding:
       - gzip, deflate
       connection:
@@ -11,11 +11,11 @@ interactions:
       host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.7.0
+      - oaipmh-scythe/0.9.0
     method: GET
     uri: https://zenodo.org/oai2d?verb=ListMetadataFormats
   response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-03T11:34:07Z</responseDate>\n  <request verb=\"ListMetadataFormats\">https://zenodo.org/oai2d</request>\n  <ListMetadataFormats>\n    <metadataFormat>\n      <metadataPrefix>marcxml</metadataPrefix>\n      <schema>https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd</schema>\n      <metadataNamespace>https://www.loc.gov/standards/marcxml/</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>oai_dc</metadataPrefix>\n      <schema>http://www.openarchives.org/OAI/2.0/oai_dc.xsd</schema>\n      <metadataNamespace>http://www.openarchives.org/OAI/2.0/oai_dc/</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>dcat</metadataPrefix>\n      <schema>http://schema.datacite.org/meta/kernel-4/metadata.xsd</schema>\n      <metadataNamespace>https://www.w3.org/ns/dcat</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>marc21</metadataPrefix>\n      <schema>https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd</schema>\n      <metadataNamespace>https://www.loc.gov/standards/marcxml/</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>datacite</metadataPrefix>\n      <schema>http://schema.datacite.org/meta/kernel-4.3/metadata.xsd</schema>\n      <metadataNamespace>http://datacite.org/schema/kernel-4</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>oai_datacite</metadataPrefix>\n      <schema>http://schema.datacite.org/oai/oai-1.1/oai.xsd</schema>\n      <metadataNamespace>http://schema.datacite.org/oai/oai-1.1/</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>datacite4</metadataPrefix>\n      <schema>http://schema.datacite.org/meta/kernel-4.3/metadata.xsd</schema>\n      <metadataNamespace>http://datacite.org/schema/kernel-4</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>oai_datacite4</metadataPrefix>\n      <schema>http://schema.datacite.org/oai/oai-1.1/oai.xsd</schema>\n      <metadataNamespace>http://schema.datacite.org/oai/oai-1.1/</metadataNamespace>\n    </metadataFormat>\n  </ListMetadataFormats>\n</OAI-PMH>\n"
+    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-19T14:23:16Z</responseDate>\n  <request verb=\"ListMetadataFormats\">https://zenodo.org/oai2d</request>\n  <ListMetadataFormats>\n    <metadataFormat>\n      <metadataPrefix>marcxml</metadataPrefix>\n      <schema>https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd</schema>\n      <metadataNamespace>https://www.loc.gov/standards/marcxml/</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>oai_dc</metadataPrefix>\n      <schema>http://www.openarchives.org/OAI/2.0/oai_dc.xsd</schema>\n      <metadataNamespace>http://www.openarchives.org/OAI/2.0/oai_dc/</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>dcat</metadataPrefix>\n      <schema>http://schema.datacite.org/meta/kernel-4/metadata.xsd</schema>\n      <metadataNamespace>https://www.w3.org/ns/dcat</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>marc21</metadataPrefix>\n      <schema>https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd</schema>\n      <metadataNamespace>https://www.loc.gov/standards/marcxml/</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>datacite</metadataPrefix>\n      <schema>http://schema.datacite.org/meta/kernel-4.3/metadata.xsd</schema>\n      <metadataNamespace>http://datacite.org/schema/kernel-4</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>oai_datacite</metadataPrefix>\n      <schema>http://schema.datacite.org/oai/oai-1.1/oai.xsd</schema>\n      <metadataNamespace>http://schema.datacite.org/oai/oai-1.1/</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>datacite4</metadataPrefix>\n      <schema>http://schema.datacite.org/meta/kernel-4.3/metadata.xsd</schema>\n      <metadataNamespace>http://datacite.org/schema/kernel-4</metadataNamespace>\n    </metadataFormat>\n    <metadataFormat>\n      <metadataPrefix>oai_datacite4</metadataPrefix>\n      <schema>http://schema.datacite.org/oai/oai-1.1/oai.xsd</schema>\n      <metadataNamespace>http://schema.datacite.org/oai/oai-1.1/</metadataNamespace>\n    </metadataFormat>\n  </ListMetadataFormats>\n</OAI-PMH>\n"
     headers:
       cache-control:
       - private
@@ -26,7 +26,7 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Fri, 03 Nov 2023 11:34:07 GMT
+      - Sun, 19 Nov 2023 14:23:16 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
@@ -36,8 +36,8 @@ interactions:
       server:
       - nginx
       set-cookie:
-      - session=2f133749e7e580db_6544daaf.RTMh3YZR0qiZywbUILnBRwcO_Dw; Expires=Mon, 04 Dec 2023 11:34:07 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=e217ff969878be38048be3f572c5ddbf; path=/; HttpOnly; Secure; SameSite=None
+      - session=a43ba6ebcc7b2e5d_655a1a54.pYnLx0cZ6vEmIYHrAY8Cdijv6TY; Expires=Wed, 20 Dec 2023 14:23:16 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - 5569e5a730cade8ff2b54f1e815f3670=67e042a17fe965a3eb49b1efb2e83acf; path=/; HttpOnly; Secure; SameSite=None
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       - max-age=15768000
@@ -52,11 +52,11 @@ interactions:
       x-ratelimit-limit:
       - '120'
       x-ratelimit-remaining:
-      - '119'
+      - '117'
       x-ratelimit-reset:
-      - '1699011308'
+      - '1700403857'
       x-request-id:
-      - 95ee9a89dcd5db787ce45a7790735fb2
+      - 6f25a79941fe5e61d819b806a2cf179b
       x-xss-protection:
       - 1; mode=block
     http_version: HTTP/1.1

@@ -3,7 +3,7 @@ interactions:
     body: ''
     headers:
       accept:
-      - '*/*'
+      - text/xml; charset=utf-8
       accept-encoding:
       - gzip, deflate
       connection:
@@ -11,11 +11,11 @@ interactions:
       host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.7.0
+      - oaipmh-scythe/0.9.0
     method: GET
     uri: https://zenodo.org/oai2d?identifier=oai%3Azenodo.org%3A6538892&metadataPrefix=oai_dc&verb=GetRecord
   response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-03T11:39:12Z</responseDate>\n  <request verb=\"GetRecord\" identifier=\"oai:zenodo.org:6538892\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n  <GetRecord>\n    <record>\n      <header>\n        <identifier>oai:zenodo.org:6538892</identifier>\n        <datestamp>2022-05-11T13:49:36Z</datestamp>\n      </header>\n      <metadata>\n        <oai_dc:dc xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n          <dc:creator>Mamaturdiyeva Durdona Aqilovna</dc:creator>\n          <dc:date>2022-05-11</dc:date>\n          <dc:description>In this article you can learn about the wonders of the Universe. You will learn about the work of our great scientists in the study of the universe. The lesson also includes information that should be passed on to young children. It is impossible to enumerate how many wonders of the universe. We also get to know the planets, stars, and the history and names of their names.</dc:description>\n          <dc:identifier>https://doi.org/10.5281/zenodo.6538892</dc:identifier>\n          <dc:identifier>oai:zenodo.org:6538892</dc:identifier>\n          <dc:publisher>Zenodo</dc:publisher>\n          <dc:relation>https://doi.org/10.5281/zenodo.6538891</dc:relation>\n          <dc:rights>info:eu-repo/semantics/openAccess</dc:rights>\n          <dc:rights>Creative Commons Attribution 4.0 International</dc:rights>\n          <dc:rights>https://creativecommons.org/licenses/by/4.0/legalcode</dc:rights>\n          <dc:title>INFORMATION YOU KNOW AND DON'T KNOW ABOUT THE UNIVERSE</dc:title>\n          <dc:type>info:eu-repo/semantics/article</dc:type>\n        </oai_dc:dc>\n      </metadata>\n    </record>\n  </GetRecord>\n</OAI-PMH>\n"
+    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-19T14:23:16Z</responseDate>\n  <request verb=\"GetRecord\" identifier=\"oai:zenodo.org:6538892\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n  <GetRecord>\n    <record>\n      <header>\n        <identifier>oai:zenodo.org:6538892</identifier>\n        <datestamp>2022-05-11T13:49:36Z</datestamp>\n      </header>\n      <metadata>\n        <oai_dc:dc xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n          <dc:creator>Mamaturdiyeva Durdona Aqilovna</dc:creator>\n          <dc:date>2022-05-11</dc:date>\n          <dc:description>In this article you can learn about the wonders of the Universe. You will learn about the work of our great scientists in the study of the universe. The lesson also includes information that should be passed on to young children. It is impossible to enumerate how many wonders of the universe. We also get to know the planets, stars, and the history and names of their names.</dc:description>\n          <dc:identifier>https://doi.org/10.5281/zenodo.6538892</dc:identifier>\n          <dc:identifier>oai:zenodo.org:6538892</dc:identifier>\n          <dc:publisher>Zenodo</dc:publisher>\n          <dc:relation>https://doi.org/10.5281/zenodo.6538891</dc:relation>\n          <dc:rights>info:eu-repo/semantics/openAccess</dc:rights>\n          <dc:rights>Creative Commons Attribution 4.0 International</dc:rights>\n          <dc:rights>https://creativecommons.org/licenses/by/4.0/legalcode</dc:rights>\n          <dc:title>INFORMATION YOU KNOW AND DON'T KNOW ABOUT THE UNIVERSE</dc:title>\n          <dc:type>info:eu-repo/semantics/article</dc:type>\n        </oai_dc:dc>\n      </metadata>\n    </record>\n  </GetRecord>\n</OAI-PMH>\n"
     headers:
       cache-control:
       - private
@@ -26,18 +26,18 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Fri, 03 Nov 2023 11:39:12 GMT
+      - Sun, 19 Nov 2023 14:23:16 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '60'
+      - '59'
       server:
       - nginx
       set-cookie:
-      - session=c65ac31e631254aa_6544dbe0.iWfmGbMhaeIncRYomRfKLMnH4Qk; Expires=Mon, 04 Dec 2023 11:39:12 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=639b0d52d7ba0ea92911ce5671c2ed43; path=/; HttpOnly; Secure; SameSite=None
+      - session=7cab1f2af0f39a38_655a1a54.E9WSgoLVwlBq1eiKtMhwNs_dPQs; Expires=Wed, 20 Dec 2023 14:23:16 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - 5569e5a730cade8ff2b54f1e815f3670=4fb03ba82edee64dbff4e0b3367ae86b; path=/; HttpOnly; Secure; SameSite=None
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       - max-age=15768000
@@ -54,9 +54,9 @@ interactions:
       x-ratelimit-remaining:
       - '119'
       x-ratelimit-reset:
-      - '1699011613'
+      - '1700403856'
       x-request-id:
-      - 14461e4412349bf60ce45579971c4b02
+      - 0fd1ef9d16ec53e8c5162f0a3be7ec81
       x-xss-protection:
       - 1; mode=block
     http_version: HTTP/1.1

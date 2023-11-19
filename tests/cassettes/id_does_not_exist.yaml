@@ -3,7 +3,7 @@ interactions:
     body: ''
     headers:
       accept:
-      - '*/*'
+      - text/xml; charset=utf-8
       accept-encoding:
       - gzip, deflate
       connection:
@@ -11,11 +11,11 @@ interactions:
       host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.7.0
+      - oaipmh-scythe/0.9.0
     method: GET
     uri: https://zenodo.org/oai2d?identifier=oai%3Azenodo.org%3AXXX&metadataPrefix=oai_dc&verb=GetRecord
   response:
-    content: <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2023-11-09T10:15:50Z</responseDate><request>https://zenodo.org/oai2d</request><error code="idDoesNotExist">No matching identifier</error></OAI-PMH>
+    content: <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2023-11-19T17:30:47Z</responseDate><request>https://zenodo.org/oai2d</request><error code="idDoesNotExist">No matching identifier</error></OAI-PMH>
     headers:
       content-length:
       - '375'
@@ -24,7 +24,7 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Thu, 09 Nov 2023 10:15:50 GMT
+      - Sun, 19 Nov 2023 17:30:47 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
@@ -34,8 +34,8 @@ interactions:
       server:
       - nginx
       set-cookie:
-      - session=80a0fa9b3548784f_654cb156.pz_Nu6ePBLK98kaj0jikCuxOVIU; Expires=Sun, 10 Dec 2023 10:15:50 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=122106414ac6c1a22797bb49c1046ddd; path=/; HttpOnly; Secure; SameSite=None
+      - session=f92900872fb56c6a_655a4647.JiAztd21AhHajXhF-hCiMi3XP9U; Expires=Wed, 20 Dec 2023 17:30:47 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - 5569e5a730cade8ff2b54f1e815f3670=324d515c3a491e5533340e957532d04b; path=/; HttpOnly; Secure; SameSite=None
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       x-content-type-options:
@@ -47,7 +47,7 @@ interactions:
       x-ratelimit-remaining:
       - '119'
       x-ratelimit-reset:
-      - '1699525011'
+      - '1700415108'
       x-xss-protection:
       - 1; mode=block
     http_version: HTTP/1.1

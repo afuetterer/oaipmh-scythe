@@ -3,7 +3,7 @@ interactions:
     body: ''
     headers:
       accept:
-      - '*/*'
+      - text/xml; charset=utf-8
       accept-encoding:
       - gzip, deflate
       connection:
@@ -11,11 +11,11 @@ interactions:
       host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.7.0
+      - oaipmh-scythe/0.9.0
     method: GET
     uri: https://zenodo.org/oai2d?verb=ListSets
   response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-03T11:29:05Z</responseDate>\n  <request verb=\"ListSets\">https://zenodo.org/oai2d</request>\n  <ListSets>\n    <set>\n      <setSpec>user-emi</setSpec>\n      <setName>European Middleware Initiative</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p&gt;\n\t&amp;nbsp;&lt;/p&gt;\n&lt;p id=\"aui_3_2_0_1104\"&gt;\n\tThe European Middleware Initiative (EMI) is a close collaboration of the three major middleware providers, ARC, gLite and UNICORE, and other specialized software providers like dCache.&lt;/p&gt;\n&lt;p id=\"aui_3_2_0_196\"&gt;\n\tThe&amp;nbsp;&lt;strong&gt;project&amp;#39;s mission&lt;/strong&gt;&amp;nbsp;is to&lt;/p&gt;\n&lt;ol&gt;\n\t&lt;li&gt;\n\t\tdeliver a consolidated set of middleware components for deployment in EGI (as part of the Unified Middleware Distribution - UMD), PRACE and other DCIs,&lt;/li&gt;\n\t&lt;li&gt;\n\t\textend the interoperability and integration with emerging computing models,&lt;/li&gt;\n\t&lt;li&gt;\n\t\tstrengthen the reliability and manageability of the services and establish a sustainable model to support,&lt;/li&gt;\n\t&lt;li&gt;\n\t\tharmonise and evolve the middleware, ensuring it responds effectively to the requirements of the scientific communities relying on it.&lt;/li&gt;\n&lt;/ol&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-harmonic-radar</setSpec>\n      <setName>Harmonic Radar</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p&gt;Radar using a non-linear element with the radar receiver at a multiple of the transmitter frequency.&lt;/p&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-eliminatinewq</setSpec>\n      <setName>Eliminating Flies</setName>\n    </set>\n    <set>\n      <setSpec>user-sciencedomain-international</setSpec>\n      <setName>Sciencedomain international</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p style=\"text-align: justify;\"&gt;\n\t&lt;strong&gt;SCIENCEDOMAIN&lt;em&gt; international&lt;/em&gt; (SDI)&lt;/strong&gt; publishes high-quality, &lt;a href=\"http://www.sciencedomain.org/page.php?id=sdi-general-editorial-policy#SDI_Peer_review_mechanism\"&gt;OPEN&amp;nbsp;peer reviewed&lt;/a&gt;, OPEN access international journals in various sectors of science, technology and medicine (STM). Fast and Open access principle of SDI help to promote rapid propagation of most up-to-date research findings to the researchers worldwide without any financial barrier.&lt;/p&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n<resumptionToken expirationDate=\"2023-11-03T11:31:05Z\" cursor=\"0\" completeListSize=\"13380\">eyJzZWVkIjowLjM4NDkxODMyMDc0NjQ5NzIzLCJwYWdlIjoyLCJrd2FyZ3MiOnt9fQ.ZUTZgQ.EoBsw17f-7UxvOBjn-a0ubcB2kc</resumptionToken>\n  </ListSets>\n</OAI-PMH>\n"
+    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-19T14:23:16Z</responseDate>\n  <request verb=\"ListSets\">https://zenodo.org/oai2d</request>\n  <ListSets>\n    <set>\n      <setSpec>user-emi</setSpec>\n      <setName>European Middleware Initiative</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p&gt;\n\t&amp;nbsp;&lt;/p&gt;\n&lt;p id=\"aui_3_2_0_1104\"&gt;\n\tThe European Middleware Initiative (EMI) is a close collaboration of the three major middleware providers, ARC, gLite and UNICORE, and other specialized software providers like dCache.&lt;/p&gt;\n&lt;p id=\"aui_3_2_0_196\"&gt;\n\tThe&amp;nbsp;&lt;strong&gt;project&amp;#39;s mission&lt;/strong&gt;&amp;nbsp;is to&lt;/p&gt;\n&lt;ol&gt;\n\t&lt;li&gt;\n\t\tdeliver a consolidated set of middleware components for deployment in EGI (as part of the Unified Middleware Distribution - UMD), PRACE and other DCIs,&lt;/li&gt;\n\t&lt;li&gt;\n\t\textend the interoperability and integration with emerging computing models,&lt;/li&gt;\n\t&lt;li&gt;\n\t\tstrengthen the reliability and manageability of the services and establish a sustainable model to support,&lt;/li&gt;\n\t&lt;li&gt;\n\t\tharmonise and evolve the middleware, ensuring it responds effectively to the requirements of the scientific communities relying on it.&lt;/li&gt;\n&lt;/ol&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-harmonic-radar</setSpec>\n      <setName>Harmonic Radar</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p&gt;Radar using a non-linear element with the radar receiver at a multiple of the transmitter frequency.&lt;/p&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-eliminatinewq</setSpec>\n      <setName>Eliminating Flies</setName>\n    </set>\n    <resumptionToken expirationDate=\"2023-11-19T14:25:16Z\" cursor=\"0\" completeListSize=\"13621\">eyJzZWVkIjowLjM5MjkyNTE1NDY1OTUxNTA1LCJwYWdlIjoyLCJrd2FyZ3MiOnt9fQ.ZVoaVA.qn4aOjOeeuwvkE6oFhTzNlGkozA</resumptionToken>\n  </ListSets>\n</OAI-PMH>\n"
     headers:
       cache-control:
       - private
@@ -26,7 +26,7 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Fri, 03 Nov 2023 11:29:05 GMT
+      - Sun, 19 Nov 2023 14:23:16 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
@@ -36,8 +36,8 @@ interactions:
       server:
       - nginx
       set-cookie:
-      - session=1ef1554a00a30163_6544d981.SbWwg2wBlnTkw13Sv76LCnuguGY; Expires=Mon, 04 Dec 2023 11:29:05 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=a9f19d34c80a8b5ba439be4118c56204; path=/; HttpOnly; Secure; SameSite=None
+      - session=9e3104c3c5d217a2_655a1a54.CW2jLEoCGovOp3EI2T9LC45iGf8; Expires=Wed, 20 Dec 2023 14:23:16 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - 5569e5a730cade8ff2b54f1e815f3670=67e042a17fe965a3eb49b1efb2e83acf; path=/; HttpOnly; Secure; SameSite=None
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       - max-age=15768000
@@ -52,11 +52,11 @@ interactions:
       x-ratelimit-limit:
       - '120'
       x-ratelimit-remaining:
-      - '119'
+      - '118'
       x-ratelimit-reset:
-      - '1699011006'
+      - '1700403857'
       x-request-id:
-      - 428227037ba20dce445735ce58893d02
+      - 1a5b12ba6a2a5ffb350e871492ed7e27
       x-xss-protection:
       - 1; mode=block
     http_version: HTTP/1.1

@@ -3,7 +3,7 @@ interactions:
     body: ''
     headers:
       accept:
-      - '*/*'
+      - text/xml; charset=utf-8
       accept-encoding:
       - gzip, deflate
       connection:
@@ -11,7 +11,7 @@ interactions:
       host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.7.0
+      - oaipmh-scythe/0.9.0
     method: GET
     uri: https://zenodo.org/oai2d?metadataPrefix=oai_dc&verb=ListRecords
   response:

@@ -3,7 +3,7 @@ interactions:
     body: ''
     headers:
       accept:
-      - '*/*'
+      - text/xml; charset=utf-8
       accept-encoding:
       - gzip, deflate
       connection:
@@ -11,7 +11,7 @@ interactions:
       host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.7.0
+      - oaipmh-scythe/0.9.0
     method: GET
     uri: https://zenodo.org/oai2d?metadataPrefix=oai_dc&verb=ListIdentifiers
   response:
@@ -65,7 +65,7 @@ interactions:
     body: ''
     headers:
       accept:
-      - '*/*'
+      - text/xml; charset=utf-8
       accept-encoding:
       - gzip, deflate
       connection:
@@ -73,7 +73,7 @@ interactions:
       host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.7.0
+      - oaipmh-scythe/0.9.0
     method: GET
     uri: https://zenodo.org/oai2d?resumptionToken=.eJytzNtOgzAYAOB3-a-JoeWQQLKLLdIqGlQWWunN0tFykEoVtoAue_fpCxgv9j3Ad4JJawWxexP6Uej6buAFIfY8N3DgQzYaYuxAP8uxmSA-wbs-SCUP8nnUdbdADFZ2O1XB2YGpGq0xu-4nA0LNscQLEpTVJY6OijJfkQgpbvrbgSDxmgaMtmbfC6NoZtdL-bVN0F3G87JApNgici-NaPOhrRlNN-tfMvmsloYXPH1QOP0u3ja54KjOhhf0yFjylCCr_v3YKz3z38-8WsH5Anc6ciI.ZUqDjQ.oInMC3B8nj6-brYV9z_hKq4-9J4&verb=ListIdentifiers
   response:
@@ -127,7 +127,7 @@ interactions:
     body: ''
     headers:
       accept:
-      - '*/*'
+      - text/xml; charset=utf-8
       accept-encoding:
       - gzip, deflate
       connection:
@@ -135,7 +135,7 @@ interactions:
       host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.7.0
+      - oaipmh-scythe/0.9.0
     method: GET
     uri: https://zenodo.org/oai2d?resumptionToken=.eJytzN1OgzAYANB3-a6JWQvbgGQXW6RVZlBZaKU3S0fLz6hUYQvosndXX8B44XmAc4FBawXh7Ab7no_dWeB7wXKxdBcOvMlKQ-g60I6yrwYIL_CqT1LJk3zqddlMEIKVzV4VcHVgKHprzL75zoBQc87xhARlZY6Ds6LMUyRAipv2tiNIvMRzRmtzaIVRNLHrKf_YRegu4WmeIZLtELmXRtRpV5eMxpv1Dxm9F1PFMx5vFY4_s-MmFRyVSfeMHhiLHiNk1Z8f-0_P-PszrlZw_QKZInI8.ZUqDjg.R3fT3l5Jl4eZrovehF97gFnEVCU&verb=ListIdentifiers
   response:

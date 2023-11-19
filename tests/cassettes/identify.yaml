@@ -3,7 +3,7 @@ interactions:
     body: ''
     headers:
       accept:
-      - '*/*'
+      - text/xml; charset=utf-8
       accept-encoding:
       - gzip, deflate
       connection:
@@ -11,11 +11,11 @@ interactions:
       host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.7.0
+      - oaipmh-scythe/0.9.0
     method: GET
     uri: https://zenodo.org/oai2d?verb=Identify
   response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-03T11:36:35Z</responseDate>\n  <request verb=\"Identify\">https://zenodo.org/oai2d</request>\n  <Identify>\n    <repositoryName>Zenodo</repositoryName>\n    <baseURL>https://zenodo.org/oai2d</baseURL>\n    <protocolVersion>2.0</protocolVersion>\n    <adminEmail>info@zenodo.org</adminEmail>\n    <earliestDatestamp>2014-02-03T14:41:33Z</earliestDatestamp>\n    <deletedRecord>no</deletedRecord>\n    <granularity>YYYY-MM-DDThh:mm:ssZ</granularity>\n  </Identify>\n</OAI-PMH>\n"
+    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-19T13:48:14Z</responseDate>\n  <request verb=\"Identify\">https://zenodo.org/oai2d</request>\n  <Identify>\n    <repositoryName>Zenodo</repositoryName>\n    <baseURL>https://zenodo.org/oai2d</baseURL>\n    <protocolVersion>2.0</protocolVersion>\n    <adminEmail>info@zenodo.org</adminEmail>\n    <earliestDatestamp>2014-02-03T14:41:33Z</earliestDatestamp>\n    <deletedRecord>no</deletedRecord>\n    <granularity>YYYY-MM-DDThh:mm:ssZ</granularity>\n  </Identify>\n</OAI-PMH>\n"
     headers:
       cache-control:
       - private
@@ -26,7 +26,7 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Fri, 03 Nov 2023 11:36:35 GMT
+      - Sun, 19 Nov 2023 13:48:14 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
@@ -36,8 +36,8 @@ interactions:
       server:
       - nginx
       set-cookie:
-      - session=38213e4b6ebe1bd4_6544db43.RCUCDpg9_AiLTrtyZPLrjHJX-Qw; Expires=Mon, 04 Dec 2023 11:36:35 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=e217ff969878be38048be3f572c5ddbf; path=/; HttpOnly; Secure; SameSite=None
+      - session=b63c6da5f5289be_655a121e.nqEj12j5WEXNdG1bepwTiE3ABXw; Expires=Wed, 20 Dec 2023 13:48:14 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - 5569e5a730cade8ff2b54f1e815f3670=3b833ea543d9bb0756dffbcbe278a6bf; path=/; HttpOnly; Secure; SameSite=None
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       - max-age=15768000
@@ -54,9 +54,9 @@ interactions:
       x-ratelimit-remaining:
       - '119'
       x-ratelimit-reset:
-      - '1699011456'
+      - '1700401755'
       x-request-id:
-      - c8bd2c04704b63e8afd4ff453dbaeef1
+      - 76f49cde976edf56d9f4f2cfc8b4d05d
       x-xss-protection:
       - 1; mode=block
     http_version: HTTP/1.1
