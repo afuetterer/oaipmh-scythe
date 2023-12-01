@@ -31,25 +31,25 @@ repos:
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 357d3e737e31791d354a0fd947ac8777dfed16a0  # frozen: 0.27.1
+  rev: 6604011085496f01169cafa8b0fc5462b81e1813  # frozen: 0.27.3
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: aad4f7b0ce6bc6fb5d2ce835bafad5c65d2c88fb  # frozen: 1.5.1
+  rev: 15ce99ba02863ca8df16ca727714e6c7de11f9a4  # frozen: 1.5.3
   hooks:
   - id: pyproject-fmt
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 75d1925b523dd109cc200d1b29142ff36ec785ad  # frozen: v0.1.6
+  rev: a6ff26895e5ae243a36999ba87eb6b4af3c202b3  # frozen: v0.1.7
   hooks:
   - id: ruff-format
   - id: ruff
     args: [--fix, --exit-non-zero-on-fix]
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: 4c8a8c7d5eb892ab5a6e23e11f36dbba5874d40c  # frozen: v1.7.0
+  rev: 4daa14b20c0f48f472528c2b5f5bca28a18a7ce0  # frozen: v1.7.1
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -66,7 +66,7 @@ repos:
     exclude: tests/cassettes
 
 - repo: https://github.com/FHPythonUtils/LicenseCheck/
-  rev: 15cc02a0c636c5e0caac505d6bfcfd70e17871e9  # frozen: 2023.5.1
+  rev: 0d58138937fb0c67733100935727a99ef8cd9bc5  # frozen: 2023.5.2
   hooks:
   - id: licensecheck
 
