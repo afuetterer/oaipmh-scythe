@@ -44,9 +44,9 @@ repos:
 - repo: https://github.com/astral-sh/ruff-pre-commit
   rev: a6ff26895e5ae243a36999ba87eb6b4af3c202b3  # frozen: v0.1.7
   hooks:
-  - id: ruff-format
   - id: ruff
-    args: [--fix, --exit-non-zero-on-fix]
+    args: [--fix, --show-fixes, --exit-non-zero-on-fix]
+  - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
   rev: 4daa14b20c0f48f472528c2b5f5bca28a18a7ce0  # frozen: v1.7.1
@@ -57,6 +57,11 @@ repos:
     - httpx==0.25.1
     - lxml-stubs==0.4.0
     exclude: tests
+
+- repo: https://github.com/scientific-python/cookie
+  rev: acb56111d31a9902188dfdb21963ad31490dd1b8  # frozen: 2023.11.17
+  hooks:
+  - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
   rev: c3ac9cd9d119e85eb337a6530a52921d5d7907d4  # frozen: v1.16.23

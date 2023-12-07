@@ -121,8 +121,11 @@ deploy = "mkdocs gh-deploy --force --config-file=docs/mkdocs.yml"
 # ------------------------------------------------------------------------------
 
 [tool.ruff]
-target-version = "py38"
 line-length = 120
+src = ["src"]
+target-version = "py38"
+
+[tool.ruff.lint]
 select = [
   "A",    # flake8-builtins
   "B",    # flake8-bugbear
@@ -150,7 +153,7 @@ unfixable = [
   "F401", # unused-import
 ]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "src/oaipmh_scythe/__about__.py" = [
   "D100", # undocumented-public-module
 ]
@@ -159,17 +162,37 @@ unfixable = [
   "D103", # undocumented-public-function
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["oaipmh_scythe"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+# sp-repo-review
+# Ref: https://github.com/scientific-python/cookie/tree/main#list-of-checks
+# ------------------------------------------------------------------------------
+
+[tool.repo-review]
+ignore = [
+  # Pre-commit
+  "PC111",  # blacken-docs
+  "PC160",  # codespell
+  "PC170",  # pygrep hooks
+  "PC180",  # prettier
+  "MY",     # mypy
+  "RTD",    # read the docs
+]
 
 # pytest
 # Ref: https://docs.pytest.org/en/stable/customize.html
 # ------------------------------------------------------------------------------
 
 [tool.pytest.ini_options]
+minversion = "7.0"
+addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
+filterwarnings = ["error"]
+log_cli_level = "INFO"
+xfail_strict = true
 testpaths = "tests"
 
 # coverage.py
