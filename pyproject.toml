@@ -253,6 +253,9 @@ python -m pip install build
 python -m build
 """
 
+[tool.semantic_release.changelog]
+template_dir = ".github/templates"
+
 [tool.semantic_release.changelog.environment]
 keep_trailing_newline = true
 
