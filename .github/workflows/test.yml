@@ -19,9 +19,9 @@ jobs:
       matrix:
         python-version: ['3.8', '3.12']
     steps:
-    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11   # v4.1.1
+    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c   # v5.0.0
+      uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5.0.0
       with:
         python-version: ${{ matrix.python-version }}
         cache: pip
@@ -67,10 +67,26 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11     # v4.1.1
-    - uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c     # v5.0.0
+    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+    - uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5.0.0
       with:
         python-version: '3.12'
         cache: pip
     - run: python -Im pip install --editable .[dev]
     - run: python -Ic 'import oaipmh_scythe.__about__; print(oaipmh_scythe.__about__.__version__)'
+    - name: Write info to step summary
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        {
+          echo -e "### ✓ All dependencies installed successfully\n\n"
+          echo '<details><summary>Installed Python packages (dependency tree)</summary>'
+          echo -e "\n\`\`\`console"
+          echo "$ python -m pipdeptree --local-only --exclude=pip,pipdeptree"
+          python -m pipdeptree --local-only --exclude=pip,pipdeptree
+          echo -e "\`\`\`\n</details>"
+          echo '<details><summary>Outdated Python packages</summary>'
+          echo -e "\n\`\`\`console"
+          echo "$ python -m pip list --outdated"
+          python -m pip list --outdated
+          echo -e "\`\`\`\n</details>"
+        } >> $GITHUB_STEP_SUMMARY
