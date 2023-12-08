@@ -35,6 +35,7 @@ updates:
     test:
       patterns:
       - pytest*
+      - respx
 - package-ecosystem: pip
   directory: /.github/workflows
   schedule:
