@@ -44,4 +44,3 @@ jobs:
       if: ${{ steps.release.outputs.released }} == 'true'
       with:
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
-        tag: ${{ steps.release.outputs.tag }}
