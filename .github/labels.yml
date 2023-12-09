@@ -38,7 +38,7 @@
 # Type
 - name: 'type: breaking'
   description: Breaking Changes
-  color: bfd4f2
+  color: e11d21
 - name: 'type: bug'
   description: Something isn't working
   color: e11d21
