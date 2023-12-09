@@ -163,7 +163,7 @@ class Scythe:
         """
         http_response = self._request(kwargs)
         for _ in range(self.max_retries):
-            if self._is_error_code(http_response.status_code) and http_response.status_code in self.retry_status_codes:
+            if httpx.codes.is_error(http_response.status_code) and http_response.status_code in self.retry_status_codes:
                 retry_after = self.get_retry_after(http_response)
                 logger.warning("HTTP %d! Retrying after %d seconds..." % (http_response.status_code, retry_after))
                 time.sleep(retry_after)
@@ -293,18 +293,3 @@ class Scythe:
             except TypeError:
                 return self.default_retry_after
         return self.default_retry_after
-
-    @staticmethod
-    def _is_error_code(status_code: int) -> bool:
-        """Check if the given status code represents an error.
-
-        Determine whether the provided HTTP status code is indicative of an error condition.
-        In general, any status code equal to or greater than 400 is considered an error.
-
-        Args:
-            status_code: The HTTP status code to evaluate.
-
-        Returns:
-            A boolean indicating whether the status code represents an error.
-        """
-        return status_code >= 400

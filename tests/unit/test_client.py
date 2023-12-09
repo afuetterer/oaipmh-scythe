@@ -48,11 +48,6 @@ def test_context_manager() -> None:
         assert isinstance(scythe, Scythe)
 
 
-def test_wrong_is_error_code(scythe: Scythe) -> None:
-    assert not scythe._is_error_code(200)
-    assert scythe._is_error_code(400)
-
-
 def test_override_encoding(scythe: Scythe, respx_mock: MockRouter) -> None:
     mock_route = respx_mock.get("https://zenodo.org/oai2d?metadataPrefix=oai_dc&verb=ListIdentifiers").mock(
         return_value=httpx.Response(200)
