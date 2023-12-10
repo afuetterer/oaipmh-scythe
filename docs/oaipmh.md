@@ -1,7 +1,7 @@
 # OAI-PMH Primer
 
 This section gives a basic overview of the [Open Archives Protocol for
-Metadata Harvesting (OAI-PMH)](http://openarchives.org). For more
+Metadata Harvesting (OAI-PMH)](https://openarchives.org/OAI/openarchivesprotocol.html). For more
 detailed information, please refer to the protocol specification.
 
 ## Glossary of Important OAI-PMH Concepts
@@ -13,7 +13,7 @@ A *repository* is a server-side application that exposes metadata
 
 **Harvester**
 
-OAI-PMH client applications like Sickle are called *harvesters*.
+OAI-PMH client applications like `oaipmh-scythe` are called *harvesters*.
 
 **record**
 
