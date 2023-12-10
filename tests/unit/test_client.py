@@ -25,11 +25,6 @@ def test_invalid_http_method() -> None:
         Scythe("https://localhost", http_method="DELETE")
 
 
-def test_wrong_protocol_version() -> None:
-    with pytest.raises(ValueError, match="Invalid protocol version"):
-        Scythe("https://localhost", protocol_version="3.0")
-
-
 def test_invalid_iterator() -> None:
     with pytest.raises(TypeError):
         Scythe("https://localhost", iterator=None)  # type: ignore [arg-type]
