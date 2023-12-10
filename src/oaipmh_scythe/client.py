@@ -31,7 +31,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 USER_AGENT: str = f"oaipmh-scythe/{__version__}"
-OAI_NAMESPACE: str = "{http://www.openarchives.org/OAI/%s/}"
+OAI_NAMESPACE: str = "{http://www.openarchives.org/OAI/2.0/}"
 
 
 # Map OAI verbs to class representations
@@ -54,7 +54,6 @@ class Scythe:
     Attributes:
         endpoint: The base URL of the OAI-PMH service.
         http_method: The HTTP method to use for requests (either 'GET' or 'POST').
-        protocol_version: The version of the OAI-PMH protocol being used.
         iterator: The iterator class to be used for iterating over responses.
         max_retries: The maximum number of retries for a request in case of failures.
         retry_status_codes: The HTTP status codes on which to retry the request.
@@ -76,7 +75,6 @@ class Scythe:
         self,
         endpoint: str,
         http_method: str = "GET",
-        protocol_version: str = "2.0",
         iterator: type[BaseOAIIterator] = OAIItemIterator,
         max_retries: int = 0,
         retry_status_codes: Iterable[int] | None = None,
@@ -89,10 +87,7 @@ class Scythe:
         self.endpoint = endpoint
         if http_method not in ("GET", "POST"):
             raise ValueError("Invalid HTTP method: %s! Must be GET or POST.")
-        if protocol_version not in ("2.0", "1.0"):
-            raise ValueError("Invalid protocol version: %s! Must be 1.0 or 2.0.")
         self.http_method = http_method
-        self.protocol_version = protocol_version
         if inspect.isclass(iterator) and issubclass(iterator, BaseOAIIterator):
             self.iterator = iterator
         else:
@@ -100,7 +95,7 @@ class Scythe:
         self.max_retries = max_retries
         self.retry_status_codes = retry_status_codes or (503,)
         self.default_retry_after = default_retry_after
-        self.oai_namespace: str = OAI_NAMESPACE % self.protocol_version
+        self.oai_namespace = OAI_NAMESPACE
         self.class_mapping = class_mapping or DEFAULT_CLASS_MAP
         self.encoding = encoding
         self.timeout = timeout
