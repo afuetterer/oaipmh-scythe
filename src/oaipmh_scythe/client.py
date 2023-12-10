@@ -25,9 +25,8 @@ from oaipmh_scythe.models import Header, Identify, MetadataFormat, OAIItem, Reco
 from oaipmh_scythe.response import OAIResponse
 
 if TYPE_CHECKING:
-    from collections.abc import Iterator
+    from collections.abc import Iterable, Iterator
     from types import TracebackType
-    from typing import Iterable
 
 logger = logging.getLogger(__name__)
 
