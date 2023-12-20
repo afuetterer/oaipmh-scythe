@@ -33,7 +33,7 @@ jobs:
         token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
     - name: Create semantic release
       id: release
-      uses: python-semantic-release/python-semantic-release@3a571d2622de93fab7844465db9c442846c8b78d # v8.5.0
+      uses: python-semantic-release/python-semantic-release@8476c85a21115ac2dc3a5299d151513a662b53ff # v8.5.2
       with:
         # allows for python-semantic-release to push to protected main branch
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
