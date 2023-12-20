@@ -42,7 +42,7 @@ repos:
   - id: pyproject-fmt
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: a6ff26895e5ae243a36999ba87eb6b4af3c202b3  # frozen: v0.1.7
+  rev: d7c4946c7c152163ce34efe35be4e1015d053edd  # frozen: v0.1.8
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
@@ -64,7 +64,7 @@ repos:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: c3ac9cd9d119e85eb337a6530a52921d5d7907d4  # frozen: v1.16.23
+  rev: 155838b12f73c05291c7346c21a2510a92ba0bcf  # frozen: v1.16.25
   hooks:
   - id: typos
     args: [--force-exclude] # default is [--write-changes, --force-exclude]
