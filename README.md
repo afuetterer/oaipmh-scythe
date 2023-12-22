@@ -1,6 +1,7 @@
 # oaipmh-scythe: A Scythe for harvesting OAI-PMH repositories.
 
-This is a community maintained fork of the original [sickle](https://github.com/mloesch/sickle).
+Welcome to oaipmh-scythe, an updated and modernized version of the original [sickle](https://github.com/mloesch/sickle),
+now with additional features and ongoing maintenance.
 
 |     |     |
 | --- | --- |
