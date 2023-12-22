@@ -25,7 +25,7 @@ repos:
   - id: trailing-whitespace
 
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: a362181620503bf7446d3f5c98cc004b9403543d  # frozen: v2.11.0
+  rev: 0afbc519ee4aa0a1eb0f7dd78876c8de46d4cf08  # frozen: v2.12.0
   hooks:
   - id: pretty-format-yaml
     args: [--autofix, --indent, '2']
@@ -37,46 +37,46 @@ repos:
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 15ce99ba02863ca8df16ca727714e6c7de11f9a4  # frozen: 1.5.3
+  rev: b835654042ccf3a9192b519f73afde5b60de96ec  # frozen: 1.6.0
   hooks:
   - id: pyproject-fmt
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: d7c4946c7c152163ce34efe35be4e1015d053edd  # frozen: v0.1.8
+  rev: abe8946973726245279f972c708ebcd6ae0ec272  # frozen: v0.1.13
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: 4daa14b20c0f48f472528c2b5f5bca28a18a7ce0  # frozen: v1.7.1
+  rev: 8cd2d4056637e242709fe09f15a36f0b4b682bda  # frozen: v1.8.0
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
     additional_dependencies:
-    - httpx==0.25.2
+    - httpx==0.26.0
     - lxml-stubs==0.4.0
     exclude: tests
 
 - repo: https://github.com/scientific-python/cookie
-  rev: acb56111d31a9902188dfdb21963ad31490dd1b8  # frozen: 2023.11.17
+  rev: 65fcacc25e6216dbe165e907dd4fdfdc9b053074  # frozen: 2023.12.21
   hooks:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: 155838b12f73c05291c7346c21a2510a92ba0bcf  # frozen: v1.16.25
+  rev: 3464afbf919919109659d11ed98b3cfe4bc74cca  # frozen: v1.17.1
   hooks:
   - id: typos
     args: [--force-exclude] # default is [--write-changes, --force-exclude]
     exclude: tests/cassettes
 
 - repo: https://github.com/FHPythonUtils/LicenseCheck/
-  rev: 0d58138937fb0c67733100935727a99ef8cd9bc5  # frozen: 2023.5.2
+  rev: 546b293801b0fec25f1974164a03a0428881ef39  # frozen: 2024
   hooks:
   - id: licensecheck
 
 - repo: https://github.com/compilerla/conventional-pre-commit
-  rev: 09de2d8736611042feeff83688b5b5b35d459c7c  # frozen: v3.0.0
+  rev: cdffa5192782a992f5728a67482535b0b3bc42fa  # frozen: v3.1.0
   hooks:
   - id: conventional-pre-commit
     stages: [commit-msg]
