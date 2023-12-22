@@ -90,3 +90,10 @@ jobs:
           python -m pip list --outdated
           echo -e "\`\`\`\n</details>"
         } >> $GITHUB_STEP_SUMMARY
+
+  build-inspect:
+    name: Build and inspect the package
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+    - uses: hynek/build-and-inspect-python-package@c9fea028dc9c880c4d00d54727eff3fb1190d082 # v2.0.0
