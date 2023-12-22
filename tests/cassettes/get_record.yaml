@@ -13,9 +13,9 @@ interactions:
       user-agent:
       - oaipmh-scythe/0.9.0
     method: GET
-    uri: https://zenodo.org/oai2d?identifier=oai%3Azenodo.org%3A6538892&metadataPrefix=oai_dc&verb=GetRecord
+    uri: https://zenodo.org/oai2d?identifier=oai%3Azenodo.org%3A10357859&metadataPrefix=oai_dc&verb=GetRecord
   response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-19T14:23:16Z</responseDate>\n  <request verb=\"GetRecord\" identifier=\"oai:zenodo.org:6538892\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n  <GetRecord>\n    <record>\n      <header>\n        <identifier>oai:zenodo.org:6538892</identifier>\n        <datestamp>2022-05-11T13:49:36Z</datestamp>\n      </header>\n      <metadata>\n        <oai_dc:dc xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n          <dc:creator>Mamaturdiyeva Durdona Aqilovna</dc:creator>\n          <dc:date>2022-05-11</dc:date>\n          <dc:description>In this article you can learn about the wonders of the Universe. You will learn about the work of our great scientists in the study of the universe. The lesson also includes information that should be passed on to young children. It is impossible to enumerate how many wonders of the universe. We also get to know the planets, stars, and the history and names of their names.</dc:description>\n          <dc:identifier>https://doi.org/10.5281/zenodo.6538892</dc:identifier>\n          <dc:identifier>oai:zenodo.org:6538892</dc:identifier>\n          <dc:publisher>Zenodo</dc:publisher>\n          <dc:relation>https://doi.org/10.5281/zenodo.6538891</dc:relation>\n          <dc:rights>info:eu-repo/semantics/openAccess</dc:rights>\n          <dc:rights>Creative Commons Attribution 4.0 International</dc:rights>\n          <dc:rights>https://creativecommons.org/licenses/by/4.0/legalcode</dc:rights>\n          <dc:title>INFORMATION YOU KNOW AND DON'T KNOW ABOUT THE UNIVERSE</dc:title>\n          <dc:type>info:eu-repo/semantics/article</dc:type>\n        </oai_dc:dc>\n      </metadata>\n    </record>\n  </GetRecord>\n</OAI-PMH>\n"
+    content: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\" href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-12-22T15:28:51Z</responseDate>\n  <request verb=\"GetRecord\" identifier=\"oai:zenodo.org:10357859\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n  <GetRecord>\n    <record>\n      <header>\n        <identifier>oai:zenodo.org:10357859</identifier>\n        <datestamp>2023-12-11T17:26:46Z</datestamp>\n        <setSpec>software</setSpec>\n      </header>\n      <metadata>\n        <oai_dc:dc xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n          <dc:creator>Klar, Jochen</dc:creator>\n          <dc:creator>Michaelis, Olaf</dc:creator>\n          <dc:creator>Wallace, David</dc:creator>\n          <dc:creator>Schröder, Max</dc:creator>\n          <dc:creator>Fütterer, Heinz-Alexander</dc:creator>\n          <dc:creator>Lanza, Giacomo</dc:creator>\n          <dc:creator>Martínez Muñoz, David</dc:creator>\n          <dc:creator>Pilori, Dario</dc:creator>\n          <dc:creator>Harry, Enke</dc:creator>\n          <dc:date>2023-12-11</dc:date>\n          <dc:description>&amp;lt;h2&amp;gt;&amp;lt;a href=\"https://github.com/rdmorganiser/rdmo/compare/2.0.2...2.1.0\"&amp;gt;RDMO 2.1.0&amp;lt;/a&amp;gt; (Dec 11, 2023)&amp;lt;/h2&amp;gt;\n&amp;lt;ul&amp;gt;\n&amp;lt;li&amp;gt;Refactor progress bar and overview&amp;lt;ul&amp;gt;\n&amp;lt;li&amp;gt;Fix the progress bar to consider tabs and conditions correctly&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Show the project progress in the projects overview and the project hierarchy&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Show which pages are fully or partially answered in the overview&amp;lt;/li&amp;gt;\n&amp;lt;/ul&amp;gt;\n&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Refactor options&amp;lt;ul&amp;gt;\n&amp;lt;li&amp;gt;Allow &amp;lt;code&amp;gt;textarea&amp;lt;/code&amp;gt; as additional input for options&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Add &amp;lt;code&amp;gt;view_text&amp;lt;/code&amp;gt; to options to be used in the interview instead of &amp;lt;code&amp;gt;text&amp;lt;/code&amp;gt;&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Add &amp;lt;code&amp;gt;help&amp;lt;/code&amp;gt; to options to be shown next to the option in the interview&amp;lt;/li&amp;gt;\n&amp;lt;/ul&amp;gt;\n&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Fix grammar issues in automatically generated help text in the interview&amp;lt;ul&amp;gt;\n&amp;lt;li&amp;gt;Use generic formulations and a &amp;quot;+&amp;quot; sign&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Remove &amp;lt;code&amp;gt;verbose_name_plural&amp;lt;/code&amp;gt; field&amp;lt;/li&amp;gt;\n&amp;lt;/ul&amp;gt;\n&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Refactor autocomplete widget&amp;lt;ul&amp;gt;\n&amp;lt;li&amp;gt;Add &amp;lt;code&amp;gt;freeautocomplete&amp;lt;/code&amp;gt; which can also store arbitrary inputs&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Fix various issues with autocomplete&amp;lt;/li&amp;gt;\n&amp;lt;/ul&amp;gt;\n&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Improve help texts&amp;lt;ul&amp;gt;\n&amp;lt;li&amp;gt;Add a custom {more} markdown tag to create a show more/less interaction&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Adjust the styling of details/summary html tags&amp;lt;/li&amp;gt;\n&amp;lt;/ul&amp;gt;\n&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Add restricted accounts&amp;lt;ul&amp;gt;\n&amp;lt;li&amp;gt;Add &amp;lt;code&amp;gt;PROJECT_CREATE_RESTRICTED&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;PROJECT_CREATE_GROUPS&amp;lt;/code&amp;gt; to restrict project creation to certain groups&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Add &amp;lt;code&amp;gt;ACCOUNT_GROUPS&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;SOCIALACCOUNT_GROUPS&amp;lt;/code&amp;gt; to put new user automatically into groups&amp;lt;/li&amp;gt;\n&amp;lt;/ul&amp;gt;\n&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Improve new management interface&amp;lt;ul&amp;gt;\n&amp;lt;li&amp;gt;Initialize filters with current site&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Show order parameter for ordered many to many fields&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Add current site to new elements&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Fix translation bugs in the new management interface&amp;lt;/li&amp;gt;\n&amp;lt;/ul&amp;gt;\n&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Prevent conflicts when users edit the same values simultaneously&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Add order parameter to tasks/issues and views and order accordingly in the project overview&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Add &amp;lt;code&amp;gt;option_text&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;option_additional_input&amp;lt;/code&amp;gt; to values to be used in templates&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;&amp;lt;code&amp;gt;Value.value&amp;lt;/code&amp;gt; now always returns a string (and not &amp;lt;code&amp;gt;None&amp;lt;/code&amp;gt;)&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Move GitHub and GitLab to separate repositories&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Fix option set refresh in the interview&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Fix &amp;lt;code&amp;gt;allauth&amp;lt;/code&amp;gt; issues&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Add front-end tests using playwright&amp;lt;/li&amp;gt;\n&amp;lt;li&amp;gt;Improve continuous integration&amp;lt;/li&amp;gt;\n&amp;lt;/ul&amp;gt;\n&amp;lt;h2&amp;gt;How to upgrade&amp;lt;/h2&amp;gt;\n&amp;lt;p&amp;gt;In case you are upgrading from an RDMO version below 2.0.0 please read these &amp;lt;a href=\"https://rdmo.readthedocs.io/en/latest/upgrade/index.html#upgrade-to-version-2-0-0\"&amp;gt;upgrade instructions&amp;lt;/a&amp;gt; before you proceed.&amp;lt;/p&amp;gt;\n&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;pip install --upgrade rdmo\npython manage.py upgrade\n&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;</dc:description>\n          <dc:description>If you refer to this software in a publication, please cite it as below.</dc:description>\n          <dc:identifier>https://doi.org/10.5281/zenodo.10357859</dc:identifier>\n          <dc:identifier>oai:zenodo.org:10357859</dc:identifier>\n          <dc:publisher>Zenodo</dc:publisher>\n          <dc:relation>https://github.com/rdmorganiser/rdmo/tree/2.1.0</dc:relation>\n          <dc:relation>https://doi.org/10.5281/zenodo.596581</dc:relation>\n          <dc:rights>info:eu-repo/semantics/openAccess</dc:rights>\n          <dc:rights>Apache License 2.0</dc:rights>\n          <dc:rights>http://www.apache.org/licenses/LICENSE-2.0</dc:rights>\n          <dc:title>Research Data Management Organiser (RDMO)</dc:title>\n          <dc:type>info:eu-repo/semantics/other</dc:type>\n        </oai_dc:dc>\n      </metadata>\n    </record>\n  </GetRecord>\n</OAI-PMH>\n"
     headers:
       cache-control:
       - private
@@ -26,7 +26,7 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Sun, 19 Nov 2023 14:23:16 GMT
+      - Fri, 22 Dec 2023 15:28:51 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
@@ -36,8 +36,8 @@ interactions:
       server:
       - nginx
       set-cookie:
-      - session=7cab1f2af0f39a38_655a1a54.E9WSgoLVwlBq1eiKtMhwNs_dPQs; Expires=Wed, 20 Dec 2023 14:23:16 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=4fb03ba82edee64dbff4e0b3367ae86b; path=/; HttpOnly; Secure; SameSite=None
+      - session=48e259fbcca3bf08_6585ab33.14jOuZKRn47vODWJQ95rFpFvcjU; Expires=Mon, 01 Jan 2024 15:28:51 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - 5569e5a730cade8ff2b54f1e815f3670=9c8aff29d2f05f99242ede165d5cebdb; path=/; HttpOnly; Secure; SameSite=None
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       - max-age=15768000
@@ -54,9 +54,71 @@ interactions:
       x-ratelimit-remaining:
       - '119'
       x-ratelimit-reset:
-      - '1700403856'
+      - '1703258991'
       x-request-id:
-      - 0fd1ef9d16ec53e8c5162f0a3be7ec81
+      - ecf217596ac45f8532cdc3d2a134d539
+      x-xss-protection:
+      - 1; mode=block
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - text/xml; charset=utf-8
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.9.0
+    method: GET
+    uri: https://zenodo.org/oai2d?identifier=oai%3Azenodo.org%3A10357859&metadataPrefix=datacite&verb=GetRecord
+  response:
+    content: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\" href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-12-22T15:28:51Z</responseDate>\n  <request verb=\"GetRecord\" identifier=\"oai:zenodo.org:10357859\" metadataPrefix=\"datacite\">https://zenodo.org/oai2d</request>\n  <GetRecord>\n    <record>\n      <header>\n        <identifier>oai:zenodo.org:10357859</identifier>\n        <datestamp>2023-12-11T17:26:46Z</datestamp>\n        <setSpec>software</setSpec>\n      </header>\n      <metadata>\n        <resource xmlns=\"http://datacite.org/schema/kernel-4\" xsi:schemaLocation=\"http://datacite.org/schema/kernel-4 http://schema.datacite.org/meta/kernel-4.3/metadata.xsd\">\n          <identifier identifierType=\"DOI\">10.5281/zenodo.10357859</identifier>\n          <alternateIdentifiers>\n            <alternateIdentifier alternateIdentifierType=\"oai\">oai:zenodo.org:10357859</alternateIdentifier>\n          </alternateIdentifiers>\n          <creators>\n            <creator>\n              <creatorName nameType=\"Personal\">Klar, Jochen</creatorName>\n              <givenName>Jochen</givenName>\n              <familyName>Klar</familyName>\n              <nameIdentifier nameIdentifierScheme=\"ORCID\">0000-0002-5883-4273</nameIdentifier>\n            </creator>\n            <creator>\n              <creatorName nameType=\"Personal\">Michaelis, Olaf</creatorName>\n              <givenName>Olaf</givenName>\n              <familyName>Michaelis</familyName>\n              <nameIdentifier nameIdentifierScheme=\"ORCID\">0000-0002-5282-703X</nameIdentifier>\n            </creator>\n            <creator>\n              <creatorName nameType=\"Personal\">Wallace, David</creatorName>\n              <givenName>David</givenName>\n              <familyName>Wallace</familyName>\n              <nameIdentifier nameIdentifierScheme=\"ORCID\">0000-0001-8958-4601</nameIdentifier>\n            </creator>\n            <creator>\n              <creatorName nameType=\"Personal\">Schröder, Max</creatorName>\n              <givenName>Max</givenName>\n              <familyName>Schröder</familyName>\n              <nameIdentifier nameIdentifierScheme=\"ORCID\">0000-0003-1522-494X</nameIdentifier>\n            </creator>\n            <creator>\n              <creatorName nameType=\"Personal\">Fütterer, Heinz-Alexander</creatorName>\n              <givenName>Heinz-Alexander</givenName>\n              <familyName>Fütterer</familyName>\n              <nameIdentifier nameIdentifierScheme=\"ORCID\">0000-0003-4397-027X</nameIdentifier>\n            </creator>\n            <creator>\n              <creatorName nameType=\"Personal\">Lanza, Giacomo</creatorName>\n              <givenName>Giacomo</givenName>\n              <familyName>Lanza</familyName>\n              <nameIdentifier nameIdentifierScheme=\"ORCID\">0000-0002-2239-3955</nameIdentifier>\n            </creator>\n            <creator>\n              <creatorName nameType=\"Personal\">Martínez Muñoz, David</creatorName>\n              <givenName>David</givenName>\n              <familyName>Martínez Muñoz</familyName>\n            </creator>\n            <creator>\n              <creatorName nameType=\"Personal\">Pilori, Dario</creatorName>\n              <givenName>Dario</givenName>\n              <familyName>Pilori</familyName>\n              <nameIdentifier nameIdentifierScheme=\"ORCID\">0000-0003-4499-8573</nameIdentifier>\n            </creator>\n            <creator>\n              <creatorName nameType=\"Personal\">Harry, Enke</creatorName>\n              <givenName>Enke</givenName>\n              <familyName>Harry</familyName>\n              <nameIdentifier nameIdentifierScheme=\"ORCID\">0000-0002-2366-8316</nameIdentifier>\n            </creator>\n          </creators>\n          <titles>\n            <title>Research Data Management Organiser (RDMO)</title>\n          </titles>\n          <publisher>Zenodo</publisher>\n          <publicationYear>2023</publicationYear>\n          <dates>\n            <date dateType=\"Issued\">2023-12-11</date>\n          </dates>\n          <resourceType resourceTypeGeneral=\"Software\"></resourceType>\n          <relatedIdentifiers>\n            <relatedIdentifier relatedIdentifierType=\"URL\" relationType=\"IsSupplementTo\" resourceTypeGeneral=\"Software\">https://github.com/rdmorganiser/rdmo/tree/2.1.0</relatedIdentifier>\n            <relatedIdentifier relatedIdentifierType=\"DOI\" relationType=\"IsVersionOf\">10.5281/zenodo.596581</relatedIdentifier>\n          </relatedIdentifiers>\n          <version>2.1.0</version>\n          <rightsList>\n            <rights rightsURI=\"http://www.apache.org/licenses/LICENSE-2.0\" rightsIdentifierScheme=\"spdx\" rightsIdentifier=\"apache-2.0\">Apache License 2.0</rights>\n          </rightsList>\n          <descriptions>\n            <description descriptionType=\"Abstract\">RDMO 2.1.0 (Dec 11, 2023)\n\n\n\nRefactor progress bar and overview\n\n\nFix the progress bar to consider tabs and conditions correctly\n\nShow the project progress in the projects overview and the project hierarchy\n\nShow which pages are fully or partially answered in the overview\n\n\n\nRefactor options\n\n\nAllow textarea as additional input for options\n\nAdd view_text to options to be used in the interview instead of text\n\nAdd help to options to be shown next to the option in the interview\n\n\n\nFix grammar issues in automatically generated help text in the interview\n\n\nUse generic formulations and a \"+\" sign\n\nRemove verbose_name_plural field\n\n\n\nRefactor autocomplete widget\n\n\nAdd freeautocomplete which can also store arbitrary inputs\n\nFix various issues with autocomplete\n\n\n\nImprove help texts\n\n\nAdd a custom {more} markdown tag to create a show more/less interaction\n\nAdjust the styling of details/summary html tags\n\n\n\nAdd restricted accounts\n\n\nAdd PROJECT_CREATE_RESTRICTED and PROJECT_CREATE_GROUPS to restrict project creation to certain groups\n\nAdd ACCOUNT_GROUPS and SOCIALACCOUNT_GROUPS to put new user automatically into groups\n\n\n\nImprove new management interface\n\n\nInitialize filters with current site\n\nShow order parameter for ordered many to many fields\n\nAdd current site to new elements\n\nFix translation bugs in the new management interface\n\n\n\nPrevent conflicts when users edit the same values simultaneously\n\nAdd order parameter to tasks/issues and views and order accordingly in the project overview\n\nAdd option_text and option_additional_input to values to be used in templates\n\nValue.value now always returns a string (and not None)\n\nMove GitHub and GitLab to separate repositories\n\nFix option set refresh in the interview\n\nFix allauth issues\n\nAdd front-end tests using playwright\n\nImprove continuous integration\n\n\nHow to upgrade\n\nIn case you are upgrading from an RDMO version below 2.0.0 please read these upgrade instructions before you proceed.\n\npip install --upgrade rdmo\npython manage.py upgrade</description>\n            <description descriptionType=\"Other\">If you refer to this software in a publication, please cite it as below.</description>\n          </descriptions>\n        </resource>\n      </metadata>\n    </record>\n  </GetRecord>\n</OAI-PMH>\n"
+    headers:
+      cache-control:
+      - private
+      content-encoding:
+      - gzip
+      content-security-policy:
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Fri, 22 Dec 2023 15:28:51 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '60'
+      server:
+      - nginx
+      set-cookie:
+      - session=64a489c09bfecc6b_6585ab33.CC3inUDJfrgzihc_b072SSTkIpc; Expires=Mon, 01 Jan 2024 15:28:51 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - 5569e5a730cade8ff2b54f1e815f3670=9c8aff29d2f05f99242ede165d5cebdb; path=/; HttpOnly; Secure; SameSite=None
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      - max-age=15768000
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '120'
+      x-ratelimit-remaining:
+      - '118'
+      x-ratelimit-reset:
+      - '1703258992'
+      x-request-id:
+      - 934630de962c1f97267c414ac41c41f6
       x-xss-protection:
       - 1; mode=block
     http_version: HTTP/1.1
