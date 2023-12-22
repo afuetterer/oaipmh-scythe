@@ -71,9 +71,17 @@ def test_list_records(scythe: Scythe) -> None:
 @pytest.mark.default_cassette("get_record.yaml")
 @pytest.mark.vcr()
 def test_get_record(scythe: Scythe) -> None:
-    record = scythe.get_record(identifier="oai:zenodo.org:6538892", metadataPrefix="oai_dc")
+    record = scythe.get_record(identifier="oai:zenodo.org:10357859", metadataPrefix="oai_dc")
     assert isinstance(record, Record)
-    assert record.metadata["title"][0] == "INFORMATION YOU KNOW AND DON'T KNOW ABOUT THE UNIVERSE"
+    assert record.metadata["title"][0] == "Research Data Management Organiser (RDMO)"
+
+
+@pytest.mark.default_cassette("get_record.yaml")
+@pytest.mark.vcr()
+def test_get_record_with_other_metadata_prefix(scythe: Scythe) -> None:
+    record = scythe.get_record(identifier="oai:zenodo.org:10357859", metadataPrefix="datacite")
+    assert isinstance(record, Record)
+    assert record.metadata["title"][0] == "Research Data Management Organiser (RDMO)"
 
 
 @pytest.mark.default_cassette("id_does_not_exist.yaml")
