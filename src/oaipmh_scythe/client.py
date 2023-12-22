@@ -61,7 +61,6 @@ class Scythe:
         class_mapping: A mapping from OAI verbs to classes representing OAI items.
         encoding: The character encoding for decoding responses. Defaults to the server's specified encoding.
         timeout: The timeout (in seconds) for HTTP requests.
-        request_args: Additional arguments to be passed to the HTTP request.
 
     Examples:
         >>> with Scythe("https://zenodo.org/oai2d") as scythe:
@@ -82,7 +81,6 @@ class Scythe:
         class_mapping: dict[str, type[OAIItem]] | None = None,
         encoding: str | None = None,
         timeout: int = 60,
-        **request_args: str,
     ):
         self.endpoint = endpoint
         if http_method not in ("GET", "POST"):
@@ -99,7 +97,6 @@ class Scythe:
         self.class_mapping = class_mapping or DEFAULT_CLASS_MAP
         self.encoding = encoding
         self.timeout = timeout
-        self.request_args: dict[str, str] = request_args
         self._client: httpx.Client | None = None
 
     @property
@@ -168,17 +165,17 @@ class Scythe:
         return OAIResponse(http_response, params=kwargs)
 
     def _request(self, kwargs: dict[str, str]) -> httpx.Response:
-        """Send an HTTP request to the OAI server using the configured HTTP method and additional request arguments.
+        """Send an HTTP request to the OAI server using the configured HTTP method and query parameters.
 
         Args:
-            kwargs: A dictionary containing the request parameters.
+            kwargs: A dictionary containing the query parameters.
 
         Returns:
             A Response object representing the server's response to the HTTP request.
         """
         if self.http_method == "GET":
-            return self.client.get(self.endpoint, params=kwargs, **self.request_args)  # type: ignore [arg-type]
-        return self.client.post(self.endpoint, data=kwargs, **self.request_args)  # type: ignore [arg-type]
+            return self.client.get(self.endpoint, params=kwargs)
+        return self.client.post(self.endpoint, data=kwargs)
 
     def list_records(self, ignore_deleted: bool = False, **kwargs: str) -> Iterator[OAIResponse | Record]:
         """Issue a ListRecords request to the OAI server.
