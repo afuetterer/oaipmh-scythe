@@ -6,7 +6,7 @@
 import pytest
 from lxml import etree
 
-from oaipmh_scythe.utils import get_namespace, xml_to_dict
+from oaipmh_scythe.utils import filter_dict_except_resumption_token, get_namespace, remove_none_values, xml_to_dict
 
 
 @pytest.fixture()
@@ -19,6 +19,31 @@ def xml_element_with_namespace() -> etree._Element:
 def xml_element_without_namespace() -> etree._Element:
     xml = '<OAI-PMH><request verb="Identify">https://zenodo.org/oai2d</request></OAI-PMH>'
     return etree.fromstring(xml)
+
+
+def test_remove_none_values() -> None:
+    d = {"a": 1, "b": None, "c": 3}
+    result = remove_none_values(d)
+    assert result == {"a": 1, "c": 3}
+
+
+def test_remove_none_values_noop() -> None:
+    d = {"a": 1, "b": 2}
+    result = remove_none_values(d)
+    assert result == d
+
+
+def test_filter_dict_except_resumption_token() -> None:
+    d = {"resumptionToken": "token-abc", "verb": "ListRecords", "metadataPrefix": "oai_dc"}
+    expected = {"resumptionToken": "token-abc", "verb": "ListRecords"}
+    result = filter_dict_except_resumption_token(d)
+    assert result == expected
+
+
+def test_filter_dict_except_resumption_token_noop() -> None:
+    d = {"resumptionToken": None, "verb": "ListRecords"}
+    result = filter_dict_except_resumption_token(d)
+    assert result == d
 
 
 def test_get_namespace(xml_element_with_namespace: etree._Element) -> None:
