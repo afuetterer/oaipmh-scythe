@@ -278,7 +278,7 @@ class Scythe:
         Returns:
             An integer representing the number of seconds to wait before retrying the request.
         """
-        if http_response.status_code == 503:
+        if http_response.status_code == httpx.codes.SERVICE_UNAVAILABLE:
             try:
                 return int(http_response.headers.get("retry-after"))
             except TypeError:

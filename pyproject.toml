@@ -124,17 +124,16 @@ src = ["src"]
 target-version = "py310"
 
 [tool.ruff.lint]
-select = [
+extend-select = [
   "A",    # flake8-builtins
   "B",    # flake8-bugbear
   "C4",   # flake8-comprehensions
   "D",    # pydocstyle
-  "E",    # pycodestyle
-  "F",    # pyflakes
   "I",    # isort
   "PERF", # #perflint-perf
   "PGH",  # pygrep-hooks
   "PIE",  # flake8-pie
+  "PL",   # pylint
   "PT",   # flake8-pytest-style
   "RUF",  # ruff
   "TCH",  # flake8-type-checking
@@ -155,9 +154,13 @@ unfixable = [
 "src/oaipmh_scythe/__about__.py" = [
   "D100", # undocumented-public-module
 ]
+"src/oaipmh_scythe/client.py" = [
+  "PLR0913", # too-many-arguments
+]
 "tests/*" = [
-  "D100", # undocumented-public-module
-  "D103", # undocumented-public-function
+  "D100",     # undocumented-public-module
+  "D103",     # undocumented-public-function
+  "PLR2004",  # magic-value-comparison
 ]
 
 [tool.ruff.lint.isort]
