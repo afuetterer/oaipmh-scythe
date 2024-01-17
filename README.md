@@ -3,11 +3,10 @@
 Welcome to oaipmh-scythe, an updated and modernized version of the original [sickle](https://github.com/mloesch/sickle),
 now with additional features and ongoing maintenance.
 
-|     |     |
-| --- | --- |
-| CI | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] |
-| Docs | [![docs][docs-badge]][docs-workflow] |
-| Meta | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license] |
+| __CI__ | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] |
+| :--- | :--- |
+| __Docs__ | [![docs][docs-badge]][docs-workflow] |
+| __Meta__ | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license] |
 
 oaipmh-scythe is a lightweight [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html)
 client library written in Python. It has been designed for conveniently retrieving data from OAI interfaces the Pythonic way:
