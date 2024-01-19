@@ -29,7 +29,7 @@ with Scythe("https://zenodo.org/oai2d") as scythe:
 
 ## Requirements
 
-[Python](https://www.python.org/downloads/) >= 3.8
+[Python](https://www.python.org/downloads/) >= 3.10
 
 oaipmh-scythe is built with:
 
