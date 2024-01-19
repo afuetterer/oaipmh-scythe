@@ -37,7 +37,7 @@ dynamic = [
 ]
 dependencies = [
   "httpx>=0.25",
-  "lxml>=5",
+  "lxml>=5.1",
 ]
 [project.optional-dependencies]
 dev = [
@@ -52,7 +52,7 @@ docs = [
   "mkdocstrings[python]~=0.24",
 ]
 lint = [
-  "pre-commit~=3.5",
+  "pre-commit~=3.6",
 ]
 test = [
   "pytest~=7.4",
