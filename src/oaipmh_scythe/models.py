@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2015 Mathias Loesch
-# SPDX-FileCopyrightText: 2023 Heinz-Alexander Fuetterer
+# SPDX-FileCopyrightText: 2023 Heinz-Alexander Fütterer
 #
 # SPDX-License-Identifier: BSD-3-Clause
 

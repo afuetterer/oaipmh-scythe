@@ -1,7 +1,7 @@
 # Authors
 
 - Mathias Loesch (original author)
-- Heinz-Alexander Fuetterer
+- Heinz-Alexander Fütterer
 
 ## Contributors
 
