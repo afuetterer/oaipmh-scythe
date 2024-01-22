@@ -9,7 +9,6 @@ updates:
     interval: monthly
   commit-message:
     prefix: ci
-  open-pull-requests-limit: 10
   labels:
   - 'type: ci'
   - 'deps: github-actions'
@@ -24,7 +23,6 @@ updates:
   commit-message:
     prefix: build
     include: scope
-  open-pull-requests-limit: 10
   labels:
   - 'type: build'
   - 'deps: python'
@@ -42,7 +40,6 @@ updates:
     interval: monthly
   commit-message:
     prefix: ci
-  open-pull-requests-limit: 10
   labels:
   - 'type: ci'
   - 'deps: python'
