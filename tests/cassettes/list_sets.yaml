@@ -15,7 +15,7 @@ interactions:
     method: GET
     uri: https://zenodo.org/oai2d?verb=ListSets
   response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-11-19T14:23:16Z</responseDate>\n  <request verb=\"ListSets\">https://zenodo.org/oai2d</request>\n  <ListSets>\n    <set>\n      <setSpec>user-emi</setSpec>\n      <setName>European Middleware Initiative</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p&gt;\n\t&amp;nbsp;&lt;/p&gt;\n&lt;p id=\"aui_3_2_0_1104\"&gt;\n\tThe European Middleware Initiative (EMI) is a close collaboration of the three major middleware providers, ARC, gLite and UNICORE, and other specialized software providers like dCache.&lt;/p&gt;\n&lt;p id=\"aui_3_2_0_196\"&gt;\n\tThe&amp;nbsp;&lt;strong&gt;project&amp;#39;s mission&lt;/strong&gt;&amp;nbsp;is to&lt;/p&gt;\n&lt;ol&gt;\n\t&lt;li&gt;\n\t\tdeliver a consolidated set of middleware components for deployment in EGI (as part of the Unified Middleware Distribution - UMD), PRACE and other DCIs,&lt;/li&gt;\n\t&lt;li&gt;\n\t\textend the interoperability and integration with emerging computing models,&lt;/li&gt;\n\t&lt;li&gt;\n\t\tstrengthen the reliability and manageability of the services and establish a sustainable model to support,&lt;/li&gt;\n\t&lt;li&gt;\n\t\tharmonise and evolve the middleware, ensuring it responds effectively to the requirements of the scientific communities relying on it.&lt;/li&gt;\n&lt;/ol&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-harmonic-radar</setSpec>\n      <setName>Harmonic Radar</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p&gt;Radar using a non-linear element with the radar receiver at a multiple of the transmitter frequency.&lt;/p&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-eliminatinewq</setSpec>\n      <setName>Eliminating Flies</setName>\n    </set>\n    <resumptionToken expirationDate=\"2023-11-19T14:25:16Z\" cursor=\"0\" completeListSize=\"13621\">eyJzZWVkIjowLjM5MjkyNTE1NDY1OTUxNTA1LCJwYWdlIjoyLCJrd2FyZ3MiOnt9fQ.ZVoaVA.qn4aOjOeeuwvkE6oFhTzNlGkozA</resumptionToken>\n  </ListSets>\n</OAI-PMH>\n"
+    content: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\" href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-12-23T10:15:00Z</responseDate>\n  <request verb=\"ListSets\">https://zenodo.org/oai2d</request>\n  <ListSets>\n    <set>\n      <setSpec>user-emi</setSpec>\n      <setName>European Middleware Initiative</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p&gt;\n\t&amp;nbsp;&lt;/p&gt;\n&lt;p id=\"aui_3_2_0_1104\"&gt;\n\tThe European Middleware Initiative (EMI) is a close collaboration of the three major middleware providers, ARC, gLite and UNICORE, and other specialized software providers like dCache.&lt;/p&gt;\n&lt;p id=\"aui_3_2_0_196\"&gt;\n\tThe&amp;nbsp;&lt;strong&gt;project&amp;#39;s mission&lt;/strong&gt;&amp;nbsp;is to&lt;/p&gt;\n&lt;ol&gt;\n\t&lt;li&gt;\n\t\tdeliver a consolidated set of middleware components for deployment in EGI (as part of the Unified Middleware Distribution - UMD), PRACE and other DCIs,&lt;/li&gt;\n\t&lt;li&gt;\n\t\textend the interoperability and integration with emerging computing models,&lt;/li&gt;\n\t&lt;li&gt;\n\t\tstrengthen the reliability and manageability of the services and establish a sustainable model to support,&lt;/li&gt;\n\t&lt;li&gt;\n\t\tharmonise and evolve the middleware, ensuring it responds effectively to the requirements of the scientific communities relying on it.&lt;/li&gt;\n&lt;/ol&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-harmonic-radar</setSpec>\n      <setName>Harmonic Radar</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p&gt;Radar using a non-linear element with the radar receiver at a multiple of the transmitter frequency.&lt;/p&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-eliminatinewq</setSpec>\n      <setName>Eliminating Flies</setName>\n    </set>\n    <set>\n      <setSpec>user-sciencedomain-international</setSpec>\n      <setName>Sciencedomain international</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p style=\"text-align: justify;\"&gt;\n\t&lt;strong&gt;SCIENCEDOMAIN&lt;em&gt; international&lt;/em&gt; (SDI)&lt;/strong&gt; publishes high-quality, &lt;a href=\"http://www.sciencedomain.org/page.php?id=sdi-general-editorial-policy#SDI_Peer_review_mechanism\"&gt;OPEN&amp;nbsp;peer reviewed&lt;/a&gt;, OPEN access international journals in various sectors of science, technology and medicine (STM). Fast and Open access principle of SDI help to promote rapid propagation of most up-to-date research findings to the researchers worldwide without any financial barrier.&lt;/p&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-elife</setSpec>\n      <setName>eLife journal collection. </setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p&gt;\n\t&amp;nbsp;&lt;/p&gt;\n&lt;p style=\"margin: 0px 0px 1.25em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; color: rgb(109, 110, 112); font-family: Helvetica, Arial, Verdana, sans-serif; line-height: 18px; -webkit-text-size-adjust: none;\"&gt;\n\t&amp;nbsp;eLife is a&amp;nbsp;&lt;a href=\"http://www.elifesciences.org/about/background/\" style=\"margin: 0px; padding: 0px; vertical-align: baseline; background-color: transparent; color: rgb(34, 160, 216); text-decoration: none; -webkit-transition: color 0.25s ease-in; transition: color 0.25s ease-in;\" target=\"_blank\" title=\"Background\"&gt;joint initiative&lt;/a&gt;&amp;nbsp;of the Howard Hughes Medical Institute, the Max Planck Society, and the Wellcome Trust.&amp;nbsp;&lt;/p&gt;\n&lt;p style=\"margin: 0px 0px 1.25em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; color: rgb(109, 110, 112); font-family: Helvetica, Arial, Verdana, sans-serif; line-height: 18px; -webkit-text-size-adjust: none;\"&gt;\n\tThe&amp;nbsp;&lt;em style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;\"&gt;eLife&lt;/em&gt;&amp;nbsp;journal is a platform for extending the reach and influence of new discoveries and to showcase new approaches to the presentation, use, and assessment of research. This zenodo community is for research objects connected to eLife articles.&lt;/p&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n    <resumptionToken expirationDate=\"2023-12-23T10:17:00Z\" cursor=\"0\" completeListSize=\"14316\">eyJzZWVkIjowLjcwNjgzOTQzNjM5NDY1MTksInBhZ2UiOjIsImt3YXJncyI6e319.ZYazJA</resumptionToken>\n  </ListSets>\n</OAI-PMH>\n"
     headers:
       cache-control:
       - private
@@ -26,7 +26,7 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Sun, 19 Nov 2023 14:23:16 GMT
+      - Sat, 23 Dec 2023 10:15:00 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
@@ -36,8 +36,8 @@ interactions:
       server:
       - nginx
       set-cookie:
-      - session=9e3104c3c5d217a2_655a1a54.CW2jLEoCGovOp3EI2T9LC45iGf8; Expires=Wed, 20 Dec 2023 14:23:16 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=67e042a17fe965a3eb49b1efb2e83acf; path=/; HttpOnly; Secure; SameSite=None
+      - session=50c49a819bbd882_6586b324.ED4qa-i7oLrl3iQxc1HrJa6AXjQ; Expires=Tue, 02 Jan 2024 10:15:00 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - 5569e5a730cade8ff2b54f1e815f3670=1f2eb4b91eaaf1f86abc2c015b060a80; path=/; HttpOnly; Secure; SameSite=None
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       - max-age=15768000
@@ -54,11 +54,125 @@ interactions:
       x-ratelimit-remaining:
       - '118'
       x-ratelimit-reset:
-      - '1700403857'
+      - '1703326561'
       x-request-id:
-      - 1a5b12ba6a2a5ffb350e871492ed7e27
+      - 9e3191057655be8be9d29f2719a40c8b
       x-xss-protection:
       - 1; mode=block
     http_version: HTTP/1.1
     status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - text/xml; charset=utf-8
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      cookie:
+      - session=50c49a819bbd882_6586b324.ED4qa-i7oLrl3iQxc1HrJa6AXjQ; 5569e5a730cade8ff2b54f1e815f3670=1f2eb4b91eaaf1f86abc2c015b060a80
+      host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.9.0
+    method: GET
+    uri: https://zenodo.org/oai2d?verb=ListSets&resumptionToken=eyJzZWVkIjowLjcwNjgzOTQzNjM5NDY1MTksInBhZ2UiOjIsImt3YXJncyI6e319.ZYazJA
+  response:
+    content: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\" href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2023-12-23T10:15:00Z</responseDate>\n  <request resumptionToken=\"eyJzZWVkIjowLjcwNjgzOTQzNjM5NDY1MTksInBhZ2UiOjIsImt3YXJncyI6e319.ZYazJA.LbHnaYSXR3rhHToxNvEzQqIHcYo\" verb=\"ListSets\">https://zenodo.org/oai2d</request>\n  <ListSets>\n    <set>\n      <setSpec>user-2320-7027</setSpec>\n      <setName>Asian Journal of Agricultural Extension, Economics &amp; Sociology</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p&gt;\n\tAsian Journal of Agricultural Extension, Economics &amp;amp; Sociology (ISSN: 2320&amp;ndash;7027) aims to publish high quality papers (&lt;a href=\"http://www.sciencedomain.org/page.php?id=general-guideline-for-authors#Type_of_papers\"&gt;Click here for Types of paper&lt;/a&gt;) in all areas of &amp;lsquo;Agricultural Extension, Economics &amp;amp; Sociology research&amp;rsquo;. The journal also encourages the submission of useful reports of negative results. This is a quality controlled, &lt;a href=\"http://www.sciencedomain.org/page.php?id=sdi-general-editorial-policy#SDI_Peer_review_mechanism\"&gt;OPEN&amp;nbsp;peer reviewed&lt;/a&gt;, open access INTERNATIONAL journal.&lt;/p&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-emva1288</setSpec>\n      <setName>EMVA 1288</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p&gt;In this community all kind of material is collected, relating to the 1288 standard of the European Machine Vision Industry (EMVA), in short EMVA 1288. Choosing the suitable camera for a given application often proves to be a challenging task. The data sheets provided by the manufacturers are difficult to compare. Frequently, vital pieces of information are not available and the user is forced to conduct a costly comparative test which still may fail to deliver all relevant camera parameters. This is where the EMVA 1288 Standard comes in. It creates transparency by defining reliable and exact measurement procedures as well as data presentation guidelines and makes the comparison of cameras and image sensors much easier.&lt;/p&gt;\n\n&lt;p&gt;For further details, see http://www.standard1288.org/ and http://en.wikipedia.org/wiki/EMVA1288&lt;/p&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-vlpb</setSpec>\n      <setName>Virtual Lab for Plant Breeding</setName>\n    </set>\n    <set>\n      <setSpec>user-soheval</setSpec>\n      <setName>SOH Evaluation Unit</setName>\n    </set>\n    <set>\n      <setSpec>user-tind</setSpec>\n      <setName>TIND</setName>\n    </set>\n    </ListSets>\n</OAI-PMH>\n"
+    headers:
+      content-encoding:
+      - gzip
+      content-security-policy:
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Sat, 23 Dec 2023 10:15:00 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '60'
+      server:
+      - nginx
+      set-cookie:
+      - session=50c49a819bbd882_6586b324.ED4qa-i7oLrl3iQxc1HrJa6AXjQ; Expires=Tue, 02 Jan 2024 10:15:00 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      - max-age=15768000
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '120'
+      x-ratelimit-remaining:
+      - '117'
+      x-ratelimit-reset:
+      - '1703326561'
+      x-request-id:
+      - be573f5f4dadda4e183498dbb062e692
+      x-xss-protection:
+      - 1; mode=block
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - text/xml; charset=utf-8
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.9.0
+    method: GET
+    uri: https://zenodo.org/oai2d?verb=ListSets&resumptionToken=XXX
+  response:
+    content: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2023-12-23T10:25:02Z</responseDate><request>https://zenodo.org/oai2d</request><error code="badResumptionToken">The value of the resumptionToken argument is invalid or expired.</error></OAI-PMH>
+    headers:
+      content-length:
+      - '479'
+      content-security-policy:
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Sat, 23 Dec 2023 10:25:02 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '60'
+      server:
+      - nginx
+      set-cookie:
+      - session=fa7b2a138477cce9_6586b57e.GPIjOjJDMw8P1hh9i4mX-AyukfM; Expires=Tue, 02 Jan 2024 10:25:02 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - 5569e5a730cade8ff2b54f1e815f3670=5185a073d320065618091884ed0c8848; path=/; HttpOnly; Secure; SameSite=None
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '120'
+      x-ratelimit-remaining:
+      - '119'
+      x-ratelimit-reset:
+      - '1703327163'
+      x-xss-protection:
+      - 1; mode=block
+    http_version: HTTP/1.1
+    status_code: 422
 version: 1

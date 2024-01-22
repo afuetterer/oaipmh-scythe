@@ -10,18 +10,61 @@ These utilities facilitate the extraction of namespaces and conversion of XML el
 more accessible data structures.
 
 Functions:
+    remove_none_values: Remove keys from the dictionary where the value is `None`.
+    filter_dict_except_resumption_token: Filter keys from the dictionary, if resumption token is not `None`.
     get_namespace: Extracts the namespace from an XML element.
     xml_to_dict: Converts an XML tree or element into a dictionary representation.
 """
 
 from __future__ import annotations
 
+import logging
 import re
 from collections import defaultdict
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from typing import Any
+
     from lxml import etree
+
+logger = logging.getLogger(__name__)
+
+
+def remove_none_values(d: dict[str, Any | None]) -> dict[str, Any]:
+    """Remove keys from the dictionary where the value is `None`.
+
+    Args:
+        d: The input dictionary.
+
+    Returns:
+        A new dictionary with the same keys as the input dictionary but none values have been removed.
+    """
+    return {key: value for key, value in d.items() if value is not None}
+
+
+def filter_dict_except_resumption_token(d: dict[str, Any | None]) -> dict[str, Any]:
+    """Filter out keys with None values from a dictionary, with special handling for 'resumptionToken'.
+
+    If 'resumptionToken' is present and not None, and there are other non-None keys, log a warning and
+    retain only 'resumptionToken' and 'verb' keys. Otherwise, return a dictionary excluding any keys
+    with None values.
+
+    Args:
+        d (dict[str, Any | None]): The dictionary to filter.
+
+    Returns:
+        dict[str, Any]: A filtered dictionary based on the defined criteria.
+    """
+    allowed_keys = ("verb", "resumptionToken")
+    resumption_token_present = d["resumptionToken"] is not None
+    non_empty_keys = [k for k, v in d.items() if v is not None and k not in allowed_keys]
+    if resumption_token_present and resumption_token_present:
+        logger.warning(
+            f"`resumption_token` should not be used in combination with other parameters. Dropping {non_empty_keys}"
+        )
+        return {k: v for k, v in d.items() if k in allowed_keys}
+    return d
 
 
 def get_namespace(element: etree._Element) -> str | None:

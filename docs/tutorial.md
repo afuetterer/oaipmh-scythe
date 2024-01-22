@@ -2,7 +2,7 @@
 
 This section gives a brief overview on how to use oaipmh-scythe for querying OAI interfaces.
 
-## Initialize an OAI-PMH Interface
+## Initializing an OAI-PMH Interface
 
 To make a connection to an OAI-PMH interface, you need to import the Scythe class:
 
@@ -42,17 +42,162 @@ GetRecord, Identify, ListSets, ListMetadataFormats, ListIdentifiers).
 Start with a ListRecords request:
 
 ```python
-records = scythe.list_records(metadataPrefix="oai_dc")
+records = scythe.list_records()
 ```
 
 Note that all keyword arguments you provide to this function are passed
 to the OAI interface as HTTP parameters. Therefore, the example request
-would send the parameters `verb=ListRecords&metadataPrefix=oai_dc`. We
-can add additional parameters, like, for example, an OAI `set`:
+would send the parameter `verb=ListRecord`.
+
+## Performing Selective Harvesting
+
+### Harvesting Records Based on Publication Date
+
+To selectively harvest records within a specific publication date range,
+the [list_records()][oaipmh_scythe.client.Scythe.list_records] and
+[list_identifiers()][oaipmh_scythe.client.Scythe.list_identifiers] methods of the Scythe client can be utilized
+with `from_` and `until` parameters. These parameters allow you to specify the lower and upper bounds
+of the desired date range, respectively. The accepted date format is YYYY-MM-DD (`str`).
+
+#### Using the from_ Parameter
+
+The `from_` parameter (note the trailing underscore) is used to set the lower bound of the publication date range.
+
+!!! note
+
+    The trailing underscore is necessary because `from` is a reserved keyword in Python.
+
+Example: Fetching Records Published On or After a Specific Date
 
 ```python
-records = scythe.list_records(metadataPrefix="oai_dc", set="user-cfa")
+records = scythe.list_records(from_="2024-01-16")
+next(records)
+# <Record oai:zenodo.org:10529175>
 ```
+
+In this example, `scythe.list_records(from_="2024-01-16")` retrieves records published on or after January 16, 2024.
+
+#### Using the until Parameter
+
+The `until` parameter sets the upper bound for the publication date of the records, enabling you to fetch records
+published up to and including the specified date.
+
+Example: Fetching records published until a specific date
+
+```python
+records = scythe.list_records(until="2024-01-17")
+next(records)
+# <Record oai:zenodo.org:2217771>
+```
+
+This line will harvest records published up to and including January 17, 2024.
+
+#### Combining from_ and until
+
+Both `from_` and `until` parameters can be used together to define a specific date range for harvesting records.
+
+Example: Fetching records within a specific date range
+
+```python
+records = scythe.list_records(from_="2024-01-16", until="2024-01-17")
+next(records)
+# <Record oai:zenodo.org:10517528>
+```
+
+Here, `scythe.list_records(from_="2024-01-16", until="2024-01-17")` fetches records published between
+January 16 and January 17, 2024, inclusive.
+
+### Harvesting Records based on Set Specification
+
+In addition to date-based filtering, the Scythe client offers the capability to selectively harvest records
+by specifying a set specification. This feature is particularly useful for fetching records that belong
+to a specific category or collection.
+
+#### Using the set_ Parameter
+
+The `set_` parameter allows you to specify a particular set of records for harvesting.
+
+!!! note
+
+    It is important to note the trailing underscore in `set_`. This is used because `set` is a reserved keyword in Python.
+
+Example: Fetching records from a specific set
+
+```python
+records = scythe.list_records(set_="software")
+next(records)
+# <Record oai:zenodo.org:32712>
+```
+
+In this example, `scythe.list_records(set_="software")` retrieves records that are part of the 'software' set.
+The call to `next(records)` fetches the first record from the retrieved set.
+
+#### Considerations when using the set_ Parameter
+
+Set Identifier: The value passed to the `set_` parameter should match the identifier used by the OAI-PMH service
+for the desired set. These identifiers are often predefined by the data provider and should be used as documented.
+
+Combining with Other Parameters: The `set_` parameter can be combined with other parameters like `from_` and `until`
+for more refined filtering. This allows for fetching records from a specific set within a certain date range.
+
+Example: Combining `set_` with Date Filters
+
+```python
+records = scythe.list_records(set_="software", from_="2024-01-01", until="2024-01-31")
+next(records)
+# <Record oai:zenodo.org:10456652>
+```
+
+This code will harvest records from the 'software' set that were published in January 2024.
+
+### Default Metadata Format and Specifying Custom Formats
+
+When harvesting records using the `Scythe` client, it's important to understand how metadata formats are handled.
+By default, if no specific metadata format is provided, `Scythe` retrieves records in the `oai_dc` format.
+This format is universally supported by all OAI-PMH repositories, ensuring broad compatibility.
+
+#### Default Behavior: Harvesting in oai_dc Format
+
+If you do not specify a metadata format, scythe will automatically use the "oai_dc" metadata format.
+This is the Dublin Core format, a standard for simple and generic metadata representation.
+
+Example: Fetching records with default metadata format
+
+```python
+records = scythe.list_records()
+```
+
+This code will harvest records using the default `oai_dc` metadata format. It is equivalent to using
+`scythe.list_records(metadata_prefix="oai_dc")` explicitly.
+
+#### Specifying a different Metadata Format
+
+If you need to harvest records in a format other than "oai_dc", you can specify this with the `metadata_prefix`
+parameter. Note that the format you request must be supported by the OAI-PMH repository you are querying.
+
+#### Listing Available Metadata Formats
+
+Before specifying a different format, you can check the available formats using the list_metadata_formats method:
+
+```python
+metadata_formats = scythe.list_metadata_formats()
+for metadata_format in metadata_formats:
+    print(metadata_format)
+```
+
+Example: Fetching records in a custom metadata format
+
+```python
+records = scythe.list_records(metadata_prefix="datacite")
+```
+
+In this example, `scythe.list_records(metadata_prefix="datacite")` retrieves records in the "datacite" metadata format.
+
+!!! note
+
+    It's important to remember that in the absence of a specified `metadata_prefix`, scythe will default to using
+    the "oai_dc" format. This ensures that you can always retrieve records even if the specific format
+    requirements are not known.
 
 ## Consecutive Harvesting
 
@@ -61,7 +206,7 @@ Scythe methods return iterator objects which can be used to iterate over
 the records of a repository:
 
 ```python
-records = scythe.list_records(metadataPrefix="oai_dc")
+records = scythe.list_records()
 next(records)
 # <Record oai:zenodo.org:4574771>
 ```
@@ -75,7 +220,7 @@ The following example shows how to iterate over the headers returned by
 `list_identifiers()`:
 
 ```python
-headers = scythe.list_identifiers(metadataPrefix="oai_dc")
+headers = scythe.list_identifiers()
 next(headers)
 # <Header oai:zenodo.org:4574771>
 ```
@@ -88,24 +233,13 @@ next(sets)
 # <Set European Middleware Initiative>
 ```
 
-## Using the `from` Parameter
-
-If you need to perform selective harvesting by date using the `from`
-parameter, you may face the problem that `from` is a reserved word in
-Python:
+To explore all the metadata formats supported by the repository, you can iterate through the formats returned
+by the `list_metadata_formats()` method:
 
 ```python
-records = scythe.list_records(metadataPrefix="oai_dc", from="2023-10-10")
-#  File "<stdin>", line 1
-#    records = scythe.list_records(metadataPrefix="oai_dc", from="2023-10-10")
-#                                                           ^^^^
-# SyntaxError: invalid syntax
-```
-
-Fortunately, you can circumvent this problem by using a dictionary together with the `**` operator:
-
-```python
-records = scythe.list_records(**{"metadataPrefix": "oai_dc", "from": "2023-10-10"})
+metadata_formats = scythe.list_metadata_formats()
+next(metadata_formats)
+# <MetadataFormat marcxml>
 ```
 
 ## Getting a Single Record
@@ -113,8 +247,8 @@ records = scythe.list_records(**{"metadataPrefix": "oai_dc", "from": "2023-10-10
 OAI-PMH allows you to get a single record by using the `GetRecord` verb:
 
 ```python
-scythe.get_record(identifier="oai:zenodo.org:4574771", metadataPrefix="oai_dc")
-# <Record oai:eprints.rclis.org:4088>
+scythe.get_record(identifier="oai:zenodo.org:4574771")
+# <Record oai:zenodo.org:4574771>
 ```
 
 ## Harvesting OAI Items vs. OAI Responses
@@ -129,7 +263,7 @@ to pass the [OAIResponseIterator][oaipmh_scythe.iterator.OAIResponseIterator] du
 ```python
 from oaipmh_scythe.iterator import OAIResponseIterator
 scythe = Scythe("https://zenodo.org/oai2d", iterator=OAIResponseIterator)
-responses = scythe.list_records(metadataPrefix="oai_dc")
+responses = scythe.list_records()
 next(responses)
 # <OAIResponse ListRecords>
 ```
@@ -138,7 +272,7 @@ You could then save the returned responses to disk:
 
 ```python
 with open("response.xml", "w") as f:
-    f.write(next(responses).raw.encode("utf8"))
+    f.write(next(responses).raw.encode("utf-8"))
 ```
 
 ## Ignoring Deleted Records
@@ -148,7 +282,7 @@ The [list_records()][oaipmh_scythe.client.Scythe.list_records] and
 If set to `True`, the returned [OAIItemIterator][oaipmh_scythe.iterator.OAIItemIterator] will skip deleted records/headers:
 
 ```python
-records = scythe.list_records(metadataPrefix="oai_dc", ignore_deleted=True)
+records = scythe.list_records(ignore_deleted=True)
 ```
 
 !!! note

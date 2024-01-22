@@ -50,23 +50,23 @@ class BaseOAIIterator(ABC):
 
     Args:
         scythe: The Scythe instance used to perform OAI-PMH requests.
-        params: A dictionary of parameters specifying the details of the OAI-PMH request.
+        query: A dictionary of parameters specifying the details of the OAI-PMH request.
         ignore_deleted: A boolean flag indicating whether to ignore deleted records in the iteration.
 
     Attributes:
         scythe: The Scythe instance handling OAI-PMH requests.
-        params: The parameters for OAI-PMH requests.
+        query: The parameters for OAI-PMH requests.
         ignore_deleted: Indicates whether deleted records should be ignored.
         verb: The OAI-PMH verb (e.g., 'ListRecords', 'ListIdentifiers') used in the request.
         oai_response: The most recent OAIResponse received from the OAI server.
         resumption_token: The current resumption token, if any, for paginated results.
     """
 
-    def __init__(self, scythe: Scythe, params: dict[str, str], ignore_deleted: bool = False) -> None:
+    def __init__(self, scythe: Scythe, query: dict[str, str], ignore_deleted: bool = False) -> None:
         self.scythe = scythe
-        self.params = params
+        self.query = query
         self.ignore_deleted = ignore_deleted
-        self.verb: str = self.params["verb"]
+        self.verb: str = self.query["verb"]
         self.oai_response: OAIResponse | None = None
         self.resumption_token: ResumptionToken | None = None
         self._next_response()
@@ -109,8 +109,8 @@ class BaseOAIIterator(ABC):
         If an error is encountered in the OAI response, an appropriate exception is raised.
         """
         if self.resumption_token and self.resumption_token.token:
-            self.params = {"resumptionToken": self.resumption_token.token, "verb": self.verb}
-        self.oai_response = self.scythe.harvest(**self.params)
+            self.query = {"verb": self.verb, "resumptionToken": self.resumption_token.token}
+        self.oai_response = self.scythe.harvest(self.query)
 
         if (error := self.oai_response.xml.find(f".//{self.scythe.oai_namespace}error")) is not None:
             code = str(error.attrib.get("code", "UNKNOWN"))

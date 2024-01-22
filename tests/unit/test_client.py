@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from respx.router import MockRouter
 
 
-params = {"verb": "ListIdentifiers", "metadataPrefix": "oai_dc"}
+query = {"verb": "ListIdentifiers", "metadataPrefix": "oai_dc"}
 
 
 def test_invalid_http_method() -> None:
@@ -44,11 +44,11 @@ def test_context_manager() -> None:
 
 
 def test_override_encoding(scythe: Scythe, respx_mock: MockRouter) -> None:
-    mock_route = respx_mock.get("https://zenodo.org/oai2d?metadataPrefix=oai_dc&verb=ListIdentifiers").mock(
+    mock_route = respx_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
         return_value=httpx.Response(200)
     )
     scythe.encoding = "custom-encoding"
-    oai_response = scythe.harvest(**params)
+    oai_response = scythe.harvest(query)
     assert mock_route.called
     assert oai_response.http_response.encoding == "custom-encoding"
 
@@ -56,17 +56,17 @@ def test_override_encoding(scythe: Scythe, respx_mock: MockRouter) -> None:
 def test_post_method(scythe: Scythe, respx_mock: MockRouter) -> None:
     mock_route = respx_mock.post("https://zenodo.org/oai2d").mock(return_value=httpx.Response(200))
     scythe.http_method = "POST"
-    oai_response = scythe.harvest(**params)
+    oai_response = scythe.harvest(query)
     assert mock_route.called
     assert oai_response.http_response.status_code == 200
 
 
 def test_no_retry(scythe: Scythe, respx_mock: MockRouter) -> None:
-    mock_route = respx_mock.get("https://zenodo.org/oai2d?metadataPrefix=oai_dc&verb=ListIdentifiers").mock(
+    mock_route = respx_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
         return_value=httpx.Response(503)
     )
     with suppress(httpx.HTTPStatusError):
-        scythe.harvest(**params)
+        scythe.harvest(query)
     assert mock_route.call_count == 1
 
 
@@ -74,11 +74,11 @@ def test_retry_on_503(scythe: Scythe, respx_mock: MockRouter, mocker) -> None:
     scythe.max_retries = 3
     scythe.default_retry_after = 0
     mock_sleep = mocker.patch("time.sleep")
-    mock_route = respx_mock.get("https://zenodo.org/oai2d?metadataPrefix=oai_dc&verb=ListIdentifiers").mock(
+    mock_route = respx_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
         return_value=httpx.Response(503, headers={"retry-after": "10"})
     )
     with suppress(httpx.HTTPStatusError):
-        scythe.harvest(**params)
+        scythe.harvest(query)
     assert mock_route.call_count == 4
     assert mock_sleep.call_count == 3
     mock_sleep.assert_called_with(10)
@@ -88,17 +88,17 @@ def test_retry_on_503_without_retry_after_header(scythe: Scythe, respx_mock: Moc
     scythe.max_retries = 3
     scythe.default_retry_after = 0
     mock_sleep = mocker.patch("time.sleep")
-    mock_route = respx_mock.get("https://zenodo.org/oai2d?metadataPrefix=oai_dc&verb=ListIdentifiers").mock(
+    mock_route = respx_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
         return_value=httpx.Response(503, headers=None)
     )
     with suppress(httpx.HTTPStatusError):
-        scythe.harvest(**params)
+        scythe.harvest(query)
     assert mock_route.call_count == 4
     assert mock_sleep.call_count == 3
 
 
 def test_retry_on_custom_code(scythe: Scythe, respx_mock: MockRouter, mocker) -> None:
-    mock_route = respx_mock.get("https://zenodo.org/oai2d?metadataPrefix=oai_dc&verb=ListIdentifiers").mock(
+    mock_route = respx_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
         return_value=httpx.Response(500)
     )
     scythe.max_retries = 3
@@ -106,6 +106,6 @@ def test_retry_on_custom_code(scythe: Scythe, respx_mock: MockRouter, mocker) ->
     mock_sleep = mocker.patch("time.sleep")
     scythe.retry_status_codes = (503, 500)
     with suppress(httpx.HTTPStatusError):
-        scythe.harvest(**params)
+        scythe.harvest(query)
     assert mock_route.call_count == 4
     assert mock_sleep.call_count == 3
