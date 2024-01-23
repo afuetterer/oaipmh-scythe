@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+- family-names: Fütterer
+  given-names: Heinz-Alexander
+  orcid: https://orcid.org/0000-0003-4397-027X
+title: oaipmh-scythe
+license: BSD-3-Clause
+license-url: https://github.com/afuetterer/oaipmh-scythe/blob/main/LICENSE
+repository-code: https://github.com/afuetterer/oaipmh-scythe
+keywords:
+- python
+- metadata
+- oai-pmh
+- oai-pmh-client
+version: 0.10.0
+date-released: 2024-01-22
