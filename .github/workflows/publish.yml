@@ -1,4 +1,4 @@
-name: Publish package to (Test) PyPI
+name: Publish package to PyPI
 
 on:
   release:
@@ -26,5 +26,3 @@ jobs:
     - run: python -m build
     - name: Publish package to Test PyPI
       uses: pypa/gh-action-pypi-publish@2f6f737ca5f74c637829c0f5c3acd0e29ea5e8bf # v1.8.11
-      with:
-        repository-url: https://test.pypi.org/legacy/
