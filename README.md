@@ -33,8 +33,8 @@ with Scythe("https://zenodo.org/oai2d") as scythe:
 
 oaipmh-scythe is built with:
 
-- [httpx](https://github.com/encode/httpx): for issuing HTTP requests
-- [lxml](https://github.com/lxml/lxml): for parsing XML responses
+- [httpx](https://github.com/encode/httpx) for issuing HTTP requests
+- [lxml](https://github.com/lxml/lxml) for parsing XML responses
 
 ## Installation
 
@@ -51,7 +51,7 @@ The [documentation][docs-url] is made with [Material for MkDocs](https://github.
 There are a couple of similar projects available on [PyPI](https://pypi.org/search/?q=oai-pmh) and GitHub, e.g. via
 the topics [oai-pmh](https://github.com/topics/oai-pmh) and [oai-pmh-client](https://github.com/topics/oai-pmh-client). Among them are these implementations in Python:
 
-|     |     |      |
+| Project | Description | Last commit |
 | --- | --- |  --- |
 | [sickle](https://github.com/mloesch/sickle) | oaipmh-scythe is a fork of sickle | ![last-commit](https://img.shields.io/github/last-commit/mloesch/sickle) |
 | [pyoai](https://github.com/infrae/pyoai) | sickle was inspired by pyoai | ![last-commit](https://img.shields.io/github/last-commit/infrae/pyoai) |
@@ -68,7 +68,7 @@ This is a fork of [sickle](https://github.com/mloesch/sickle) which was original
 
 ## License
 
-oaipmh-scythe is distributed under the terms of the [BSD](https://spdx.org/licenses/BSD-3-Clause.html) license.
+oaipmh-scythe is distributed under the terms of the [BSD license](https://spdx.org/licenses/BSD-3-Clause.html).
 
 <!-- Markdown links -->
 <!-- dynamic -->
