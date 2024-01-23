@@ -12,8 +12,11 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [Unreleased]({{ unreleased }})
 
 {# RELEASED #}
-{% for version, release in context.history.released.items() if "unknown" not in release["elements"] or release["elements"]|length > 1 -%}
-{% if version.as_tag() > "0.8.0" -%}{# Generate changelog entries for releases > 0.8.0 #}
+{% from ".macros.j2" import version_to_padded_list %}
+{%- set min_version_list = version_to_padded_list("0.8.0") -%}{# Generate padded list: ["000", "080", "000"] #}
+{% for version, release in context.history.released.items() -%}
+{%- set version_list = version_to_padded_list(version.as_tag()) -%}
+{% if version_list > min_version_list -%}{# Generate changelog entries for releases > 0.8.0 #}
 {%- set prev_version = loop.nextitem[0] -%}
 {%- set compare_url = version_compare_url(prev_version, version) -%}
 ## [{{ version.as_tag() }}]({{ compare_url }}) ({{ release.tagged_date.strftime("%Y-%m-%d") }})

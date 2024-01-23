@@ -1,3 +1,14 @@
 {% macro version_compare_url(prev_version, version) -%}
 https://github.com/{{ context.repo_owner }}/{{ context.repo_name }}/compare/{{ prev_version }}...{{ version }}
 {%- endmacro %}
+
+{% macro version_to_padded_list(version) %}
+    {%- set padding_size = 3 -%}
+    {%- set parts = version.split('.') -%}
+    {%- set padded_parts = [] -%}
+    {%- for part in parts -%}
+        {%- set padded_part = part.rjust(padding_size, '0') -%}
+        {%- set padded_parts = padded_parts.append(padded_part) -%}
+    {%- endfor -%}
+    {{ padded_parts }}
+{% endmacro %}

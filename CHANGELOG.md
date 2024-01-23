@@ -9,6 +9,33 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [Unreleased](https://github.com/afuetterer/oaipmh-scythe/compare/0.10.0...main)
 
 
+## [0.10.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.9.0...0.10.0) (2024-01-22)
+
+### Breaking Changes
+
+- make request arguments explicit (#212) ([`c61fab3`](https://github.com/afuetterer/oaipmh-scythe/commit/c61fab3126a33d0d793d5a07f0c88b37e83f0378))
+- remove request_args from scythe class and _request method (#199) ([`2be27aa`](https://github.com/afuetterer/oaipmh-scythe/commit/2be27aa837e4d9590150e6e36492d2910a88d7c9))
+- drop support for oai-pmh version 1.0 (#183) ([`8644c4b`](https://github.com/afuetterer/oaipmh-scythe/commit/8644c4b82abd91f4d847912fad811c0936f5d0b1))
+- drop support for python &lt; 3.10 (#180) ([`cb3b99c`](https://github.com/afuetterer/oaipmh-scythe/commit/cb3b99cd1946b577ede8f5b471f32a3b1508c5ad))
+
+### Code Refactoring
+
+- **client:** remove obsolete is_error_code() (#177) ([`1e6dfe1`](https://github.com/afuetterer/oaipmh-scythe/commit/1e6dfe19487874969f0d0c76ca69934d66dd1446))
+- add accept text/xml headers to client config (#155) ([`4d92818`](https://github.com/afuetterer/oaipmh-scythe/commit/4d92818573d39797fd83544e942b5e186db4bdf2))
+
+### Testing
+
+- update getrecord example (#200) ([`77c8ee6`](https://github.com/afuetterer/oaipmh-scythe/commit/77c8ee64c58f4bbbb976139fed5c44666e644c99))
+
+### Documentation
+
+- update author name ([`5f286e1`](https://github.com/afuetterer/oaipmh-scythe/commit/5f286e1006f94ff7559586e0541a4d47f4f9d5a1))
+- **readme:** update required python version ([`8237d2c`](https://github.com/afuetterer/oaipmh-scythe/commit/8237d2cfb3add763d199ba40a3da65fa9e91ddd7))
+- **readme:** restyle project metadata table (#214) ([`e2487cc`](https://github.com/afuetterer/oaipmh-scythe/commit/e2487ccf9c6887ada9ee684e577fd1c5bef3afba))
+- **readme:** rephrase introduction about fork (#202) ([`de65418`](https://github.com/afuetterer/oaipmh-scythe/commit/de654186aefbdbb075a64ad1986f9f489cd6e9a0))
+- add more alternatives (#192) ([`5062a38`](https://github.com/afuetterer/oaipmh-scythe/commit/5062a3887fe5c72c44c918dab8d5ccc3e534e8e8))
+- add full changelog to release notes (#149) ([`19a98f5`](https://github.com/afuetterer/oaipmh-scythe/commit/19a98f5e498016989e506bfa29384143dfc3c781))
+
 ## [0.9.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.8.0...0.9.0) (2023-11-18)
 
 ### Features
