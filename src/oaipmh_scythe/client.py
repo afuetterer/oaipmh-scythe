@@ -193,7 +193,7 @@ class Scythe:
         set membership, and metadata format. This method supports pagination via resumption tokens and can optionally
         ignore records marked as deleted.
 
-        Ref: https://openarchives.org/OAI/openarchivesprotocol.html#ListRecords
+        Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#ListRecords>
 
         Args:
             from_: An optional date string specifying the start of a date range for harvesting records.
@@ -240,7 +240,7 @@ class Scythe:
         date range, set membership, and metadata format. It also supports pagination through resumption tokens and has
         an option to ignore deleted records.
 
-        Ref: https://openarchives.org/OAI/openarchivesprotocol.html#ListIdentifiers
+        Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#ListIdentifiers>
 
         Args:
             from_: An optional date string specifying the start of a date range for harvesting records.
@@ -280,7 +280,7 @@ class Scythe:
         repository. This method allows for the retrieval of these sets, optionally using a resumption token to handle
         pagination.
 
-        Ref: https://openarchives.org/OAI/openarchivesprotocol.html#ListSets
+        Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#ListSets>
 
         Args:
             resumption_token: An optional token for pagination, used to continue a request for the next batch of sets.
@@ -307,7 +307,7 @@ class Scythe:
         the base URL, the protocol version, and other relevant data about the OAI server. It's useful for understanding the
         capabilities and configuration of the server.
 
-        Ref: https://openarchives.org/OAI/openarchivesprotocol.html#Identify
+        Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#Identify>
 
         Returns:
             Identify: An object encapsulating the server's identify response, which contains various pieces of information
@@ -325,7 +325,7 @@ class Scythe:
         using an iterator.
 
 
-        Ref: https://openarchives.org/OAI/openarchivesprotocol.html#GetRecord
+        Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#GetRecord>
 
         Args:
             identifier: A unique identifier for the record to be retrieved from the OAI server.
@@ -355,7 +355,7 @@ class Scythe:
         iterator over OAIResponse or MetadataFormat objects, each representing a different metadata format or response
         from the server.
 
-        Ref: https://openarchives.org/OAI/openarchivesprotocol.html#ListMetadataFormats
+        Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#ListMetadataFormats>
 
         Args:
             identifier: An optional unique identifier for a specific record to query available metadata formats.
