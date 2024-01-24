@@ -1,0 +1,35 @@
+# Ref: https://github.com/actions/stale
+name: Handle stale issues and PRs
+
+on:
+  schedule:
+    # run once a week at midnight of sunday
+  - cron: 0 0 * * 0
+  # run manually from actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stale:
+    runs-on: ubuntu-22.04
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: actions/stale@28ca1036281a5e5922ead5184a1bbf96e5fc984e # v9.0.0
+      with:
+        days-before-stale: 60
+        # handle issues: set to abandoned, close after 7 days with message
+        days-before-issue-close: 7
+        stale-issue-label: 'status: abandoned'
+        stale-issue-message: |
+          This issue is stale because it has been open 60 days without activity.
+          Remove 'abandoned' label or comment or this will be closed in 7 days.
+        close-issue-message: This issue was closed because it has been stalled for 7 days with no activity.
+
+        # handle pull requests: set to abandoned, but do not close per bot
+        days-before-pr-close: -1 # never close PRs
+        stale-pr-label: 'status: abandoned'
+        stale-pr-message: This PR is stale because it has been open 60 days without activity.
