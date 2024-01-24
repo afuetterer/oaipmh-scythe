@@ -51,6 +51,9 @@ docs = [
 lint = [
   "pre-commit~=3.6",
 ]
+release = [
+  "python-semantic-release~=8.7",
+]
 test = [
   "pytest~=7.4",
   "pytest-cov~=4.1",
@@ -113,6 +116,16 @@ features = ["docs"]
 build = "mkdocs build --strict --config-file=docs/mkdocs.yml"
 serve = "mkdocs serve --strict --config-file=docs/mkdocs.yml"
 deploy = "mkdocs gh-deploy --force --config-file=docs/mkdocs.yml"
+
+[tool.hatch.envs.release]
+features = ["release"]
+[tool.hatch.envs.release.scripts]
+next-version = "semantic-release version --print"
+update-citation = """
+  sed -i "s/^version: .*/version: $(semantic-release version --print)/" CITATION.cff
+  sed -i "s/^date-released: .*/date-released: $(date "+%Y-%m-%d")/" CITATION.cff
+  cat CITATION.cff
+"""
 
 # ruff
 # Ref: https://docs.astral.sh/ruff/configuration/
