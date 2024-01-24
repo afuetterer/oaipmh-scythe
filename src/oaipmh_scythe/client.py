@@ -23,7 +23,7 @@ from oaipmh_scythe.__about__ import __version__
 from oaipmh_scythe.iterator import BaseOAIIterator, OAIItemIterator
 from oaipmh_scythe.models import Header, Identify, MetadataFormat, OAIItem, Record, Set
 from oaipmh_scythe.response import OAIResponse
-from oaipmh_scythe.utils import filter_dict_except_resumption_token, remove_none_values
+from oaipmh_scythe.utils import filter_dict_except_resumption_token, log_response, remove_none_values
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, Iterator
@@ -113,7 +113,7 @@ class Scythe:
         """
         if self._client is None or self._client.is_closed:
             headers = {"Accept": "text/xml; charset=utf-8", "user-agent": USER_AGENT}
-            self._client = httpx.Client(headers=headers, timeout=self.timeout)
+            self._client = httpx.Client(headers=headers, timeout=self.timeout, event_hooks={"response": [log_response]})
         return self._client
 
     def close(self) -> None:

@@ -10,6 +10,7 @@ These utilities facilitate the extraction of namespaces and conversion of XML el
 more accessible data structures.
 
 Functions:
+    log_response: Log the details of an HTTP response.
     remove_none_values: Remove keys from the dictionary where the value is `None`.
     filter_dict_except_resumption_token: Filter keys from the dictionary, if resumption token is not `None`.
     get_namespace: Extracts the namespace from an XML element.
@@ -26,9 +27,27 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from typing import Any
 
+    import httpx
     from lxml import etree
 
 logger = logging.getLogger(__name__)
+
+
+def log_response(response: httpx.Response) -> None:
+    """Log the details of an HTTP response.
+
+    This function logs the HTTP method, URL, and status code of the response for debugging purposes.
+    It uses the 'debug' logging level to provide detailed diagnostic information.
+
+    Args:
+        response: The response object received from an HTTP request.
+
+    Returns:
+        None
+    """
+    logger.debug(
+        "[http] Response: %s %s - Status %s", response.request.method, response.request.url, response.status_code
+    )
 
 
 def remove_none_values(d: dict[str, Any | None]) -> dict[str, Any]:
