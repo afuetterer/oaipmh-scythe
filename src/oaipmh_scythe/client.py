@@ -157,7 +157,7 @@ class Scythe:
         for _ in range(self.max_retries):
             if httpx.codes.is_error(http_response.status_code) and http_response.status_code in self.retry_status_codes:
                 retry_after = self.get_retry_after(http_response)
-                logger.warning("HTTP %d! Retrying after %d seconds..." % (http_response.status_code, retry_after))
+                logger.warning("HTTP %d! Retrying after %d seconds...", http_response.status_code, retry_after)
                 time.sleep(retry_after)
                 http_response = self._request(query)
         http_response.raise_for_status()

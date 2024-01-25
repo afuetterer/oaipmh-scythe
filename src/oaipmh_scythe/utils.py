@@ -80,7 +80,7 @@ def filter_dict_except_resumption_token(d: dict[str, Any | None]) -> dict[str, A
     non_empty_keys = [k for k, v in d.items() if v is not None and k not in allowed_keys]
     if resumption_token_present and resumption_token_present:
         logger.warning(
-            f"`resumption_token` should not be used in combination with other parameters. Dropping {non_empty_keys}"
+            "`resumption_token` should not be used in combination with other parameters. Dropping %s", non_empty_keys
         )
         return {k: v for k, v in d.items() if k in allowed_keys}
     return d

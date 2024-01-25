@@ -145,6 +145,7 @@ extend-select = [
   "D",    # pydocstyle
   "FURB", # refurb
   "I",    # isort
+  "G",    # flake8-logging-format
   "PERF", # perflint-perf
   "PGH",  # pygrep-hooks
   "PIE",  # flake8-pie
