@@ -71,8 +71,8 @@ repos:
   rev: 3464afbf919919109659d11ed98b3cfe4bc74cca  # frozen: v1.17.1
   hooks:
   - id: typos
-    args: [--force-exclude] # default is [--write-changes, --force-exclude]
-    exclude: tests/cassettes
+    args: [--force-exclude]
+    exclude: CHANGELOG.md # the commit hashes in changelog trigger the spell checker
 
 - repo: https://github.com/FHPythonUtils/LicenseCheck/
   rev: 546b293801b0fec25f1974164a03a0428881ef39  # frozen: 2024
