@@ -2,266 +2,135 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-import pytest
-from lxml import etree
+from xsdata.formats.dataclass.context import XmlContext
+from xsdata.formats.dataclass.parsers import XmlParser
+from xsdata.models.datatype import XmlDateTime
 
-from oaipmh_scythe import OAIResponse
 from oaipmh_scythe.models import Header, Identify, MetadataFormat, Record, ResumptionToken, Set
+from oaipmh_scythe.models.oai_dc import Dc, Title
+from oaipmh_scythe.models.oai_pmh import Metadata, OaiPmherror, OaiPmherrorcode, ProtocolVersion, Status
+
+PARSER = XmlParser(context=XmlContext())
 
 
-def test_resumption_token_repr() -> None:
-    token = ResumptionToken(token="some-token")
-    assert repr(token) == "<ResumptionToken some-token>"
-
-
-@pytest.fixture
-def identify_response(mocker):
-    xml = """
-    <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/">
-        <responseDate>2023-11-09T09:53:46Z</responseDate>
-        <request verb="Identify">https://zenodo.org/oai2d</request>
-        <Identify>
-            <repositoryName>Zenodo</repositoryName>
-            <baseURL>https://zenodo.org/oai2d</baseURL>
-            <protocolVersion>2.0</protocolVersion>
-        </Identify>
-    </OAI-PMH>
+def test_identify_parsing() -> None:
+    identify_xml = """
+    <Identify xmlns="http://www.openarchives.org/OAI/2.0/">
+        <repositoryName>Zenodo</repositoryName>
+        <baseURL>https://zenodo.org/oai2d</baseURL>
+        <protocolVersion>2.0</protocolVersion>
+    </Identify>
     """
-    mock_response = mocker.MagicMock(spec=OAIResponse)
-    mock_response.xml = etree.fromstring(xml)
-    return mock_response
+    identify = PARSER.from_string(identify_xml, Identify)
+    assert isinstance(identify, Identify)
+    expected = Identify(
+        repository_name="Zenodo", base_url="https://zenodo.org/oai2d", protocol_version=ProtocolVersion.VALUE_2_0
+    )
+    assert identify == expected
 
 
-@pytest.fixture
-def identify(identify_response) -> Identify:
-    return Identify(identify_response)
-
-
-def test_identify_bytes(identify):
-    assert isinstance(identify.__bytes__(), bytes)
-    assert b"<baseURL>https://zenodo.org/oai2d</baseURL>" in identify.__bytes__()
-
-
-def test_identify_str(identify):
-    assert isinstance(identify.__str__(), str)
-    assert "<baseURL>https://zenodo.org/oai2d</baseURL>" in str(identify)
-
-
-def test_identify_raw(identify):
-    assert isinstance(identify.raw, str)
-    assert "<baseURL>https://zenodo.org/oai2d</baseURL>" in identify.raw
-
-
-def test_identify_repr(identify):
-    assert repr(identify) == "<Identify>"
-
-
-def test_identify_attributes(identify):
-    assert identify.repositoryName == "Zenodo"
-    assert identify.baseURL == "https://zenodo.org/oai2d"
-    assert identify.protocolVersion == "2.0"
-
-
-def test_identify_iter(identify):
-    identify_items = dict(identify)
-    assert identify_items["repositoryName"] == ["Zenodo"]
-    assert identify_items["baseURL"] == ["https://zenodo.org/oai2d"]
-    assert identify_items["protocolVersion"] == ["2.0"]
-
-
-@pytest.fixture(scope="session")
-def header_element():
-    xml = """
+def test_header_parsing():
+    header_xml = """
     <header xmlns="http://www.openarchives.org/OAI/2.0/">
-        <identifier>oai:zenodo.org:6538892</identifier>
-        <datestamp>2022-05-11T13:49:36Z</datestamp>
+        <identifier>oai:zenodo.org:10357859</identifier>
+        <datestamp>2023-12-11T17:26:46Z</datestamp>
     </header>
     """
-    return etree.fromstring(xml.encode())
-
-
-@pytest.fixture(scope="session")
-def deleted_header_element():
-    xml = """
-    <header xmlns="http://www.openarchives.org/OAI/2.0/" status="deleted">
-        <identifier>oai:zenodo.org:6538892</identifier>
-        <datestamp>2022-05-11T13:49:36Z</datestamp>
-    </header>
-    """
-    return etree.fromstring(xml.encode())
-
-
-@pytest.fixture
-def header(header_element):
-    return Header(header_element)
-
-
-@pytest.fixture
-def deleted_header(deleted_header_element):
-    return Header(deleted_header_element)
-
-
-def test_header_init(header):
-    assert header.identifier == "oai:zenodo.org:6538892"
-    assert header.datestamp == "2022-05-11T13:49:36Z"
+    header = PARSER.from_string(header_xml, Header)
+    assert isinstance(header, Header)
+    expected = Header(identifier="oai:zenodo.org:10357859", datestamp="2023-12-11T17:26:46Z")
+    assert header == expected
     assert not header.deleted
 
 
-def test_header_init_with_deleted(deleted_header):
-    assert deleted_header.identifier == "oai:zenodo.org:6538892"
-    assert deleted_header.datestamp == "2022-05-11T13:49:36Z"
-    assert deleted_header.deleted
+def test_header_deleted():
+    header_xml = '<header status="deleted" xmlns="http://www.openarchives.org/OAI/2.0/"></header>'
+    header = PARSER.from_string(header_xml, Header)
+    assert header.deleted
 
 
-def test_header_repr(header, deleted_header):
-    assert repr(header) == "<Header oai:zenodo.org:6538892>"
-    assert repr(deleted_header) == "<Header oai:zenodo.org:6538892 [deleted]>"
+def test_resumption_token_parsing() -> None:
+    token_xml = """
+    <resumptionToken expirationDate="2024-01-21T16:55:57Z" cursor="0" completeListSize="3677115">eJyNzt1ugjAYgOF7</resumptionToken>
+    """
+    token = PARSER.from_string(token_xml, ResumptionToken)
+    assert isinstance(token, ResumptionToken)
+    expiration_date = XmlDateTime(2024, 1, 21, 16, 55, 57)
+    expected = ResumptionToken(
+        value="eJyNzt1ugjAYgOF7", cursor=0, expiration_date=expiration_date, complete_list_size=3677115
+    )
+    assert token == expected
 
 
-def test_header_iter(header):
-    items = dict(header)
-    assert items == {"identifier": "oai:zenodo.org:6538892", "datestamp": "2022-05-11T13:49:36Z", "setSpecs": []}
-
-
-@pytest.fixture
-def record_element():
-    xml = """
+def test_record_parsing():
+    record_xml = """
     <record xmlns="http://www.openarchives.org/OAI/2.0/">
-        <header>
-            <identifier>oai:example.org:record1</identifier>
-            <datestamp>2021-01-01</datestamp>
-            <setSpec>set1</setSpec>
-        </header>
+        <header></header>
         <metadata>
-            <dc xmlns="http://purl.org/dc/elements/1.1/">
-                <title>Example Title</title>
-                <creator>Example Creator</creator>
-            </dc>
+            <oai_dc:dc  xmlns:dc="http://purl.org/dc/elements/1.1/"
+                        xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+                <dc:title>Research Data Management Organiser (RDMO)</dc:title>
+            </oai_dc:dc>
         </metadata>
     </record>
     """
-    return etree.fromstring(xml.encode())
-
-
-@pytest.fixture
-def deleted_record_lement():
-    xml = """
-    <record xmlns="http://www.openarchives.org/OAI/2.0/">
-        <header status="deleted">
-            <identifier>oai:example.org:record1</identifier>
-            <datestamp>2021-01-01</datestamp>
-            <setSpec>set1</setSpec>
-        </header>
-        <metadata>
-            <dc xmlns="http://purl.org/dc/elements/1.1/">
-                <title>Example Title</title>
-                <creator>Example Creator</creator>
-            </dc>
-        </metadata>
-    </record>
-    """
-    return etree.fromstring(xml.encode())
-
-
-@pytest.fixture
-def record(record_element):
-    return Record(record_element)
-
-
-@pytest.fixture
-def deleted_record(deleted_record_lement):
-    return Record(deleted_record_lement)
-
-
-def test_record_init(record):
-    assert isinstance(record.header, Header)
-    assert record.header.identifier == "oai:example.org:record1"
+    record = PARSER.from_string(record_xml, Record)
+    assert isinstance(record, Record)
+    expected = Record(
+        header=Header(),
+        metadata=Metadata(other_element=Dc(title=[Title(value="Research Data Management Organiser (RDMO)")])),
+    )
+    assert record == expected
     assert not record.deleted
-    assert "title" in record.metadata
-    assert record.metadata["title"] == ["Example Title"]
 
 
-def test_record_repr(record):
-    assert repr(record) == "<Record oai:example.org:record1>"
+def test_record_deleted():
+    record = Record(header=Header(status=Status.DELETED))
+    assert record.deleted
 
 
-def test_deleted_record_repr(deleted_record):
-    assert repr(deleted_record) == "<Record oai:example.org:record1 [deleted]>"
+def test_record_get_metadata():
+    expected = Dc(title=[Title(value="Research Data Management Organiser (RDMO)")])
+    record = Record(header=Header(), metadata=Metadata(other_element=expected))
+    metadata = record.get_metadata()
+    assert isinstance(metadata, Dc)
+    assert metadata == expected
 
 
-def test_record_iter(record):
-    record_metadata = dict(record)
-    assert record_metadata["title"] == ["Example Title"]
-    assert record_metadata["creator"] == ["Example Creator"]
+def test_error_parsing():
+    error_xml = '<error code="idDoesNotExist">No matching identifier</error>'
+    error = PARSER.from_string(error_xml, OaiPmherror)
+    assert isinstance(error, OaiPmherror)
+    expected = OaiPmherror(code=OaiPmherrorcode.ID_DOES_NOT_EXIST, value="No matching identifier")
+    assert error == expected
 
 
-def test_deleted_record_no_metadata(deleted_record):
-    assert deleted_record.deleted
-    with pytest.raises(AttributeError):
-        _ = record.metadata
-
-
-@pytest.fixture
-def set_element():
-    xml = """
-    <set>
-        <setSpec>user-emi</setSpec>
-        <setName>European Middleware Initiative</setName>
-        <setDescription></setDescription>
+def test_set_parsing():
+    set_xml = """
+    <set xmlns="http://www.openarchives.org/OAI/2.0/">
+        <setSpec>software</setSpec>
+        <setName>Software</setName>
     </set>
     """
-    return etree.fromstring(xml.encode())
+    set_ = PARSER.from_string(set_xml, Set)
+    expected = Set(set_spec="software", set_name="Software")
+    assert isinstance(set_, Set)
+    assert set_ == expected
 
 
-@pytest.fixture
-def oai_set(set_element):
-    return Set(set_element)
-
-
-def test_set_init(oai_set):
-    assert oai_set.setName == "European Middleware Initiative"
-    assert "ser-emi" in oai_set.setSpec  # spellchecker:disable-line
-
-
-def test_set_repr(oai_set):
-    assert repr(oai_set) == "<Set European Middleware Initiative>"
-
-
-def test_set_iter(oai_set):
-    set_items = dict(oai_set)
-    assert set_items["setName"] == ["European Middleware Initiative"]
-    assert set_items["setSpec"] == ["user-emi"]
-
-
-@pytest.fixture
-def mdf_element():
-    xml = """
-    <metadataFormat>
-        <metadataPrefix>marcxml</metadataPrefix>
-        <schema>https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd</schema>
-        <metadataNamespace>https://www.loc.gov/standards/marcxml/</metadataNamespace>
+def test_metadata_format_parsing():
+    metadata_format_xml = """
+    <metadataFormat xmlns="http://www.openarchives.org/OAI/2.0/">
+        <metadataPrefix>oai_dc</metadataPrefix>
+        <schema>http://www.openarchives.org/OAI/2.0/oai_dc.xsd</schema>
+        <metadataNamespace>http://www.openarchives.org/OAI/2.0/oai_dc/</metadataNamespace>
     </metadataFormat>
     """
-    return etree.fromstring(xml.encode())
-
-
-@pytest.fixture
-def mdf(mdf_element):
-    return MetadataFormat(mdf_element)
-
-
-def test_metadata_format_init(mdf):
-    assert mdf.metadataPrefix == "marcxml"
-    assert mdf.schema == "https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"
-    assert mdf.metadataNamespace == "https://www.loc.gov/standards/marcxml/"
-
-
-def test_metadata_format_repr(mdf):
-    assert repr(mdf) == "<MetadataFormat marcxml>"
-
-
-def test_metadata_format_iter(mdf):
-    mdf_items = dict(mdf)
-    assert mdf_items["metadataPrefix"] == ["marcxml"]
-    assert mdf_items["schema"] == ["https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"]
-    assert mdf_items["metadataNamespace"] == ["https://www.loc.gov/standards/marcxml/"]
+    metadata_format = PARSER.from_string(metadata_format_xml, MetadataFormat)
+    assert isinstance(metadata_format, MetadataFormat)
+    expected = MetadataFormat(
+        metadata_prefix="oai_dc",
+        schema="http://www.openarchives.org/OAI/2.0/oai_dc.xsd",
+        metadata_namespace="http://www.openarchives.org/OAI/2.0/oai_dc/",
+    )
+    assert metadata_format == expected

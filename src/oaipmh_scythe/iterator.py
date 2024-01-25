@@ -12,32 +12,32 @@ ensuring efficient and structured access to OAI-PMH responses.
 
 Classes:
     BaseOAIIterator: An abstract base class for creating iterators over OAI-PMH data.
-    OAIResponseIterator: Iterates over OAI responses, handling pagination and resumption tokens.
-    OAIItemIterator: Provides iteration over specific OAI items like records, identifiers, and sets.
+    ResponseIterator: Iterates over OAI responses, handling pagination and resumption tokens.
+    ItemIterator: Provides iteration over specific OAI items like records, identifiers, and sets.
 """
 
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from operator import attrgetter
 from typing import TYPE_CHECKING
 
-from oaipmh_scythe import exceptions
-from oaipmh_scythe.models import ResumptionToken
+from oaipmh_scythe.models import Verb
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
 
     from oaipmh_scythe import Scythe
-    from oaipmh_scythe.models import OAIItem
-    from oaipmh_scythe.response import OAIResponse
+    from oaipmh_scythe.models import Item, ResumptionToken
+    from oaipmh_scythe.response import Response
 
-VERBS_ELEMENTS: dict[str, str] = {
-    "GetRecord": "record",
-    "ListRecords": "record",
-    "ListIdentifiers": "header",
-    "ListSets": "set",
-    "ListMetadataFormats": "metadataFormat",
-    "Identify": "Identify",
+
+MAPPING: dict[str, tuple[str, str]] = {
+    Verb.LIST_IDENTIFIERS.value: ("list_identifiers", "header"),
+    Verb.GET_RECORD.value: ("get_record", "record"),
+    Verb.LIST_RECORDS.value: ("list_records", "record"),
+    Verb.LIST_SETS.value: ("list_sets", "set"),
+    Verb.LIST_METADATA_FORMATS.value: ("list_metadata_formats", "metadata_format"),
 }
 
 
@@ -58,7 +58,7 @@ class BaseOAIIterator(ABC):
         query: The parameters for OAI-PMH requests.
         ignore_deleted: Indicates whether deleted records should be ignored.
         verb: The OAI-PMH verb (e.g., 'ListRecords', 'ListIdentifiers') used in the request.
-        oai_response: The most recent OAIResponse received from the OAI server.
+        response: The most recent Response received from the OAI server.
         resumption_token: The current resumption token, if any, for paginated results.
     """
 
@@ -66,8 +66,8 @@ class BaseOAIIterator(ABC):
         self.scythe = scythe
         self.query = query
         self.ignore_deleted = ignore_deleted
-        self.verb: str = self.query["verb"]
-        self.oai_response: OAIResponse | None = None
+        self.verb = self.query["verb"]
+        self.response: Response | None = None
         self.resumption_token: ResumptionToken | None = None
         self._next_response()
 
@@ -87,70 +87,57 @@ class BaseOAIIterator(ABC):
         Returns:
             A ResumptionToken instance if a token is found in the response, otherwise None.
         """
-        ns = self.scythe.oai_namespace
-        if (
-            self.oai_response is not None
-            and (token_element := self.oai_response.xml.find(f".//{ns}resumptionToken")) is not None
-        ):
-            return ResumptionToken(
-                token=token_element.text,
-                cursor=token_element.attrib.get("cursor"),  # type: ignore [arg-type]
-                complete_list_size=token_element.attrib.get("completeListSize"),  # type: ignore [arg-type]
-                expiration_date=token_element.attrib.get("expirationDate"),  # type: ignore [arg-type]
-            )
-        return None
+        if self.response is None:
+            return None
+        try:
+            lookup_attribute = MAPPING[self.verb][0]
+            parsed_data = getattr(self.response.parsed, lookup_attribute)
+            return parsed_data.resumption_token
+        except AttributeError:
+            return None
 
     def _next_response(self) -> None:
         """Request the next batch of data from the OAI server using the current resumption token.
 
-        This method is used internally to handle the pagination of OAI-PMH responses. It updates the `oai_response`
+        This method is used internally to handle the pagination of OAI-PMH responses. It updates the `response`
         attribute with the next batch of data from the server.
 
         If an error is encountered in the OAI response, an appropriate exception is raised.
         """
-        if self.resumption_token and self.resumption_token.token:
-            self.query = {"verb": self.verb, "resumptionToken": self.resumption_token.token}
-        self.oai_response = self.scythe.harvest(self.query)
-
-        if (error := self.oai_response.xml.find(f".//{self.scythe.oai_namespace}error")) is not None:
-            code = str(error.attrib.get("code", "UNKNOWN"))
-            description = error.text or ""
-            try:
-                exception_name = code[0].upper() + code[1:]
-                raise getattr(exceptions, exception_name)(description)
-            except AttributeError as exc:
-                raise exceptions.GeneralOAIPMHError(description) from exc
+        if self.resumption_token is not None:
+            self.query = {"verb": self.verb, "resumptionToken": self.resumption_token.value}
+        self.response = self.scythe.harvest(self.query)
         self.resumption_token = self._get_resumption_token()
 
 
-class OAIResponseIterator(BaseOAIIterator):
+class ResponseIterator(BaseOAIIterator):
     """An iterator class for iterating over OAI responses obtained via the OAI-PMH protocol.
 
-    This iterator specifically handles the iteration of OAIResponse objects, allowing for seamless
-    navigation through a sequence of responses returned by an OAI-PMH request. It utilizes the
-    underlying mechanisms of the BaseOAIIterator, including handling of resumption tokens for paginated data.
+    This iterator specifically handles the iteration of Response objects, allowing for seamless navigation through
+    a sequence of responses returned by an OAI-PMH request. It utilizes the underlying mechanisms of the
+    BaseOAIIterator, including handling of resumption tokens for paginated data.
     """
 
-    def __iter__(self) -> Iterator[OAIResponse]:
-        """Yield the next OAIResponse object from the server response sequence.
+    def __iter__(self) -> Iterator[Response]:
+        """Yield the next Response object from the server response sequence.
 
-        Enable the OAIResponseIterator to iterate over a series of OAIResponse objects, managing pagination
-        with resumption tokens. Continue yielding responses until no more data is available from the server.
+        Enable the ResponseIterator to iterate over a series of Response objects, managing pagination with
+        resumption tokens. Continue yielding responses until no more data is available from the server.
 
         Yields:
-            OAIResponse: The next available OAIResponse object in the sequence.
+            The next available Response object in the sequence.
         """
         while True:
-            if self.oai_response:
-                yield self.oai_response
-                self.oai_response = None
-            elif self.resumption_token and self.resumption_token.token:
+            if self.response:
+                yield self.response
+                self.response = None
+            elif self.resumption_token:
                 self._next_response()
             else:
                 return
 
 
-class OAIItemIterator(BaseOAIIterator):
+class ItemIterator(BaseOAIIterator):
     """An iterator class for iterating over various types of OAI items aggregated via OAI-PMH.
 
     This iterator is designed to handle the iteration of specific OAI items, such as records or sets, from a repository.
@@ -164,8 +151,9 @@ class OAIItemIterator(BaseOAIIterator):
 
     def __init__(self, scythe: Scythe, query: dict[str, str], ignore_deleted: bool = False) -> None:
         self.verb = query["verb"]
-        self.mapper = scythe.class_mapping[self.verb]
-        self.element = VERBS_ELEMENTS[self.verb]
+        lookup_attribute = MAPPING[query["verb"]][0]
+        lookup_element = MAPPING[query["verb"]][1]
+        self.items_getter = attrgetter(f"{lookup_attribute}.{lookup_element}")
         super().__init__(scythe, query, ignore_deleted)
 
     def _next_response(self) -> None:
@@ -175,27 +163,26 @@ class OAIItemIterator(BaseOAIIterator):
         for the specific elements (e.g. records, headers) based on the current resumption token.
         """
         super()._next_response()
-        if self.oai_response is not None:
-            self._items = self.oai_response.xml.iterfind(f".//{self.scythe.oai_namespace}{self.element}")
+        if self.response is not None:
+            self._items = self.items_getter(self.response.parsed)
         else:
             self._items = iter(())
 
-    def __iter__(self) -> Iterator[OAIItem]:
+    def __iter__(self) -> Iterator[Item]:
         """Iterate over individual OAI items from the response.
 
         Go through the items in the OAI-PMH response, applying any necessary mapping and handling
         the exclusion of deleted records if specified. Automatically handle pagination through resumption tokens.
 
         Yields:
-            OAIItem: The next OAI item (e.g., record, identifier, set) from the response.
+            The next OAI item (e.g., record, identifier, set) from the response.
         """
         while True:
             for item in self._items:
-                mapped = self.mapper(item)
-                if self.ignore_deleted and mapped.deleted:
+                if self.ignore_deleted and item.deleted:
                     continue
-                yield mapped
-            if self.resumption_token and self.resumption_token.token:
+                yield item
+            if self.resumption_token:
                 self._next_response()
             else:
                 return

@@ -11,14 +11,14 @@ from oaipmh_scythe.exceptions import (
     BadResumptionToken,
     BadVerb,
     CannotDisseminateFormat,
-    GeneralOAIPMHError,
     IdDoesNotExist,
     NoMetadataFormats,
     NoRecordsMatch,
     NoSetHierarchy,
     OAIPMHException,
+    UndefinedError,
 )
-from oaipmh_scythe.response import OAIResponse
+from oaipmh_scythe.response import Response
 
 __all__ = [
     "BadArgument",
@@ -31,6 +31,7 @@ __all__ = [
     "NoRecordsMatch",
     "NoSetHierarchy",
     "OAIPMHException",
-    "OAIResponse",
+    "Response",
     "Scythe",
+    "UndefinedError",
 ]

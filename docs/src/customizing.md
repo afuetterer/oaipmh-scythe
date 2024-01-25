@@ -7,7 +7,9 @@ SPDX-License-Identifier: BSD-3-Clause
 
 # Harvesting other Metadata Formats than OAI-DC
 
-By default, oaipmh-scythe's mapping of the record XML into Python dictionaries is tailored to work only with
+# TODO
+
+By default, `oaipmh-scythe`'s mapping of the record XML into Python dataclasses is tailored to work only with
 Dublin-Core-encoded metadata payloads. Other formats most probably won't be mapped correctly, especially if they are
 more hierarchically structured than Dublin Core.
 
@@ -29,22 +31,3 @@ class MyRecord(Record):
 Next, associate your implementation with OAI verbs in the [oaipmh_scythe.client.Scythe][] object. In this case, we want
 the [oaipmh_scythe.client.Scythe][] object to use our implementation to represent items returned by ListRecords and
 GetRecord responses:
-
-```python
-scythe = Scythe("http://...")
-scythe.class_mapping["ListRecords"] = MyRecord
-scythe.class_mapping["GetRecord"] = MyRecord
-```
-
-If you need to rewrite *all* item implementations, you can also provide a complete mapping to the
-[oaipmh_scythe.client.Scythe][] object at instantiation:
-
-```python
-my_mapping = {
-    "ListRecords": MyRecord,
-    "GetRecord": MyRecord,
-    # ...
-}
-
-scythe = Scythe("https://...", class_mapping=my_mapping)
-```

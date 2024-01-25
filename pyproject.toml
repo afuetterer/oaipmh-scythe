@@ -40,7 +40,7 @@ dynamic = [
 ]
 dependencies = [
   "httpx>=0.27",
-  "lxml>=5.3",
+  "xsdata[cli,lxml]", # TODO: remove cli extra
 ]
 optional-dependencies.dev = [
   "pre-commit~=3.8",
@@ -71,6 +71,10 @@ urls.Repository = "https://github.com/afuetterer/oaipmh-scythe.git"
 include = [
   "src",
   "CHANGELOG.md",
+]
+exclude = [
+  "src/oaipmh_scythe/models/**/*.md",
+  "src/oaipmh_scythe/models/**/*.xml",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -166,9 +170,17 @@ lint.per-file-ignores."src/oaipmh_scythe/__about__.py" = [
 lint.per-file-ignores."src/oaipmh_scythe/client.py" = [
   "PLR0913", # too-many-arguments
 ]
+lint.per-file-ignores."src/oaipmh_scythe/models/**.py" = [
+  "D101",   # undocumented-public-class
+  "D106",   # undocumented-public-nested-class
+  "D205",   # blank-line-after-summary
+  "D415",   # ends-in-punctuation
+  "RUF002", # ambiguous-unicode-character-docstring
+  "TCH002", # typing-only-third-party-import
+]
 lint.per-file-ignores."tests/**.py" = [
   "D",       # pydocstyle
-  "PLR2004", # magic-value-comparison
+  "PLR2004",  # magic-value-comparison
 ]
 lint.unfixable = [
   "F401", # unused-import
@@ -201,6 +213,7 @@ parallel = true
 source = [ "oaipmh_scythe" ]
 omit = [
   "__about__.py",
+  "src/oaipmh_scythe/models/datacite.py",
 ]
 
 [tool.coverage.report]

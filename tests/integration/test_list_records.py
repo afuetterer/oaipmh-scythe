@@ -9,11 +9,11 @@ from typing import TYPE_CHECKING
 
 import httpx
 import pytest
-from lxml import etree
 
-from oaipmh_scythe.iterator import OAIResponseIterator
+from oaipmh_scythe import BadArgument, BadResumptionToken, NoRecordsMatch
+from oaipmh_scythe.iterator import ResponseIterator
 from oaipmh_scythe.models import Record
-from oaipmh_scythe.response import OAIResponse
+from oaipmh_scythe.response import Response
 
 if TYPE_CHECKING:
     from oaipmh_scythe import Scythe
@@ -29,7 +29,7 @@ def test_list_records_with_default_metadata_prefix(scythe: Scythe) -> None:
     assert isinstance(records, Iterator)
     record = next(records)
     assert isinstance(record, Record)
-    assert record.metadata["title"][0] == TITLE_1
+    assert record.metadata.other_element.title[0].value == TITLE_1
 
 
 @pytest.mark.default_cassette("list_records.yaml")
@@ -39,7 +39,7 @@ def test_list_records_without_metadata_prefix(scythe: Scythe) -> None:
     assert isinstance(records, Iterator)
     record = next(records)
     assert isinstance(record, Record)
-    assert record.metadata["title"][0] == TITLE_1
+    assert record.metadata.other_element.title[0].value == TITLE_1
 
 
 @pytest.mark.default_cassette("list_records.yaml")
@@ -49,15 +49,14 @@ def test_list_records_with_valid_metadata_prefix(scythe: Scythe) -> None:
     assert isinstance(records, Iterator)
     record = next(records)
     assert isinstance(record, Record)
-    assert record.metadata["title"][0] == TITLE_1
+    assert record.metadata.other_element.titles.title[0].value == TITLE_1
 
 
 @pytest.mark.default_cassette("list_records.yaml")
 @pytest.mark.vcr
 def test_list_records_with_invalid_metadata_prefix(scythe: Scythe) -> None:
-    # cannotDisseminateFormat
     records = scythe.list_records(metadata_prefix="XXX")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(BadArgument, match="metadataPrefix does not exist"):
         next(records)
 
 
@@ -67,7 +66,7 @@ def test_list_records_with_from(scythe: Scythe) -> None:
     records = scythe.list_records(from_="2024-01-16")
     assert isinstance(records, Iterator)
     record = next(records)
-    assert record.metadata["title"][0] == TITLE_2
+    assert record.metadata.other_element.title[0].value == TITLE_2
 
 
 @pytest.mark.default_cassette("list_records.yaml")
@@ -76,7 +75,7 @@ def test_list_records_with_until(scythe: Scythe) -> None:
     records = scythe.list_records(until="2024-01-17")
     assert isinstance(records, Iterator)
     record = next(records)
-    assert record.metadata["title"][0] == TITLE_1
+    assert record.metadata.other_element.title[0].value == TITLE_1
 
 
 @pytest.mark.default_cassette("list_records.yaml")
@@ -84,7 +83,7 @@ def test_list_records_with_until(scythe: Scythe) -> None:
 def test_list_records_with_from_and_until(scythe: Scythe) -> None:
     records = scythe.list_records(from_="2024-01-16", until="2024-01-17")
     record = next(records)
-    assert record.metadata["title"][0] == TITLE_2
+    assert record.metadata.other_element.title[0].value == TITLE_2
 
 
 @pytest.mark.default_cassette("list_records.yaml")
@@ -92,15 +91,14 @@ def test_list_records_with_from_and_until(scythe: Scythe) -> None:
 def test_list_records_with_valid_set(scythe: Scythe) -> None:
     records = scythe.list_records(set_="software")
     record = next(records)
-    assert record.metadata["title"][0] == "plasmo-dev/PlasmoExamples: Initial Release"
+    assert record.metadata.other_element.title[0].value == "plasmo-dev/PlasmoExamples: Initial Release"
 
 
 @pytest.mark.default_cassette("list_records.yaml")
 @pytest.mark.vcr
 def test_list_records_with_invalid_set(scythe: Scythe) -> None:
-    # noRecordsMatch
     records = scythe.list_records(set_="XXX")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(NoRecordsMatch):
         next(records)
 
 
@@ -111,24 +109,22 @@ def test_list_records_with_valid_resumption_token(scythe: Scythe) -> None:
     records = scythe.list_records(resumption_token=token)
     assert isinstance(records, Iterator)
     record = next(records)
-    assert record
+    assert isinstance(record, Record)
 
 
 @pytest.mark.default_cassette("list_records.yaml")
 @pytest.mark.vcr
 def test_list_records_with_invalid_resumption_token(scythe: Scythe) -> None:
-    # badResumptionToken
     records = scythe.list_records(resumption_token="XXX")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(BadResumptionToken, match="The value of the resumptionToken argument is invalid or expired."):
         next(records)
 
 
 @pytest.mark.default_cassette("list_records.yaml")
 @pytest.mark.vcr
 def test_list_records_raises_no_records_match(scythe: Scythe) -> None:
-    # noRecordsMatch
     records = scythe.list_records(from_="2025-01-15")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(NoRecordsMatch):
         next(records)
 
 
@@ -143,16 +139,15 @@ def test_list_records_ignore_deleted(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
-def test_list_records_oai_response(scythe: Scythe) -> None:
-    scythe.iterator = OAIResponseIterator
-    responses = scythe.list_records()
-    assert isinstance(responses, Iterator)
-    responses = list(responses)
+@pytest.mark.vcr()
+def test_list_records_response(scythe: Scythe) -> None:
+    scythe.iterator = ResponseIterator
+    _responses = scythe.list_records()
+    assert isinstance(_responses, Iterator)
+    responses = list(_responses)
     # there are 3 canned responses in list_records.yaml
     assert len(responses) == 3
     response = responses[0]
-    assert isinstance(response, OAIResponse)
-    assert response.params == {"metadataPrefix": "oai_dc", "verb": "ListRecords"}
-    assert isinstance(response.xml, etree._Element)
-    assert response.xml.tag == "{http://www.openarchives.org/OAI/2.0/}OAI-PMH"
+    assert isinstance(response, Response)
+    assert response.status_code == httpx.codes.OK
+    assert response.url == httpx.URL("https://zenodo.org/oai2d?verb=ListRecords&metadataPrefix=oai_dc")
