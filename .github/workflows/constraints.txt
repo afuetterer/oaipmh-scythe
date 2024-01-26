@@ -1,5 +1,5 @@
 build==1.0.3
-hatch==1.9.2
+hatch==1.9.3
 pip==23.3.2
 pre-commit==3.6.0
 setuptools==69.0.3
