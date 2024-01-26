@@ -96,4 +96,4 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-    - uses: hynek/build-and-inspect-python-package@c9fea028dc9c880c4d00d54727eff3fb1190d082 # v2.0.0
+    - uses: hynek/build-and-inspect-python-package@3a76fe0f90ca169edffd7d518137a64c0c4a3a41 # v2.0.1
