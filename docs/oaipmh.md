@@ -1,3 +1,8 @@
+<!-- SPDX-FileCopyrightText: 2015 Mathias Loesch -->
+<!-- SPDX-FileCopyrightText: 2023 Heinz-Alexander Fütterer -->
+
+<!-- SPDX-License-Identifier: BSD-3-Clause -->
+
 # OAI-PMH Primer
 
 This section gives a basic overview of the [Open Archives Protocol for

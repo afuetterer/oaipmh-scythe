@@ -1,3 +1,8 @@
+<!-- SPDX-FileCopyrightText: 2015 Mathias Loesch -->
+<!-- SPDX-FileCopyrightText: 2023 Heinz-Alexander Fütterer -->
+
+<!-- SPDX-License-Identifier: BSD-3-Clause -->
+
 # Harvesting other Metadata Formats than OAI-DC
 
 By default, oaipmh-scythe's mapping of the record XML into Python dictionaries

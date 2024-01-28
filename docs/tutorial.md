@@ -1,3 +1,8 @@
+<!-- SPDX-FileCopyrightText: 2015 Mathias Loesch -->
+<!-- SPDX-FileCopyrightText: 2023 Heinz-Alexander Fütterer -->
+
+<!-- SPDX-License-Identifier: BSD-3-Clause -->
+
 # Tutorial
 
 This section gives a brief overview on how to use oaipmh-scythe for querying OAI interfaces.
