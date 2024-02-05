@@ -35,7 +35,7 @@ repos:
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 0d08a04347c0f104a6836c9ce31dfadc1445a4f9  # frozen: 0.27.4
+  rev: b058a5d218e0760c0dd55c7db9870bd92428a551  # frozen: 0.28.0
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
@@ -46,7 +46,7 @@ repos:
   - id: pyproject-fmt
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: bbaf495f2dc6ce2853c91dc0b2c75d3b8249c15c  # frozen: v0.1.15
+  rev: 1bd02b3569e3ac5cc66552b1336a96a8880d1bae  # frozen: v0.2.1
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
@@ -68,7 +68,7 @@ repos:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: ccfb992f93da3684d7dd9a5e7328d80d81dcbc37  # frozen: v1.17.2
+  rev: c9a8c2e546451910cab4b467188a6c4e18a1743d  # frozen: v1.18.1
   hooks:
   - id: typos
     args: [--force-exclude]
