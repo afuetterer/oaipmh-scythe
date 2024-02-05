@@ -55,7 +55,7 @@ release = [
   "python-semantic-release~=8.7",
 ]
 test = [
-  "pytest>=7.4,<9.0",
+  "pytest~=8.0",
   "pytest-cov~=4.1",
   "pytest-mock~=3.12",
   "pytest-randomly~=3.15",
