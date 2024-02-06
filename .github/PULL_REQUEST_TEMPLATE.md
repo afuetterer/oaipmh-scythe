@@ -31,6 +31,7 @@ Related issue: #ISSUE_NUMBER
 - Code style (formatting, renaming)
 - Documentation content changes
 - Build related changes
+- Continuous Integration changes (e.g. GitHub actions, Dependabot)
 - Other (please describe):
 
 ## Checklist
