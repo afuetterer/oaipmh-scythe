@@ -52,7 +52,7 @@ lint = [
   "pre-commit~=3.6",
 ]
 release = [
-  "python-semantic-release~=8.7",
+  "python-semantic-release~=9.1",
 ]
 test = [
   "pytest~=8.0",
