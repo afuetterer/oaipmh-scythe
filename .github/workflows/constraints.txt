@@ -1,6 +1,6 @@
-build==1.0.3
+build==1.1.1
 hatch==1.9.3
 pip==24.0
 pre-commit==3.6.2
-setuptools==69.1.0
+setuptools==69.1.1
 wheel==0.42.0
