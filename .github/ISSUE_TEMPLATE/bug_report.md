@@ -31,8 +31,9 @@ labels: ["type: bug"]
 ## Your Environment
 <!--- Please provide the output of the following commands. --->
 
-- `python --version`
-- `python -m pip show oaipmh-scythe | grep "^Version:"`
+- Python version used (`python --version`):
+- oaipmh-scythe version used (`python -m pip show oaipmh-scythe | grep "^Version:"`):
+- Operating system and version:
 
 <!--- This issue template is adapted from:
 <!--- "open-source-templates", https://github.com/TalAter/open-source-templates (MIT License). --->
