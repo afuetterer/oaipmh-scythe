@@ -18,6 +18,7 @@ if TYPE_CHECKING:
 
 
 query = {"verb": "ListIdentifiers", "metadataPrefix": "oai_dc"}
+auth = ("username", "password")
 
 
 def test_invalid_http_method() -> None:
@@ -109,3 +110,20 @@ def test_retry_on_custom_code(scythe: Scythe, respx_mock: MockRouter, mocker) ->
         scythe.harvest(query)
     assert mock_route.call_count == 4
     assert mock_sleep.call_count == 3
+
+
+def test_no_auth_arguments():
+    with Scythe("https://zenodo.org/oai2d") as scythe:
+        assert scythe.client.auth is None
+
+
+def test_auth_arguments():
+    with Scythe("https://zenodo.org/oai2d", auth=auth) as scythe:
+        assert scythe.client.auth
+
+
+def test_auth_arguments_usage(respx_mock: MockRouter) -> None:
+    scythe = Scythe("https://zenodo.org/oai2d", auth=auth)
+    respx_mock.get("https://zenodo.org/oai2d").mock(return_value=httpx.Response(200))
+    oai_response = scythe.harvest(query)
+    assert oai_response.http_response.request.headers["authorization"]

@@ -291,3 +291,30 @@ records = scythe.list_records(ignore_deleted=True)
 !!! note
     This works only using the [oaipmh_scythe.iterator.OAIItemIterator][]. If you use the
     [oaipmh_scythe.iterator.OAIResponseIterator][], the resulting OAI responses will still contain the deleted records.
+
+## Authentication
+
+Certain OAI-PMH repositories may require authentication for accessing data or certain functionality. `oaipmh-scythe`
+provides support for HTTP Basic authentication and other methods, which can be used to authenticate requests made by the
+client.
+
+The `auth` parameter of the Scythe client allows you to specify an authentication method when creating a new instance of
+the client.
+
+### HTTP Basic Authentication
+
+To use HTTP basic authentication with the Scythe client, simply provide a tuple containing your username and password as
+the value for the `auth` parameter when instantiating the Scythe object:
+
+```python
+auth = ("username", "password")
+scythe = Scythe("https://example.org/oai2d", auth=auth)
+```
+
+!!! note
+    `oaipmh-scythe` uses [httpx](https://www.python-httpx.org) under the hood. The `auth` parameter accepts subclasses of
+    `httpx.Auth`, e.g. `httpx.BasicAuth`, `httpx.DigestAuth`, or `httpx.NetRCAuth`, see
+    [Authentication - HTTPX](https://www.python-httpx.org/advanced/authentication/) for further information
+
+Once the authentication method is set, Scythe will use it to authenticate requests made by the client. This allows you
+to access restricted data or functionality from an OAI-PMH repository without having to handle authentication manually.

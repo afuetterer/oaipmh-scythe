@@ -29,6 +29,8 @@ if TYPE_CHECKING:
     from collections.abc import Iterable, Iterator
     from types import TracebackType
 
+    from httpx._types import AuthTypes
+
 logger = logging.getLogger(__name__)
 
 USER_AGENT: str = f"oaipmh-scythe/{__version__}"
@@ -61,6 +63,7 @@ class Scythe:
         default_retry_after: The default wait time (in seconds) between retries if no 'retry-after' header is present.
         class_mapping: A mapping from OAI verbs to classes representing OAI items.
         encoding: The character encoding for decoding responses. Defaults to the server's specified encoding.
+        auth: Optional authentication credentials for accessing the OAI-PMH interface.
         timeout: The timeout (in seconds) for HTTP requests.
 
     Examples:
@@ -81,6 +84,7 @@ class Scythe:
         default_retry_after: int = 60,
         class_mapping: dict[str, type[OAIItem]] | None = None,
         encoding: str | None = None,
+        auth: AuthTypes | None = None,
         timeout: int = 60,
     ):
         self.endpoint = endpoint
@@ -97,6 +101,7 @@ class Scythe:
         self.oai_namespace = OAI_NAMESPACE
         self.class_mapping = class_mapping or DEFAULT_CLASS_MAP
         self.encoding = encoding
+        self.auth = auth
         self.timeout = timeout
         self._client: httpx.Client | None = None
 
@@ -113,7 +118,9 @@ class Scythe:
         """
         if self._client is None or self._client.is_closed:
             headers = {"Accept": "text/xml; charset=utf-8", "user-agent": USER_AGENT}
-            self._client = httpx.Client(headers=headers, timeout=self.timeout, event_hooks={"response": [log_response]})
+            self._client = httpx.Client(
+                headers=headers, timeout=self.timeout, auth=self.auth, event_hooks={"response": [log_response]}
+            )
         return self._client
 
     def close(self) -> None:
