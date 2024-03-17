@@ -135,6 +135,10 @@ update-citation = """
 line-length = 120
 src = ["src"]
 
+[tool.ruff.format]
+# Ref: https://docs.astral.sh/ruff/settings/#format
+docstring-code-format = true
+
 [tool.ruff.lint]
 # Ref: https://docs.astral.sh/ruff/rules/
 extend-select = [
