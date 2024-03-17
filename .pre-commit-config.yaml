@@ -46,14 +46,14 @@ repos:
   - id: pyproject-fmt
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 1bd02b3569e3ac5cc66552b1336a96a8880d1bae  # frozen: v0.2.1
+  rev: c22645f6b45188216151a407c040a9eec1795ab0  # frozen: v0.3.3
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: 8cd2d4056637e242709fe09f15a36f0b4b682bda  # frozen: v1.8.0
+  rev: 9db9854e3041219b1eb619872a2dfaf58adfb20b  # frozen: v1.9.0
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -63,19 +63,19 @@ repos:
     exclude: tests
 
 - repo: https://github.com/scientific-python/cookie
-  rev: 0bfc28b9eed761077be7188e05b3ee531ad41f60  # frozen: 2024.01.24
+  rev: d43e497727162f7edcfade1022237565c88d5347  # frozen: 2024.03.10
   hooks:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: c9a8c2e546451910cab4b467188a6c4e18a1743d  # frozen: v1.18.1
+  rev: 68c7289a620636165869822d2d233e785272935b  # frozen: v1.19.0
   hooks:
   - id: typos
     args: [--force-exclude]
     exclude: CHANGELOG.md # the commit hashes in changelog trigger the spell checker
 
 - repo: https://github.com/FHPythonUtils/LicenseCheck/
-  rev: 546b293801b0fec25f1974164a03a0428881ef39  # frozen: 2024
+  rev: dd02bd73c3aeed64cb0922d184b3338e08ed7b6e  # frozen: 2024.1
   hooks:
   - id: licensecheck
 

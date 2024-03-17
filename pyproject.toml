@@ -134,7 +134,6 @@ update-citation = """
 [tool.ruff]
 line-length = 120
 src = ["src"]
-target-version = "py310"
 
 [tool.ruff.lint]
 # Ref: https://docs.astral.sh/ruff/rules/
