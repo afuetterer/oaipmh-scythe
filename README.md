@@ -6,7 +6,7 @@ now with additional features and ongoing maintenance.
 | __CI__ | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] |
 | :--- | :--- |
 | __Docs__ | [![docs][docs-badge]][docs-workflow] |
-| __Package__ | [![pypi-version][pypi-version-badge]][pypi-url] [![pypi-python-versions][pypi-python-versions-badge]][pypi-url] [![pypi-downloads][pypi-downloads-badge]][pypi-url] |
+| __Package__ | [![pypi-version][pypi-version-badge]][pypi-url] [![pypi-python-versions][pypi-python-versions-badge]][pypi-url] [![all-downloads][all-downloads-badge]][pepy-tech-url] [![monthly-downloads][monthly-downloads-badge]][pepy-tech-url] |
 | __Meta__ | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license] |
 
 oaipmh-scythe is a lightweight [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html)
@@ -86,7 +86,9 @@ oaipmh-scythe is distributed under the terms of the [BSD license](https://spdx.o
 [scorecard-badge]: https://api.securityscorecards.dev/projects/github.com/afuetterer/oaipmh-scythe/badge
 [pypi-url]: https://pypi.org/project/oaipmh-scythe/
 [pypi-version-badge]: https://img.shields.io/pypi/v/oaipmh-scythe.svg?logo=pypi&label=PyPI
-[pypi-downloads-badge]: https://img.shields.io/pypi/dm/oaipmh-scythe.svg?color=blue&label=Downloads&logo=pypi
+[pepy-tech-url]: https://pepy.tech/project/oaipmh-scythe
+[all-downloads-badge]: https://static.pepy.tech/badge/oaipmh-scythe
+[monthly-downloads-badge]: https://static.pepy.tech/badge/oaipmh-scythe/month
 [pypi-python-versions-badge]: https://img.shields.io/pypi/pyversions/oaipmh-scythe.svg?logo=python&label=Python
 [license]: https://spdx.org/licenses/BSD-3-Clause.html
 [license-badge]: https://img.shields.io/badge/License-BSD_3--Clause-blue.svg
