@@ -50,6 +50,15 @@ repos:
   hooks:
   - id: pyproject-fmt
 
+- repo: https://github.com/executablebooks/mdformat
+  rev: 08fba30538869a440b5059de90af03e3502e35fb  # frozen: 0.7.17
+  hooks:
+  - id: mdformat
+    args: [--number, --wrap=120, --ignore-missing-references]
+    exclude: CHANGELOG.md|.changelog.md|docs/api
+    additional_dependencies:
+    - mdformat-mkdocs[recommended]>=v2.0.7
+
 - repo: https://github.com/astral-sh/ruff-pre-commit
   rev: c22645f6b45188216151a407c040a9eec1795ab0  # frozen: v0.3.3
   hooks:
