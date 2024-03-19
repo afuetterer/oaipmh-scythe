@@ -22,11 +22,16 @@ repos:
   rev: c4a0b883114b00d8d76b479c820ce7950211c99b  # frozen: v4.5.0
   hooks:
   - id: check-merge-conflict
+  - id: check-case-conflict
   - id: check-ast
+  - id: debug-statements
   - id: check-toml
   - id: check-yaml
   - id: end-of-file-fixer
   - id: trailing-whitespace
+    args: [--markdown-linebreak-ext=md]
+  - id: name-tests-test
+    args: [--pytest-test-first]
 
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
   rev: 0afbc519ee4aa0a1eb0f7dd78876c8de46d4cf08  # frozen: v2.12.0
