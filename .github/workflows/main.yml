@@ -38,7 +38,7 @@ jobs:
         git add CITATION.cff
     - name: Create semantic release
       id: release
-      uses: python-semantic-release/python-semantic-release@c82bd673c30da94a02e039963c8c4c8a51758096 # v9.1.1
+      uses: python-semantic-release/python-semantic-release@137240c8cbc9da7a54f04a38d0555c268e48f756 # v9.4.0
       with:
         # allows for python-semantic-release to push to protected main branch
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
