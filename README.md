@@ -99,7 +99,7 @@ This is a fork of [sickle](https://github.com/mloesch/sickle) which was original
 [pypi-python-versions-badge]: https://img.shields.io/pypi/pyversions/oaipmh-scythe.svg?logo=python&label=Python
 [pypi-url]: https://pypi.org/project/oaipmh-scythe/
 [pypi-version-badge]: https://img.shields.io/pypi/v/oaipmh-scythe.svg?logo=pypi&label=PyPI
-[ruff]: https://github.com/charliermarsh/ruff
+[ruff]: https://github.com/astral-sh/ruff
 [ruff-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json
 [scorecard-badge]: https://api.securityscorecards.dev/projects/github.com/afuetterer/oaipmh-scythe/badge
 [scorecard-url]: https://securityscorecards.dev/viewer/?uri=github.com/afuetterer/oaipmh-scythe
