@@ -74,6 +74,10 @@ jobs:
         cache: pip
     - run: python -Im pip install --editable .[dev]
     - run: python -Ic 'import oaipmh_scythe.__about__; print(oaipmh_scythe.__about__.__version__)'
+    - name: Set up pipdeptree
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        python -m pip install --constraint=.github/workflows/constraints.txt pipdeptree
     - name: Write info to step summary
       if: matrix.os == 'ubuntu-latest'
       run: |

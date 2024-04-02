@@ -40,7 +40,6 @@ dependencies = [
 dev = [
   "oaipmh-scythe[lint]",
   "oaipmh-scythe[test]",
-  "pipdeptree~=2.13",
 ]
 docs = [
   "mkdocs~=1.5",
