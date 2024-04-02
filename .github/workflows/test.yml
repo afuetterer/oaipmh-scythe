@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   test:
-    name: Python ${{ matrix.python-version }} tests
+    name: Python ${{ matrix.python-version }}
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -61,7 +61,7 @@ jobs:
 
   dev-setup:
     # Ref: structlog (MIT License) <https://github.com/hynek/structlog/blob/main/.github/workflows/ci.yml>
-    name: Test dev setup on ${{ matrix.os }}
+    name: Install [dev] on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
