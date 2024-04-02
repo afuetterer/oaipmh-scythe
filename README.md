@@ -1,7 +1,7 @@
 # oaipmh-scythe: A Scythe for harvesting OAI-PMH repositories.
 
-Welcome to oaipmh-scythe, an updated and modernized version of the original [sickle](https://github.com/mloesch/sickle),
-now with additional features and ongoing maintenance.
+Welcome to `oaipmh-scythe`, an updated and modernized version of the original
+[sickle](https://github.com/mloesch/sickle), now with additional features and ongoing maintenance.
 
 | __CI__      | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow]                                                                                        |
 | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -9,7 +9,7 @@ now with additional features and ongoing maintenance.
 | __Package__ | [![pypi-version][pypi-version-badge]][pypi-url] [![pypi-python-versions][pypi-python-versions-badge]][pypi-url] [![all-downloads][all-downloads-badge]][pepy-tech-url] [![monthly-downloads][monthly-downloads-badge]][pepy-tech-url] |
 | __Meta__    | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license]                                                    |
 
-oaipmh-scythe is a lightweight [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html) client library
+`oaipmh-scythe` is a lightweight [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html) client library
 written in Python. It has been designed for conveniently retrieving data from OAI interfaces the Pythonic way:
 
 ```python
@@ -33,14 +33,14 @@ with Scythe("https://zenodo.org/oai2d") as scythe:
 
 [Python](https://www.python.org/downloads/) >= 3.10
 
-oaipmh-scythe is built with:
+`oaipmh-scythe` is built with:
 
 - [httpx](https://github.com/encode/httpx) for issuing HTTP requests
 - [lxml](https://github.com/lxml/lxml) for parsing XML responses
 
 ## Installation
 
-You can install oaipmh-scythe via pip from [PyPI][pypi-url]:
+You can install `oaipmh-scythe` via pip from [PyPI][pypi-url]:
 
 ```console
 python -m pip install oaipmh-scythe
@@ -75,7 +75,7 @@ This is a fork of [sickle](https://github.com/mloesch/sickle) which was original
 
 ## License
 
-oaipmh-scythe is distributed under the terms of the [BSD license](https://spdx.org/licenses/BSD-3-Clause.html).
+`oaipmh-scythe` is distributed under the terms of the [BSD license](https://spdx.org/licenses/BSD-3-Clause.html).
 
 <!-- Refs -->
 
