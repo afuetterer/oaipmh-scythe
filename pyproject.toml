@@ -38,17 +38,13 @@ dependencies = [
 ]
 [project.optional-dependencies]
 dev = [
-  "oaipmh-scythe[lint]",
-  "oaipmh-scythe[test]",
+  "pre-commit~=3.6",
 ]
 docs = [
   "mkdocs~=1.5",
   "mkdocs-include-markdown-plugin~=6.0",
   "mkdocs-material~=9.5",
   "mkdocstrings[python]~=0.24",
-]
-lint = [
-  "pre-commit~=3.6",
 ]
 release = [
   "python-semantic-release~=9.1",
@@ -87,9 +83,8 @@ packages = ["src/oaipmh_scythe"]
 path = "src/oaipmh_scythe/__about__.py"
 
 [tool.hatch.envs.default]
-features = [
-  "test",
-]
+features = ["dev", "test"]
+post-install-commands = ["pre-commit install"]
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
 cov = "pytest --cov {args:src}"
@@ -111,6 +106,7 @@ all = [
 
 [tool.hatch.envs.docs]
 features = ["docs"]
+template = "docs"
 [tool.hatch.envs.docs.scripts]
 build = "mkdocs build --strict --config-file=docs/mkdocs.yml"
 serve = "mkdocs serve --strict --config-file=docs/mkdocs.yml"

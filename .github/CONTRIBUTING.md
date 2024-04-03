@@ -74,7 +74,6 @@ Here's how to set up `oaipmh-scythe` for local development.
     ```console
     $ cd oaipmh-scythe
     $ hatch shell
-    $ pre-commit install
     ```
 
 4. Create a branch for local development:
