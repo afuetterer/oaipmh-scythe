@@ -86,23 +86,16 @@ path = "src/oaipmh_scythe/__about__.py"
 features = ["dev", "test"]
 post-install-commands = ["pre-commit install"]
 [tool.hatch.envs.default.scripts]
+check = ["lint", "typecheck"]
+lint = "SKIP=mypy pre-commit run --all-files --color=always --show-diff-on-failure"
+typecheck = "pre-commit run --all-files --color=always --show-diff-on-failure mypy"
 test = "pytest {args:tests}"
 cov = "pytest --cov {args:src}"
-cov-report-markdown = "python -m coverage report --format=markdown > coverage.md"
-cov-summary-json = "python -m coverage json"
+cov-report-markdown = "python -m coverage report --format=markdown {args:>coverage.md}"
 cov-total = """
-python -c "import json;print(json.load(open('coverage.json'))['totals']['percent_covered_display'])"
+  python -m coverage json --quiet
+  python -c "import json;print(json.load(open('coverage.json'))['totals']['percent_covered_display'])"
 """
-
-[tool.hatch.envs.lint]
-features = [ "lint"]
-[tool.hatch.envs.lint.scripts]
-style = "SKIP=mypy pre-commit run --all-files --color=always"
-typing = "pre-commit run --all-files --color=always mypy"
-all = [
-  "style",
-  "typing",
-]
 
 [tool.hatch.envs.docs]
 features = ["docs"]

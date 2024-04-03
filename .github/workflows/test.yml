@@ -32,7 +32,6 @@ jobs:
       run: hatch run cov
     - name: Generate coverage report
       run: |
-        hatch run cov-summary-json
         export TOTAL_COV=$(hatch run cov-total)
         echo "TOTAL_COV=$TOTAL_COV" >> $GITHUB_ENV
         hatch run cov-report-markdown

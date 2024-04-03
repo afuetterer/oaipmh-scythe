@@ -87,7 +87,7 @@ Here's how to set up `oaipmh-scythe` for local development.
 5. When you're done making changes, check that your changes pass pre-commit and the tests:
 
     ```console
-    $ hatch run lint:all
+    $ hatch run check
     $ hatch run cov
     ```
 
