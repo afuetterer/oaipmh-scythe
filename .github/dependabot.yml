@@ -35,16 +35,3 @@ updates:
       patterns:
       - pytest*
       - respx
-- package-ecosystem: pip
-  directory: /.github/workflows
-  schedule:
-    interval: monthly
-  commit-message:
-    prefix: ci
-  labels:
-  - 'type: ci'
-  - 'deps: python'
-  groups:
-    constraints:
-      patterns:
-      - '*'
