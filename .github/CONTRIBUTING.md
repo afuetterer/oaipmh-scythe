@@ -18,18 +18,18 @@ If you are reporting a bug, please include:
 
 ### Fix Bugs
 
-Look through the GitHub issues for bugs. Anything tagged with [bug][bug-issues] and [help wanted][help-wanted-issues] is
-open to whoever wants to implement it.
+Look through the GitHub issues for bugs. Anything tagged with [bug and help wanted][bug-issues-help-wanted] is open to
+whoever wants to implement it.
 
 ### Implement Features
 
-Look through the GitHub issues for features. Anything tagged with [feature][feature-issues] and
-[help wanted][help-wanted-issues] is open to whoever wants to implement it.
+Look through the GitHub issues for features. Anything tagged with [feature and help wanted][feature-issues-help-wanted]
+is open to whoever wants to implement it.
 
 ### Write Documentation
 
-oaipmh-scythe could always use more documentation, whether as part of the official oaipmh-scythe docs, in docstrings, or
-even on the web in blog posts, articles, and such.
+`oaipmh-scythe` could always use more documentation, whether as part of the official `oaipmh-scythe` docs, in
+docstrings, or even on the web in blog posts, articles, and such.
 
 ### Submit Feedback
 
@@ -45,7 +45,7 @@ If you are proposing a feature:
 
 Ready to contribute?
 
-You need Python 3.10+ and [hatch](https://github.com/pypa/hatch). You can install it globally with
+You need Python >= 3.10 and [hatch](https://github.com/pypa/hatch). You can install it globally with
 [pipx](https://github.com/pypa/pipx):
 
 ```console
@@ -55,10 +55,10 @@ $ pipx install hatch
 or locally with (this will install it in the local virtual environment):
 
 ```console
-$ pip install hatch
+$ python -m pip install hatch
 ```
 
-Here's how to set up oaipmh-scythe for local development.
+Here's how to set up `oaipmh-scythe` for local development.
 
 1. Fork the oaipmh-scythe repository on GitHub.
 
@@ -119,6 +119,5 @@ Before you submit a pull request, check that it meets these guidelines:
 
 <!-- Refs -->
 
-[bug-issues]: https://github.com/afuetterer/oaipmh-scythe/labels/type%3A%20bug
-[feature-issues]: https://github.com/afuetterer/oaipmh-scythe/labels/type%3A%20feature
-[help-wanted-issues]: https://github.com/afuetterer/oaipmh-scythe/labels/help%20wanted
+[bug-issues-help-wanted]: https://github.com/afuetterer/oaipmh-scythe/issues?q=is%3Aissue+is%3Aopen+label%3A%22type%3A+bug%22+label%3A%22help+wanted%22
+[feature-issues-help-wanted]: https://github.com/afuetterer/oaipmh-scythe/issues?q=is%3Aissue+is%3Aopen+label%3A%22type%3A+feature%22+label%3A%22help+wanted%22
