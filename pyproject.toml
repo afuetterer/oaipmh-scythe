@@ -142,7 +142,10 @@ extend-select = [
   "PIE",  # flake8-pie
   "PL",   # pylint
   "PT",   # flake8-pytest-style
+  "RET",  # flake8-return
+  "RSE",  # flake8-raise
   "RUF",  # ruff
+  "SIM",  # flake8-simplify
   "TCH",  # flake8-type-checking
   "T20",  # flake8-print
   "UP",   # pyupgrade
