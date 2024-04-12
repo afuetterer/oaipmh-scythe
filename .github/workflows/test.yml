@@ -26,7 +26,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
         cache: pip
     - name: Install pre-requisites (e.g. hatch)
-      run: python -m pip install --require-hashes --requirement=.github/workflows/requirements.txt
+      run: python -m pip install --require-hashes --requirement=.github/requirements/ci.txt
     - name: Run test suite
       run: hatch run cov
     - name: Generate coverage report
@@ -74,7 +74,7 @@ jobs:
     - run: python -Ic 'import oaipmh_scythe.__about__; print(oaipmh_scythe.__about__.__version__)'
     - name: Set up pipdeptree
       if: matrix.os == 'ubuntu-latest'
-      run: python -m pip install --require-hashes --requirement=.github/workflows/requirements.txt
+      run: python -m pip install --require-hashes --requirement=.github/requirements/ci.txt
     - name: Write info to step summary
       if: matrix.os == 'ubuntu-latest'
       run: |

@@ -1,0 +1,55 @@
+# This CI job is adapted from:
+# build-and-inspect-python-package (2024-03-25), MIT license
+# Ref: https://github.com/hynek/build-and-inspect-python-package/blob/v2.2.1/.github/workflows/update-dependencies.yml
+
+name: Upgrade requirements
+
+on:
+  schedule:
+    # run once a month at midnight of the first day of the month
+  - cron: 0 0 1 * *
+  # run manually from actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  upgrade:
+    permissions:
+      contents: write # for peter-evans/create-pull-request to create branch
+      pull-requests: write # for peter-evans/create-pull-request to create a PR
+    name: Upgrade requirements
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+    - name: Install uv
+      run: curl -LsSf https://astral.sh/uv/install.sh | sh
+    - name: Upgrade requirements
+      run: >
+        uv pip compile
+        --upgrade
+        --generate-hashes
+        --python-version=3.10
+        --output-file=.github/requirements/ci.txt
+        .github/requirements/ci.in
+      # Ref: https://github.com/peter-evans/create-pull-request
+    - uses: peter-evans/create-pull-request@70a41aba780001da0a30141984ae2a0c95d8704e # v6.0.2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: requirement-upgrades
+        committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+        author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+        title: 'build(deps-dev): upgrade ci requirements'
+        commit-message: 'build(deps-dev): upgrade ci requirements'
+        body: |
+          Monthly scheduled CI requirements upgrade (`uv pip compile --upgrade`).
+
+          > [!NOTE]
+          > Mark this PR as "ready for review" to trigger additional checks.
+        add-paths: .github/requirements/ci.txt
+        labels: |
+          type: build
+          deps: python
+        delete-branch: true
+        draft: true

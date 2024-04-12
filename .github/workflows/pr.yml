@@ -2,6 +2,12 @@ name: Checks
 
 on:
   pull_request:
+    types:
+    - opened
+    - synchronize
+    - reopened
+    - ready_for_review # this is needed to trigger checks, when an auto-generated "draft" PR is set for "ready for review".
+
 
 concurrency:
   group: pr-${{ github.head_ref }}

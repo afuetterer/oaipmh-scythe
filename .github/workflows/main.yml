@@ -36,7 +36,7 @@ jobs:
       with:
         python-version: '3.12'
     - name: Install pre-requisites (e.g. hatch)
-      run: python -m pip install --require-hashes --requirement=.github/workflows/requirements.txt
+      run: python -m pip install --require-hashes --requirement=.github/requirements/ci.txt
     - name: Update version and date in CITATION.cff
       run: |
         hatch run release:update-citation
