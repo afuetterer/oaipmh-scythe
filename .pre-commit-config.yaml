@@ -19,7 +19,7 @@ repos:
   - id: check-hooks-apply
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: c4a0b883114b00d8d76b479c820ce7950211c99b  # frozen: v4.5.0
+  rev: 2c9f875913ee60ca25ce70243dc24d5b6415598c  # frozen: v4.6.0
   hooks:
   - id: check-merge-conflict
   - id: check-case-conflict
@@ -34,13 +34,13 @@ repos:
     args: [--pytest-test-first]
 
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: 0afbc519ee4aa0a1eb0f7dd78876c8de46d4cf08  # frozen: v2.12.0
+  rev: bdf9bad34ed8102dee37a1fabb11ebc40d51063f  # frozen: v2.13.0
   hooks:
   - id: pretty-format-yaml
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: b058a5d218e0760c0dd55c7db9870bd92428a551  # frozen: 0.28.0
+  rev: 315c23f8562a5bafa15ab448ff542abe02d9e439  # frozen: 0.28.2
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
@@ -60,7 +60,7 @@ repos:
     - mdformat-mkdocs[recommended]>=v2.0.7
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: c22645f6b45188216151a407c040a9eec1795ab0  # frozen: v0.3.3
+  rev: e76e45000a5aa92cd2ec4d3fb1485f2f9fea5097  # frozen: v0.3.7
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
@@ -82,19 +82,19 @@ repos:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: 68c7289a620636165869822d2d233e785272935b  # frozen: v1.19.0
+  rev: 1717364ea88dd86a298e8a282b6df035e81e176f  # frozen: v1.20.7
   hooks:
   - id: typos
     args: [--force-exclude]
     exclude: CHANGELOG.md # the commit hashes in changelog trigger the spell checker
 
 - repo: https://github.com/FHPythonUtils/LicenseCheck/
-  rev: dd02bd73c3aeed64cb0922d184b3338e08ed7b6e  # frozen: 2024.1
+  rev: b2b50f4d40c95b15478279a7a00553a1dc2925ef  # frozen: 2024.2
   hooks:
   - id: licensecheck
 
 - repo: https://github.com/compilerla/conventional-pre-commit
-  rev: cdffa5192782a992f5728a67482535b0b3bc42fa  # frozen: v3.1.0
+  rev: 4efeb931d635ed3e57749de4326b752b345c8372  # frozen: v3.2.0
   hooks:
   - id: conventional-pre-commit
     stages: [commit-msg]
