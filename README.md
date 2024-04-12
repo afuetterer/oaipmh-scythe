@@ -57,14 +57,14 @@ There are a couple of similar projects available on [PyPI](https://pypi.org/sear
 topics [oai-pmh](https://github.com/topics/oai-pmh) and [oai-pmh-client](https://github.com/topics/oai-pmh-client).
 Among them are these implementations in Python:
 
-| Project                                                                          | Description                        | Last commit                                                                                           |
-| -------------------------------------------------------------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| [sickle](https://github.com/mloesch/sickle)                                      | oaipmh-scythe is a fork of sickle  | ![last-commit](https://img.shields.io/github/last-commit/mloesch/sickle)                              |
-| [pyoai](https://github.com/infrae/pyoai)                                         | sickle was inspired by pyoai       | ![last-commit](https://img.shields.io/github/last-commit/infrae/pyoai)                                |
-| [pyoaiharvester](https://github.com/vphill/pyoaiharvester)                       | oai-pmh harvester CLI              | ![last-commit](https://img.shields.io/github/last-commit/vphill/pyoaiharvester)                       |
-| [ddblabs-ometha](https://github.com/Deutsche-Digitale-Bibliothek/ddblabs-ometha) | oai-pmh harvester with CLI and TUI | ![last-commit](https://img.shields.io/github/last-commit/Deutsche-Digitale-Bibliothek/ddblabs-ometha) |
-| [oai-harvest](https://github.com/bloomonkey/oai-harvest)                         | uses pyoai internally              | ![last-commit](https://img.shields.io/github/last-commit/bloomonkey/oai-harvest)                      |
-| [oai-pmh-harvester](https://github.com/MITLibraries/oai-pmh-harvester)           | uses sickle internally             | ![last-commit](https://img.shields.io/github/last-commit/MITLibraries/oai-pmh-harvester)              |
+| Project                                                                          | Description                           | Last commit                                                                                           |
+| -------------------------------------------------------------------------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [sickle](https://github.com/mloesch/sickle)                                      | `oaipmh-scythe` is a fork of `sickle` | ![last-commit](https://img.shields.io/github/last-commit/mloesch/sickle)                              |
+| [pyoai](https://github.com/infrae/pyoai)                                         | `sickle` was inspired by `pyoai`      | ![last-commit](https://img.shields.io/github/last-commit/infrae/pyoai)                                |
+| [pyoaiharvester](https://github.com/vphill/pyoaiharvester)                       | oai-pmh harvester CLI                 | ![last-commit](https://img.shields.io/github/last-commit/vphill/pyoaiharvester)                       |
+| [ddblabs-ometha](https://github.com/Deutsche-Digitale-Bibliothek/ddblabs-ometha) | oai-pmh harvester with CLI and TUI    | ![last-commit](https://img.shields.io/github/last-commit/Deutsche-Digitale-Bibliothek/ddblabs-ometha) |
+| [oai-harvest](https://github.com/bloomonkey/oai-harvest)                         | uses `pyoai` internally               | ![last-commit](https://img.shields.io/github/last-commit/bloomonkey/oai-harvest)                      |
+| [oai-pmh-harvester](https://github.com/MITLibraries/oai-pmh-harvester)           | uses `sickle` internally              | ![last-commit](https://img.shields.io/github/last-commit/MITLibraries/oai-pmh-harvester)              |
 
 There are also similar projects available in [Java](https://github.com/topics/oai-pmh-client?l=java) and
 [PHP](https://github.com/topics/oai-pmh-client?l=php).
