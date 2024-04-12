@@ -24,6 +24,6 @@ jobs:
         cache: pip
     - name: Install pre-requisites (e.g. hatch)
       run: python -m pip install --require-hashes --requirement=.github/workflows/requirements.txt
-    - run: python -m build
+    - run: python -m build --installer=uv
     - name: Publish package to PyPI
       uses: pypa/gh-action-pypi-publish@81e9d935c883d0b210363ab89cf05f3894778450 # v1.8.14

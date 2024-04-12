@@ -257,8 +257,8 @@ version_variables = [
   "src/oaipmh_scythe/__about__.py:__version__",
 ]
 build_command = """
-python -m pip install build
-python -m build
+python -m pip install build[uv]
+python -m build --installer=uv
 """
 changelog.template_dir = ".github/templates"
 changelog.environment.keep_trailing_newline = true
