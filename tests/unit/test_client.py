@@ -48,10 +48,11 @@ def test_override_encoding(scythe: Scythe, respx_mock: MockRouter) -> None:
     mock_route = respx_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
         return_value=httpx.Response(200)
     )
-    scythe.encoding = "custom-encoding"
+    custom_encoding = "latin_1"
+    scythe.encoding = custom_encoding
     oai_response = scythe.harvest(query)
     assert mock_route.called
-    assert oai_response.http_response.encoding == "custom-encoding"
+    assert oai_response.http_response.encoding == custom_encoding
 
 
 def test_post_method(scythe: Scythe, respx_mock: MockRouter) -> None:

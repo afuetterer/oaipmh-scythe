@@ -83,7 +83,7 @@ class Scythe:
         retry_status_codes: Iterable[int] | None = None,
         default_retry_after: int = 60,
         class_mapping: dict[str, type[OAIItem]] | None = None,
-        encoding: str | None = None,
+        encoding: str = "utf-8",
         auth: AuthTypes | None = None,
         timeout: int = 60,
     ):
@@ -119,7 +119,11 @@ class Scythe:
         if self._client is None or self._client.is_closed:
             headers = {"Accept": "text/xml; charset=utf-8", "user-agent": USER_AGENT}
             self._client = httpx.Client(
-                headers=headers, timeout=self.timeout, auth=self.auth, event_hooks={"response": [log_response]}
+                headers=headers,
+                timeout=self.timeout,
+                auth=self.auth,
+                default_encoding=self.encoding,
+                event_hooks={"response": [log_response]},
             )
         return self._client
 
@@ -168,8 +172,6 @@ class Scythe:
                 time.sleep(retry_after)
                 http_response = self._request(query)
         http_response.raise_for_status()
-        if self.encoding:
-            http_response.encoding = self.encoding
         return OAIResponse(http_response, params=query)
 
     def _request(self, query: dict[str, str]) -> httpx.Response:
