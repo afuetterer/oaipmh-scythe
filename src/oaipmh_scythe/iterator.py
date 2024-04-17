@@ -158,15 +158,15 @@ class OAIItemIterator(BaseOAIIterator):
 
     Args:
         scythe: The Scythe instance used for making OAI-PMH requests.
-        params: A dictionary of OAI-PMH request parameters.
+        query: A dictionary of OAI-PMH request parameters.
         ignore_deleted: A boolean indicating whether to ignore deleted records in the response.
     """
 
-    def __init__(self, scythe: Scythe, params: dict[str, str], ignore_deleted: bool = False) -> None:
-        self.verb = params["verb"]
+    def __init__(self, scythe: Scythe, query: dict[str, str], ignore_deleted: bool = False) -> None:
+        self.verb = query["verb"]
         self.mapper = scythe.class_mapping[self.verb]
         self.element = VERBS_ELEMENTS[self.verb]
-        super().__init__(scythe, params, ignore_deleted)
+        super().__init__(scythe, query, ignore_deleted)
 
     def _next_response(self) -> None:
         """Fetch and process the next response from the OAI server.
