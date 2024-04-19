@@ -46,7 +46,7 @@ repos:
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: d85599bf81598928f76a763653195e8b39df791e  # frozen: 1.7.0
+  rev: 2cc3932954e8b388d77bb40f5418f7711a706d87  # frozen: 1.8.0
   hooks:
   - id: pyproject-fmt
 
@@ -60,7 +60,7 @@ repos:
     - mdformat-mkdocs[recommended]>=v2.0.7
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: e76e45000a5aa92cd2ec4d3fb1485f2f9fea5097  # frozen: v0.3.7
+  rev: 2ca3d774ce61288db69efaea35298f70653dbcd3  # frozen: v0.4.0
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
@@ -82,7 +82,7 @@ repos:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: 1717364ea88dd86a298e8a282b6df035e81e176f  # frozen: v1.20.7
+  rev: cff8374818cc1a9b5c92d3e4fe17e09b1cc0c35b  # frozen: v1.20.9
   hooks:
   - id: typos
     args: [--force-exclude]
