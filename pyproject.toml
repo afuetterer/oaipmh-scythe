@@ -83,6 +83,7 @@ packages = ["src/oaipmh_scythe"]
 path = "src/oaipmh_scythe/__about__.py"
 
 [tool.hatch.envs.default]
+installer = "uv"
 features = ["dev", "test"]
 post-install-commands = ["pre-commit install"]
 [tool.hatch.envs.default.scripts]
