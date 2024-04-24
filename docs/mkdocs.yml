@@ -8,6 +8,8 @@ repo_name: afuetterer/oaipmh-scythe
 repo_url: https://github.com/afuetterer/oaipmh-scythe
 docs_dir: src
 edit_uri: edit/main/docs/
+watch:
+- ../src
 
 nav:
 - Home: index.md
@@ -15,10 +17,12 @@ nav:
 - OAI-PMH Primer: oaipmh.md
 - Harvesting other Metadata Formats than OAI-DC: customizing.md
 - API:
-  - The Scythe Client: api/client.md
-  - Working with OAI Responses: api/response.md
-  - Iterating over OAI Items: api/iterator.md
-  - Classes for OAI Items: api/models.md
+  - Client: api/client.md
+  - Iterator: api/iterator.md
+  - Models: api/models.md
+  - Response: api/response.md
+  - Utils: api/utils.md
+  - Exceptions: api/exceptions.md
 - Meta:
   - Contributor Guide: contributing.md
   - Changelog: changelog.md
@@ -51,6 +55,11 @@ plugins:
     default_handler: python
     handlers:
       python:
+        paths:
+        - ../src
+        options:
+          show_root_heading: false
+          show_root_toc_entry: false
         import:
         - https://docs.python.org/3/objects.inv
 
