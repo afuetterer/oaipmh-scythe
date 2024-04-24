@@ -6,11 +6,7 @@ site_name: oaipmh-scythe
 site_description: A Scythe for harvesting OAI-PMH repositories.
 repo_name: afuetterer/oaipmh-scythe
 repo_url: https://github.com/afuetterer/oaipmh-scythe
-watch:
-- ../README.md
-- ../src
-docs_dir: .
-site_dir: ../site
+docs_dir: src
 edit_uri: edit/main/docs/
 
 nav:
