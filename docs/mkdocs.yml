@@ -49,6 +49,10 @@ plugins:
 - include-markdown
 - mkdocstrings:
     default_handler: python
+    handlers:
+      python:
+        import:
+        - https://docs.python.org/3/objects.inv
 
 markdown_extensions:
 - admonition
