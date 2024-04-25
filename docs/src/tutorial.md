@@ -53,7 +53,7 @@ records = scythe.list_records()
 ```
 
 Note that all keyword arguments you provide to this function are passed to the OAI interface as HTTP parameters.
-Therefore, the example request would send the parameter `verb=ListRecord`.
+Therefore, the example request would send the parameter `verb=ListRecords`.
 
 ## Performing Selective Harvesting
 
