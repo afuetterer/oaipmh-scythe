@@ -78,7 +78,7 @@ class NoSetHierarchy(OAIPMHException):
     """
 
 
-class NoMetadataFormat(OAIPMHException):
+class NoMetadataFormats(OAIPMHException):
     """Exception raised when there are no available metadata formats for the specified item.
 
     Indicates a lack of metadata formats that can be disseminated for the requested item.
