@@ -8,6 +8,7 @@ repo_name: afuetterer/oaipmh-scythe
 repo_url: https://github.com/afuetterer/oaipmh-scythe
 docs_dir: src
 edit_uri: edit/main/docs/
+strict: true
 watch:
 - ../src
 

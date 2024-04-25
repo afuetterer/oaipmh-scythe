@@ -101,8 +101,8 @@ cov-total = """
 features = ["docs"]
 template = "docs"
 [tool.hatch.envs.docs.scripts]
-build = "mkdocs build --strict --config-file=docs/mkdocs.yml"
-serve = "mkdocs serve --strict --config-file=docs/mkdocs.yml"
+build = "mkdocs build --config-file=docs/mkdocs.yml"
+serve = "mkdocs serve --verbose --config-file=docs/mkdocs.yml"
 deploy = "mkdocs gh-deploy --force --config-file=docs/mkdocs.yml"
 
 [tool.hatch.envs.release]
