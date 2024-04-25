@@ -6,9 +6,31 @@
 """oaipmh-scythe: A Scythe for harvesting OAI-PMH repositories."""
 
 from oaipmh_scythe.client import Scythe
+from oaipmh_scythe.exceptions import (
+    BadArgument,
+    BadResumptionToken,
+    BadVerb,
+    CannotDisseminateFormat,
+    GeneralOAIPMHError,
+    IdDoesNotExist,
+    NoMetadataFormat,
+    NoRecordsMatch,
+    NoSetHierarchy,
+    OAIPMHException,
+)
 from oaipmh_scythe.response import OAIResponse
 
 __all__ = [
-    "Scythe",
+    "BadArgument",
+    "BadResumptionToken",
+    "BadVerb",
+    "CannotDisseminateFormat",
+    "GeneralOAIPMHError",
+    "IdDoesNotExist",
+    "NoMetadataFormat",
+    "NoRecordsMatch",
+    "NoSetHierarchy",
+    "OAIPMHException",
     "OAIResponse",
+    "Scythe",
 ]
