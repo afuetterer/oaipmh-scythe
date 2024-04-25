@@ -10,7 +10,6 @@ on:
 env:
   PYTHONUNBUFFERED: 1
   FORCE_COLOR: 1
-  CLICOLOR_FORCE: 1
 
 permissions:
   contents: read
