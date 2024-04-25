@@ -11,7 +11,6 @@ in the OAI-PMH protocol, facilitating precise error handling and meaningful feed
 
 Classes:
     OAIPMHException: The base exception class for all OAI-PMH related errors.
-    GeneralOAIPMHError: A general exception class for OAI-PMH errors not specifically covered by other classes.
     BadArgument: Raised when a request contains illegal, missing, or improperly formatted arguments.
     BadVerb: Raised when the verb argument in a request is invalid or improperly used.
     BadResumptionToken: Raised when a resumption token is invalid or expired.
@@ -20,6 +19,7 @@ Classes:
     NoSetHierarchy: Raised when a repository does not support set hierarchies.
     NoMetadataFormats: Raised when no metadata formats are available for an item.
     NoRecordsMatch: Raised when a query yields no results due to specific argument combinations.
+    UndefinedError: A general exception class for OAI-PMH errors not specifically covered by other classes.
 
 These custom exceptions enhance the robustness and clarity of error handling in OAI-PMH client implementations,
 aligning closely with the protocol's standard error conditions.
@@ -93,7 +93,7 @@ class NoRecordsMatch(OAIPMHException):
     """
 
 
-class GeneralOAIPMHError(OAIPMHException):
+class UndefinedError(OAIPMHException):
     """General exception for context-specific OAI-PMH errors not covered by the other specific classes.
 
     This class is used for OAI-PMH errors that do not fall into the predefined categories

@@ -77,7 +77,7 @@ Example: Fetching Records Published On or After a Specific Date
 ```python
 records = scythe.list_records(from_="2024-01-16")
 next(records)
-# <Record oai:zenodo.org:10529175>
+# Record(header=Header(identifier='oai:zenodo.org:10654826', datestamp='2024-02-13T15:38:50Z', set_spec=['software'], status=None), metadata=Metadata(other_element=Dc(title=[Title(value='Research Data Management Organiser (RDMO)', lang=None)], creator=[Creator(value='Klar, Jochen', lang=None), Creator(value='Michaelis, Olaf', lang=None), Creator(value='Wallace, David', lang=None), Creator(value='Schröder, Max', lang=None), Creator(value='Fütterer, Heinz-Alexander', lang=None), Creator(value='Lanza, Giacomo', lang=None), Creator(value='Martínez Muñoz, David', lang=None), Creator(value='Pilori, Dario', lang=None), Creator(value='Harry, Enke', lang=None)], subject=[], description=[Description(value='&lt;h2&gt;&lt;a href="https://github.com/rdmorganiser/rdmo/compare/2.1.2...2.1.3"&gt;RDMO 2.1.3&lt;/a&gt; (Feb 13, 2024)&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;Fix the migration of options with additional_input (#912)&lt;/li&gt;\n&lt;li&gt;Fix export urls in management when using BASE_PATH (#915)&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2&gt;How to upgrade&lt;/h2&gt;\n&lt;p&gt;In case you are upgrading from an RDMO version below 2.0.0 please read these &lt;a href="https://rdmo.readthedocs.io/en/latest/upgrade/index.html#upgrade-to-version-2-0-0"&gt;upgrade instructions&lt;/a&gt; before you proceed.&lt;/p&gt;\n&lt;pre&gt;&lt;code&gt;pip install --upgrade rdmo\npython manage.py upgrade\n&lt;/code&gt;&lt;/pre&gt;', lang=None), Description(value='If you refer to this software in a publication, please cite it as below.', lang=None)], publisher=[Publisher(value='Zenodo', lang=None)], contributor=[], date=[Date(value='2024-02-13', lang=None)], type_value=[TypeType(value='info:eu-repo/semantics/other', lang=None)], format=[], identifier=[Identifier(value='https://doi.org/10.5281/zenodo.10654826', lang=None), Identifier(value='oai:zenodo.org:10654826', lang=None)], source=[], language=[], relation=[Relation(value='https://github.com/rdmorganiser/rdmo/tree/2.1.3', lang=None), Relation(value='https://doi.org/10.5281/zenodo.596581', lang=None)], coverage=[], rights=[Rights(value='info:eu-repo/semantics/openAccess', lang=None), Rights(value='Apache License 2.0', lang=None), Rights(value='http://www.apache.org/licenses/LICENSE-2.0', lang=None)])), about=[])
 ```
 
 In this example, `scythe.list_records(from_="2024-01-16")` retrieves records published on or after January 16, 2024.
@@ -92,7 +92,7 @@ Example: Fetching records published until a specific date
 ```python
 records = scythe.list_records(until="2024-01-17")
 next(records)
-# <Record oai:zenodo.org:2217771>
+# Record(header=Header(identifier='oai:zenodo.org:10654826', datestamp='2024-02-13T15:38:50Z', set_spec=['software'], status=None), metadata=Metadata(other_element=Dc(title=[Title(value='Research Data Management Organiser (RDMO)', lang=None)], creator=[Creator(value='Klar, Jochen', lang=None), Creator(value='Michaelis, Olaf', lang=None), Creator(value='Wallace, David', lang=None), Creator(value='Schröder, Max', lang=None), Creator(value='Fütterer, Heinz-Alexander', lang=None), Creator(value='Lanza, Giacomo', lang=None), Creator(value='Martínez Muñoz, David', lang=None), Creator(value='Pilori, Dario', lang=None), Creator(value='Harry, Enke', lang=None)], subject=[], description=[Description(value='&lt;h2&gt;&lt;a href="https://github.com/rdmorganiser/rdmo/compare/2.1.2...2.1.3"&gt;RDMO 2.1.3&lt;/a&gt; (Feb 13, 2024)&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;Fix the migration of options with additional_input (#912)&lt;/li&gt;\n&lt;li&gt;Fix export urls in management when using BASE_PATH (#915)&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2&gt;How to upgrade&lt;/h2&gt;\n&lt;p&gt;In case you are upgrading from an RDMO version below 2.0.0 please read these &lt;a href="https://rdmo.readthedocs.io/en/latest/upgrade/index.html#upgrade-to-version-2-0-0"&gt;upgrade instructions&lt;/a&gt; before you proceed.&lt;/p&gt;\n&lt;pre&gt;&lt;code&gt;pip install --upgrade rdmo\npython manage.py upgrade\n&lt;/code&gt;&lt;/pre&gt;', lang=None), Description(value='If you refer to this software in a publication, please cite it as below.', lang=None)], publisher=[Publisher(value='Zenodo', lang=None)], contributor=[], date=[Date(value='2024-02-13', lang=None)], type_value=[TypeType(value='info:eu-repo/semantics/other', lang=None)], format=[], identifier=[Identifier(value='https://doi.org/10.5281/zenodo.10654826', lang=None), Identifier(value='oai:zenodo.org:10654826', lang=None)], source=[], language=[], relation=[Relation(value='https://github.com/rdmorganiser/rdmo/tree/2.1.3', lang=None), Relation(value='https://doi.org/10.5281/zenodo.596581', lang=None)], coverage=[], rights=[Rights(value='info:eu-repo/semantics/openAccess', lang=None), Rights(value='Apache License 2.0', lang=None), Rights(value='http://www.apache.org/licenses/LICENSE-2.0', lang=None)])), about=[])
 ```
 
 This line will harvest records published up to and including January 17, 2024.
@@ -130,7 +130,7 @@ Example: Fetching records from a specific set
 ```python
 records = scythe.list_records(set_="software")
 next(records)
-# <Record oai:zenodo.org:32712>
+# Record(header=Header(identifier='oai:zenodo.org:10654826', datestamp='2024-02-13T15:38:50Z', set_spec=['software'], status=None), metadata=Metadata(other_element=Dc(title=[Title(value='Research Data Management Organiser (RDMO)', lang=None)], creator=[Creator(value='Klar, Jochen', lang=None), Creator(value='Michaelis, Olaf', lang=None), Creator(value='Wallace, David', lang=None), Creator(value='Schröder, Max', lang=None), Creator(value='Fütterer, Heinz-Alexander', lang=None), Creator(value='Lanza, Giacomo', lang=None), Creator(value='Martínez Muñoz, David', lang=None), Creator(value='Pilori, Dario', lang=None), Creator(value='Harry, Enke', lang=None)], subject=[], description=[Description(value='&lt;h2&gt;&lt;a href="https://github.com/rdmorganiser/rdmo/compare/2.1.2...2.1.3"&gt;RDMO 2.1.3&lt;/a&gt; (Feb 13, 2024)&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;Fix the migration of options with additional_input (#912)&lt;/li&gt;\n&lt;li&gt;Fix export urls in management when using BASE_PATH (#915)&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2&gt;How to upgrade&lt;/h2&gt;\n&lt;p&gt;In case you are upgrading from an RDMO version below 2.0.0 please read these &lt;a href="https://rdmo.readthedocs.io/en/latest/upgrade/index.html#upgrade-to-version-2-0-0"&gt;upgrade instructions&lt;/a&gt; before you proceed.&lt;/p&gt;\n&lt;pre&gt;&lt;code&gt;pip install --upgrade rdmo\npython manage.py upgrade\n&lt;/code&gt;&lt;/pre&gt;', lang=None), Description(value='If you refer to this software in a publication, please cite it as below.', lang=None)], publisher=[Publisher(value='Zenodo', lang=None)], contributor=[], date=[Date(value='2024-02-13', lang=None)], type_value=[TypeType(value='info:eu-repo/semantics/other', lang=None)], format=[], identifier=[Identifier(value='https://doi.org/10.5281/zenodo.10654826', lang=None), Identifier(value='oai:zenodo.org:10654826', lang=None)], source=[], language=[], relation=[Relation(value='https://github.com/rdmorganiser/rdmo/tree/2.1.3', lang=None), Relation(value='https://doi.org/10.5281/zenodo.596581', lang=None)], coverage=[], rights=[Rights(value='info:eu-repo/semantics/openAccess', lang=None), Rights(value='Apache License 2.0', lang=None), Rights(value='http://www.apache.org/licenses/LICENSE-2.0', lang=None)])), about=[])
 ```
 
 In this example, `scythe.list_records(set_="software")` retrieves records that are part of the 'software' set. The call
@@ -149,7 +149,7 @@ Example: Combining `set_` with Date Filters
 ```python
 records = scythe.list_records(set_="software", from_="2024-01-01", until="2024-01-31")
 next(records)
-# <Record oai:zenodo.org:10456652>
+# Record(header=Header(identifier='oai:zenodo.org:10654826', datestamp='2024-02-13T15:38:50Z', set_spec=['software'], status=None), metadata=Metadata(other_element=Dc(title=[Title(value='Research Data Management Organiser (RDMO)', lang=None)], creator=[Creator(value='Klar, Jochen', lang=None), Creator(value='Michaelis, Olaf', lang=None), Creator(value='Wallace, David', lang=None), Creator(value='Schröder, Max', lang=None), Creator(value='Fütterer, Heinz-Alexander', lang=None), Creator(value='Lanza, Giacomo', lang=None), Creator(value='Martínez Muñoz, David', lang=None), Creator(value='Pilori, Dario', lang=None), Creator(value='Harry, Enke', lang=None)], subject=[], description=[Description(value='&lt;h2&gt;&lt;a href="https://github.com/rdmorganiser/rdmo/compare/2.1.2...2.1.3"&gt;RDMO 2.1.3&lt;/a&gt; (Feb 13, 2024)&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;Fix the migration of options with additional_input (#912)&lt;/li&gt;\n&lt;li&gt;Fix export urls in management when using BASE_PATH (#915)&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2&gt;How to upgrade&lt;/h2&gt;\n&lt;p&gt;In case you are upgrading from an RDMO version below 2.0.0 please read these &lt;a href="https://rdmo.readthedocs.io/en/latest/upgrade/index.html#upgrade-to-version-2-0-0"&gt;upgrade instructions&lt;/a&gt; before you proceed.&lt;/p&gt;\n&lt;pre&gt;&lt;code&gt;pip install --upgrade rdmo\npython manage.py upgrade\n&lt;/code&gt;&lt;/pre&gt;', lang=None), Description(value='If you refer to this software in a publication, please cite it as below.', lang=None)], publisher=[Publisher(value='Zenodo', lang=None)], contributor=[], date=[Date(value='2024-02-13', lang=None)], type_value=[TypeType(value='info:eu-repo/semantics/other', lang=None)], format=[], identifier=[Identifier(value='https://doi.org/10.5281/zenodo.10654826', lang=None), Identifier(value='oai:zenodo.org:10654826', lang=None)], source=[], language=[], relation=[Relation(value='https://github.com/rdmorganiser/rdmo/tree/2.1.3', lang=None), Relation(value='https://doi.org/10.5281/zenodo.596581', lang=None)], coverage=[], rights=[Rights(value='info:eu-repo/semantics/openAccess', lang=None), Rights(value='Apache License 2.0', lang=None), Rights(value='http://www.apache.org/licenses/LICENSE-2.0', lang=None)])), about=[])
 ```
 
 This code will harvest records from the 'software' set that were published in January 2024.
@@ -210,7 +210,7 @@ used to iterate over the records of a repository:
 ```python
 records = scythe.list_records()
 next(records)
-# <Record oai:zenodo.org:4574771>
+# Record(header=Header(identifier='oai:zenodo.org:10654826', datestamp='2024-02-13T15:38:50Z', set_spec=['software'], status=None), metadata=Metadata(other_element=Dc(title=[Title(value='Research Data Management Organiser (RDMO)', lang=None)], creator=[Creator(value='Klar, Jochen', lang=None), Creator(value='Michaelis, Olaf', lang=None), Creator(value='Wallace, David', lang=None), Creator(value='Schröder, Max', lang=None), Creator(value='Fütterer, Heinz-Alexander', lang=None), Creator(value='Lanza, Giacomo', lang=None), Creator(value='Martínez Muñoz, David', lang=None), Creator(value='Pilori, Dario', lang=None), Creator(value='Harry, Enke', lang=None)], subject=[], description=[Description(value='&lt;h2&gt;&lt;a href="https://github.com/rdmorganiser/rdmo/compare/2.1.2...2.1.3"&gt;RDMO 2.1.3&lt;/a&gt; (Feb 13, 2024)&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;Fix the migration of options with additional_input (#912)&lt;/li&gt;\n&lt;li&gt;Fix export urls in management when using BASE_PATH (#915)&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2&gt;How to upgrade&lt;/h2&gt;\n&lt;p&gt;In case you are upgrading from an RDMO version below 2.0.0 please read these &lt;a href="https://rdmo.readthedocs.io/en/latest/upgrade/index.html#upgrade-to-version-2-0-0"&gt;upgrade instructions&lt;/a&gt; before you proceed.&lt;/p&gt;\n&lt;pre&gt;&lt;code&gt;pip install --upgrade rdmo\npython manage.py upgrade\n&lt;/code&gt;&lt;/pre&gt;', lang=None), Description(value='If you refer to this software in a publication, please cite it as below.', lang=None)], publisher=[Publisher(value='Zenodo', lang=None)], contributor=[], date=[Date(value='2024-02-13', lang=None)], type_value=[TypeType(value='info:eu-repo/semantics/other', lang=None)], format=[], identifier=[Identifier(value='https://doi.org/10.5281/zenodo.10654826', lang=None), Identifier(value='oai:zenodo.org:10654826', lang=None)], source=[], language=[], relation=[Relation(value='https://github.com/rdmorganiser/rdmo/tree/2.1.3', lang=None), Relation(value='https://doi.org/10.5281/zenodo.596581', lang=None)], coverage=[], rights=[Rights(value='info:eu-repo/semantics/openAccess', lang=None), Rights(value='Apache License 2.0', lang=None), Rights(value='http://www.apache.org/licenses/LICENSE-2.0', lang=None)])), about=[])
 ```
 
 Note that this works with all verbs that return more than one element. These are:
@@ -224,7 +224,7 @@ The following example shows how to iterate over the headers returned by `list_id
 ```python
 headers = scythe.list_identifiers()
 next(headers)
-# <Header oai:zenodo.org:4574771>
+# Header(identifier='oai:zenodo.org:8434385', datestamp='2023-10-12T09:03:02Z', set_spec=[], status=None)
 ```
 
 Iterating over the sets returned by `list_sets()` works similarly:
@@ -232,7 +232,7 @@ Iterating over the sets returned by `list_sets()` works similarly:
 ```python
 sets = scythe.list_sets()
 next(sets)
-# <Set European Middleware Initiative>
+# Set(set_spec='user-emi', set_name='European Middleware Initiative', set_description=[Description(other_element=Dc(title=[], creator=[], subject=[], description=[Description(value='<p>\n\t&nbsp;</p>\n<p id="aui_3_2_0_1104">\n\tThe European Middleware Initiative (EMI) is a close collaboration of the three major middleware providers, ARC, gLite and UNICORE, and other specialized software providers like dCache.</p>\n<p id="aui_3_2_0_196">\n\tThe&nbsp;<strong>project&#39;s mission</strong>&nbsp;is to</p>\n<ol>\n\t<li>\n\t\tdeliver a consolidated set of middleware components for deployment in EGI (as part of the Unified Middleware Distribution - UMD), PRACE and other DCIs,</li>\n\t<li>\n\t\textend the interoperability and integration with emerging computing models,</li>\n\t<li>\n\t\tstrengthen the reliability and manageability of the services and establish a sustainable model to support,</li>\n\t<li>\n\t\tharmonise and evolve the middleware, ensuring it responds effectively to the requirements of the scientific communities relying on it.</li>\n</ol>\n', lang=None)], publisher=[], contributor=[], date=[], type_value=[], format=[], identifier=[], source=[], language=[], relation=[], coverage=[], rights=[]))])
 ```
 
 To explore all the metadata formats supported by the repository, you can iterate through the formats returned by the
@@ -241,7 +241,7 @@ To explore all the metadata formats supported by the repository, you can iterate
 ```python
 metadata_formats = scythe.list_metadata_formats()
 next(metadata_formats)
-# <MetadataFormat marcxml>
+# MetadataFormat(metadata_prefix='marcxml', schema='https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd', metadata_namespace='https://www.loc.gov/standards/marcxml/')
 ```
 
 ## Getting a Single Record
@@ -249,25 +249,24 @@ next(metadata_formats)
 OAI-PMH allows you to get a single record by using the `GetRecord` verb:
 
 ```python
-scythe.get_record(identifier="oai:zenodo.org:4574771")
-# <Record oai:zenodo.org:4574771>
+scythe.get_record(identifier="oai:zenodo.org:10654826")
+# Record(header=Header(identifier='oai:zenodo.org:10654826', datestamp='2024-02-13T15:38:50Z', set_spec=['software'], status=None), metadata=Metadata(other_element=Dc(title=[Title(value='Research Data Management Organiser (RDMO)', lang=None)], creator=[Creator(value='Klar, Jochen', lang=None), Creator(value='Michaelis, Olaf', lang=None), Creator(value='Wallace, David', lang=None), Creator(value='Schröder, Max', lang=None), Creator(value='Fütterer, Heinz-Alexander', lang=None), Creator(value='Lanza, Giacomo', lang=None), Creator(value='Martínez Muñoz, David', lang=None), Creator(value='Pilori, Dario', lang=None), Creator(value='Harry, Enke', lang=None)], subject=[], description=[Description(value='&lt;h2&gt;&lt;a href="https://github.com/rdmorganiser/rdmo/compare/2.1.2...2.1.3"&gt;RDMO 2.1.3&lt;/a&gt; (Feb 13, 2024)&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;Fix the migration of options with additional_input (#912)&lt;/li&gt;\n&lt;li&gt;Fix export urls in management when using BASE_PATH (#915)&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2&gt;How to upgrade&lt;/h2&gt;\n&lt;p&gt;In case you are upgrading from an RDMO version below 2.0.0 please read these &lt;a href="https://rdmo.readthedocs.io/en/latest/upgrade/index.html#upgrade-to-version-2-0-0"&gt;upgrade instructions&lt;/a&gt; before you proceed.&lt;/p&gt;\n&lt;pre&gt;&lt;code&gt;pip install --upgrade rdmo\npython manage.py upgrade\n&lt;/code&gt;&lt;/pre&gt;', lang=None), Description(value='If you refer to this software in a publication, please cite it as below.', lang=None)], publisher=[Publisher(value='Zenodo', lang=None)], contributor=[], date=[Date(value='2024-02-13', lang=None)], type_value=[TypeType(value='info:eu-repo/semantics/other', lang=None)], format=[], identifier=[Identifier(value='https://doi.org/10.5281/zenodo.10654826', lang=None), Identifier(value='oai:zenodo.org:10654826', lang=None)], source=[], language=[], relation=[Relation(value='https://github.com/rdmorganiser/rdmo/tree/2.1.3', lang=None), Relation(value='https://doi.org/10.5281/zenodo.596581', lang=None)], coverage=[], rights=[Rights(value='info:eu-repo/semantics/openAccess', lang=None), Rights(value='Apache License 2.0', lang=None), Rights(value='http://www.apache.org/licenses/LICENSE-2.0', lang=None)])), about=[])
 ```
 
 ## Harvesting OAI Items vs. OAI Responses
 
 Scythe supports two harvesting modes that differ in the type of the returned objects. The default mode returns
 OAI-specific *items* (records, headers etc.) encoded as Python objects as seen earlier. If you want to save the whole
-XML response returned by the server, you have to pass the
-[OAIResponseIterator][oaipmh_scythe.iterator.OAIResponseIterator] during the instantiation of the
-[Scythe][oaipmh_scythe.client.Scythe] object:
+XML response returned by the server, you have to pass the [ResponseIterator][oaipmh_scythe.iterator.ResponseIterator]
+during the instantiation of the [Scythe][oaipmh_scythe.client.Scythe] object:
 
 ```python
-from oaipmh_scythe.iterator import OAIResponseIterator
+from oaipmh_scythe.iterator import ResponseIterator
 
-scythe = Scythe("https://zenodo.org/oai2d", iterator=OAIResponseIterator)
+scythe = Scythe("https://zenodo.org/oai2d", iterator=ResponseIterator)
 responses = scythe.list_records()
 next(responses)
-# <OAIResponse ListRecords>
+# Response(url=URL('https://zenodo.org/oai2d?verb=ListRecords&metadataPrefix=oai_dc'), status_code=<codes.OK: 200>)
 ```
 
 You could then save the returned responses to disk:
@@ -281,16 +280,16 @@ with open("response.xml", "w") as f:
 
 The [list_records()][oaipmh_scythe.client.Scythe.list_records] and
 [list_identifiers()][oaipmh_scythe.client.Scythe.list_identifiers] methods accept an optional parameter
-`ignore_deleted`. If set to `True`, the returned [OAIItemIterator][oaipmh_scythe.iterator.OAIItemIterator] will skip
-deleted records/headers:
+`ignore_deleted`. If set to `True`, the returned [ItemIterator][oaipmh_scythe.iterator.ItemIterator] will skip deleted
+records/headers:
 
 ```python
 records = scythe.list_records(ignore_deleted=True)
 ```
 
 !!! note
-    This works only using the [oaipmh_scythe.iterator.OAIItemIterator][]. If you use the
-    [oaipmh_scythe.iterator.OAIResponseIterator][], the resulting OAI responses will still contain the deleted records.
+    This works only using the [oaipmh_scythe.iterator.ItemIterator][]. If you use the
+    [oaipmh_scythe.iterator.ResponseIterator][], the resulting OAI responses will still contain the deleted records.
 
 ## Authentication
 

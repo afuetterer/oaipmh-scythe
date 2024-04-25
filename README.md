@@ -18,15 +18,15 @@ from oaipmh_scythe import Scythe
 with Scythe("https://zenodo.org/oai2d") as scythe:
     records = scythe.list_records()
     next(records)
-# <Record oai:zenodo.org:4574771>
+# Record(header=Header(identifier='oai:zenodo.org:10654826', datestamp='2024-02-13T15:38:50Z', set_spec=['software'], status=None), metadata=Metadata(other_element=Dc(title=[Title(value='Research Data Management Organiser (RDMO)', lang=None)], creator=[Creator(value='Klar, Jochen', lang=None), Creator(value='Michaelis, Olaf', lang=None), Creator(value='Wallace, David', lang=None), Creator(value='Schröder, Max', lang=None), Creator(value='Fütterer, Heinz-Alexander', lang=None), Creator(value='Lanza, Giacomo', lang=None), Creator(value='Martínez Muñoz, David', lang=None), Creator(value='Pilori, Dario', lang=None), Creator(value='Harry, Enke', lang=None)], subject=[], description=[Description(value='&lt;h2&gt;&lt;a href="https://github.com/rdmorganiser/rdmo/compare/2.1.2...2.1.3"&gt;RDMO 2.1.3&lt;/a&gt; (Feb 13, 2024)&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;Fix the migration of options with additional_input (#912)&lt;/li&gt;\n&lt;li&gt;Fix export urls in management when using BASE_PATH (#915)&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2&gt;How to upgrade&lt;/h2&gt;\n&lt;p&gt;In case you are upgrading from an RDMO version below 2.0.0 please read these &lt;a href="https://rdmo.readthedocs.io/en/latest/upgrade/index.html#upgrade-to-version-2-0-0"&gt;upgrade instructions&lt;/a&gt; before you proceed.&lt;/p&gt;\n&lt;pre&gt;&lt;code&gt;pip install --upgrade rdmo\npython manage.py upgrade\n&lt;/code&gt;&lt;/pre&gt;', lang=None), Description(value='If you refer to this software in a publication, please cite it as below.', lang=None)], publisher=[Publisher(value='Zenodo', lang=None)], contributor=[], date=[Date(value='2024-02-13', lang=None)], type_value=[TypeType(value='info:eu-repo/semantics/other', lang=None)], format=[], identifier=[Identifier(value='https://doi.org/10.5281/zenodo.10654826', lang=None), Identifier(value='oai:zenodo.org:10654826', lang=None)], source=[], language=[], relation=[Relation(value='https://github.com/rdmorganiser/rdmo/tree/2.1.3', lang=None), Relation(value='https://doi.org/10.5281/zenodo.596581', lang=None)], coverage=[], rights=[Rights(value='info:eu-repo/semantics/openAccess', lang=None), Rights(value='Apache License 2.0', lang=None), Rights(value='http://www.apache.org/licenses/LICENSE-2.0', lang=None)])), about=[])
 ```
 
 ## Features
 
 - Easy harvesting of OAI-compliant interfaces
 - Support for all six OAI verbs
-- Convenient object representations of OAI items (records, headers, sets, ...)
-- Automatic de-serialization of Dublin Core-encoded metadata payloads to Python dictionaries
+- Convenient object representations of OAI items (records, headers, sets, ...) as dataclasses
+- Automatic de-serialization of metadata payloads to dataclasses for Dublin Core, DataCite, Marcxml
 - Option for ignoring deleted items
 
 ## Requirements
@@ -36,7 +36,7 @@ with Scythe("https://zenodo.org/oai2d") as scythe:
 `oaipmh-scythe` is built with:
 
 - [httpx](https://github.com/encode/httpx) for issuing HTTP requests
-- [lxml](https://github.com/lxml/lxml) for parsing XML responses
+- [xsdata](https://github.com/tefra/xsdata) for parsing XML responses
 
 ## Installation
 

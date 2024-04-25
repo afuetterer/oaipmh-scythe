@@ -34,7 +34,7 @@ dynamic = [
 ]
 dependencies = [
   "httpx>=0.25",
-  "lxml>=5.1",
+  "xsdata[cli,lxml]", # TODO: remove cli extra
 ]
 [project.optional-dependencies]
 dev = [
@@ -74,6 +74,10 @@ requires = [
 include = [
   "src",
   "CHANGELOG.md",
+]
+exclude = [
+  "src/oaipmh_scythe/models/**/*.md",
+  "src/oaipmh_scythe/models/**/*.xml",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -169,6 +173,14 @@ pydocstyle.convention = "google"
 "src/oaipmh_scythe/client.py" = [
   "PLR0913", # too-many-arguments
 ]
+"src/oaipmh_scythe/models/*" = [
+  "D101",   # undocumented-public-class
+  "D106",   # undocumented-public-nested-class
+  "D205",   # blank-line-after-summary
+  "D415",   # ends-in-punctuation
+  "RUF002", # ambiguous-unicode-character-docstring
+  "TCH002", # typing-only-third-party-import
+]
 "tests/*" = [
   "D100",     # undocumented-public-module
   "D103",     # undocumented-public-function
@@ -212,6 +224,7 @@ parallel = true
 source = ["oaipmh_scythe"]
 omit = [
   "__about__.py",
+  "src/oaipmh_scythe/models/datacite.py",
 ]
 
 [tool.coverage.report]
