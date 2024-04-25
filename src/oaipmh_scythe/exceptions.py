@@ -18,7 +18,7 @@ Classes:
     CannotDisseminateFormat: Raised when a requested metadata format is not supported.
     IdDoesNotExist: Raised when an identifier does not exist or is illegal in a repository.
     NoSetHierarchy: Raised when a repository does not support set hierarchies.
-    NoMetadataFormat: Raised when no metadata formats are available for an item.
+    NoMetadataFormats: Raised when no metadata formats are available for an item.
     NoRecordsMatch: Raised when a query yields no results due to specific argument combinations.
 
 These custom exceptions enhance the robustness and clarity of error handling in OAI-PMH client implementations,

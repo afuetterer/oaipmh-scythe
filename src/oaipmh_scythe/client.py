@@ -162,7 +162,7 @@ class Scythe:
             An OAIResponse object encapsulating the server's response.
 
         Raises:
-            HTTPError: If the HTTP request fails after the maximum number of retries.
+            httpx.HTTPError: If the HTTP request fails after the maximum number of retries.
         """
         http_response = self._request(query)
         for _ in range(self.max_retries):
@@ -213,14 +213,15 @@ class Scythe:
             ignore_deleted: If True, skip records flagged as deleted in the response.
 
         Yields:
-            An iterator over OAIResponse or Record objects, each representing an individual record or response from the server.
+            An iterator over OAIResponse or Record objects, each representing an individual record or response
+                from the server.
 
         Raises:
-            badArgument: If the arguments provided do not conform to the expectations of the OAI server.
-            badResumptionToken: If the provided resumption token is invalid or expired.
-            cannotDisseminateFormat: If the specified metadata_prefix is not supported by the OAI server.
-            noRecordsMatch: If no records match the provided criteria.
-            noSetHierarchy: If set-based harvesting is requested but the OAI server does not support sets.
+            BadArgument: If the arguments provided do not conform to the expectations of the OAI server.
+            BadResumptionToken: If the provided resumption token is invalid or expired.
+            CannotDisseminateFormat: If the specified metadata_prefix is not supported by the OAI server.
+            NoRecordsMatch: If no records match the provided criteria.
+            NoSetHierarchy: If set-based harvesting is requested but the OAI server does not support sets.
 
         """
         _query = {
@@ -256,7 +257,8 @@ class Scythe:
             until: An optional date string specifying the end of a date range for harvesting records.
             metadata_prefix: The metadata format for the records to be harvested. Defaults to "oai_dc".
             set_: An optional set identifier to restrict the harvest to records within a specific set.
-            resumption_token: An optional token for pagination, used to continue a request for the next page of identifiers.
+            resumption_token: An optional token for pagination, used to continue a request for the next page of
+                identifiers.
             ignore_deleted: If True, skip records flagged as deleted in the response.
 
         Yields:
@@ -264,10 +266,10 @@ class Scythe:
                 or response from the server.
 
         Raises:
-            badResumptionToken: If the provided resumption token is invalid or expired.
-            cannotDisseminateFormat: If the specified metadata_prefix is not supported by the OAI server.
-            noRecordsMatch: If no records match the provided criteria.
-            noSetHierarchy: If set-based harvesting is requested but the OAI server does not support sets.
+            BadResumptionToken: If the provided resumption token is invalid or expired.
+            CannotDisseminateFormat: If the specified metadata_prefix is not supported by the OAI server.
+            NoRecordsMatch: If no records match the provided criteria.
+            NoSetHierarchy: If set-based harvesting is requested but the OAI server does not support sets.
 
         """
         _query = {
@@ -298,8 +300,8 @@ class Scythe:
             An iterator over OAIResponse or Set objects, representing an individual set or response from the server.
 
         Raises:
-            badResumptionToken: If the provided resumption token is invalid or expired.
-            noSetHierarchy: If the OAI server does not support sets or has no set hierarchy available.
+            BadResumptionToken: If the provided resumption token is invalid or expired.
+            NoSetHierarchy: If the OAI server does not support sets or has no set hierarchy available.
 
         """
         _query = {
@@ -319,8 +321,8 @@ class Scythe:
         Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#Identify>
 
         Returns:
-            Identify: An object encapsulating the server's identify response, which contains various pieces of information
-            about the OAI server.
+            An object encapsulating the server's identify response, which contains various pieces of information about
+                the OAI server.
 
         """
         query = {"verb": "Identify"}
@@ -344,9 +346,9 @@ class Scythe:
             An OAIResponse or Record object representing the requested record.
 
         Raises:
-            cannotDisseminateFormat: If the specified metadata_prefix is not supported by the OAI server
-                for the requested record.
-            idDoesNotExist: If the specified identifier does not correspond to any record in the OAI server.
+            CannotDisseminateFormat: If the specified metadata_prefix is not supported by the OAI server for
+                the requested record.
+            IdDoesNotExist: If the specified identifier does not correspond to any record in the OAI server.
 
         """
         query = {
@@ -372,11 +374,11 @@ class Scythe:
 
         Yields:
             An iterator over OAIResponse or MetadataFormat objects, each representing an individual metadata format
-            or response from the server.
+                or response from the server.
 
         Raises:
-            idDoesNotExist: If the specified identifier does not correspond to any record in the OAI server.
-            noMetadataFormats: If there are no metadata formats available for the requested record or repository.
+            IdDoesNotExist: If the specified identifier does not correspond to any record in the OAI server.
+            NoMetadataFormats: If there are no metadata formats available for the requested record or repository.
 
         """
         _query = {
