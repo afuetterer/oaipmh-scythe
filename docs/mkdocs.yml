@@ -4,6 +4,7 @@
 
 site_name: oaipmh-scythe
 site_description: A Scythe for harvesting OAI-PMH repositories.
+site_url: https://afuetterer.github.io/oaipmh-scythe/
 repo_name: afuetterer/oaipmh-scythe
 repo_url: https://github.com/afuetterer/oaipmh-scythe
 docs_dir: src
@@ -31,6 +32,7 @@ nav:
 
 theme:
   name: material
+  custom_dir: src/overrides
   features:
   - content.action.edit
   - content.action.view
@@ -73,3 +75,8 @@ markdown_extensions:
 - pymdownx.inlinehilite
 - pymdownx.snippets
 - pymdownx.superfences
+
+extra:
+  version:
+    provider: mike
+    alias: true

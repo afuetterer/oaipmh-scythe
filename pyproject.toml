@@ -41,6 +41,7 @@ dev = [
   "pre-commit~=3.6",
 ]
 docs = [
+  "mike~=2.0",
   "mkdocs~=1.5",
   "mkdocs-include-markdown-plugin~=6.0",
   "mkdocs-material~=9.5",
@@ -101,7 +102,7 @@ template = "docs"
 [tool.hatch.envs.docs.scripts]
 build = "mkdocs build --config-file=docs/mkdocs.yml"
 serve = "mkdocs serve --verbose --config-file=docs/mkdocs.yml"
-deploy = "mkdocs gh-deploy --force --config-file=docs/mkdocs.yml"
+deploy = "mike deploy --push --update-aliases $(hatch version) latest --config-file=docs/mkdocs.yml"
 
 # ruff
 # Ref: https://docs.astral.sh/ruff/configuration/

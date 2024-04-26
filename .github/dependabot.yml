@@ -30,6 +30,7 @@ updates:
   groups:
     docs:
       patterns:
+      - mike
       - mkdocs*
     test:
       patterns:
