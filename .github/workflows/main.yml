@@ -26,7 +26,7 @@ jobs:
     needs:
     - test
     steps:
-    - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+    - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
       with:
         fetch-depth: 0 # get all commits and tags
         token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
@@ -42,7 +42,7 @@ jobs:
         git add CITATION.cff
     - name: Create semantic release
       id: release
-      uses: python-semantic-release/python-semantic-release@137240c8cbc9da7a54f04a38d0555c268e48f756 # v9.4.0
+      uses: python-semantic-release/python-semantic-release@02fa4d21a2f06f31a8088508c6eacb57ee08f1b8 # v9.6.0
       with:
         # allows for python-semantic-release to push to protected main branch
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
