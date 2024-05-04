@@ -115,10 +115,6 @@ distlib==0.3.8 \
     --hash=sha256:034db59a0b96f8ca18035f36290806a9a6e6bd9d1ff91e45a7f172eb17e51784 \
     --hash=sha256:1530ea13e350031b6312d8580ddb6b27a104275a31106523b8f123787f494f64
     # via virtualenv
-editables==0.5 \
-    --hash=sha256:309627d9b5c4adc0e668d8c6fa7bac1ba7c8c5d415c2d27f60f081f8e80d1de2 \
-    --hash=sha256:61e5ffa82629e0d8bfe09bc44a07db3c1ab8ed1ce78a6980732870f19b5e7d4c
-    # via hatchling
 exceptiongroup==1.2.1 \
     --hash=sha256:5258b9ed329c5bbdd31a309f53cbfb0b155341807f6ff7606a1e801a891b29ad \
     --hash=sha256:a4785e48b045528f5bfe627b6ad554ff32def154f42372786903b7abcfe1aa16
@@ -131,12 +127,12 @@ h11==0.14.0 \
     --hash=sha256:8f19fbbe99e72420ff35c00b27a34cb9937e902a8b810e2c88300c6f0a3b699d \
     --hash=sha256:e3fe4ac4b851c468cc8363d500db52c2ead036020723024a109d37346efaa761
     # via httpcore
-hatch==1.9.7 \
-    --hash=sha256:0ffb5eae45127a6718f074cb80ce3fbab452fda1bb5144f9743da961f90eb57d \
-    --hash=sha256:19a7b82179f94f2adddbad76aa7e65ab90cad55ab103d53827637935c9e6624c
-hatchling==1.21.1 \
-    --hash=sha256:21e8c13f8458b219a91cb84e5b61c15bf786695d1c4fabc29e91e78f94bfe892 \
-    --hash=sha256:bba440453a224e7d4478457fa2e8d8c3633765bafa02975a6b53b9bf917980bc
+hatch==1.10.0 \
+    --hash=sha256:0d68a7d3efa225bedb7a8bb773a347fdc16d5e064aef5fb0411de57cc9abd08a \
+    --hash=sha256:c5ad802dd3dd8dd9d92c7e9ac23b8d5bd7f17961b1f7ce7f7134ba397e5e808c
+hatchling==1.24.2 \
+    --hash=sha256:41ddc27cdb25db9ef7b68bef075f829c84cb349aa1bff8240797d012510547b0 \
+    --hash=sha256:5576ad05227cf96bb4bfd3a5dce31aa53eff05e95da57b40769bd5a3096b31b1
     # via hatch
 httpcore==1.0.5 \
     --hash=sha256:34a38e2f9291467ee3b44e89dd52615370e152954ba21721378a87b2960f7a61 \
@@ -310,9 +306,10 @@ uv==0.1.39 \
     --hash=sha256:cd6d9629ab0e22ab2336b8d6363573ea5a7060ef82ff5d3e6da4b1b30522ef13 \
     --hash=sha256:ce911087f56edc97a5792c17f682ed7611fedead0ea117f56bb6f3942eb3e7b3 \
     --hash=sha256:fba96b3049aea5c1394cd360e5900e4af39829df48ed6fc55eba115c00c8195a
-virtualenv==20.25.3 \
-    --hash=sha256:7bb554bbdfeaacc3349fa614ea5bff6ac300fc7c335e9facf3a3bcfc703f45be \
-    --hash=sha256:8aac4332f2ea6ef519c648d0bc48a5b1d324994753519919bddbb1aff25a104e
+    # via hatch
+virtualenv==20.26.1 \
+    --hash=sha256:604bfdceaeece392802e6ae48e69cec49168b9c5f4a44e483963f9242eb0e78b \
+    --hash=sha256:7aa9982a728ae5892558bff6a2839c00b9ed145523ece2274fad6f414690ae75
     # via hatch
 zipp==3.18.1 \
     --hash=sha256:206f5a15f2af3dbaee80769fb7dc6f249695e940acca08dfb2a4769fe61e538b \
