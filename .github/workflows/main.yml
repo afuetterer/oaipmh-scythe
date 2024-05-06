@@ -30,24 +30,12 @@ jobs:
       with:
         fetch-depth: 0 # get all commits and tags
         token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
-    - name: Set up Python 3.12
-      uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
-      with:
-        python-version: '3.12'
-    - name: Install pre-requisites (e.g. hatch)
-      run: python -m pip install --require-hashes --requirement=.github/requirements/ci.txt
-    - name: Update version and date in CITATION.cff
-      run: |
-        hatch run release:update-citation
-        git add CITATION.cff
     - name: Create semantic release
       id: release
       uses: python-semantic-release/python-semantic-release@6c41ec339e0e5d9802ec81f635de67f9fd940f53 # v9.7.1
       with:
         # allows for python-semantic-release to push to protected main branch
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
-        git_committer_name: github-actions[bot]
-        git_committer_email: 41898282+github-actions[bot]@users.noreply.github.com
     - name: Publish package to GitHub Release
       uses: python-semantic-release/upload-to-gh-release@0f96c02a48278aff14251e9f1a0d73122a8c638b
       if: ${{ steps.release.outputs.released }} == 'true'
