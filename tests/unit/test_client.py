@@ -128,3 +128,27 @@ def test_auth_arguments_usage(respx_mock: MockRouter) -> None:
     respx_mock.get("https://zenodo.org/oai2d").mock(return_value=httpx.Response(200))
     oai_response = scythe.harvest(query)
     assert oai_response.http_response.request.headers["authorization"]
+
+
+@pytest.mark.parametrize("timeout", [10, 10.0, 0.1])
+def test_valid_custom_timeout(timeout):
+    with Scythe("https://zenodo.org/oai2d", timeout=timeout) as scythe:
+        assert scythe.client.timeout
+
+
+@pytest.mark.parametrize("timeout", [-1, -1.0, 0, 0.0])
+def test_invalid_custom_timeout(timeout):
+    with pytest.raises(ValueError, match="Invalid value for 'timeout'"):
+        Scythe("https://zenodo.org/oai2d", timeout=timeout)
+
+
+@pytest.mark.parametrize("retry_after", [10, 10.0, 0.1])
+def test_valid_custom_retry_after(retry_after):
+    with Scythe("https://zenodo.org/oai2d", default_retry_after=retry_after) as scythe:
+        assert scythe.default_retry_after
+
+
+@pytest.mark.parametrize("retry_after", [-1, -1.0, 0, 0.0])
+def test_invalid_custom_retry_after(retry_after):
+    with pytest.raises(ValueError, match="Invalid value for 'default_retry_after'"):
+        Scythe("https://zenodo.org/oai2d", default_retry_after=retry_after)

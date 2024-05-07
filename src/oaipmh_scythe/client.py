@@ -81,11 +81,11 @@ class Scythe:
         iterator: type[BaseOAIIterator] = OAIItemIterator,
         max_retries: int = 0,
         retry_status_codes: Iterable[int] | None = None,
-        default_retry_after: int = 60,
+        default_retry_after: int | float = 60,
         class_mapping: dict[str, type[OAIItem]] | None = None,
         encoding: str = "utf-8",
         auth: AuthTypes | None = None,
-        timeout: int = 60,
+        timeout: int | float = 60,
     ):
         self.endpoint = endpoint
         if http_method not in ("GET", "POST"):
@@ -97,11 +97,18 @@ class Scythe:
             raise TypeError("Argument 'iterator' must be subclass of %s" % BaseOAIIterator.__name__)
         self.max_retries = max_retries
         self.retry_status_codes = retry_status_codes or (503,)
+        if default_retry_after <= 0:
+            raise ValueError(
+                "Invalid value for 'default_retry_after': %s. default_retry_after must be positive int or float."
+                % default_retry_after
+            )
         self.default_retry_after = default_retry_after
         self.oai_namespace = OAI_NAMESPACE
         self.class_mapping = class_mapping or DEFAULT_CLASS_MAP
         self.encoding = encoding
         self.auth = auth
+        if timeout <= 0:
+            raise ValueError("Invalid value for 'timeout': %s. Timeout must be positive int or float." % timeout)
         self.timeout = timeout
         self._client: httpx.Client | None = None
 
@@ -388,7 +395,7 @@ class Scythe:
         query = remove_none_values(_query)
         yield from self.iterator(self, query)
 
-    def get_retry_after(self, http_response: httpx.Response) -> int:
+    def get_retry_after(self, http_response: httpx.Response) -> int | float:
         """Determine the appropriate time to wait before retrying a request, based on the server's response.
 
         Check the status code of the provided HTTP response. If it's 503 (Service Unavailable),
