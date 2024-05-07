@@ -7,7 +7,7 @@ Welcome to `oaipmh-scythe`, an updated and modernized version of the original
 | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | __Docs__    | [![docs][docs-badge]][docs-workflow]                                                                                                                                                                                                  |
 | __Package__ | [![pypi-version][pypi-version-badge]][pypi-url] [![pypi-python-versions][pypi-python-versions-badge]][pypi-url] [![all-downloads][all-downloads-badge]][pepy-tech-url] [![monthly-downloads][monthly-downloads-badge]][pepy-tech-url] |
-| __Meta__    | [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license]                                                    |
+| __Meta__    | [![doi][doi-badge]][doi-url] [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![hatch][hatch-badge]][hatch] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license]                       |
 
 `oaipmh-scythe` is a lightweight [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html) client library
 written in Python. It has been designed for conveniently retrieving data from OAI interfaces the Pythonic way:
@@ -88,6 +88,8 @@ This is a fork of [sickle](https://github.com/mloesch/sickle) which was original
 [docs-badge]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/docs.yml/badge.svg
 [docs-url]: https://afuetterer.github.io/oaipmh-scythe
 [docs-workflow]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/docs.yml
+[doi-badge]: https://zenodo.org/badge/DOI/10.5281/zenodo.11125401.svg
+[doi-url]: https://doi.org/10.5281/zenodo.11125401
 [hatch]: https://github.com/pypa/hatch
 [hatch-badge]: https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg
 [license]: https://spdx.org/licenses/BSD-3-Clause.html
