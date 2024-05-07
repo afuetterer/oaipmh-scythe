@@ -14,5 +14,9 @@ keywords:
 - metadata
 - oai-pmh
 - oai-pmh-client
+identifiers:
+- description: This is the collection of archived snapshots of all versions of oaipmh-scythe
+  type: doi
+  value: 10.5281/zenodo.11125401
 version: 0.13.0
 date-released: 2024-05-07
