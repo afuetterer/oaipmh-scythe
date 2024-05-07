@@ -3,7 +3,7 @@
 Welcome to `oaipmh-scythe`, an updated and modernized version of the original
 [sickle](https://github.com/mloesch/sickle), now with additional features and ongoing maintenance.
 
-| __CI__      | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow]                                                                                        |
+| __CI__      | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] [![codeql][codeql-badge]][codeql-workflow]                                             |
 | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | __Docs__    | [![docs][docs-badge]][docs-workflow]                                                                                                                                                                                                  |
 | __Package__ | [![pypi-version][pypi-version-badge]][pypi-url] [![pypi-python-versions][pypi-python-versions-badge]][pypi-url] [![all-downloads][all-downloads-badge]][pepy-tech-url] [![monthly-downloads][monthly-downloads-badge]][pepy-tech-url] |
@@ -82,6 +82,8 @@ This is a fork of [sickle](https://github.com/mloesch/sickle) which was original
 [all-downloads-badge]: https://static.pepy.tech/badge/oaipmh-scythe
 [ci-badge]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/main.yml/badge.svg
 [ci-workflow]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/main.yml
+[codeql-badge]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/codeql.yml/badge.svg
+[codeql-workflow]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/codeql.yml
 [coverage-badge]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/afuetterer/fcb87d45f4d7defdfeffa65eb1d65f63/raw/coverage-badge.json
 [docs-badge]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/docs.yml/badge.svg
 [docs-url]: https://afuetterer.github.io/oaipmh-scythe
