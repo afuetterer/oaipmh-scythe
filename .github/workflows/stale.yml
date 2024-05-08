@@ -5,15 +5,14 @@ on:
   schedule:
     # run once a week at midnight of sunday
   - cron: 0 0 * * 0
-  # run manually from actions tab
-  workflow_dispatch:
+  workflow_dispatch: # run manually from actions tab
 
 permissions:
   contents: read
 
 jobs:
   stale:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       issues: write
       pull-requests: write

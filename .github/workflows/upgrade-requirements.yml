@@ -8,8 +8,7 @@ on:
   schedule:
     # run once a month at midnight of the first day of the month
   - cron: 0 0 1 * *
-  # run manually from actions tab
-  workflow_dispatch:
+  workflow_dispatch: # run manually from actions tab
 
 permissions:
   contents: read
@@ -20,7 +19,7 @@ jobs:
       contents: write # for peter-evans/create-pull-request to create branch
       pull-requests: write # for peter-evans/create-pull-request to create a PR
     name: Upgrade requirements
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
     - name: Install uv

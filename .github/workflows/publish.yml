@@ -3,7 +3,7 @@ name: Publish package to PyPI
 on:
   release:
     types: [created]
-  workflow_dispatch:
+  workflow_dispatch: # run manually from actions tab
 
 permissions:
   contents: read
@@ -12,7 +12,7 @@ jobs:
   publish:
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     environment: publish
     permissions:
       id-token: write
