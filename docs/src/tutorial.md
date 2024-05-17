@@ -273,7 +273,7 @@ You could then save the returned responses to disk:
 
 ```python
 with open("response.xml", "w") as f:
-    f.write(next(responses).raw.encode("utf-8"))
+    f.write(next(responses).content.decode("utf-8"))
 ```
 
 ## Ignoring Deleted Records
