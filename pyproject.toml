@@ -243,10 +243,10 @@ tag_format = "{version}"
 version_variables = [
   "src/oaipmh_scythe/__about__.py:__version__",
 ]
-assets = ["CITATION.cff"]
 build_command = """
 sed -i "s/^version: .*/version: $NEW_VERSION/" CITATION.cff
 sed -i "s/^date-released: .*/date-released: $(date "+%Y-%m-%d")/" CITATION.cff
+git add CITATION.cff
 python -m pip install "build[uv]"
 python -m build --installer=uv
 """
