@@ -153,11 +153,10 @@ def test_auth_arguments() -> None:
         assert scythe.client.auth
 
 
-def test_auth_arguments_usage(respx_mock: MockRouter) -> None:
+def test_auth_arguments_usage(respx_mock: MockRouter, mock_identify: Route) -> None:
     scythe = Scythe("https://zenodo.org/oai2d", auth=auth)
-    respx_mock.get("https://zenodo.org/oai2d").mock(return_value=httpx.Response(200))
-    oai_response = scythe.harvest(query)
-    assert oai_response.http_response.request.headers["authorization"]
+    http_response = scythe._request(query)
+    assert http_response.request.headers["authorization"]
 
 
 def test_identify(scythe: Scythe, mock_identify: Route) -> None:
