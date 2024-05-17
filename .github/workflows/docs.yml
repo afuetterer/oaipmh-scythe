@@ -37,7 +37,9 @@ jobs:
       run: python -m pip install --require-hashes --requirement=.github/requirements/ci.txt
     - run: hatch run docs:build
       if: github.event_name == 'pull_request'
-    - run: hatch run docs:deploy
+    - run: |
+        hatch version
+        hatch run docs:deploy
       if: contains(fromJSON('["release", "workflow_dispatch"]'), github.event_name)
       env:
         GIT_COMMITTER_NAME: github-actions[bot]
