@@ -97,4 +97,4 @@ jobs:
     steps:
     - run: sudo apt-get install tree # workaround for "tree: command not found" in baipp
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
-    - uses: hynek/build-and-inspect-python-package@4aea7de65ba374f49b5f549cd471b61de2ef19d3 # v2.5.0
+    - uses: hynek/build-and-inspect-python-package@b4fc3f6ba2b3da04f09659be99e2a29fb6146a61 # v2.6.0
