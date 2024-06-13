@@ -202,6 +202,7 @@ class Scythe:
         set_: str | None = None,
         resumption_token: str | None = None,
         ignore_deleted: bool = False,
+        **kwargs,
     ) -> Iterator[OAIResponse | Record]:
         """Issue a ListRecords request to the OAI server.
 
@@ -218,6 +219,7 @@ class Scythe:
             set_: An optional set identifier to restrict the harvest to records within a specific set.
             resumption_token: An optional token for pagination, used to continue a request for the next page of records.
             ignore_deleted: If True, skip records flagged as deleted in the response.
+            **kwargs: Additional parameters to include in the request.
 
         Yields:
             An iterator over OAIResponse or Record objects, each representing an individual record or response
@@ -239,6 +241,7 @@ class Scythe:
             "set": set_,
             "resumptionToken": resumption_token,
         }
+        _query.update(kwargs)
         query = remove_none_values(filter_dict_except_resumption_token(_query))
         yield from self.iterator(self, query, ignore_deleted=ignore_deleted)
 
