@@ -42,8 +42,8 @@ with Scythe("https://zenodo.org/oai2d") as scythe:
 
 You can install `oaipmh-scythe` via pip from [PyPI][pypi-url]:
 
-```console
-python -m pip install oaipmh-scythe
+```shell-session
+$ python -m pip install oaipmh-scythe
 ```
 
 ## Documentation

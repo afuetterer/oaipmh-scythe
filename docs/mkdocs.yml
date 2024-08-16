@@ -38,6 +38,7 @@ theme:
   - content.action.view
   - content.code.annotate
   - content.code.copy
+  - content.code.select
   - navigation.footer
   palette:
   - media: '(prefers-color-scheme: light)'
@@ -69,6 +70,7 @@ plugins:
 markdown_extensions:
 - admonition
 - pymdownx.highlight:
+    use_pygments: true
     anchor_linenums: true
     line_spans: __span
     pygments_lang_class: true
@@ -80,3 +82,6 @@ extra:
   version:
     provider: mike
     alias: true
+
+extra_css:
+- css/code_select.css
