@@ -26,18 +26,18 @@ jobs:
     needs:
     - test
     steps:
-    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       with:
         fetch-depth: 0 # get all commits and tags
         token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
     - name: Create semantic release
       id: release
-      uses: python-semantic-release/python-semantic-release@9555482f978fee890bd79b2ebac3095a20217375 # v9.7.3
+      uses: python-semantic-release/python-semantic-release@dec06aa649fddae6610bc64878868498bfcbad7b # v9.8.6
       with:
         # allows for python-semantic-release to push to protected main branch
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
     - name: Publish package to GitHub Release
-      uses: python-semantic-release/upload-to-gh-release@0f96c02a48278aff14251e9f1a0d73122a8c638b
+      uses: python-semantic-release/upload-to-gh-release@0dcddac3ba7b691d7a3fd4586b640d7b214a0016
       if: ${{ steps.release.outputs.released }} == 'true'
       with:
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
