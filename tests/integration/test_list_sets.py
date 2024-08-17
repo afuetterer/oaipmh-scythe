@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 @pytest.mark.default_cassette("list_sets.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_sets(scythe: Scythe) -> None:
     sets = scythe.list_sets()
     assert isinstance(sets, Iterator)
@@ -30,7 +30,7 @@ def test_list_sets(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_sets.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_sets_with_valid_resumption_token(scythe: Scythe) -> None:
     token = "eyJzZWVkIjowLjcwNjgzOTQzNjM5NDY1MTksInBhZ2UiOjIsImt3YXJncyI6e319.ZYazJA"  # spellchecker:disable-line
     sets = scythe.list_sets(resumption_token=token)
@@ -40,7 +40,7 @@ def test_list_sets_with_valid_resumption_token(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_sets.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_sets_with_invalid_resumption_token(scythe: Scythe) -> None:
     # badResumptionToken
     sets = scythe.list_sets(resumption_token="XXX")

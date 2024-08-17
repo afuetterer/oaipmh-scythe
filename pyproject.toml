@@ -2,6 +2,12 @@
 # Ref: https://hatch.pypa.io/latest/config/metadata/
 # ------------------------------------------------------------------------------
 
+[build-system]
+build-backend = "hatchling.build"
+requires = [
+  "hatchling",
+]
+
 [project]
 name = "oaipmh-scythe"
 description = "A Scythe for harvesting OAI-PMH repositories."
@@ -11,7 +17,7 @@ keywords = [
   "oai-pmh",
   "oai-pmh-client",
 ]
-license = {text = "BSD-3-Clause"}
+license = { text = "BSD-3-Clause" }
 authors = [
   { name = "Heinz-Alexander Fütterer" },
 ]
@@ -36,18 +42,17 @@ dependencies = [
   "httpx>=0.25",
   "lxml>=5.1",
 ]
-[project.optional-dependencies]
-dev = [
+optional-dependencies.dev = [
   "pre-commit~=3.6",
 ]
-docs = [
+optional-dependencies.docs = [
   "mike~=2.0",
   "mkdocs~=1.5",
   "mkdocs-include-markdown-plugin~=6.0",
   "mkdocs-material~=9.5",
   "mkdocstrings[python]~=0.24",
 ]
-test = [
+optional-dependencies.test = [
   "pytest~=8.0",
   "pytest-cov~=5.0",
   "pytest-mock~=3.12",
@@ -56,17 +61,10 @@ test = [
   "pytest-xdist~=3.5",
   "respx~=0.20",
 ]
-[project.urls]
-Changelog = "https://github.com/afuetterer/oaipmh-scythe/blob/main/CHANGELOG.md"
-Documentation = "https://afuetterer.github.io/oaipmh-scythe"
-Issues = "https://github.com/afuetterer/oaipmh-scythe/issues"
-Repository = "https://github.com/afuetterer/oaipmh-scythe.git"
-
-[build-system]
-build-backend = "hatchling.build"
-requires = [
-  "hatchling",
-]
+urls.Changelog = "https://github.com/afuetterer/oaipmh-scythe/blob/main/CHANGELOG.md"
+urls.Documentation = "https://afuetterer.github.io/oaipmh-scythe"
+urls.Issues = "https://github.com/afuetterer/oaipmh-scythe/issues"
+urls.Repository = "https://github.com/afuetterer/oaipmh-scythe.git"
 
 [tool.hatch.build.targets.sdist]
 include = [
@@ -75,17 +73,17 @@ include = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/oaipmh_scythe"]
+packages = [ "src/oaipmh_scythe" ]
 
 [tool.hatch.version]
 path = "src/oaipmh_scythe/__about__.py"
 
 [tool.hatch.envs.default]
 installer = "uv"
-features = ["dev", "test"]
-post-install-commands = ["pre-commit install"]
+features = [ "dev", "test" ]
+post-install-commands = [ "pre-commit install" ]
 [tool.hatch.envs.default.scripts]
-check = ["lint", "typecheck"]
+check = [ "lint", "typecheck" ]
 lint = "SKIP=mypy pre-commit run --all-files --color=always --show-diff-on-failure"
 typecheck = "pre-commit run --all-files --color=always --show-diff-on-failure mypy"
 test = "pytest {args:tests}"
@@ -97,34 +95,26 @@ cov-total = """
 """
 
 [tool.hatch.envs.docs]
-features = ["docs"]
+features = [ "docs" ]
 template = "docs"
 [tool.hatch.envs.docs.scripts]
 build = "mkdocs build --config-file=docs/mkdocs.yml"
 serve = "mkdocs serve --verbose --config-file=docs/mkdocs.yml"
 deploy = "mike deploy --push --update-aliases $(hatch version) latest --config-file=docs/mkdocs.yml"
 
-# ruff
-# Ref: https://docs.astral.sh/ruff/configuration/
-# ------------------------------------------------------------------------------
-
-[tool.ruff]
+[tool.ruff] # Ref: https://docs.astral.sh/ruff/configuration/
 line-length = 120
-src = ["src", "tests"]
-
-[tool.ruff.format]
+src = [ "src", "tests" ]
 # Ref: https://docs.astral.sh/ruff/settings/#format
-docstring-code-format = true
-
-[tool.ruff.lint]
+format.docstring-code-format = true
 # Ref: https://docs.astral.sh/ruff/rules/
-extend-select = [
+lint.extend-select = [
   "A",    # flake8-builtins
   "B",    # flake8-bugbear
   "C4",   # flake8-comprehensions
   "D",    # pydocstyle
-  "I",    # isort
   "G",    # flake8-logging-format
+  "I",    # isort
   "PERF", # perflint-perf
   "PGH",  # pygrep-hooks
   "PIE",  # flake8-pie
@@ -134,70 +124,55 @@ extend-select = [
   "RSE",  # flake8-raise
   "RUF",  # ruff
   "SIM",  # flake8-simplify
-  "TCH",  # flake8-type-checking
   "T20",  # flake8-print
+  "TCH",  # flake8-type-checking
   "UP",   # pyupgrade
   "W",    # pycodestyle
   "YTT",  # flake8-2020
 ]
-ignore = [
+lint.ignore = [
   "D105", # undocumented-magic-method
   "D107", # undocumented-public-init
 ]
-unfixable = [
-  "F401", # unused-import
-]
-isort.known-first-party = ["oaipmh_scythe"]
-pydocstyle.convention = "google"
-
-[tool.ruff.lint.per-file-ignores]
-"src/oaipmh_scythe/__about__.py" = [
+lint.per-file-ignores."src/oaipmh_scythe/__about__.py" = [
   "D100", # undocumented-public-module
 ]
-"src/oaipmh_scythe/client.py" = [
+lint.per-file-ignores."src/oaipmh_scythe/client.py" = [
   "PLR0913", # too-many-arguments
 ]
-"tests/*" = [
-  "D100",     # undocumented-public-module
-  "D103",     # undocumented-public-function
-  "PLR2004",  # magic-value-comparison
+lint.per-file-ignores."tests/**.py" = [
+  "D",       # pydocstyle
+  "PLR2004", # magic-value-comparison
 ]
+lint.unfixable = [
+  "F401", # unused-import
+]
+lint.isort.known-first-party = [ "oaipmh_scythe" ]
+lint.pydocstyle.convention = "google"
 
-# sp-repo-review
-# Ref: https://github.com/scientific-python/cookie/tree/main#list-of-checks
-# ------------------------------------------------------------------------------
-
-[tool.repo-review]
+[tool.repo-review] # Ref: https://github.com/scientific-python/cookie/tree/main#list-of-checks
 ignore = [
   # Pre-commit
-  "PC111",  # blacken-docs
-  "PC160",  # codespell
-  "PC170",  # pygrep hooks
-  "PC180",  # prettier
-  "MY",     # mypy
-  "RTD",    # read the docs
+  "PC111", # blacken-docs
+  "PC160", # codespell
+  "PC170", # pygrep hooks
+  "PC180", # prettier
+  "MY",    # mypy
+  "RTD",   # read the docs
 ]
 
-# pytest
-# Ref: https://docs.pytest.org/en/stable/customize.html
-# ------------------------------------------------------------------------------
-
-[tool.pytest.ini_options]
+[tool.pytest.ini_options] # Ref: https://docs.pytest.org/en/stable/customize.html
 minversion = "8.0"
-addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
-filterwarnings = ["error"]
+addopts = [ "-ra", "--showlocals", "--strict-markers", "--strict-config" ]
+filterwarnings = [ "error" ]
 log_cli_level = "INFO"
 xfail_strict = true
 testpaths = "tests"
 
-# coverage.py
-# Ref: https://coverage.readthedocs.io/en/latest/config.html
-# ------------------------------------------------------------------------------
-
-[tool.coverage.run]
+[tool.coverage.run] # Ref: https://coverage.readthedocs.io/en/latest/config.html
 branch = true
 parallel = true
-source = ["oaipmh_scythe"]
+source = [ "oaipmh_scythe" ]
 omit = [
   "__about__.py",
 ]
@@ -212,31 +187,19 @@ show_missing = true
 skip_covered = true
 skip_empty = true
 
-# mypy
-# Ref: https://mypy.readthedocs.io/en/stable/config_file.html#using-a-pyproject-toml-file
-# ------------------------------------------------------------------------------
-
-[tool.mypy]
+[tool.mypy] # Ref: https://mypy.readthedocs.io/en/stable/config_file.html#using-a-pyproject-toml-file
 python_version = "3.10"
 pretty = true
 show_column_numbers = true
 show_error_context = true
-enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+enable_error_code = [ "ignore-without-code", "redundant-expr", "truthy-bool" ]
 warn_unreachable = true
 
-# licensecheck
-# Ref: https://github.com/FHPythonUtils/LicenseCheck/#example-1-pyprojecttoml
-# ------------------------------------------------------------------------------
-
-[tool.licensecheck]
+[tool.licensecheck] # Ref: https://github.com/FHPythonUtils/LicenseCheck/#example-1-pyprojecttoml
 using = "PEP631"
 format = "ansi"
 
-# python-semantic-release
-# Ref: https://python-semantic-release.readthedocs.io/en/latest/configuration.html#settings
-# ------------------------------------------------------------------------------
-
-[tool.semantic_release]
+[tool.semantic_release] # Ref: https://python-semantic-release.readthedocs.io/en/latest/configuration.html#settings
 commit_author = "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
 commit_message = "chore: release {version}\n\nAutomatically generated by python-semantic-release [skip ci]"
 major_on_zero = false
@@ -254,10 +217,6 @@ python -m build --installer=uv
 changelog.template_dir = ".github/templates"
 changelog.environment.keep_trailing_newline = true
 
-# typos
-# Ref: https://github.com/crate-ci/typos/blob/master/docs/reference.md
-# ------------------------------------------------------------------------------
-
-[tool.typos]
+[tool.typos] # Ref: https://github.com/crate-ci/typos/blob/master/docs/reference.md
 # add "spellchecker:disable-line" to ignore specific lines
-default.extend-ignore-re = ["(?Rm)^.*# spellchecker:disable-line$"]
+default.extend-ignore-re = [ "(?Rm)^.*# spellchecker:disable-line$" ]

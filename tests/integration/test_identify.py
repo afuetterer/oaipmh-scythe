@@ -12,21 +12,21 @@ from oaipmh_scythe.models import Identify
 
 
 @pytest.mark.default_cassette("identify.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_close(scythe: Scythe) -> None:
     scythe.identify()
     scythe.close()
 
 
 @pytest.mark.default_cassette("identify.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_context_manager() -> None:
     with Scythe("https://zenodo.org/oai2d") as scythe:
         scythe.identify()
 
 
 @pytest.mark.default_cassette("identify.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_identify(scythe: Scythe) -> None:
     identify = scythe.identify()
     assert isinstance(identify, Identify)
@@ -34,7 +34,7 @@ def test_identify(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("identify.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_non_oai_pmh_url() -> None:
     scythe = Scythe("https://duckduckgo.com/")
     with pytest.raises(ValueError, match="Identify element not found in the XML"):

@@ -23,7 +23,7 @@ TITLE_2 = "Déclaration N°9 de La Nouvelle Donne: Tel est pris qui croyait pren
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_with_default_metadata_prefix(scythe: Scythe) -> None:
     records = scythe.list_records(metadata_prefix="oai_dc")
     assert isinstance(records, Iterator)
@@ -33,7 +33,7 @@ def test_list_records_with_default_metadata_prefix(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_without_metadata_prefix(scythe: Scythe) -> None:
     records = scythe.list_records()
     assert isinstance(records, Iterator)
@@ -43,7 +43,7 @@ def test_list_records_without_metadata_prefix(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_with_valid_metadata_prefix(scythe: Scythe) -> None:
     records = scythe.list_records(metadata_prefix="datacite")
     assert isinstance(records, Iterator)
@@ -53,7 +53,7 @@ def test_list_records_with_valid_metadata_prefix(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_with_invalid_metadata_prefix(scythe: Scythe) -> None:
     # cannotDisseminateFormat
     records = scythe.list_records(metadata_prefix="XXX")
@@ -62,7 +62,7 @@ def test_list_records_with_invalid_metadata_prefix(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_with_from(scythe: Scythe) -> None:
     records = scythe.list_records(from_="2024-01-16")
     assert isinstance(records, Iterator)
@@ -71,7 +71,7 @@ def test_list_records_with_from(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_with_until(scythe: Scythe) -> None:
     records = scythe.list_records(until="2024-01-17")
     assert isinstance(records, Iterator)
@@ -80,7 +80,7 @@ def test_list_records_with_until(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_with_from_and_until(scythe: Scythe) -> None:
     records = scythe.list_records(from_="2024-01-16", until="2024-01-17")
     record = next(records)
@@ -88,7 +88,7 @@ def test_list_records_with_from_and_until(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_with_valid_set(scythe: Scythe) -> None:
     records = scythe.list_records(set_="software")
     record = next(records)
@@ -96,7 +96,7 @@ def test_list_records_with_valid_set(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_with_invalid_set(scythe: Scythe) -> None:
     # noRecordsMatch
     records = scythe.list_records(set_="XXX")
@@ -105,7 +105,7 @@ def test_list_records_with_invalid_set(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_with_valid_resumption_token(scythe: Scythe) -> None:
     token = "eJyNzE1vgjAcgPHv8j"
     records = scythe.list_records(resumption_token=token)
@@ -115,7 +115,7 @@ def test_list_records_with_valid_resumption_token(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_with_invalid_resumption_token(scythe: Scythe) -> None:
     # badResumptionToken
     records = scythe.list_records(resumption_token="XXX")
@@ -124,7 +124,7 @@ def test_list_records_with_invalid_resumption_token(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_raises_no_records_match(scythe: Scythe) -> None:
     # noRecordsMatch
     records = scythe.list_records(from_="2025-01-15")
@@ -133,7 +133,7 @@ def test_list_records_raises_no_records_match(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_ignore_deleted(scythe: Scythe) -> None:
     records = scythe.list_records(ignore_deleted=True)
     records = list(records)
@@ -143,7 +143,7 @@ def test_list_records_ignore_deleted(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_oai_response(scythe: Scythe) -> None:
     scythe.iterator = OAIResponseIterator
     responses = scythe.list_records()

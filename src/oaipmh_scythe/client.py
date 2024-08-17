@@ -94,13 +94,12 @@ class Scythe:
         if inspect.isclass(iterator) and issubclass(iterator, BaseOAIIterator):
             self.iterator = iterator
         else:
-            raise TypeError("Argument 'iterator' must be subclass of %s" % BaseOAIIterator.__name__)
+            raise TypeError(f"Argument 'iterator' must be subclass of {BaseOAIIterator.__name__}")
         self.max_retries = max_retries
         self.retry_status_codes = retry_status_codes or (503,)
         if default_retry_after <= 0:
             raise ValueError(
-                "Invalid value for 'default_retry_after': %s. default_retry_after must be positive int or float."
-                % default_retry_after
+                f"Invalid value for 'default_retry_after': {default_retry_after}. default_retry_after must be positive int or float."
             )
         self.default_retry_after = default_retry_after
         self.oai_namespace = OAI_NAMESPACE
@@ -108,7 +107,7 @@ class Scythe:
         self.encoding = encoding
         self.auth = auth
         if timeout <= 0:
-            raise ValueError("Invalid value for 'timeout': %s. Timeout must be positive int or float." % timeout)
+            raise ValueError(f"Invalid value for 'timeout': {timeout}. Timeout must be positive int or float.")
         self.timeout = timeout
         self._client: httpx.Client | None = None
 
