@@ -34,19 +34,19 @@ repos:
     args: [--pytest-test-first]
 
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: bdf9bad34ed8102dee37a1fabb11ebc40d51063f  # frozen: v2.13.0
+  rev: a6273196190bb0f68caf1dc68073cf62c719f725  # frozen: v2.14.0
   hooks:
   - id: pretty-format-yaml
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 315c23f8562a5bafa15ab448ff542abe02d9e439  # frozen: 0.28.2
+  rev: e2dde74d0702d15f4f43e4f4fb93e301b4bc1e30  # frozen: 0.29.1
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 2cc3932954e8b388d77bb40f5418f7711a706d87  # frozen: 1.8.0
+  rev: 605ba23143facfe85233309cc9826b5b3d0fc528  # frozen: 2.2.1
   hooks:
   - id: pyproject-fmt
 
@@ -57,32 +57,32 @@ repos:
     args: [--number, --wrap=120, --ignore-missing-references]
     exclude: CHANGELOG.md|.changelog.md|docs/src/api
     additional_dependencies:
-    - mdformat-mkdocs[recommended]>=v2.0.7
+    - mdformat-mkdocs[recommended]==v3.0.0
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 2ca3d774ce61288db69efaea35298f70653dbcd3  # frozen: v0.4.0
+  rev: 8b5112a3b2ad121439a2092f8ff548c0d80f2514  # frozen: v0.6.1
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: 9db9854e3041219b1eb619872a2dfaf58adfb20b  # frozen: v1.9.0
+  rev: a22ad011a66f01f475842c80a05243a33679422d  # frozen: v1.11.1
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
     additional_dependencies:
-    - httpx==0.26.0
+    - httpx==0.27.0
     - lxml-stubs==0.5.1
     exclude: tests
 
 - repo: https://github.com/scientific-python/cookie
-  rev: d43e497727162f7edcfade1022237565c88d5347  # frozen: 2024.03.10
+  rev: 35368e874265d105e1ca3355df7ef51bbca8eba6  # frozen: 2024.08.19
   hooks:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: cff8374818cc1a9b5c92d3e4fe17e09b1cc0c35b  # frozen: v1.20.9
+  rev: cc99b94246254c1b3dfa6ea6111aa212b814a486  # frozen: v1.23.6
   hooks:
   - id: typos
     args: [--force-exclude]
@@ -94,7 +94,7 @@ repos:
   - id: licensecheck
 
 - repo: https://github.com/compilerla/conventional-pre-commit
-  rev: 4efeb931d635ed3e57749de4326b752b345c8372  # frozen: v3.2.0
+  rev: 8dc49e5ea0cab89785161620aa22a26f263661ca  # frozen: v3.4.0
   hooks:
   - id: conventional-pre-commit
     stages: [commit-msg]
