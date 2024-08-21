@@ -25,12 +25,12 @@ query = {"verb": "Identify"}
 auth = ("username", "password")
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_sleep(mocker: MockerFixture) -> MockType:
     return mocker.patch("time.sleep")
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_identify(respx_mock: MockRouter, identify_response: httpx.Response) -> Route:
     return respx_mock.get("https://zenodo.org/oai2d?verb=Identify").mock(return_value=identify_response)
 
@@ -165,7 +165,7 @@ def test_identify(scythe: Scythe, mock_identify: Route) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records(scythe: Scythe) -> None:
     records = scythe.list_records()
     assert isinstance(records, Iterator)
@@ -173,7 +173,7 @@ def test_list_records(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_identifiers(scythe: Scythe) -> None:
     headers = scythe.list_identifiers()
     assert isinstance(headers, Iterator)
@@ -181,7 +181,7 @@ def test_list_identifiers(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_metadata_formats.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_metadata_formats(scythe: Scythe, mocker) -> None:
     metadata_formats = scythe.list_metadata_formats()
     assert isinstance(metadata_formats, Iterator)
@@ -189,7 +189,7 @@ def test_list_metadata_formats(scythe: Scythe, mocker) -> None:
 
 
 @pytest.mark.default_cassette("list_sets.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_sets(scythe: Scythe, mocker) -> None:
     sets = scythe.list_sets()
     assert isinstance(sets, Iterator)
@@ -197,7 +197,7 @@ def test_list_sets(scythe: Scythe, mocker) -> None:
 
 
 @pytest.mark.default_cassette("get_record.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_get_record(scythe: Scythe) -> None:
     record = scythe.get_record(identifier="oai:zenodo.org:10357859")
     assert isinstance(record, Record)
