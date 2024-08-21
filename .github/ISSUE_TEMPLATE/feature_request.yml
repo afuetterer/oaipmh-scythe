@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest an idea for this project
+labels: ['type: feature']
+
+body:
+- type: markdown
+  attributes:
+    value: |
+      Thanks for taking the time to submit a feature request. Please provide a general summary of the issue in the Title above.
+- type: textarea
+  attributes:
+    label: Detailed Description
+    description: Provide a detailed description of the change or addition you are proposing.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Context
+    description: Why is this change important to you? How would you use it? How can it benefit other users?
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Possible Implementation
+    description: Not obligatory, but suggest an idea for implementing addition or change.
+  validations:
+    required: false
+
+# This issue template is adapted from:
+# "open-source-templates", https://github.com/TalAter/open-source-templates (MIT License).
