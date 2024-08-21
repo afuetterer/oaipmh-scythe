@@ -139,7 +139,7 @@ def test_list_records_ignore_deleted(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_records_response(scythe: Scythe) -> None:
     scythe.iterator = ResponseIterator
     _responses = scythe.list_records()
