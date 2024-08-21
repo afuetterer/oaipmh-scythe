@@ -180,7 +180,7 @@ lint.per-file-ignores."src/oaipmh_scythe/models/**.py" = [
 ]
 lint.per-file-ignores."tests/**.py" = [
   "D",       # pydocstyle
-  "PLR2004",  # magic-value-comparison
+  "PLR2004", # magic-value-comparison
 ]
 lint.unfixable = [
   "F401", # unused-import
