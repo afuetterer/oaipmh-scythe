@@ -19,7 +19,7 @@ TITLE = "Research Data Management Organiser (RDMO)"
 
 
 @pytest.mark.default_cassette("get_record.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_get_record_with_default_metadata_prefix(scythe: Scythe) -> None:
     record = scythe.get_record(identifier=IDENTIFIER, metadata_prefix="oai_dc")
     assert isinstance(record, Record)
@@ -27,7 +27,7 @@ def test_get_record_with_default_metadata_prefix(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("get_record.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_get_record_without_metadata_prefix(scythe: Scythe) -> None:
     record = scythe.get_record(identifier=IDENTIFIER)
     assert isinstance(record, Record)
