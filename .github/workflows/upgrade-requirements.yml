@@ -1,7 +1,3 @@
-# This CI job is adapted from:
-# build-and-inspect-python-package (2024-03-25), MIT license
-# Ref: https://github.com/hynek/build-and-inspect-python-package/blob/v2.2.1/.github/workflows/update-dependencies.yml
-
 name: Upgrade requirements
 
 on:
@@ -10,45 +6,12 @@ on:
   - cron: 0 0 1 * *
   workflow_dispatch: # run manually from actions tab
 
-permissions:
-  contents: read
+# Set permissions at the job level.
+permissions: {}
 
 jobs:
   upgrade:
     permissions:
-      contents: write # for peter-evans/create-pull-request to create branch
-      pull-requests: write # for peter-evans/create-pull-request to create a PR
-    name: Upgrade requirements
-    runs-on: ubuntu-24.04
-    steps:
-    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-    - name: Install uv
-      run: curl -LsSf https://astral.sh/uv/install.sh | sh
-    - name: Upgrade requirements
-      run: >
-        uv pip compile
-        --upgrade
-        --generate-hashes
-        --python-version=3.10
-        --output-file=.github/requirements/ci.txt
-        .github/requirements/ci.in
-      # Ref: https://github.com/peter-evans/create-pull-request
-    - uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6.1.0
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        branch: requirement-upgrades
-        committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-        author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-        title: 'build(deps-dev): upgrade ci requirements'
-        commit-message: 'build(deps-dev): upgrade ci requirements'
-        body: |
-          Monthly scheduled CI requirements upgrade (`uv pip compile --upgrade`).
-
-          > [!NOTE]
-          > Mark this PR as "ready for review" to trigger additional checks.
-        add-paths: .github/requirements/ci.txt
-        labels: |
-          type: build
-          deps: python
-        delete-branch: true
-        draft: true
+      contents: write
+      pull-requests: write
+    uses: afuetterer/.github/.github/workflows/_upgrade-requirements.yml@main
