@@ -20,7 +20,7 @@ def scythe() -> Scythe:
     return Scythe("https://zenodo.org/oai2d")
 
 
-@pytest.fixture()
+@pytest.fixture
 def identify_response() -> httpx.Response:
     identify_response_xml = """
     <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
