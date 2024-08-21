@@ -39,27 +39,28 @@ dynamic = [
   "version",
 ]
 dependencies = [
-  "httpx>=0.25",
-  "lxml>=5.1",
+  "httpx>=0.27",
+  "lxml>=5.3",
 ]
 optional-dependencies.dev = [
-  "pre-commit~=3.6",
+  "pre-commit~=3.8",
 ]
 optional-dependencies.docs = [
-  "mike~=2.0",
-  "mkdocs~=1.5",
+  "mike~=2.1",
+  "mkdocs~=1.6",
   "mkdocs-include-markdown-plugin~=6.0",
   "mkdocs-material~=9.5",
-  "mkdocstrings[python]~=0.24",
+  "mkdocs-minify-plugin~=0.7",
+  "mkdocstrings[python]~=0.25",
 ]
 optional-dependencies.test = [
-  "pytest~=8.0",
+  "pytest~=8.2",
   "pytest-cov~=5.0",
-  "pytest-mock~=3.12",
+  "pytest-mock~=3.14",
   "pytest-randomly~=3.15",
   "pytest-recording~=0.13",
-  "pytest-xdist~=3.5",
-  "respx~=0.20",
+  "pytest-xdist~=3.6",
+  "respx~=0.21",
 ]
 urls.Changelog = "https://github.com/afuetterer/oaipmh-scythe/blob/main/CHANGELOG.md"
 urls.Documentation = "https://afuetterer.github.io/oaipmh-scythe"
@@ -73,10 +74,16 @@ include = [
 ]
 
 [tool.hatch.build.targets.wheel]
+only-packages = true
 packages = [ "src/oaipmh_scythe" ]
 
 [tool.hatch.version]
 path = "src/oaipmh_scythe/__about__.py"
+
+[tool.hatch.env]
+requires = [
+  "hatch-pip-compile",
+]
 
 [tool.hatch.envs.default]
 installer = "uv"
@@ -94,9 +101,28 @@ cov-total = """
   python -c "import json;print(json.load(open('coverage.json'))['totals']['percent_covered_display'])"
 """
 
+[tool.hatch.envs.ci]
+dependencies = [
+  "build[uv]",
+  "hatch",
+  "pip",
+]
+detached = true # ignore the project installation itself
+type = "pip-compile"
+pip-compile-hashes = true
+pip-compile-installer = "uv"
+pip-compile-resolver = "uv"
+lock-filename = "requirements/{env_name}" # no .txt suffix, otherwise Dependabot will update this file as well
+
 [tool.hatch.envs.docs]
 features = [ "docs" ]
 template = "docs"
+type = "pip-compile"
+pip-compile-hashes = true
+pip-compile-installer = "uv"
+pip-compile-resolver = "uv"
+lock-filename = "requirements/{env_name}" # no .txt suffix, otherwise Dependabot will update this file as well
+
 [tool.hatch.envs.docs.scripts]
 build = "mkdocs build --config-file=docs/mkdocs.yml"
 serve = "mkdocs serve --verbose --config-file=docs/mkdocs.yml"

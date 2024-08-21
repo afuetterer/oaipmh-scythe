@@ -25,7 +25,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
         cache: pip
     - name: Install pre-requisites (e.g. hatch)
-      run: python -m pip install --require-hashes --requirement=.github/requirements/ci.txt
+      run: python -m pip install --require-hashes --requirement=requirements/ci
     - name: Run test suite
       run: hatch run cov
     - name: Generate coverage report
@@ -73,7 +73,7 @@ jobs:
     - run: python -Ic 'import oaipmh_scythe.__about__; print(oaipmh_scythe.__about__.__version__)'
     - name: Set up pipdeptree
       if: matrix.os == 'ubuntu-latest'
-      run: python -m pip install --require-hashes --requirement=.github/requirements/ci.txt
+      run: python -m pip install --require-hashes --requirement=requirements/ci
     - name: Write info to step summary
       if: matrix.os == 'ubuntu-latest'
       run: |
@@ -81,8 +81,8 @@ jobs:
           echo -e "### ✓ All dependencies installed successfully\n\n"
           echo '<details><summary>Installed Python packages (dependency tree)</summary>'
           echo -e "\n\`\`\`console"
-          echo "$ python -m pipdeptree --local-only --exclude=pip,pipdeptree"
-          python -m pipdeptree --local-only --exclude=pip,pipdeptree
+          echo "$ uv pip tree --package=oaipmh-scythe"
+          uv pip tree --package=oaipmh-scythe
           echo -e "\`\`\`\n</details>"
           echo '<details><summary>Outdated Python packages</summary>'
           echo -e "\n\`\`\`console"
