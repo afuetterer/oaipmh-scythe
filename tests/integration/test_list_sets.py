@@ -8,8 +8,8 @@ from collections.abc import Iterator
 from typing import TYPE_CHECKING
 
 import pytest
-from httpx import HTTPStatusError
 
+from oaipmh_scythe import BadResumptionToken
 from oaipmh_scythe.models import Set
 
 if TYPE_CHECKING:
@@ -26,7 +26,7 @@ def test_list_sets(scythe: Scythe) -> None:
     assert len(sets) == 10
     s = sets[0]
     assert isinstance(s, Set)
-    assert s.setName == "European Middleware Initiative"
+    assert s.set_name == "European Middleware Initiative"
 
 
 @pytest.mark.default_cassette("list_sets.yaml")
@@ -42,7 +42,6 @@ def test_list_sets_with_valid_resumption_token(scythe: Scythe) -> None:
 @pytest.mark.default_cassette("list_sets.yaml")
 @pytest.mark.vcr
 def test_list_sets_with_invalid_resumption_token(scythe: Scythe) -> None:
-    # badResumptionToken
     sets = scythe.list_sets(resumption_token="XXX")
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(BadResumptionToken, match="The value of the resumptionToken argument is invalid or expired."):
         sets = list(sets)

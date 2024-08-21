@@ -7,50 +7,31 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import pytest
-from lxml import etree
 
-from oaipmh_scythe.response import OAIResponse
+from oaipmh_scythe import IdDoesNotExist
+from oaipmh_scythe.models import Identify, OaiPmh
+from oaipmh_scythe.models.oai_pmh import OaiPmherror, OaiPmherrorcode
+from oaipmh_scythe.response import Response, _build_response, raise_for_error
 
 if TYPE_CHECKING:
-    from pytest_mock import MockerFixture
+    import httpx
 
 
-IDENTIFY_XML: str = """
-<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <responseDate>2023-11-09T09:53:46Z</responseDate>
-    <request verb="Identify">https://zenodo.org/oai2d</request>
-    <Identify>
-        <repositoryName>Zenodo</repositoryName>
-        <baseURL>https://zenodo.org/oai2d</baseURL>
-        <protocolVersion>2.0</protocolVersion>
-    </Identify>
-</OAI-PMH>
-"""
+def test_build_response(identify_response: httpx.Response) -> None:
+    response = _build_response(identify_response, metadata_prefix="oai_dc")
+    assert isinstance(response, Response)
+    assert isinstance(response.parsed, OaiPmh)
+    assert response.status_code == identify_response.status_code
+    assert response.content == identify_response.content
+    assert isinstance(response.parsed.identify, Identify)
+    assert response.parsed.identify.repository_name == "Zenodo"
 
 
-@pytest.fixture
-def mock_response(mocker: MockerFixture):
-    response = mocker.Mock()
-    response.text = IDENTIFY_XML
-    response.content = response.text.encode()
-    return response
+def test_raise_for_error_no_errors() -> None:
+    assert raise_for_error(None) is None
 
 
-def test_oai_response_raw(mock_response) -> None:
-    params = {"verb": "Identify"}
-    oai_response = OAIResponse(http_response=mock_response, params=params)
-    assert oai_response.raw == mock_response.text
-
-
-def test_oai_response_xml(mock_response):
-    params = {"verb": "Identify"}
-    oai_response = OAIResponse(http_response=mock_response, params=params)
-    assert isinstance(oai_response.xml, etree._Element)
-    assert oai_response.xml.tag == "{http://www.openarchives.org/OAI/2.0/}OAI-PMH"
-
-
-def test_oai_response_str(mock_response):
-    params = {"verb": "Identify"}
-    oai_response = OAIResponse(http_response=mock_response, params=params)
-    assert str(oai_response) == "<OAIResponse Identify>"
+def test_raise_for_error() -> None:
+    error = OaiPmherror(code=OaiPmherrorcode.ID_DOES_NOT_EXIST, value="No matching identifier")
+    with pytest.raises(IdDoesNotExist):
+        raise_for_error([error])
