@@ -35,7 +35,7 @@ def test_identify(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("identify.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_identify_response(scythe: Scythe) -> None:
     scythe.iterator = ResponseIterator
     response = scythe.identify()
