@@ -8,12 +8,12 @@ concurrency:
   group: ci-${{ github.head_ref }}
   cancel-in-progress: true
 
+# Set permissions at the job level.
+permissions: {}
+
 env:
   PYTHONUNBUFFERED: 1
   FORCE_COLOR: 1
-
-permissions:
-  contents: read
 
 jobs:
   test:
@@ -23,6 +23,8 @@ jobs:
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     needs:
     - test
     steps:
@@ -31,13 +33,7 @@ jobs:
         fetch-depth: 0 # get all commits and tags
         token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
     - name: Create semantic release
-      id: release
       uses: python-semantic-release/python-semantic-release@dec06aa649fddae6610bc64878868498bfcbad7b # v9.8.6
       with:
         # allows for python-semantic-release to push to protected main branch
-        github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
-    - name: Publish package to GitHub Release
-      uses: python-semantic-release/upload-to-gh-release@0dcddac3ba7b691d7a3fd4586b640d7b214a0016
-      if: ${{ steps.release.outputs.released }} == 'true'
-      with:
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
