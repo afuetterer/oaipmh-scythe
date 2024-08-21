@@ -5,25 +5,54 @@ on:
     types: [created]
   workflow_dispatch: # run manually from actions tab
 
-permissions:
-  contents: read
+# Set permissions at the job level.
+permissions: {}
 
 jobs:
+  build:
+    name: Build the package
+    # disables this workflow from running in a repository that is not part of the indicated organization/user
+    if: github.repository_owner == 'afuetterer'
+    runs-on: ubuntu-24.04
+    permissions:
+      attestations: write
+      id-token: write
+    steps:
+    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+    - uses: hynek/build-and-inspect-python-package@2dbbf2b252d3a3c7cec7a810e3ed5983bd17b13a # v2.8.0
+      with:
+        attest-build-provenance-github: 'true'
+  upload:
+    name: Upload package distributions to GitHub Releases
+    # disables this workflow from running in a repository that is not part of the indicated organization/user
+    if: github.repository_owner == 'afuetterer'
+    runs-on: ubuntu-24.04
+    needs: build
+    permissions:
+      contents: write
+    steps:
+    - name: Download package built by build job
+      uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
+      with:
+        name: Packages
+        path: dist
+    - name: Publish package distributions to GitHub Releases
+      uses: softprops/action-gh-release@c062e08bd532815e2082a85e87e3ef29c3e6d191 # v2.0.8
+      with:
+        files: dist/*
   publish:
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
     runs-on: ubuntu-24.04
+    needs: build
     environment: publish
     permissions:
       id-token: write
     steps:
-    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-    - uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f # v5.1.1
+    - name: Download package built by build job
+      uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
       with:
-        python-version: '3.12'
-        cache: pip
-    - name: Install pre-requisites (e.g. hatch)
-      run: python -m pip install --require-hashes --requirement=requirements/ci
-    - run: python -m build --installer=uv
+        name: Packages
+        path: dist
     - name: Publish package to PyPI
       uses: pypa/gh-action-pypi-publish@ec4db0b4ddc65acdf4bff5fa45ac92d78b56bdf0 # v1.9.0
