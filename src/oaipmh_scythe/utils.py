@@ -98,7 +98,7 @@ def load_models(metadata_prefix: str | None = None) -> None:
         case "oai_dc":
             from oaipmh_scythe.models.oai_dc import Dc  # noqa: F401
         case "oai_datacite":
-            # from oaipmh_scythe.models.datacite import Resource  # noqa: F401
+            # from oaipmh_scythe.models.datacite import Resource
             from oaipmh_scythe.models.oai_datacite import OaiDatacite  # noqa: F401
         case "datacite":
             from oaipmh_scythe.models.datacite import Resource  # noqa: F401
