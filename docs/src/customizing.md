@@ -25,8 +25,8 @@ Dc(title=[Title(value='BERTopic: Neural topic modeling with a class-based TF-IDF
 ```
 
 !!! note
-    The response still gets parsed into a dataclass, but the metadata has attributes of type `AnyElement`, e.g. `AnyElement(qname='{http://arxiv.org/OAI/arXiv/}arXiv'`.
-
+    The response still gets parsed into a dataclass, but the metadata has attributes of type `AnyElement`, e.g.
+    `AnyElement(qname='{http://arxiv.org/OAI/arXiv/}arXiv'`.
 
 https://xsdata.readthedocs.io/en/latest/codegen/intro/#command-line-tool
 
@@ -35,9 +35,9 @@ $ python -m pip install "xsdata[cli]>=24.5"
 $ xsdata generate --package=arxiv http://arxiv.org/OAI/arXiv.xsd
 ```
 
-
 ```python
 from arxiv import ArXiv
+
 record = scythe.get_record("oai:arXiv.org:2203.05794", metadata_prefix="arXiv")
 record
 # Record(header=Header(identifier='oai:arXiv.org:2203.05794', datestamp=XmlDate(2022, 3, 14), set_spec=['cs'], status=None), metadata=Metadata(other_element=ArXiv(id=['2203.05794'], created=['2022-03-11'], updated=[], authors=[AuthorsType(author=[AuthorType(keyname='Grootendorst', forenames='Maarten', suffix=None, affiliation=[])])], title=['BERTopic: Neural topic modeling with a class-based TF-IDF procedure'], msc_class=[], acm_class=[], report_no=[], journal_ref=[], comments=['BERTopic has a python implementation, see\n  https://github.com/MaartenGr/BERTopic'], abstract=['  Topic models can be useful tools to discover latent topics in collections of\ndocuments. Recent studies have shown the feasibility of approach topic modeling\nas a clustering task. We present BERTopic, a topic model that extends this\nprocess by extracting coherent topic representation through the development of\na class-based variation of TF-IDF. More specifically, BERTopic generates\ndocument embedding with pre-trained transformer-based language models, clusters\nthese embeddings, and finally, generates topic representations with the\nclass-based TF-IDF procedure. BERTopic generates coherent topics and remains\ncompetitive across a variety of benchmarks involving classical models and those\nthat follow the more recent clustering approach of topic modeling.\n'], categories=['cs.CL'], doi=[], proxy=[], license=['http://arxiv.org/licenses/nonexclusive-distrib/1.0/'])), about=[])
@@ -45,7 +45,6 @@ record
 
 !!! note
     The response gets parsed into a Record dataclass, and the metadata is of type `ArXiv`.
-
 
 !!! note
     Take a look at the models
