@@ -72,10 +72,10 @@ repos:
   - id: mypy
     args: [--config-file=pyproject.toml]
     additional_dependencies:
-    - httpx>=0.27
-    - lxml-stubs>=0.5
-    - pytest>=8.1
-    - xsdata>=24.4
+    - httpx==0.27
+    - lxml-stubs==0.5.1
+    - pytest==8.3.2
+    - xsdata==24.7
     exclude: tests # TODO: remove this exclusion
 
 - repo: https://github.com/scientific-python/cookie
