@@ -131,7 +131,7 @@ def test_list_identifiers_ignore_deleted(scythe: Scythe) -> None:
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr()
+@pytest.mark.vcr
 def test_list_identifiers_response(scythe: Scythe) -> None:
     scythe.iterator = ResponseIterator
     responses = scythe.list_identifiers(metadata_prefix="oai_dc")
