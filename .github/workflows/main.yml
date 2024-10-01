@@ -28,12 +28,12 @@ jobs:
     needs:
     - test
     steps:
-    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+    - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
       with:
         fetch-depth: 0 # get all commits and tags
         token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
     - name: Create semantic release
-      uses: python-semantic-release/python-semantic-release@dec06aa649fddae6610bc64878868498bfcbad7b # v9.8.6
+      uses: python-semantic-release/python-semantic-release@fd8c509df1f16daf3f71a9a6fac49247017017b2 # v9.9.0
       with:
         # allows for python-semantic-release to push to protected main branch
         github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
