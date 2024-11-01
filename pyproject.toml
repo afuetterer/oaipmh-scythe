@@ -43,7 +43,7 @@ dependencies = [
   "lxml>=5.3",
 ]
 optional-dependencies.dev = [
-  "pre-commit~=3.8",
+  "pre-commit~=4.0",
 ]
 optional-dependencies.docs = [
   "mike~=2.1",
