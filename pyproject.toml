@@ -55,7 +55,7 @@ optional-dependencies.docs = [
 ]
 optional-dependencies.test = [
   "pytest~=8.2",
-  "pytest-cov~=5.0",
+  "pytest-cov~=6.0",
   "pytest-mock~=3.14",
   "pytest-randomly~=3.15",
   "pytest-recording~=0.13",
