@@ -20,9 +20,9 @@ from typing import TYPE_CHECKING
 import httpx
 
 from oaipmh_scythe.__about__ import __version__
-from oaipmh_scythe.iterator import BaseOAIIterator, OAIItemIterator
-from oaipmh_scythe.models import Header, Identify, MetadataFormat, OAIItem, Record, Set
-from oaipmh_scythe.response import OAIResponse
+from oaipmh_scythe.iterator import BaseOAIIterator, ItemIterator
+from oaipmh_scythe.models import Header, Identify, MetadataFormat, Record, Set, Verb
+from oaipmh_scythe.response import Response, _build_response
 from oaipmh_scythe.utils import filter_dict_except_resumption_token, log_response, remove_none_values
 
 if TYPE_CHECKING:
@@ -34,18 +34,6 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 USER_AGENT: str = f"oaipmh-scythe/{__version__}"
-OAI_NAMESPACE: str = "{http://www.openarchives.org/OAI/2.0/}"
-
-
-# Map OAI verbs to class representations
-DEFAULT_CLASS_MAP = {
-    "GetRecord": Record,
-    "ListRecords": Record,
-    "ListIdentifiers": Header,
-    "ListSets": Set,
-    "ListMetadataFormats": MetadataFormat,
-    "Identify": Identify,
-}
 
 
 class Scythe:
@@ -78,11 +66,10 @@ class Scythe:
         self,
         endpoint: str,
         http_method: str = "GET",
-        iterator: type[BaseOAIIterator] = OAIItemIterator,
+        iterator: type[BaseOAIIterator] = ItemIterator,
         max_retries: int = 0,
         retry_status_codes: Iterable[int] | None = None,
         default_retry_after: int | float = 60,
-        class_mapping: dict[str, type[OAIItem]] | None = None,
         encoding: str = "utf-8",
         auth: AuthTypes | None = None,
         timeout: int | float = 60,
@@ -102,8 +89,6 @@ class Scythe:
                 f"Invalid value for 'default_retry_after': {default_retry_after}. default_retry_after must be positive int or float."
             )
         self.default_retry_after = default_retry_after
-        self.oai_namespace = OAI_NAMESPACE
-        self.class_mapping = class_mapping or DEFAULT_CLASS_MAP
         self.encoding = encoding
         self.auth = auth
         if timeout <= 0:
@@ -155,7 +140,7 @@ class Scythe:
     ) -> None:
         self.close()
 
-    def harvest(self, query: dict[str, str]) -> OAIResponse:
+    def harvest(self, query: dict[str, str]) -> Response:
         """Perform an HTTP request to the OAI server with the given parameters.
 
         Send an OAI-PMH request to the server using the specified parameters. Handle retry logic
@@ -165,7 +150,7 @@ class Scythe:
             query: A dictionary containing the request parameters.
 
         Returns:
-            An OAIResponse object encapsulating the server's response.
+            A Response object encapsulating the server's response.
 
         Raises:
             httpx.HTTPError: If the HTTP request fails after the maximum number of retries.
@@ -177,8 +162,8 @@ class Scythe:
                 logger.warning("HTTP %d! Retrying after %d seconds...", http_response.status_code, retry_after)
                 time.sleep(retry_after)
                 http_response = self._request(query)
-        http_response.raise_for_status()
-        return OAIResponse(http_response, params=query)
+        metadata_prefix = query.get("metadataPrefix")  # TODO
+        return _build_response(http_response, metadata_prefix)
 
     def _request(self, query: dict[str, str]) -> httpx.Response:
         """Send an HTTP request to the OAI server using the configured HTTP method and given query parameters.
@@ -201,7 +186,7 @@ class Scythe:
         set_: str | None = None,
         resumption_token: str | None = None,
         ignore_deleted: bool = False,
-    ) -> Iterator[OAIResponse | Record]:
+    ) -> Iterator[Response | Record]:
         """Issue a ListRecords request to the OAI server.
 
         Send a request to list records from the OAI server, allowing for selective harvesting based on date range,
@@ -219,8 +204,7 @@ class Scythe:
             ignore_deleted: If True, skip records flagged as deleted in the response.
 
         Yields:
-            An iterator over OAIResponse or Record objects, each representing an individual record or response
-                from the server.
+            An iterator over Response or Record objects, each representing an individual record or response from the server.
 
         Raises:
             BadArgument: If the arguments provided do not conform to the expectations of the OAI server.
@@ -231,7 +215,7 @@ class Scythe:
 
         """
         _query = {
-            "verb": "ListRecords",
+            "verb": Verb.LIST_RECORDS.value,
             "from": from_,
             "until": until,
             "metadataPrefix": metadata_prefix,
@@ -249,7 +233,7 @@ class Scythe:
         set_: str | None = None,
         resumption_token: str | None = None,
         ignore_deleted: bool = False,
-    ) -> Iterator[OAIResponse | Header]:
+    ) -> Iterator[Response | Header]:
         """Issue a ListIdentifiers request to the OAI server.
 
         Send a request to list record identifiers from the OAI server. This method allows filtering records based on
@@ -268,7 +252,7 @@ class Scythe:
             ignore_deleted: If True, skip records flagged as deleted in the response.
 
         Yields:
-            An iterator over OAIResponse or Header objects, each representing an individual record identifier
+            An iterator over Response or Header objects, each representing an individual record identifier
                 or response from the server.
 
         Raises:
@@ -279,7 +263,7 @@ class Scythe:
 
         """
         _query = {
-            "verb": "ListIdentifiers",
+            "verb": Verb.LIST_IDENTIFIERS.value,
             "from": from_,
             "until": until,
             "metadataPrefix": metadata_prefix,
@@ -290,7 +274,7 @@ class Scythe:
         query = remove_none_values(filter_dict_except_resumption_token(_query))
         yield from self.iterator(self, query, ignore_deleted=ignore_deleted)
 
-    def list_sets(self, resumption_token: str | None = None) -> Iterator[OAIResponse | Set]:
+    def list_sets(self, resumption_token: str | None = None) -> Iterator[Response | Set]:
         """Issue a ListSets request to the OAI server.
 
         Send a request to list all sets defined in the OAI server. Sets are used to categorize records in the OAI
@@ -303,7 +287,7 @@ class Scythe:
             resumption_token: An optional token for pagination, used to continue a request for the next batch of sets.
 
         Yields:
-            An iterator over OAIResponse or Set objects, representing an individual set or response from the server.
+            An iterator over Response or Set objects, representing an individual set or response from the server.
 
         Raises:
             BadResumptionToken: If the provided resumption token is invalid or expired.
@@ -311,18 +295,18 @@ class Scythe:
 
         """
         _query = {
-            "verb": "ListSets",
+            "verb": Verb.LIST_SETS.value,
             "resumptionToken": resumption_token,
         }
         query = remove_none_values(filter_dict_except_resumption_token(_query))
         yield from self.iterator(self, query)
 
-    def identify(self) -> Identify:
+    def identify(self) -> Response | Identify:
         """Issue an Identify request to the OAI server.
 
-        Send a request to identify the OAI server and retrieve its information. This includes details such as the repository name,
-        the base URL, the protocol version, and other relevant data about the OAI server. It's useful for understanding the
-        capabilities and configuration of the server.
+        Send a request to identify the OAI server and retrieve its information. This includes details such as the
+        repository name, the base URL, the protocol version, and other relevant data about the OAI server. It's useful
+        for understanding the capabilities and configuration of the server.
 
         Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#Identify>
 
@@ -331,16 +315,17 @@ class Scythe:
                 the OAI server.
 
         """
-        query = {"verb": "Identify"}
-        return Identify(self.harvest(query))
+        query = {"verb": Verb.IDENTIFY.value}
+        response = self.harvest(query)
+        if issubclass(self.iterator, ItemIterator) and response.parsed.identify:
+            return response.parsed.identify
+        return response
 
-    def get_record(self, identifier: str, metadata_prefix: str = "oai_dc") -> OAIResponse | Record:
+    def get_record(self, identifier: str, metadata_prefix: str = "oai_dc") -> Response | Record:
         """Issue a GetRecord request to the OAI server.
 
         Send a request to the OAI server to retrieve a specific record. The request is constructed with the provided
-        identifier and metadata prefix. The method then processes and returns the relevant OAIResponse or Record object
-        using an iterator.
-
+        identifier and metadata prefix. The method then processes and returns the relevant Response or Record object.
 
         Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#GetRecord>
 
@@ -349,7 +334,7 @@ class Scythe:
             metadata_prefix: The metadata format to be returned for the record. Defaults to "oai_dc".
 
         Returns:
-            An OAIResponse or Record object representing the requested record.
+            A Response or Record object representing the requested record.
 
         Raises:
             CannotDisseminateFormat: If the specified metadata_prefix is not supported by the OAI server for
@@ -358,18 +343,21 @@ class Scythe:
 
         """
         query = {
-            "verb": "GetRecord",
+            "verb": Verb.GET_RECORD.value,
             "identifier": identifier,
             "metadataPrefix": metadata_prefix,
         }
-        return next(iter(self.iterator(self, query)))
+        response = self.harvest(query)
+        if issubclass(self.iterator, ItemIterator) and response.parsed.get_record and response.parsed.get_record.record:
+            return response.parsed.get_record.record
+        return response
 
-    def list_metadata_formats(self, identifier: str | None = None) -> Iterator[OAIResponse | MetadataFormat]:
+    def list_metadata_formats(self, identifier: str | None = None) -> Iterator[Response | MetadataFormat]:
         """Issue a ListMetadataFormats request to the OAI server.
 
         Send a request to list the metadata formats available from the OAI server. This can be done for the entire
         repository or for a specific record if an identifier is provided. The method constructs a query and yields an
-        iterator over OAIResponse or MetadataFormat objects, each representing a different metadata format or response
+        iterator over Response or MetadataFormat objects, each representing a different metadata format or response
         from the server.
 
         Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#ListMetadataFormats>
@@ -379,8 +367,8 @@ class Scythe:
                         If None, all metadata formats available in the repository are listed.
 
         Yields:
-            An iterator over OAIResponse or MetadataFormat objects, each representing an individual metadata format
-                or response from the server.
+            An iterator over Response or MetadataFormat objects, each representing an individual metadata format
+            or response from the server.
 
         Raises:
             IdDoesNotExist: If the specified identifier does not correspond to any record in the OAI server.
@@ -388,7 +376,7 @@ class Scythe:
 
         """
         _query = {
-            "verb": "ListMetadataFormats",
+            "verb": Verb.LIST_METADATA_FORMATS.value,
             "identifier": identifier,
         }
         query = remove_none_values(_query)

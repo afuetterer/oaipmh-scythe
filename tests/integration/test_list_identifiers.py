@@ -8,10 +8,9 @@ from collections.abc import Iterator
 
 import httpx
 import pytest
-from lxml import etree
 
-from oaipmh_scythe import OAIResponse, Scythe
-from oaipmh_scythe.iterator import OAIResponseIterator
+from oaipmh_scythe import BadArgument, BadResumptionToken, NoRecordsMatch, Response, Scythe
+from oaipmh_scythe.iterator import ResponseIterator
 from oaipmh_scythe.models import Header
 
 
@@ -48,9 +47,8 @@ def test_list_identifiers_with_valid_metadata_prefix(scythe: Scythe) -> None:
 @pytest.mark.default_cassette("list_identifiers.yaml")
 @pytest.mark.vcr
 def test_list_identifiers_with_invalid_metadata_prefix(scythe: Scythe) -> None:
-    # cannotDisseminateFormat
     headers = scythe.list_identifiers(metadata_prefix="XXX")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(BadArgument, match="metadataPrefix does not exist"):
         next(headers)
 
 
@@ -91,9 +89,8 @@ def test_list_identifiers_with_valid_set(scythe: Scythe) -> None:
 @pytest.mark.default_cassette("list_identifiers.yaml")
 @pytest.mark.vcr
 def test_list_identifiers_with_invalid_set(scythe: Scythe) -> None:
-    # noRecordsMatch
     headers = scythe.list_identifiers(set_="XXX")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(NoRecordsMatch):
         next(headers)
 
 
@@ -110,18 +107,16 @@ def test_list_identifiers_with_valid_resumption_token(scythe: Scythe) -> None:
 @pytest.mark.default_cassette("list_identifiers.yaml")
 @pytest.mark.vcr
 def test_list_identifiers_with_invalid_resumption_token(scythe: Scythe) -> None:
-    # badResumptionToken
     headers = scythe.list_identifiers(resumption_token="XXX")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(BadResumptionToken, match="The value of the resumptionToken argument is invalid or expired."):
         next(headers)
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
 @pytest.mark.vcr
 def test_list_identifiers_raises_no_records_match(scythe: Scythe) -> None:
-    # noRecordsMatch
     headers = scythe.list_identifiers(from_="2025-01-15")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(NoRecordsMatch):
         next(headers)
 
 
@@ -137,12 +132,11 @@ def test_list_identifiers_ignore_deleted(scythe: Scythe) -> None:
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
 @pytest.mark.vcr
-def test_list_identifiers_oai_response(scythe: Scythe) -> None:
-    scythe.iterator = OAIResponseIterator
+def test_list_identifiers_response(scythe: Scythe) -> None:
+    scythe.iterator = ResponseIterator
     responses = scythe.list_identifiers(metadata_prefix="oai_dc")
     assert isinstance(responses, Iterator)
     response = next(responses)
-    assert isinstance(response, OAIResponse)
-    assert response.params == {"metadataPrefix": "oai_dc", "verb": "ListIdentifiers"}
-    assert isinstance(response.xml, etree._Element)
-    assert response.xml.tag == "{http://www.openarchives.org/OAI/2.0/}OAI-PMH"
+    assert isinstance(response, Response)
+    assert response.status_code == httpx.codes.OK
+    assert response.url == httpx.URL("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc")

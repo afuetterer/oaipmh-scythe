@@ -7,8 +7,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import pytest
-from httpx import HTTPStatusError
 
+from oaipmh_scythe import BadArgument, IdDoesNotExist
 from oaipmh_scythe.models import Record
 
 if TYPE_CHECKING:
@@ -23,7 +23,7 @@ TITLE = "Research Data Management Organiser (RDMO)"
 def test_get_record_with_default_metadata_prefix(scythe: Scythe) -> None:
     record = scythe.get_record(identifier=IDENTIFIER, metadata_prefix="oai_dc")
     assert isinstance(record, Record)
-    assert record.metadata["title"][0] == TITLE
+    assert record.metadata.other_element.title[0].value == TITLE
 
 
 @pytest.mark.default_cassette("get_record.yaml")
@@ -31,28 +31,36 @@ def test_get_record_with_default_metadata_prefix(scythe: Scythe) -> None:
 def test_get_record_without_metadata_prefix(scythe: Scythe) -> None:
     record = scythe.get_record(identifier=IDENTIFIER)
     assert isinstance(record, Record)
-    assert record.metadata["title"][0] == TITLE
+    assert record.metadata.other_element.title[0].value == TITLE
 
 
 @pytest.mark.default_cassette("get_record.yaml")
 @pytest.mark.vcr
-def test_get_record_with_valid_metadata_prefix(scythe: Scythe) -> None:
+def test_get_record_with_datacite_metadata_prefix(scythe: Scythe) -> None:
     record = scythe.get_record(identifier=IDENTIFIER, metadata_prefix="datacite")
     assert isinstance(record, Record)
-    assert record.metadata["title"][0] == TITLE
+    assert record.metadata.other_element.titles.title[0].value == TITLE
+
+
+@pytest.mark.default_cassette("get_record.yaml")
+@pytest.mark.vcr
+def test_get_record_with_marcxml_metadata_prefix(scythe: Scythe) -> None:
+    record = scythe.get_record(identifier=IDENTIFIER, metadata_prefix="marcxml")
+    assert isinstance(record, Record)
+    controlfield = record.metadata.other_element.controlfield[0]
+    assert controlfield.value == "10357859"
+    assert controlfield.tag == "001"
 
 
 @pytest.mark.default_cassette("get_record.yaml")
 @pytest.mark.vcr
 def test_get_record_with_invalid_metadata_prefix(scythe: Scythe) -> None:
-    with pytest.raises(HTTPStatusError):
-        # cannotDisseminateFormat
+    with pytest.raises(BadArgument, match="metadataPrefix does not exist"):
         scythe.get_record(identifier=IDENTIFIER, metadata_prefix="XXX")
 
 
 @pytest.mark.default_cassette("id_does_not_exist.yaml")
 @pytest.mark.vcr
 def test_get_record_with_invalid_identifier(scythe: Scythe) -> None:
-    # idDoesNotExist
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(IdDoesNotExist, match="No matching identifier"):
         scythe.get_record(identifier="oai:zenodo.org:XXX", metadata_prefix="oai_dc")
