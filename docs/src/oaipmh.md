@@ -89,5 +89,6 @@ exposed by every valid OAI interface. OAI-DC is based on the 15 metadata element
 [Dublin Core Metadata Element Set](http://dublincore.org/documents/dces/).
 
 !!! note
+
     oaipmh-scythe only supports the OAI-DC format out of the box. See the section on [customizing](customizing.md) for
     information on how to extend oaipmh-scythe for retrieving metadata in other formats.

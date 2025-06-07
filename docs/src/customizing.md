@@ -24,6 +24,7 @@ class MyRecord(Record):
 ```
 
 !!! note
+
     Take a look at the implementation of [oaipmh_scythe.models.Record][] to get an idea of how to do this.
 
 Next, associate your implementation with OAI verbs in the [oaipmh_scythe.client.Scythe][] object. In this case, we want
