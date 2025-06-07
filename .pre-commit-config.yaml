@@ -19,7 +19,7 @@ repos:
   - id: check-hooks-apply
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: 2c9f875913ee60ca25ce70243dc24d5b6415598c  # frozen: v4.6.0
+  rev: cef0300fd0fc4d2a87a85fa2093c6b283ea36f4b  # frozen: v5.0.0
   hooks:
   - id: check-merge-conflict
   - id: check-case-conflict
@@ -40,61 +40,61 @@ repos:
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: e2dde74d0702d15f4f43e4f4fb93e301b4bc1e30  # frozen: 0.29.1
+  rev: 06e4cc849d03f3a59ca223a4046f4bb5bb2aba6d  # frozen: 0.33.0
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 605ba23143facfe85233309cc9826b5b3d0fc528  # frozen: 2.2.1
+  rev: 8184a5b72f4a8fcd003b041ecb04c41a9f34fd2b  # frozen: v2.6.0
   hooks:
   - id: pyproject-fmt
 
-- repo: https://github.com/executablebooks/mdformat
-  rev: 08fba30538869a440b5059de90af03e3502e35fb  # frozen: 0.7.17
+- repo: https://github.com/hukkin/mdformat
+  rev: ff29be1a1ba8029d9375882aa2c812b62112a593  # frozen: 0.7.22
   hooks:
   - id: mdformat
     args: [--number, --wrap=120, --ignore-missing-references]
     exclude: CHANGELOG.md|.changelog.md|docs/src/api
     additional_dependencies:
-    - mdformat-mkdocs[recommended]==v3.0.0
+    - mdformat-mkdocs[recommended]==v4.3.0
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 8b5112a3b2ad121439a2092f8ff548c0d80f2514  # frozen: v0.6.1
+  rev: 9aeda5d1f4bbd212c557da1ea78eca9e8c829e19  # frozen: v0.11.13
   hooks:
   - id: ruff
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: a22ad011a66f01f475842c80a05243a33679422d  # frozen: v1.11.1
+  rev: 7010b10a09f65cd60a23c207349b539aa36dbec1  # frozen: v1.16.0
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
     additional_dependencies:
-    - httpx==0.27.0
+    - httpx==0.28.1
     - lxml-stubs==0.5.1
     exclude: tests
 
 - repo: https://github.com/scientific-python/cookie
-  rev: 35368e874265d105e1ca3355df7ef51bbca8eba6  # frozen: 2024.08.19
+  rev: 47e01d1d4f95523dd730fda8f8657e1233a12de7  # frozen: 2025.05.02
   hooks:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: cc99b94246254c1b3dfa6ea6111aa212b814a486  # frozen: v1.23.6
+  rev: 09ff140a597dff1bd317c87564989d22a8f97bdb  # frozen: v1
   hooks:
   - id: typos
     args: [--force-exclude]
     exclude: CHANGELOG.md # the commit hashes in changelog trigger the spell checker
 
 - repo: https://github.com/FHPythonUtils/LicenseCheck/
-  rev: b2b50f4d40c95b15478279a7a00553a1dc2925ef  # frozen: 2024.2
+  rev: 1396d3408d6c08cad89229fa30ef17a35e35d5c4  # frozen: 2025.1.0
   hooks:
   - id: licensecheck
 
 - repo: https://github.com/compilerla/conventional-pre-commit
-  rev: 8dc49e5ea0cab89785161620aa22a26f263661ca  # frozen: v3.4.0
+  rev: 7c1022b54dcb1d1911e6c885089940e8499f0253  # frozen: v4.2.0
   hooks:
   - id: conventional-pre-commit
     stages: [commit-msg]

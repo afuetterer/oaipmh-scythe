@@ -70,6 +70,7 @@ range, respectively. The accepted date format is YYYY-MM-DD (`str`).
 The `from_` parameter (note the trailing underscore) is used to set the lower bound of the publication date range.
 
 !!! note
+
     The trailing underscore is necessary because `from` is a reserved keyword in Python.
 
 Example: Fetching Records Published On or After a Specific Date
@@ -123,6 +124,7 @@ category or collection.
 The `set_` parameter allows you to specify a particular set of records for harvesting.
 
 !!! note
+
     It is important to note the trailing underscore in `set_`. This is used because `set` is a reserved keyword in Python.
 
 Example: Fetching records from a specific set
@@ -198,6 +200,7 @@ records = scythe.list_records(metadata_prefix="datacite")
 In this example, `scythe.list_records(metadata_prefix="datacite")` retrieves records in the "datacite" metadata format.
 
 !!! note
+
     It's important to remember that in the absence of a specified `metadata_prefix`, scythe will default to using the
     "oai_dc" format. This ensures that you can always retrieve records even if the specific format requirements are not
     known.
@@ -289,6 +292,7 @@ records = scythe.list_records(ignore_deleted=True)
 ```
 
 !!! note
+
     This works only using the [oaipmh_scythe.iterator.OAIItemIterator][]. If you use the
     [oaipmh_scythe.iterator.OAIResponseIterator][], the resulting OAI responses will still contain the deleted records.
 
@@ -312,6 +316,7 @@ scythe = Scythe("https://example.org/oai2d", auth=auth)
 ```
 
 !!! note
+
     `oaipmh-scythe` uses [httpx](https://www.python-httpx.org) under the hood. The `auth` parameter accepts subclasses of
     `httpx.Auth`, e.g. `httpx.BasicAuth`, `httpx.DigestAuth`, or `httpx.NetRCAuth`, see
     [Authentication - HTTPX](https://www.python-httpx.org/advanced/authentication/) for further information
