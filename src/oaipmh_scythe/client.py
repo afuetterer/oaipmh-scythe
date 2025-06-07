@@ -15,11 +15,11 @@ from __future__ import annotations
 import inspect
 import logging
 import time
+from importlib.metadata import version
 from typing import TYPE_CHECKING
 
 import httpx
 
-from oaipmh_scythe.__about__ import __version__
 from oaipmh_scythe.iterator import BaseOAIIterator, OAIItemIterator
 from oaipmh_scythe.models import Header, Identify, MetadataFormat, OAIItem, Record, Set
 from oaipmh_scythe.response import OAIResponse
@@ -33,6 +33,7 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+__version__ = version("oaipmh-scythe")
 USER_AGENT: str = f"oaipmh-scythe/{__version__}"
 OAI_NAMESPACE: str = "{http://www.openarchives.org/OAI/2.0/}"
 
