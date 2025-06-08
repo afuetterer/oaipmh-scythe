@@ -45,18 +45,18 @@ If you are proposing a feature:
 
 Ready to contribute?
 
-You need Python >= 3.10 and [hatch](https://github.com/pypa/hatch). You can install it globally with
-[pipx](https://github.com/pypa/pipx):
+You’ll need the following tools installed:
 
-```console
-$ pipx install hatch
-```
+- Python ≥ 3.10
+- [uv](https://github.com/astral-sh/uv) – a fast Python package and project manager
+- [just](https://github.com/casey/just) – a command‑runner similar to make
 
-or locally with (this will install it in the local virtual environment):
+Follow the official installation instructions in each project's README:
 
-```console
-$ python -m pip install hatch
-```
+- **Install uv** – see the Installation section of the uv README:
+    https://github.com/astral-sh/uv?tab=readme-ov-file#installation
+- **Install just** – see the Installation section of the just README:
+    https://github.com/casey/just?tab=readme-ov-file#installation
 
 Here's how to set up `oaipmh-scythe` for local development.
 
@@ -68,12 +68,12 @@ Here's how to set up `oaipmh-scythe` for local development.
     $ git clone git@github.com:username/oaipmh-scythe.git
     ```
 
-3. Install your local copy into a virtual environment. Assuming you have hatch installed, this is how you set up your
-    fork for local development:
+3. Install your local copy into a virtual environment. Assuming you have `just` and `uv` installed, this is how you set
+    up your fork for local development:
 
     ```console
     $ cd oaipmh-scythe
-    $ hatch shell
+    $ just sync
     ```
 
 4. Create a branch for local development:
@@ -84,14 +84,14 @@ Here's how to set up `oaipmh-scythe` for local development.
 
     Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass pre-commit and the tests:
+5. When you're done making changes, check that your changes pass `pre-commit` and the tests:
 
     ```console
-    $ hatch run check
-    $ hatch run cov
+    $ just check
+    $ just cov
     ```
 
-6. Commit your changes and push your branch to GitHub::
+6. Commit your changes and push your branch to GitHub:
 
     ```console
     $ git add .

@@ -6,6 +6,7 @@ on:
 env:
   PYTHONUNBUFFERED: 1
   FORCE_COLOR: 1
+  UV_LOCKED: true # do not update the lockfile during `uv sync` and `uv run` commands
 
 # Set permissions at the job level.
 permissions: {}
@@ -18,21 +19,24 @@ jobs:
       matrix:
         python-version: ['3.10', '3.12', '3.13']
     steps:
+    - name: Set up just
+      uses: extractions/setup-just@e33e0265a09d6d736e2ee1e0eb685ef1de4669ff # v3
     - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+    - name: Set up uv
+      uses: astral-sh/setup-uv@f94ec6bedd8674c4426838e6b50417d36b6ab231 # v5.3.1
       with:
         python-version: ${{ matrix.python-version }}
-        cache: pip
-    - name: Install pre-requisites (e.g. hatch)
-      run: python -m pip install --require-hashes --requirement=requirements/ci
+        enable-cache: true
+        prune-cache: false
+    - name: Install project, including dev dependencies
+      run: just sync
     - name: Run test suite
-      run: hatch run cov
+      run: just cov
     - name: Generate coverage report
       run: |
-        export TOTAL_COV=$(hatch run cov-total)
+        export TOTAL_COV=$(just cov-total)
         echo "TOTAL_COV=$TOTAL_COV" >> $GITHUB_ENV
-        hatch run cov-report-markdown
+        just cov-report-markdown
         echo "### Total coverage: ${TOTAL_COV}%" >> $GITHUB_STEP_SUMMARY
         cat coverage.md >> $GITHUB_STEP_SUMMARY
       if: matrix.python-version == '3.13'
@@ -64,16 +68,17 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
+    - name: Set up just
+      uses: extractions/setup-just@e33e0265a09d6d736e2ee1e0eb685ef1de4669ff # v3
     - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-    - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+    - name: Set up uv
+      uses: astral-sh/setup-uv@f94ec6bedd8674c4426838e6b50417d36b6ab231 # v5.3.1
       with:
         python-version: '3.13'
-        cache: pip
-    - run: python -Im pip install --editable .[dev]
+        enable-cache: true
+        prune-cache: false
+    - run: just sync
     - run: python -Ic 'import oaipmh_scythe'
-    - name: Set up pipdeptree
-      if: matrix.os == 'ubuntu-latest'
-      run: python -m pip install --require-hashes --requirement=requirements/ci
     - name: Write info to step summary
       if: matrix.os == 'ubuntu-latest'
       run: |
@@ -81,13 +86,13 @@ jobs:
           echo -e "### ✓ All dependencies installed successfully\n\n"
           echo '<details><summary>Installed Python packages (dependency tree)</summary>'
           echo -e "\n\`\`\`console"
-          echo "$ uv pip tree --package=oaipmh-scythe"
-          uv pip tree --package=oaipmh-scythe
+          echo "$ uv tree --no-group={dev,test}"
+          uv tree --no-group={dev,test}
           echo -e "\`\`\`\n</details>"
           echo '<details><summary>Outdated Python packages</summary>'
           echo -e "\n\`\`\`console"
-          echo "$ python -m pip list --outdated"
-          python -m pip list --outdated
+          echo "$ uv pip list --outdated"
+          uv pip list --outdated
           echo -e "\`\`\`\n</details>"
         } >> $GITHUB_STEP_SUMMARY
 
