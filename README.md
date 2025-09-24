@@ -5,7 +5,6 @@ Welcome to `oaipmh-scythe`, an updated and modernized version of the original
 
 | __CI__      | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] [![codeql][codeql-badge]][codeql-workflow]                                             |
 | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| __Docs__    | [![docs][docs-badge]][docs-workflow]                                                                                                                                                                                                  |
 | __Package__ | [![pypi-version][pypi-version-badge]][pypi-url] [![pypi-python-versions][pypi-python-versions-badge]][pypi-url] [![all-downloads][all-downloads-badge]][pepy-tech-url] [![monthly-downloads][monthly-downloads-badge]][pepy-tech-url] |
 | __Meta__    | [![doi][doi-badge]][doi-url] [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![uv][uv-badge]][uv] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license]                                |
 
@@ -85,9 +84,7 @@ This is a fork of [sickle](https://github.com/mloesch/sickle) which was original
 [codeql-badge]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/codeql.yml/badge.svg
 [codeql-workflow]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/codeql.yml
 [coverage-badge]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/afuetterer/fcb87d45f4d7defdfeffa65eb1d65f63/raw/coverage-badge.json
-[docs-badge]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/docs.yml/badge.svg
 [docs-url]: https://afuetterer.github.io/oaipmh-scythe
-[docs-workflow]: https://github.com/afuetterer/oaipmh-scythe/actions/workflows/docs.yml
 [doi-badge]: https://zenodo.org/badge/DOI/10.5281/zenodo.11125401.svg
 [doi-url]: https://doi.org/10.5281/zenodo.11125401
 [license]: https://spdx.org/licenses/BSD-3-Clause.html
