@@ -56,3 +56,28 @@ jobs:
         path: dist
     - name: Publish package to PyPI
       uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # v1.13.0
+
+  docs:
+    # disables this workflow from running in a repository that is not part of the indicated organization/user
+    if: github.repository_owner == 'afuetterer'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+    - name: Set up just
+      uses: extractions/setup-just@e33e0265a09d6d736e2ee1e0eb685ef1de4669ff # v3
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      with:
+        fetch-depth: 0 # fetch all commits and branches
+    - name: Set up uv
+      uses: astral-sh/setup-uv@f94ec6bedd8674c4426838e6b50417d36b6ab231 # v5.3.1
+      with:
+        python-version: '3.13'
+        enable-cache: true
+        prune-cache: false
+        cache-suffix: docs
+    - run: just sync-docs
+    - run: just docs-deploy
+      env:
+        GIT_COMMITTER_NAME: github-actions[bot]
+        GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com

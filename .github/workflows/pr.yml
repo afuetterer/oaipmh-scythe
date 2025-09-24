@@ -8,7 +8,6 @@ on:
     - reopened
     - ready_for_review # this is needed to trigger checks, when an auto-generated "draft" PR is set for "ready for review".
 
-
 concurrency:
   group: pr-${{ github.head_ref }}
   cancel-in-progress: true
@@ -16,17 +15,34 @@ concurrency:
 env:
   PYTHONUNBUFFERED: 1
   FORCE_COLOR: 1
+  UV_LOCKED: true # do not update the lockfile during `uv sync` and `uv run` commands
 
+# Set permissions at the job level.
 permissions:
   contents: read
 
 jobs:
   test:
     uses: ./.github/workflows/test.yml
+
   docs:
-    permissions:
-      contents: write
-    uses: ./.github/workflows/docs.yml
+    # disables this workflow from running in a repository that is not part of the indicated organization/user
+    if: github.repository_owner == 'afuetterer'
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Set up just
+      uses: extractions/setup-just@e33e0265a09d6d736e2ee1e0eb685ef1de4669ff # v3
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+    - name: Set up uv
+      uses: astral-sh/setup-uv@f94ec6bedd8674c4426838e6b50417d36b6ab231 # v5.3.1
+      with:
+        python-version: '3.13'
+        enable-cache: true
+        prune-cache: false
+        cache-suffix: docs
+    - run: just sync-docs
+    - run: just docs-build
+
   required-checks-pass:
     if: always()
     needs:
