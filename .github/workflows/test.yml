@@ -78,7 +78,7 @@ jobs:
         enable-cache: true
         prune-cache: false
     - run: just sync
-    - run: python -Ic 'import oaipmh_scythe'
+    - run: uv run python -Ic 'import oaipmh_scythe'
     - name: Write info to step summary
       if: matrix.os == 'ubuntu-latest'
       run: |
