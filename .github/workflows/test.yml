@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        python-version: ['3.10', '3.12', '3.13']
+        python-version: ['3.10', '3.12', '3.13', '3.14']
     steps:
     - name: Set up just
       uses: extractions/setup-just@e33e0265a09d6d736e2ee1e0eb685ef1de4669ff # v3
@@ -39,7 +39,7 @@ jobs:
         just cov-report-markdown
         echo "### Total coverage: ${TOTAL_COV}%" >> $GITHUB_STEP_SUMMARY
         cat coverage.md >> $GITHUB_STEP_SUMMARY
-      if: matrix.python-version == '3.13'
+      if: matrix.python-version == '3.14'
     - name: Generate coverage badge
       uses: schneegans/dynamic-badges-action@e9a478b16159b4d31420099ba146cdc50f134483 # v1.7.0
       with:
@@ -74,7 +74,7 @@ jobs:
     - name: Set up uv
       uses: astral-sh/setup-uv@b75a909f75acd358c2196fb9a5f1299a9a8868a4 # v6.7.0
       with:
-        python-version: '3.13'
+        python-version: '3.14'
         enable-cache: true
         prune-cache: false
     - run: just sync
