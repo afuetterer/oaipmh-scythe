@@ -144,7 +144,7 @@ def record_element():
 
 
 @pytest.fixture
-def deleted_record_lement():
+def deleted_record_element():
     xml = """
     <record xmlns="http://www.openarchives.org/OAI/2.0/">
         <header status="deleted">
@@ -169,8 +169,8 @@ def record(record_element):
 
 
 @pytest.fixture
-def deleted_record(deleted_record_lement):
-    return Record(deleted_record_lement)
+def deleted_record(deleted_record_element):
+    return Record(deleted_record_element)
 
 
 def test_record_init(record):
