@@ -34,40 +34,40 @@ repos:
     args: [--pytest-test-first]
 
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: 19b28a9f0a0102b30776f054bea4176e7af50dbe  # frozen: v2.15.0
+  rev: 4380fbb73a154b5f5624794c1c78d9719ccc860f  # frozen: v2.16.0
   hooks:
   - id: pretty-format-yaml
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 83987cd6ad8943c7f029b500b14aaf82c00a01fa  # frozen: 0.34.0
+  rev: ccf21790019848af3eb4464be2a9d5efed6358f3  # frozen: 0.36.1
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 8184a5b72f4a8fcd003b041ecb04c41a9f34fd2b  # frozen: v2.6.0
+  rev: 662a9f8c81ba2eb5222b17c6707193907713a0a1  # frozen: v2.16.0
   hooks:
   - id: pyproject-fmt
 
 - repo: https://github.com/hukkin/mdformat
-  rev: ff29be1a1ba8029d9375882aa2c812b62112a593  # frozen: 0.7.22
+  rev: 2d496dbc18e31b83a1596685347ffe0b6041daf0  # frozen: 1.0.0
   hooks:
   - id: mdformat
     args: [--number, --wrap=120, --ignore-missing-references]
     exclude: CHANGELOG.md|.changelog.md|docs/src/api
     additional_dependencies:
-    - mdformat-mkdocs[recommended]==v4.3.0
+    - mdformat-mkdocs[recommended]==v5.1.4
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: a113f03edeabb71305f025e6e14bd2cd68660e29  # frozen: v0.13.1
+  rev: fa93bc3224c614a0e9786d3e2d3d48edcca246eb  # frozen: v0.15.1
   hooks:
   - id: ruff-check
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: 9f70dc58c23dfcca1b97af99eaeee3140a807c7e  # frozen: v1.18.2
+  rev: a66e98df7b4aeeb3724184b332785976d062b92e  # frozen: v1.19.1
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -77,12 +77,12 @@ repos:
     exclude: tests
 
 - repo: https://github.com/scientific-python/cookie
-  rev: 47e01d1d4f95523dd730fda8f8657e1233a12de7  # frozen: 2025.05.02
+  rev: 61489a7c52bc75d47a8b25fb633e0d7836b197ce  # frozen: 2025.11.21
   hooks:
   - id: sp-repo-review
 
 - repo: https://github.com/crate-ci/typos
-  rev: edb4e206047e89b93ebe08f1a2ccc3d581a70cc7  # frozen: v1
+  rev: c5d6c63839f84ae468c163f7e107cdd78c2af5f1  # frozen: v1
   hooks:
   - id: typos
     args: [--force-exclude]
@@ -94,7 +94,7 @@ repos:
   - id: licensecheck
 
 - repo: https://github.com/compilerla/conventional-pre-commit
-  rev: 7c1022b54dcb1d1911e6c885089940e8499f0253  # frozen: v4.2.0
+  rev: 8f2901e453e79dc8c524a8e43268721aa91931a6  # frozen: v4.3.0
   hooks:
   - id: conventional-pre-commit
     stages: [commit-msg]
