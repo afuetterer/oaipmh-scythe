@@ -76,6 +76,7 @@ jobs:
         enable-cache: true
         prune-cache: false
         cache-suffix: docs
+    - run: uv lock --upgrade # we need to bump the version of oaipmh-scythe in uv.lock as well
     - run: just sync-docs
     - run: just docs-deploy
       env:
