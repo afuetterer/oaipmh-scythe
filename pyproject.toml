@@ -135,7 +135,7 @@ addopts = [ "-ra", "--showlocals", "--strict-config", "--strict-markers" ]
 filterwarnings = [ "error" ]
 log_level = "INFO"
 xfail_strict = true
-testpaths = "tests"
+testpaths = [ "tests" ]
 
 [tool.coverage]
 # Ref: https://coverage.readthedocs.io/en/latest/config.html

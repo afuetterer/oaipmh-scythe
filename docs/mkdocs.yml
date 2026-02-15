@@ -63,7 +63,7 @@ plugins:
         options:
           show_root_heading: false
           show_root_toc_entry: false
-        import:
+        inventories:
         - https://docs.python.org/3/objects.inv
 
 markdown_extensions:
