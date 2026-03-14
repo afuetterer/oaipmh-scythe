@@ -2,37 +2,37 @@ interactions:
 - request:
     body: ''
     headers:
-      accept:
-      - text/xml; charset=utf-8
-      accept-encoding:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      host:
+      Host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.9.0
+      - oaipmh-scythe/0.14.0
     method: GET
     uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc
   response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-      href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-      http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2024-01-21T16:53:57Z</responseDate>\n
-      \ <request verb=\"ListIdentifiers\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n
-      \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:2217771</identifier>\n
-      \     <datestamp>2020-01-20T17:11:12Z</datestamp>\n    </header>\n    <header
-      status=\"deleted\">\n      <identifier>oai:zenodo.org:2510668</identifier>\n
-      \     <datestamp>2020-01-20T13:19:30Z</datestamp>\n    </header>\n    <header>\n
-      \     <identifier>oai:zenodo.org:1964765</identifier>\n      <datestamp>2020-01-20T16:10:28Z</datestamp>\n
-      \   </header>\n    <resumptionToken expirationDate=\"2024-01-21T16:55:57Z\"
-      cursor=\"0\" completeListSize=\"3677115\">eJyNzt1ugjAYgOF7</resumptionToken>\n
-      \ </ListIdentifiers>\n</OAI-PMH>\n"
+    body:
+      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
+        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:24:53Z</responseDate>\n
+        \ <request verb=\"ListIdentifiers\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n
+        \ <ListIdentifiers>\n    <header status=\"deleted\">\n      <identifier>oai:zenodo.org:8435696</identifier>\n
+        \     <datestamp>2023-10-12T14:26:07Z</datestamp>\n      <setSpec>user-pyhep2023</setSpec>\n
+        \     <setSpec>openaire</setSpec>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:8435639</identifier>\n
+        \     <datestamp>2023-10-12T15:06:49Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
+        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:8433301</identifier>\n
+        \     <datestamp>2023-10-12T02:36:57Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
+        \   </header>\n    <resumptionToken expirationDate=\"2026-04-10T11:26:54Z\"
+        cursor=\"0\" completeListSize=\"7017764\">.eJwtzN1ugjAYANB36bVZoFI</resumptionToken>\n
+        \ </ListIdentifiers>\n</OAI-PMH>\n"
     headers:
-      cache-control:
-      - private
-      content-encoding:
-      - gzip
+      content-length:
+      - '9440'
       content-security-policy:
       - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
         ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
@@ -40,23 +40,20 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Sun, 21 Jan 2024 16:53:57 GMT
+      - Fri, 10 Apr 2026 11:24:54 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '60'
+      - '8'
       server:
       - nginx
       set-cookie:
-      - session=58a687a68c03fa17_65ad4c25.sdEPuwfnnqzSjRDzMVyvqnsqrhA; Expires=Wed,
-        31 Jan 2024 16:53:57 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=4572b3eb0df2eab70944c8f1f7befca1; path=/;
-        HttpOnly; Secure; SameSite=None
+      - session=eee0ae3c36a8147e_69d8de06.FCD7l9r1P5qCnHX_PIvSdclhd7Y; Expires=Wed,
+        15 Apr 2026 11:24:54 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
-      - max-age=15768000
       transfer-encoding:
       - chunked
       vary:
@@ -66,51 +63,54 @@ interactions:
       x-frame-options:
       - sameorigin
       x-ratelimit-limit:
-      - '120'
+      - '30'
       x-ratelimit-remaining:
-      - '119'
+      - '26'
       x-ratelimit-reset:
-      - '1705856098'
-      x-request-id:
-      - 23a0e34a6b56c495dff4a3789370de51
+      - '1775820303'
+      x-source:
+      - ui
       x-xss-protection:
       - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
-      accept:
-      - text/xml; charset=utf-8
-      accept-encoding:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      cookie:
-      - session=58a687a68c03fa17_65ad4c25.sdEPuwfnnqzSjRDzMVyvqnsqrhA; 5569e5a730cade8ff2b54f1e815f3670=4572b3eb0df2eab70944c8f1f7befca1
-      host:
+      Cookie:
+      - session=eee0ae3c36a8147e_69d8de06.FCD7l9r1P5qCnHX_PIvSdclhd7Y
+      Host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.9.0
+      - oaipmh-scythe/0.14.0
     method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&resumptionToken=eJyNzt1ugjAYgOF7
+    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&resumptionToken=.eJwtzN1ugjAYANB36bVZoFI
   response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-      href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-      http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2024-01-21T16:53:57Z</responseDate>\n
-      \ <request resumptionToken=\".eJyNzt1ugjAYgOF7-Y7NYkGYkHigkVaJMjOkhZ6Y0qJjrWD4iajx3rclO172XsCT9wFtUSjwxy_IdZGFXqdT1564nmOP4CJOBfjWCPRVNKcW_Aeci04o0YldUxzLAXyoRXlQEp4jaGVTG3MovzHAxPSZNSBO6DGzvF4ROlHYQ4oZvaww4mnoUPJhcs2NIlE9HzjlVRjnq9pKcBTs78GNa7oUJBhYelnMf3qrVj0OmNQhjUmnBVWx0NKWeMGK1DTvVrdRA--TVN-358jOzNqmtrmnY-XIgEbMqF8nC-VNs_3n9rpfcRbTME4I6lky7HKDNyJRDv_3z_rvn-tsBs8v72p1Xw.Za1MJQ.BCAaAlrwiiT5LzOta_gChp-37X4\"
-      verb=\"ListIdentifiers\">https://zenodo.org/oai2d</request>\n  <ListIdentifiers>\n
-      \   <header>\n      <identifier>oai:zenodo.org:924565</identifier>\n      <datestamp>2019-03-20T19:36:10Z</datestamp>\n
-      \     <setSpec>user-biosyslit</setSpec>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:1429390</identifier>\n
-      \     <datestamp>2020-01-20T16:27:31Z</datestamp>\n    </header>\n    <header>\n
-      \     <identifier>oai:zenodo.org:1773692</identifier>\n      <datestamp>2020-01-20T16:54:01Z</datestamp>\n
-      \   </header>\n    <resumptionToken expirationDate=\"2024-01-21T16:55:58Z\"
-      cursor=\"100\" completeListSize=\"3677115\">.eJyNzt1qwjAYgOF7-Y5l9NfRggeKTbRoJ6tN2pxITKJzia30h9aK974Ndjz2XsDD-4BGKQmh9TK1PMeb-oEV2IHnvnoTuPGzgtCdgO55fW4gfMBVtVzylu9qdboMEELFLwcp4DmBRtSVMYfLNwYIm65wBpthciqcoJOYeBIFtqRGL0tkszz2Cf4wR82MxEk1HxhhZZweV5WToSTaj9GdabLkOBpoflvMf3orVx2KqNAxSXGrOZEp18IVaEFVbup3p93IgXVZrsftNXELs3aJa8bckr6ISEKN_HWKWNw13X9u-_2K0ZTEaYbtjmbD7mjQhmfSZ__-Wf_9089m8PwC7MZ1XQ.Za1MJg.9UW0wv6NRbZU2JAKMpASR0OZVLY</resumptionToken>\n
-      \ </ListIdentifiers>\n</OAI-PMH>\n"
+    body:
+      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
+        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:24:54Z</responseDate>\n
+        \ <request resumptionToken=\".eJwtzN1ugjAYANB36bVZoFIjJF6YyI9kEEXbSm9MxweCLUoEQ4Px3bdlOw9wXqgvS0Ce9bG0iIvd5dzFeEEWhMxQJy8l8vAMqVE-Lj3yXqgtBwlykLtHWTUGeegumzMU6D1DffG4a31ufjIUhPqZY2OLkFU5dp8QMgcC1wau1eYW2OIUExbW-ksJDWF6XxvxWUx1zdq0lzqNJa2lvKZ-dmLHo0rn61-BGqBLOFy3Dm3FDjYBPVi9U7QwgR8fEx4zYYTDI38Qt2DM7YxkeD8lOjWnSeyob7K_RytaLTnc8jnl8XbP4gPnlgOK7JOoG6Qfj2AETqaayCALhO3jRAPJj7pNlGlyDv9PEW0LyotrPmYRHbkytAjtRFrMEtiuUr-LYVyt0Psb4dp0Qw.adjeBg.YTPJoI52K7Ubkcg3PUBxnHpU-KA\"
+        verb=\"ListIdentifiers\">https://zenodo.org/oai2d</request>\n  <ListIdentifiers>\n
+        \   <header>\n      <identifier>oai:zenodo.org:8433364</identifier>\n      <datestamp>2023-10-12T03:01:25Z</datestamp>\n
+        \     <setSpec>software</setSpec>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:8333281</identifier>\n
+        \     <datestamp>2023-10-12T01:34:35Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
+        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:8321258</identifier>\n
+        \     <datestamp>2023-10-12T05:35:16Z</datestamp>\n      <setSpec>software</setSpec>\n
+        \   </header>\n    <resumptionToken expirationDate=\"2026-04-10T11:26:54Z\"
+        cursor=\"50\" completeListSize=\"7017764\">.eJwtzN1ugjAYANB36bVZKIJOkl2YyI_NIIqUSm9M1w8EW5QIhgbju2_Ldh7gPFFfloA8681yrIWFneUSz7GzwsvFDHXiXCJvPkNqFPdzj7wnastBgBjE7l5WjUEeuonmBBK9ZqiX95vWp-ZnQ0GoH4VtMA_zqrBXDwhzB4IVBqbV5hpgfiRuHtb6S3ENYXJbG_4pp7rO26QXOiGC1kJcEj895lmmkvn6V6AG6GIGl61DW76DTUAPVu_IFibwSRYzknPDHRb5A78GY4FTN7X3U6wTc5z4jvom_Xu0otU7g2sxp4xs9zk5MGY5oNx9HHWD8MkIhtvxVLsiSAOOfTvW4BaZbmNlmoLB_yOjraRMXooxjejIlKEyxLGwcovbuEr8jsD48YFe3wh7dF0.adjeBg.VfbQigADVJXHFu_2OoN71YPw2I4</resumptionToken>\n
+        \ </ListIdentifiers>\n</OAI-PMH>\n"
     headers:
-      content-encoding:
-      - gzip
+      content-length:
+      - '10252'
       content-security-policy:
       - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
         ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
@@ -118,7 +118,159 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Sun, 21 Jan 2024 16:53:58 GMT
+      - Fri, 10 Apr 2026 11:24:54 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '8'
+      server:
+      - nginx
+      set-cookie:
+      - session=eee0ae3c36a8147e_69d8de06.FCD7l9r1P5qCnHX_PIvSdclhd7Y; Expires=Wed,
+        15 Apr 2026 11:24:54 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '30'
+      x-ratelimit-remaining:
+      - '25'
+      x-ratelimit-reset:
+      - '1775820303'
+      x-source:
+      - ui
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Cookie:
+      - session=eee0ae3c36a8147e_69d8de06.FCD7l9r1P5qCnHX_PIvSdclhd7Y
+      Host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.0
+    method: GET
+    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&resumptionToken=.eJwtzN1ugjAYANB36bVZKIJOkl2YyI_NIIqUSm9M1w8EW5QIhgbju2_Ldh7gPFFfloA8681yrIWFneUSz7GzwsvFDHXiXCJvPkNqFPdzj7wnastBgBjE7l5WjUEeuonmBBK9ZqiX95vWp-ZnQ0GoH4VtMA_zqrBXDwhzB4IVBqbV5hpgfiRuHtb6S3ENYXJbG_4pp7rO26QXOiGC1kJcEj895lmmkvn6V6AG6GIGl61DW76DTUAPVu_IFibwSRYzknPDHRb5A78GY4FTN7X3U6wTc5z4jvom_Xu0otU7g2sxp4xs9zk5MGY5oNx9HHWD8MkIhtvxVLsiSAOOfTvW4BaZbmNlmoLB_yOjraRMXooxjejIlKEyxLGwcovbuEr8jsD48YFe3wh7dF0.adjeBg.VfbQigADVJXHFu_2OoN71YPw2I4
+  response:
+    body:
+      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
+        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:24:54Z</responseDate>\n
+        \ <request resumptionToken=\".eJwtzN1ugjAYANB36bVZKIJOkl2YyI_NIIqUSm9M1w8EW5QIhgbju2_Ldh7gPFFfloA8681yrIWFneUSz7GzwsvFDHXiXCJvPkNqFPdzj7wnastBgBjE7l5WjUEeuonmBBK9ZqiX95vWp-ZnQ0GoH4VtMA_zqrBXDwhzB4IVBqbV5hpgfiRuHtb6S3ENYXJbG_4pp7rO26QXOiGC1kJcEj895lmmkvn6V6AG6GIGl61DW76DTUAPVu_IFibwSRYzknPDHRb5A78GY4FTN7X3U6wTc5z4jvom_Xu0otU7g2sxp4xs9zk5MGY5oNx9HHWD8MkIhtvxVLsiSAOOfTvW4BaZbmNlmoLB_yOjraRMXooxjejIlKEyxLGwcovbuEr8jsD48YFe3wh7dF0.adjeBg.VfbQigADVJXHFu_2OoN71YPw2I4\"
+        verb=\"ListIdentifiers\">https://zenodo.org/oai2d</request>\n  <ListIdentifiers>\n
+        \   <header>\n      <identifier>oai:zenodo.org:5523792</identifier>\n      <datestamp>2024-07-17T18:38:33Z</datestamp>\n
+        \     <setSpec>user-biosyslit</setSpec>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:946438</identifier>\n
+        \     <datestamp>2024-08-03T04:53:49Z</datestamp>\n      <setSpec>user-biosyslit</setSpec>\n
+        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:16290772</identifier>\n
+        \     <datestamp>2025-07-21T22:15:04Z</datestamp>\n      <setSpec>user-biosyslit</setSpec>\n
+        \     <setSpec>user-bhl-blr</setSpec>\n    </header>\n  </ListIdentifiers>\n</OAI-PMH>\n"
+    headers:
+      content-length:
+      - '11059'
+      content-security-policy:
+      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
+        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
+        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Fri, 10 Apr 2026 11:24:54 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '8'
+      server:
+      - nginx
+      set-cookie:
+      - session=eee0ae3c36a8147e_69d8de06.FCD7l9r1P5qCnHX_PIvSdclhd7Y; Expires=Wed,
+        15 Apr 2026 11:24:54 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '30'
+      x-ratelimit-remaining:
+      - '24'
+      x-ratelimit-reset:
+      - '1775820303'
+      x-source:
+      - ui
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.0
+    method: GET
+    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=datacite
+  response:
+    body:
+      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
+        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:31:14Z</responseDate>\n
+        \ <request verb=\"ListIdentifiers\" metadataPrefix=\"datacite\">https://zenodo.org/oai2d</request>\n
+        \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:8435696</identifier>\n
+        \     <datestamp>2023-10-12T14:26:07Z</datestamp>\n      <setSpec>user-pyhep2023</setSpec>\n
+        \     <setSpec>openaire</setSpec>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:8435639</identifier>\n
+        \     <datestamp>2023-10-12T15:06:49Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
+        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:8433301</identifier>\n
+        \     <datestamp>2023-10-12T02:36:57Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
+        \   </header>\n    <resumptionToken expirationDate=\"2026-04-10T11:33:15Z\"
+        cursor=\"0\" completeListSize=\"7017821\">.eJyNjk9vgjAcQL_L72wWQPAPiQcWKbEKc0qL9rJUWgUpsFAcBON338zuy97tXV7eHbSUAlzjZeqYk9nYcWxjYkxnY3sEn_wiwbVGUHS8uWhw71DKlgve8m0jz3kPLjwlzVsJjxHotKmV-sh_coACdTtavckCej5a85sIqC3Q3BSJKpYVMtkBOzTI1KlgSgRR7fVskw5ZRstIcxVhTjLOr5G_O9A4LqKx9wQpbxq_J-K6sknJtmKJyN7QdlqKQfg4DhNMWc9yStSaI9wRuupPidhElVrvBqyIRV9_O_VW37pElkiHgTNJC5PISn0dDNIJv7PefBOzf_-Ef_90iwU8vgEtAnXm.adjfgw.JY5er0Ky0tGWR6QSJALqjDmR5S8</resumptionToken>\n
+        \ </ListIdentifiers>\n</OAI-PMH>\n"
+    headers:
+      content-length:
+      - '9392'
+      content-security-policy:
+      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
+        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
+        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Fri, 10 Apr 2026 11:31:15 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
@@ -128,11 +280,10 @@ interactions:
       server:
       - nginx
       set-cookie:
-      - session=58a687a68c03fa17_65ad4c25.sdEPuwfnnqzSjRDzMVyvqnsqrhA; Expires=Wed,
-        31 Jan 2024 16:53:58 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      - session=d4e498770d9d2ec7_69d8df83.NNGPz31-VSdzlxwD2P7IIfIGYAs; Expires=Wed,
+        15 Apr 2026 11:31:15 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
-      - max-age=15768000
       transfer-encoding:
       - chunked
       vary:
@@ -142,188 +293,39 @@ interactions:
       x-frame-options:
       - sameorigin
       x-ratelimit-limit:
-      - '120'
+      - '30'
       x-ratelimit-remaining:
-      - '118'
+      - '29'
       x-ratelimit-reset:
-      - '1705856098'
-      x-request-id:
-      - eef089e7b90abce1c69e683e93f239e2
+      - '1775820735'
+      x-source:
+      - ui
       x-xss-protection:
       - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
-      accept:
-      - text/xml; charset=utf-8
-      accept-encoding:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      cookie:
-      - session=58a687a68c03fa17_65ad4c25.sdEPuwfnnqzSjRDzMVyvqnsqrhA; 5569e5a730cade8ff2b54f1e815f3670=4572b3eb0df2eab70944c8f1f7befca1
-      host:
+      Host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.9.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&resumptionToken=.eJyNzt1qwjAYgOF7-Y5l9NfRggeKTbRoJ6tN2pxITKJzia30h9aK974Ndjz2XsDD-4BGKQmh9TK1PMeb-oEV2IHnvnoTuPGzgtCdgO55fW4gfMBVtVzylu9qdboMEELFLwcp4DmBRtSVMYfLNwYIm65wBpthciqcoJOYeBIFtqRGL0tkszz2Cf4wR82MxEk1HxhhZZweV5WToSTaj9GdabLkOBpoflvMf3orVx2KqNAxSXGrOZEp18IVaEFVbup3p93IgXVZrsftNXELs3aJa8bckr6ISEKN_HWKWNw13X9u-_2K0ZTEaYbtjmbD7mjQhmfSZ__-Wf_9089m8PwC7MZ1XQ.Za1MJg.9UW0wv6NRbZU2JAKMpASR0OZVLY
-  response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-      href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-      http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2024-01-21T16:53:58Z</responseDate>\n
-      \ <request resumptionToken=\".eJyNzt1qwjAYgOF7-Y5l9NfRggeKTbRoJ6tN2pxITKJzia30h9aK974Ndjz2XsDD-4BGKQmh9TK1PMeb-oEV2IHnvnoTuPGzgtCdgO55fW4gfMBVtVzylu9qdboMEELFLwcp4DmBRtSVMYfLNwYIm65wBpthciqcoJOYeBIFtqRGL0tkszz2Cf4wR82MxEk1HxhhZZweV5WToSTaj9GdabLkOBpoflvMf3orVx2KqNAxSXGrOZEp18IVaEFVbup3p93IgXVZrsftNXELs3aJa8bckr6ISEKN_HWKWNw13X9u-_2K0ZTEaYbtjmbD7mjQhmfSZ__-Wf_9089m8PwC7MZ1XQ.Za1MJg.9UW0wv6NRbZU2JAKMpASR0OZVLY\"
-      verb=\"ListIdentifiers\">https://zenodo.org/oai2d</request>\n  <ListIdentifiers>\n
-      \   <header>\n      <identifier>oai:zenodo.org:1767158</identifier>\n      <datestamp>2020-01-20T14:21:43Z</datestamp>\n
-      \   </header>\n    <header>\n      <identifier>oai:zenodo.org:5960928</identifier>\n
-      \     <datestamp>2022-02-28T00:59:09Z</datestamp>\n      <setSpec>user-biosyslit</setSpec>\n
-      \   </header>\n    <header>\n      <identifier>oai:zenodo.org:2048391</identifier>\n
-      \     <datestamp>2020-01-20T13:01:38Z</datestamp>\n    </header>\n</OAI-PMH>\n"
-    headers:
-      content-encoding:
-      - gzip
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - text/xml; charset=utf-8
-      date:
-      - Sun, 21 Jan 2024 16:53:58 GMT
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '60'
-      server:
-      - nginx
-      set-cookie:
-      - session=58a687a68c03fa17_65ad4c25.sdEPuwfnnqzSjRDzMVyvqnsqrhA; Expires=Wed,
-        31 Jan 2024 16:53:58 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      - max-age=15768000
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '120'
-      x-ratelimit-remaining:
-      - '117'
-      x-ratelimit-reset:
-      - '1705856099'
-      x-request-id:
-      - 77f0c8da8b455d45316e3a8b0716a9fa
-      x-xss-protection:
-      - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - text/xml; charset=utf-8
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.9.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=datacite
-  response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-      href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-      http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2024-01-21T16:59:17Z</responseDate>\n
-      \ <request verb=\"ListIdentifiers\" metadataPrefix=\"datacite\">https://zenodo.org/oai2d</request>\n
-      \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:2217771</identifier>\n
-      \     <datestamp>2020-01-20T17:11:12Z</datestamp>\n    </header>\n    <header>\n
-      \     <identifier>oai:zenodo.org:2510668</identifier>\n      <datestamp>2020-01-20T13:19:30Z</datestamp>\n
-      \   </header>\n    <header>\n      <identifier>oai:zenodo.org:1964765</identifier>\n
-      \     <datestamp>2020-01-20T16:10:28Z</datestamp>\n    </header>\n    <resumptionToken
-      expirationDate=\"2024-01-21T17:01:17Z\" cursor=\"0\" completeListSize=\"3677000\">.eJyNjkFvgjAYQP_LdzaLbcUoiQeN0A0dbgqt9LLUtoq2A4MYEeN_dyY7L3u3d3l5NzgZo8HvvpABJj0Pkb5HvCEhgw4c5c6AjztgL7LancC_wbeppZa1_KjMdt-AD09R-9rAvQMnVZXOfe1_chBSd85wgwRl2wwPz5qyng6HSHNnp0WIxDryGM3dxgqnaVyOm-w6T8NZ0uYH4eI-a11f8HeiukEtk3wyfrJQWO8GPOXRTOOoTQ-TpeBoGxefaM5YsAhQqRvBRBGtNq8lTsM4SNrgKiybSho0fH387RRvOutxZSO2orWVTK-kVUSFE27Wrlrieq7_-5OP__65jEZwfwBgL3Rb.Za1NZQ.ojvk39iJxjsv9YTxQ3aYcBuzDXk</resumptionToken>\n
-      \ </ListIdentifiers>\n</OAI-PMH>\n"
-    headers:
-      cache-control:
-      - private
-      content-encoding:
-      - gzip
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - text/xml; charset=utf-8
-      date:
-      - Sun, 21 Jan 2024 16:59:17 GMT
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '60'
-      server:
-      - nginx
-      set-cookie:
-      - session=32d30931a2ccd5e6_65ad4d65.ikzLdbknBeljh0faemn7EtlQLe8; Expires=Wed,
-        31 Jan 2024 16:59:17 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=1b29e26b009271df90219cb6d1da6786; path=/;
-        HttpOnly; Secure; SameSite=None
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      - max-age=15768000
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '120'
-      x-ratelimit-remaining:
-      - '119'
-      x-ratelimit-reset:
-      - '1705856418'
-      x-request-id:
-      - 3d50e96be79918927188566f7f62059b
-      x-xss-protection:
-      - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - text/xml; charset=utf-8
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.9.0
+      - oaipmh-scythe/0.14.0
     method: GET
     uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=XXX
   response:
-    content: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
-      http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2024-01-21T17:01:07Z</responseDate><request>https://zenodo.org/oai2d</request><error
-      code="badArgument">metadataPrefix does not exist</error></OAI-PMH>
+    body:
+      string: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-04-10T11:31:29Z</responseDate><request>https://zenodo.org/oai2d</request><error
+        code="badArgument">metadataPrefix does not exist</error></OAI-PMH>
     headers:
       content-length:
       - '437'
@@ -334,20 +336,18 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Sun, 21 Jan 2024 17:01:07 GMT
+      - Fri, 10 Apr 2026 11:31:29 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '60'
+      - '45'
       server:
       - nginx
       set-cookie:
-      - session=714f8d8c1cd4b7c2_65ad4dd3.q_9zgrnVsH4fUNhCWFiJ6qRAPo0; Expires=Wed,
-        31 Jan 2024 17:01:07 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=4572b3eb0df2eab70944c8f1f7befca1; path=/;
-        HttpOnly; Secure; SameSite=None
+      - session=11fd9621d6ba2780_69d8df91.OjuXPl_ZalHJqoieQNgVRPQZvkE; Expires=Wed,
+        15 Apr 2026 11:31:29 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       x-content-type-options:
@@ -355,272 +355,48 @@ interactions:
       x-frame-options:
       - sameorigin
       x-ratelimit-limit:
-      - '120'
+      - '30'
       x-ratelimit-remaining:
-      - '119'
+      - '28'
       x-ratelimit-reset:
-      - '1705856528'
+      - '1775820735'
       x-xss-protection:
       - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 422
+    status:
+      code: 422
+      message: UNPROCESSABLE ENTITY
 - request:
     body: ''
     headers:
-      accept:
-      - text/xml; charset=utf-8
-      accept-encoding:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      host:
+      Host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.9.0
+      - oaipmh-scythe/0.14.0
     method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&from=2024-01-16&metadataPrefix=oai_dc
+    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&from=2026-04-01&metadataPrefix=oai_dc
   response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-      href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-      http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2024-01-21T17:02:14Z</responseDate>\n
-      \ <request verb=\"ListIdentifiers\" from_=\"2024-01-16T00:00:00Z\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n
-      \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:10516016</identifier>\n
-      \     <datestamp>2024-01-16T01:37:52Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
-      \   </header>\n    <header>\n      <identifier>oai:zenodo.org:10499868</identifier>\n
-      \     <datestamp>2024-01-16T00:35:50Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
-      \   </header>\n    <header>\n      <identifier>oai:zenodo.org:10516075</identifier>\n
-      \     <datestamp>2024-01-16T01:26:22Z</datestamp>\n      <setSpec>software</setSpec>\n
-      \   </header>\n    <resumptionToken expirationDate=\"2024-01-21T17:04:15Z\"
-      cursor=\"0\" completeListSize=\"16326\">.eJyNjl1vgjAYhf_Le40LrZ-QeCERuqHDTaHV3phKAbUVDGIEjP99btn1spNzefKc5w6XJJFgmy_DvtUbWUNk4pE1wkNkwFlkCdjYAHUTZXYB-w5pWZzABmziXsdEHTQITdP-KRhwSiohRSU-yiQ91M9ZIQ5bGcPDgEtcFlpvD88n8Ii-bnCNOKHpBltXSWhPehaSTKtp7iG-9vuU7PVOcS1JUEzqTTOPvFnY7o9cBwPa6gFn793YdCsR7p3JdxYxbtyMRcyfSey30dFZcobSIP9Ec0rdhYsKWXPKc3-1ey1w5AVu2LoNV3QqiFuz9fmXk78104zFyqcrUilB5UqouBt7DkvWulziai7_7aP-9rmNx_D4AibDenA.Za1OFw.AVDGCDRCTjLtUDwTPzPCMFx5AMc</resumptionToken>\n
-      \ </ListIdentifiers>\n</OAI-PMH>\n"
-    headers:
-      cache-control:
-      - private
-      content-encoding:
-      - gzip
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - text/xml; charset=utf-8
-      date:
-      - Sun, 21 Jan 2024 17:02:15 GMT
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '59'
-      server:
-      - nginx
-      set-cookie:
-      - session=23e65b35f35e54a0_65ad4e17.P9ylvZrbTxoiqfQMFGX0fqEXmUg; Expires=Wed,
-        31 Jan 2024 17:02:15 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=1b29e26b009271df90219cb6d1da6786; path=/;
-        HttpOnly; Secure; SameSite=None
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      - max-age=15768000
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '120'
-      x-ratelimit-remaining:
-      - '119'
-      x-ratelimit-reset:
-      - '1705856595'
-      x-request-id:
-      - 79bc17a9a8c1c54ec70641046066608b
-      x-xss-protection:
-      - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - text/xml; charset=utf-8
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.9.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&until=2024-01-17&metadataPrefix=oai_dc
-  response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-      href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-      http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2024-01-21T17:02:55Z</responseDate>\n
-      \ <request verb=\"ListIdentifiers\" until=\"2024-01-17T00:00:00Z\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n
-      \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:2217771</identifier>\n
-      \     <datestamp>2020-01-20T17:11:12Z</datestamp>\n    </header>\n    <header>\n
-      \     <identifier>oai:zenodo.org:2510668</identifier>\n      <datestamp>2020-01-20T13:19:30Z</datestamp>\n
-      \   </header>\n    <header>\n      <identifier>oai:zenodo.org:1964765</identifier>\n
-      \     <datestamp>2020-01-20T16:10:28Z</datestamp>\n    </header>\n    <resumptionToken
-      expirationDate=\"2024-01-21T17:04:55Z\" cursor=\"0\" completeListSize=\"3662554\">.eJyNzUFvgjAcBfDv8j_jQoswIfGgEapMnRnQQi-mUnSsFQxCZBq_-9yy87KXd3z5vRuci0KCZz45LrZHpoNcF6GRM3IMOIlDAR42QF1EcziDd4OuaksNHmATDwcmGqDn2DS9n4IBx6IVUrRi0xT7sn_MalFuZQ53A855U2u9LR9XEBDdZbhHnNB9ht1OEjqUgYsk02pWBYinoU3Ju94priVZ15Oed0mqrqvj2sr0wqKWvqamtHOfrpmW08l3XrOX49xn8cfqEs85i2gYJQR1LOk3Ox0sRSJt3nPKqzDazWucBGs_vvqfXNGZIH7P0tOvUy2GC5_lKqQRaZWgMhIqt_JgyopUN2-4Xcp_O5O_nct4DPcv3LF7hw.Za1OPw.m8VMJGNM8E6Knl9IQoVEOkfn-Rk</resumptionToken>\n
-      \ </ListIdentifiers>\n</OAI-PMH>\n"
-    headers:
-      cache-control:
-      - private
-      content-encoding:
-      - gzip
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - text/xml; charset=utf-8
-      date:
-      - Sun, 21 Jan 2024 17:02:55 GMT
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '60'
-      server:
-      - nginx
-      set-cookie:
-      - session=4aebcf767b9293cb_65ad4e3f.R_bSe9cgH-Hm6tx54f_OCgRW0Dg; Expires=Wed,
-        31 Jan 2024 17:02:55 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=4572b3eb0df2eab70944c8f1f7befca1; path=/;
-        HttpOnly; Secure; SameSite=None
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      - max-age=15768000
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '120'
-      x-ratelimit-remaining:
-      - '118'
-      x-ratelimit-reset:
-      - '1705856636'
-      x-request-id:
-      - 499697af94109e8b0177ec187a739360
-      x-xss-protection:
-      - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - text/xml; charset=utf-8
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.9.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&from=2024-01-16&until=2024-01-17&metadataPrefix=oai_dc
-  response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-      href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-      http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2024-01-21T17:08:22Z</responseDate>\n
-      \ <request verb=\"ListIdentifiers\" from_=\"2024-01-16T00:00:00Z\" until=\"2024-01-17T00:00:00Z\"
-      metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n  <ListIdentifiers>\n
-      \   <header>\n      <identifier>oai:zenodo.org:10517528</identifier>\n      <datestamp>2024-01-16T09:08:38Z</datestamp>\n
-      \   </header>\n    <header>\n      <identifier>oai:zenodo.org:10519218</identifier>\n
-      \     <datestamp>2024-01-16T14:50:43Z</datestamp>\n    </header>\n    <header>\n
-      \     <identifier>oai:zenodo.org:10518323</identifier>\n      <datestamp>2024-01-16T11:51:18Z</datestamp>\n
-      \     <setSpec>openaire</setSpec>\n    </header>\n    <resumptionToken expirationDate=\"2024-01-21T17:10:22Z\"
-      cursor=\"0\" completeListSize=\"1930\">.eJyNjkFvgkAYRP_Ld8Zmd0GKJB40Ag1abRV2cS9mZUGQFQxiRIz_vbbpwVPTydzeZPJucEoSCTZ6sYihI2QYloVNCw36GhzFLgGbaFBcRL07gX2DtK4OYANBxOgh3MNmgJD9U9DgXDa5eqavz_SQNEKKRnzUSZq3j1kl8o2M4a7BKa4rpTb5wwNcT53XpMXco-maDM7So4Z0B1gyVUxKF_PI71MvU9uCK-nNq1HLKS_91fatIqE7d4LOufKCToTntCw6jkffWZT-PkIsLny68ppCULkSRazH7pglkaqXpJnJdn2dhe406LI9V3OTdsrk7F2PkdOIIPv9ifXMQixk_lQSvwv34yVnOJ2Xn3hGqbNwcCX_7WP87XMZDuH-BTWyga0.Za1Phg.cthOQUXfphJqJ4LW_ui2ub9Q4BE</resumptionToken>\n
-      \ </ListIdentifiers>\n</OAI-PMH>\n"
-    headers:
-      cache-control:
-      - private
-      content-encoding:
-      - gzip
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - text/xml; charset=utf-8
-      date:
-      - Sun, 21 Jan 2024 17:08:22 GMT
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '60'
-      server:
-      - nginx
-      set-cookie:
-      - session=408f09276ca825ea_65ad4f86.iA4UGuQx0etzxRg6uiwrySrd93Q; Expires=Wed,
-        31 Jan 2024 17:08:22 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=4572b3eb0df2eab70944c8f1f7befca1; path=/;
-        HttpOnly; Secure; SameSite=None
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      - max-age=15768000
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '120'
-      x-ratelimit-remaining:
-      - '119'
-      x-ratelimit-reset:
-      - '1705856963'
-      x-request-id:
-      - 2afd0f7ee728b26ab8557b60ea79e3f1
-      x-xss-protection:
-      - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - text/xml; charset=utf-8
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.9.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&from=2025-01-15&metadataPrefix=oai_dc
-  response:
-    content: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
-      http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2024-01-21T17:10:51Z</responseDate><request>https://zenodo.org/oai2d</request><error
-      code="noRecordsMatch"></error></OAI-PMH>
+    body:
+      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
+        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:31:42Z</responseDate>\n
+        \ <request verb=\"ListIdentifiers\" from=\"2026-04-01T00:00:00Z\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n
+        \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:17968692</identifier>\n
+        \     <datestamp>2026-04-01T00:32:18Z</datestamp>\n    </header>\n    <header>\n
+        \     <identifier>oai:zenodo.org:19302787</identifier>\n      <datestamp>2026-04-01T00:32:02Z</datestamp>\n
+        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:19360917</identifier>\n
+        \     <datestamp>2026-04-01T01:51:55Z</datestamp>\n    </header>\n   <resumptionToken expirationDate=\"2026-04-10T11:33:42Z\"
+        cursor=\"0\" completeListSize=\"79380\">.eJyNzV1vgjAYBeD_8l7j0hYwSOKFCx-zKjNKi3JjKq2CFFlAB9H43-e2-2Un5_LkOXdolZLgohfHdJBJTNtBDsE2sg34EEcFLjGg7ERzbMG9w6GpK3CBIDIcIGuAcIyQ-1MwoFIXIcVFLBt1KPrnrBbFTmbwMKDNmlrrXfF8giDU1y3pcRryw5aMrjLklgxGWCa69M4BTjfU5mGu92WqZRjVkz6dZ7c851XUCh1RwXIhTpG_2vA4LiNz8p1Ae0k9SeRparEqXUovYGvUWlklb9Kn8SKhPO3TgjM9EwHtGJ_2-0TOo7OerW5UM8Jff516_TY4JqoK2kVoD7MSM3XWnxvEOul35N3H9P8O-9vpxmN4fAF2N3rX.adjfng.305P_4JEJk4fjZzTgdQL2mzrvsA</resumptionToken>\n
+        \ </ListIdentifiers>\n</OAI-PMH>\n"
     headers:
       content-length:
-      - '411'
+      - '8846'
       content-security-policy:
       - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
         ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
@@ -628,59 +404,75 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Sun, 21 Jan 2024 17:10:51 GMT
+      - Fri, 10 Apr 2026 11:31:42 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '60'
+      - '32'
       server:
       - nginx
       set-cookie:
-      - session=faced688e567de71_65ad501b.rUo8FdHqH352H-tFUassB7sFptg; Expires=Wed,
-        31 Jan 2024 17:10:51 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=df8422dbe84fd48b874ae65dd59cde51; path=/;
-        HttpOnly; Secure; SameSite=None
+      - session=bcb6edb1defa9706_69d8df9e.7vSE4kXeWb4Cl3Tar-5ondE4sow; Expires=Wed,
+        15 Apr 2026 11:31:42 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
       x-content-type-options:
       - nosniff
       x-frame-options:
       - sameorigin
       x-ratelimit-limit:
-      - '120'
+      - '30'
       x-ratelimit-remaining:
-      - '119'
+      - '27'
       x-ratelimit-reset:
-      - '1705857112'
+      - '1775820735'
+      x-source:
+      - ui
       x-xss-protection:
       - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 422
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
-      accept:
-      - text/xml; charset=utf-8
-      accept-encoding:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      host:
+      Host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.9.0
+      - oaipmh-scythe/0.14.0
     method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc&set=XXX
+    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&until=2026-04-02&metadataPrefix=oai_dc
   response:
-    content: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
-      http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2024-01-21T17:11:19Z</responseDate><request>https://zenodo.org/oai2d</request><error
-      code="noRecordsMatch"></error></OAI-PMH>
+    body:
+      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
+        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:32:02Z</responseDate>\n
+        \ <request verb=\"ListIdentifiers\" until=\"2026-04-02T00:00:00Z\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n
+        \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:8435696</identifier>\n
+        \     <datestamp>2023-10-12T14:26:07Z</datestamp>\n      <setSpec>user-pyhep2023</setSpec>\n
+        \     <setSpec>openaire</setSpec>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:8435639</identifier>\n
+        \     <datestamp>2023-10-12T15:06:49Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
+        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:8433301</identifier>\n
+        \     <datestamp>2023-10-12T02:36:57Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
+        \   </header>\n    <resumptionToken expirationDate=\"2026-04-10T11:34:04Z\"
+        cursor=\"0\" completeListSize=\"6949075\">.eJyNjlFvgjAYRf_L98yWUrqJJD64SRtRGuOgaF9MpShIESYaUeN_n9vel93cx5tzzw3aLNPgoWdiO5i4Dunhfs9FLiYWNGqbgYctKM_qsG3Bu8FpfywMeIARfn1C5AnhCCHvp2BBlR2VVkc1O2SbonvMalWsdAp3C9r0UBuzKh5fQJk5LXFnSyY2S9w_aSaIpn1bJ6Yc7aktF8GLYLlZl9JoxuthJ6fpNc9FxVtleKDiXKkd9-cLEUUld4bfoYZSUid6NyZxJWd6ROMP1JK00lftB1GYBEJ2y7N2TJBWouVifFGReYt93sjrfCIXZv7L-WwuoZtEpRmvWfcelk2smD1RDqWhz6d8lzry3z7t3z7nwQDuX6tOfCA.adjftA.D-yCXbkOta_RThi65mYso2bJxQU</resumptionToken>\n
+        \ </ListIdentifiers>\n</OAI-PMH>\n"
     headers:
       content-length:
-      - '411'
+      - '9446'
       content-security-policy:
       - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
         ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
@@ -688,71 +480,150 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Sun, 21 Jan 2024 17:11:20 GMT
+      - Fri, 10 Apr 2026 11:32:04 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '60'
+      - '10'
       server:
       - nginx
       set-cookie:
-      - session=4a4bec7791f017b4_65ad5037.UJs0lA7oQOZtzgrug1fSz4vH12A; Expires=Wed,
-        31 Jan 2024 17:11:19 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=df8422dbe84fd48b874ae65dd59cde51; path=/;
-        HttpOnly; Secure; SameSite=None
+      - session=3b434e9177c79f7c_69d8dfb4.FkP1bzAMn_1pu52yVkcZetWli4E; Expires=Wed,
+        15 Apr 2026 11:32:04 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
       x-content-type-options:
       - nosniff
       x-frame-options:
       - sameorigin
       x-ratelimit-limit:
-      - '120'
+      - '30'
       x-ratelimit-remaining:
-      - '118'
+      - '26'
       x-ratelimit-reset:
-      - '1705857140'
+      - '1775820735'
+      x-source:
+      - ui
       x-xss-protection:
       - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 422
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
-      accept:
-      - text/xml; charset=utf-8
-      accept-encoding:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      host:
+      Host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.9.0
+      - oaipmh-scythe/0.14.0
+    method: GET
+    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&from=2026-04-01&until=2026-04-02&metadataPrefix=oai_dc
+  response:
+    body:
+      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
+        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:32:20Z</responseDate>\n
+        \ <request verb=\"ListIdentifiers\" from=\"2026-04-01T00:00:00Z\" until=\"2026-04-02T00:00:00Z\"
+        metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n  <ListIdentifiers>\n
+        \   <header>\n      <identifier>oai:zenodo.org:17968692</identifier>\n      <datestamp>2026-04-01T00:32:18Z</datestamp>\n
+        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:19302787</identifier>\n
+        \     <datestamp>2026-04-01T00:32:02Z</datestamp>\n    </header>\n    <header>\n
+        \     <identifier>oai:zenodo.org:19360917</identifier>\n      <datestamp>2026-04-01T01:51:55Z</datestamp>\n
+        \   </header>\n    <resumptionToken expirationDate=\"2026-04-10T11:34:20Z\"
+        cursor=\"0\" completeListSize=\"10632\">.eJxNjkFvgjAAhf9Lz7i0FZyQeHCRMlGYYbRIL6ZSEKSAER0E43-fmxdf3u17-fJuoE1TCSz4Zo51832so_Fkik0TTjVwEocUWFgDZSfOhxZYN5CdmwpYAEM8GUF9BFEIofVfoIFrfSnUK8WvtEovQoqL2JzTrOgfs0YUO5mAuwba5NwotSsePwBx1DXGPeIOy2JsXqXDdElMJCNVLmqC-NY1mJOrfcmVdPxm3vN1MuQ5q_xWKN8VNBfi6NvBloVh6Y_nfyHKOfk0kselTiu-kQtCv2GrJ5UcpO2GXuQy3vOCUbUSxO0oW_b7SK79Wq2CwVUUs4-np2H71TxKK9J6jjFJSkTTWv1sIe2k3eEvG7kPD_aG3BAkIBzZ2FPSiENVeWVfxJEMnp4kqww7So5xF3zSLip7mjjIE5BBjlHm2ydXdrMZuP8CpBmBuA.adjfxA.mZ-iaNb6BTHyy-wWnUXSwL8SUe0</resumptionToken>\n
+        \ </ListIdentifiers>\n</OAI-PMH>\n"
+    headers:
+      content-length:
+      - '8945'
+      content-security-policy:
+      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
+        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
+        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Fri, 10 Apr 2026 11:32:20 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '9'
+      server:
+      - nginx
+      set-cookie:
+      - session=80dba74c97559396_69d8dfc4.Cr9LOADb3LwlQ1MqoV7K44jmnPY; Expires=Wed,
+        15 Apr 2026 11:32:20 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '30'
+      x-ratelimit-remaining:
+      - '26'
+      x-ratelimit-reset:
+      - '1775820750'
+      x-source:
+      - ui
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.0
     method: GET
     uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc&set=software
   response:
-    content: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-      href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-      xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-      http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2024-01-21T17:11:46Z</responseDate>\n
-      \ <request verb=\"ListIdentifiers\" set=\"software\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n
-      \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:32712</identifier>\n
-      \     <datestamp>2020-01-24T19:27:54Z</datestamp>\n      <setSpec>software</setSpec>\n
-      \   </header>\n    <header>\n      <identifier>oai:zenodo.org:6477900</identifier>\n
-      \     <datestamp>2022-04-23T13:49:41Z</datestamp>\n      <setSpec>software</setSpec>\n
-      \     <setSpec>user-asaphub</setSpec>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:5899728</identifier>\n
-      \     <datestamp>2022-01-25T13:48:58Z</datestamp>\n      <setSpec>software</setSpec>\n
-      \   </header>\n    <resumptionToken expirationDate=\"2024-01-21T17:13:47Z\"
-      cursor=\"0\" completeListSize=\"304286\">.eJyNzMtugkAYBeB3-dekkZsKiQstMJYotUVmYDZmYEZLZxTDJVKM716adN30LM85-e7QCMHBnTxZM0u3J1PDmtnO1DHnpgZXdhLgGhrIG6tPDbj38d2CC011bMdKgAZn0TLOWrarxbHsx61i5YEX8NCgKepKqUM58hAg1WVGr1OEj5nhdBxhiweOzomS3iXQaRraGH2oXFLFUVQte4rpJYzzdWUkQeTvB_-LSuwx5Pckva6WP3m9vJHSJ4UMcYxayTCPmSzMIlgRkar63Wg3vKddksphe47MTL2Y2FRDOuF24eOIKP7rZHHyPCf7z-1tv6YkxmGcIL0jSb_LVbBhCbfpfx1v-bdzWyzg8Q3l-Xoi.Za1QUw.MMthVSWbTmfkuWK55ZLxLcYW56o</resumptionToken>\n
-      \ </ListIdentifiers>\n</OAI-PMH>\n"
+    body:
+      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
+        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:32:33Z</responseDate>\n
+        \ <request verb=\"ListIdentifiers\" set=\"software\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n
+        \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:8434414</identifier>\n
+        \     <datestamp>2023-10-12T09:38:57Z</datestamp>\n      <setSpec>software</setSpec>\n
+        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:8433354</identifier>\n
+        \     <datestamp>2023-10-12T03:06:13Z</datestamp>\n      <setSpec>software</setSpec>\n
+        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:8434592</identifier>\n
+        \     <datestamp>2023-10-12T09:53:07Z</datestamp>\n      <setSpec>software</setSpec>\n
+        \   </header>\n    <resumptionToken expirationDate=\"2026-04-10T11:34:34Z\"
+        cursor=\"0\" completeListSize=\"567110\">.eJwtzE2PgjAYBOD_0jPZFAQVEg8m8mEjRFCo9GK6vCBIASMYGoz_fdnEOc5Mnjfq8xyQhX80jPHaMExztVRX6-VCQQ9-y5GlKage-fPWI-s9nwdkob4rhrnKkYKafODAB3585kUl563j1RUy9FFQnz07Ia7VrCPHFa9UkypzkyLVzBe4iQ6OqQIV9a51VHYhRuKW4rdmAtyg20p2yKayTJqg5yIgPC45vwd2dEnO5zpYbP_jCA-3IYX7Xo8bdoSdE59wr2cNTGCTs09JwiTTqWcPrHXGVI2MSAsnXwTyMrFjbMvo61wP255Cmy5iSvZhQk6UYh1qI_S9x8BtMoJkmj-VBncih6m25gsw0rNo_FpWKYWvk93GtU2zezpGXjzSWsaZq_ocJ5hpahHYDwLjZoM-f3P4eZY.adjf0g.R4p826MfHYHqxebjviB-edXOhmU</resumptionToken>\n
+        \ </ListIdentifiers>\n</OAI-PMH>\n"
     headers:
-      cache-control:
-      - private
-      content-encoding:
-      - gzip
+      content-length:
+      - '9474'
       content-security-policy:
       - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
         ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
@@ -760,23 +631,20 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Sun, 21 Jan 2024 17:11:47 GMT
+      - Fri, 10 Apr 2026 11:32:34 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '59'
+      - '8'
       server:
       - nginx
       set-cookie:
-      - session=b42640c5e6a0ad98_65ad5053.CagU1lSm3yQv3eOqLBKxykfBpH0; Expires=Wed,
-        31 Jan 2024 17:11:47 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=df8422dbe84fd48b874ae65dd59cde51; path=/;
-        HttpOnly; Secure; SameSite=None
+      - session=d77ad20945583868_69d8dfd2.vhJCpceVMqwbp9RyKA5j93qYm88; Expires=Wed,
+        15 Apr 2026 11:32:34 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
-      - max-age=15768000
       transfer-encoding:
       - chunked
       vary:
@@ -786,38 +654,100 @@ interactions:
       x-frame-options:
       - sameorigin
       x-ratelimit-limit:
-      - '120'
+      - '30'
       x-ratelimit-remaining:
-      - '117'
+      - '26'
       x-ratelimit-reset:
-      - '1705857167'
-      x-request-id:
-      - e8cdb5a4988a753887e6ad46c2b9151b
+      - '1775820763'
+      x-source:
+      - ui
       x-xss-protection:
       - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
-      accept:
-      - text/xml; charset=utf-8
-      accept-encoding:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      host:
+      Host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.9.0
+      - oaipmh-scythe/0.14.0
+    method: GET
+    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc&set=XXX
+  response:
+    body:
+      string: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-04-10T11:32:43Z</responseDate><request>https://zenodo.org/oai2d</request><error
+        code="noRecordsMatch"></error></OAI-PMH>
+    headers:
+      content-length:
+      - '411'
+      content-security-policy:
+      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
+        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
+        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Fri, 10 Apr 2026 11:32:43 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '19'
+      server:
+      - nginx
+      set-cookie:
+      - session=9f3eccca1e09cb4d_69d8dfdb._bbZbfm84XE9MtgmxE0uFwzYWhI; Expires=Wed,
+        15 Apr 2026 11:32:43 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '30'
+      x-ratelimit-remaining:
+      - '26'
+      x-ratelimit-reset:
+      - '1775820783'
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 422
+      message: UNPROCESSABLE ENTITY
+- request:
+    body: ''
+    headers:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.0
     method: GET
     uri: https://zenodo.org/oai2d?verb=ListIdentifiers&resumptionToken=XXX
   response:
-    content: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
-      http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2024-01-21T17:24:34Z</responseDate><request>https://zenodo.org/oai2d</request><error
-      code="badResumptionToken">The value of the resumptionToken argument is invalid
-      or expired.</error></OAI-PMH>
+    body:
+      string: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-04-10T11:34:05Z</responseDate><request>https://zenodo.org/oai2d</request><error
+        code="badResumptionToken">The value of the resumptionToken argument is invalid
+        or expired.</error></OAI-PMH>
     headers:
       content-length:
       - '479'
@@ -828,7 +758,7 @@ interactions:
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Sun, 21 Jan 2024 17:24:34 GMT
+      - Fri, 10 Apr 2026 11:34:05 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
@@ -838,10 +768,8 @@ interactions:
       server:
       - nginx
       set-cookie:
-      - session=50f1101e6e56faa3_65ad5352.llHR7H-PucXuZIkegBlUhoftN_U; Expires=Wed,
-        31 Jan 2024 17:24:34 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      - 5569e5a730cade8ff2b54f1e815f3670=4572b3eb0df2eab70944c8f1f7befca1; path=/;
-        HttpOnly; Secure; SameSite=None
+      - session=6c62920d03c46873_69d8e02d.zwercO56cfwE8K8-ugV6FXh7vUg; Expires=Wed,
+        15 Apr 2026 11:34:05 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       x-content-type-options:
@@ -849,13 +777,74 @@ interactions:
       x-frame-options:
       - sameorigin
       x-ratelimit-limit:
-      - '120'
+      - '30'
       x-ratelimit-remaining:
-      - '119'
+      - '29'
       x-ratelimit-reset:
-      - '1705857935'
+      - '1775820906'
       x-xss-protection:
       - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 422
+    status:
+      code: 422
+      message: UNPROCESSABLE ENTITY
+- request:
+    body: ''
+    headers:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.0
+    method: GET
+    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&from=2030-01-15&metadataPrefix=oai_dc
+  response:
+    body:
+      string: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-04-10T11:34:18Z</responseDate><request>https://zenodo.org/oai2d</request><error
+        code="noRecordsMatch"></error></OAI-PMH>
+    headers:
+      content-length:
+      - '411'
+      content-security-policy:
+      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
+        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
+        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Fri, 10 Apr 2026 11:34:18 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '47'
+      server:
+      - nginx
+      set-cookie:
+      - session=d751a66e5f5edad3_69d8e03a.KVrMUo_lYLknyGeH4ySReyiSPMI; Expires=Wed,
+        15 Apr 2026 11:34:18 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '30'
+      x-ratelimit-remaining:
+      - '28'
+      x-ratelimit-reset:
+      - '1775820906'
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 422
+      message: UNPROCESSABLE ENTITY
 version: 1

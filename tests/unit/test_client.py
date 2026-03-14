@@ -152,3 +152,11 @@ def test_valid_custom_retry_after(retry_after):
 def test_invalid_custom_retry_after(retry_after):
     with pytest.raises(ValueError, match="Invalid value for 'default_retry_after'"):
         Scythe("https://zenodo.org/oai2d", default_retry_after=retry_after)
+
+
+def test_server_with_application_xml_header(scythe: Scythe, respx_mock: MockRouter, mocker) -> None:
+    mock_route = respx_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
+        return_value=httpx.Response(200, headers={"Content-Type": "application/xml; charset=utf-8"})
+    )
+    scythe.harvest(query)
+    assert mock_route.called

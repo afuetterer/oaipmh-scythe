@@ -11,7 +11,10 @@ from oaipmh_scythe import Scythe
 
 @pytest.fixture(scope="session")
 def vcr_config() -> dict[str, str]:
-    return {"cassette_library_dir": "tests/cassettes"}
+    return {
+        "cassette_library_dir": "tests/cassettes",
+        "decode_compressed_response": True,
+    }
 
 
 @pytest.fixture

@@ -18,8 +18,7 @@ from oaipmh_scythe.response import OAIResponse
 if TYPE_CHECKING:
     from oaipmh_scythe import Scythe
 
-TITLE_1 = "Some Remarkable Oxidation-Products of Benzidine"
-TITLE_2 = "Déclaration N°9 de La Nouvelle Donne: Tel est pris qui croyait prendre…"  # spellchecker:disable-line
+TITLE = "PocketCoffea: a configuration layer for CMS analyses with Coffea"
 
 
 @pytest.mark.default_cassette("list_records.yaml")
@@ -29,7 +28,7 @@ def test_list_records_with_default_metadata_prefix(scythe: Scythe) -> None:
     assert isinstance(records, Iterator)
     record = next(records)
     assert isinstance(record, Record)
-    assert record.metadata["title"][0] == TITLE_1
+    assert record.metadata["title"][0] == TITLE
 
 
 @pytest.mark.default_cassette("list_records.yaml")
@@ -39,7 +38,7 @@ def test_list_records_without_metadata_prefix(scythe: Scythe) -> None:
     assert isinstance(records, Iterator)
     record = next(records)
     assert isinstance(record, Record)
-    assert record.metadata["title"][0] == TITLE_1
+    assert record.metadata["title"][0] == TITLE
 
 
 @pytest.mark.default_cassette("list_records.yaml")
@@ -49,7 +48,7 @@ def test_list_records_with_valid_metadata_prefix(scythe: Scythe) -> None:
     assert isinstance(records, Iterator)
     record = next(records)
     assert isinstance(record, Record)
-    assert record.metadata["title"][0] == TITLE_1
+    assert record.metadata["title"][0] == TITLE
 
 
 @pytest.mark.default_cassette("list_records.yaml")
@@ -64,27 +63,29 @@ def test_list_records_with_invalid_metadata_prefix(scythe: Scythe) -> None:
 @pytest.mark.default_cassette("list_records.yaml")
 @pytest.mark.vcr
 def test_list_records_with_from(scythe: Scythe) -> None:
-    records = scythe.list_records(from_="2024-01-16")
+    records = scythe.list_records(from_="2026-04-01")
     assert isinstance(records, Iterator)
     record = next(records)
-    assert record.metadata["title"][0] == TITLE_2
+    expected_title = "Visual Summary (हिन्दी): चेचक वैश्विक (1994-2024)"
+    assert record.metadata["title"][0] == expected_title
 
 
 @pytest.mark.default_cassette("list_records.yaml")
 @pytest.mark.vcr
 def test_list_records_with_until(scythe: Scythe) -> None:
-    records = scythe.list_records(until="2024-01-17")
+    records = scythe.list_records(until="2026-04-02")
     assert isinstance(records, Iterator)
     record = next(records)
-    assert record.metadata["title"][0] == TITLE_1
+    assert record.metadata["title"][0] == TITLE
 
 
 @pytest.mark.default_cassette("list_records.yaml")
 @pytest.mark.vcr
 def test_list_records_with_from_and_until(scythe: Scythe) -> None:
-    records = scythe.list_records(from_="2024-01-16", until="2024-01-17")
+    records = scythe.list_records(from_="2026-04-01", until="2026-04-02")
     record = next(records)
-    assert record.metadata["title"][0] == TITLE_2
+    expected_title = "Science, Systèmes et Cécité Structurelle👀"
+    assert record.metadata["title"][0] == expected_title
 
 
 @pytest.mark.default_cassette("list_records.yaml")
@@ -92,7 +93,7 @@ def test_list_records_with_from_and_until(scythe: Scythe) -> None:
 def test_list_records_with_valid_set(scythe: Scythe) -> None:
     records = scythe.list_records(set_="software")
     record = next(records)
-    assert record.metadata["title"][0] == "plasmo-dev/PlasmoExamples: Initial Release"
+    assert record.metadata["title"][0] == "Figure generation TCR self-reactivity"
 
 
 @pytest.mark.default_cassette("list_records.yaml")
@@ -107,7 +108,7 @@ def test_list_records_with_invalid_set(scythe: Scythe) -> None:
 @pytest.mark.default_cassette("list_records.yaml")
 @pytest.mark.vcr
 def test_list_records_with_valid_resumption_token(scythe: Scythe) -> None:
-    token = "eJyNzE1vgjAcgPHv8j"
+    token = ".eJwtzNtugjAAANB"
     records = scythe.list_records(resumption_token=token)
     assert isinstance(records, Iterator)
     record = next(records)
@@ -127,7 +128,7 @@ def test_list_records_with_invalid_resumption_token(scythe: Scythe) -> None:
 @pytest.mark.vcr
 def test_list_records_raises_no_records_match(scythe: Scythe) -> None:
     # noRecordsMatch
-    records = scythe.list_records(from_="2025-01-15")
+    records = scythe.list_records(from_="2030-01-01")
     with pytest.raises(httpx.HTTPStatusError):
         next(records)
 

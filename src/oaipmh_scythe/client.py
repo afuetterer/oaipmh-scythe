@@ -124,7 +124,7 @@ class Scythe:
             A reusable HTTP client instance for making HTTP requests.
         """
         if self._client is None or self._client.is_closed:
-            headers = {"Accept": "text/xml; charset=utf-8", "user-agent": USER_AGENT}
+            headers = {"Accept": "text/xml; charset=utf-8, application/xml; charset=utf-8", "user-agent": USER_AGENT}
             self._client = httpx.Client(
                 headers=headers,
                 timeout=self.timeout,

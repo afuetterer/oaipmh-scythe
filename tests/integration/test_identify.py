@@ -36,7 +36,7 @@ def test_identify(scythe: Scythe) -> None:
 @pytest.mark.default_cassette("identify.yaml")
 @pytest.mark.vcr
 def test_non_oai_pmh_url() -> None:
-    scythe = Scythe("https://duckduckgo.com/")
+    scythe = Scythe("https://httpbun.com/html")
     with pytest.raises(ValueError, match="Identify element not found in the XML"):
         scythe.identify()
     scythe.close()
@@ -47,3 +47,10 @@ def test_non_url() -> None:
     with pytest.raises(httpx.UnsupportedProtocol):
         scythe.identify()
     scythe.close()
+
+
+@pytest.mark.default_cassette("identify.yaml")
+@pytest.mark.vcr
+def test_server_with_application_xml_header() -> None:
+    with Scythe("https://www.e-periodica.ch/oai/dataprovider") as scythe:
+        scythe.identify()
