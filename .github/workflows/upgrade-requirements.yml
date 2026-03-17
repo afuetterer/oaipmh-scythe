@@ -1,4 +1,4 @@
-name: Handle stale issues and PRs
+name: Upgrade requirements
 
 on:
   schedule:
@@ -10,8 +10,8 @@ on:
 permissions: {}
 
 jobs:
-  stale:
+  upgrade:
     permissions:
-      issues: write
+      contents: write
       pull-requests: write
-    uses: afuetterer/.github/.github/workflows/_stale.yml@main
+    uses: afuetterer/.github/.github/workflows/_upgrade-requirements.yml@main
