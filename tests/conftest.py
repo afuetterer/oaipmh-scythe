@@ -17,3 +17,8 @@ def vcr_config() -> dict[str, str]:
 @pytest.fixture
 def scythe() -> Scythe:
     return Scythe("https://zenodo.org/oai2d")
+
+
+@pytest.fixture
+def scythe_eperiodica() -> Scythe:
+    return Scythe("https://www.e-periodica.ch/oai/dataprovider")

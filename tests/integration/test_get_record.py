@@ -56,3 +56,10 @@ def test_get_record_with_invalid_identifier(scythe: Scythe) -> None:
     # idDoesNotExist
     with pytest.raises(HTTPStatusError):
         scythe.get_record(identifier="oai:zenodo.org:XXX", metadata_prefix="oai_dc")
+
+
+@pytest.mark.default_cassette("get_record_application_xml.yaml")
+@pytest.mark.vcr
+def test_get_record_application_xml(scythe_eperiodica: Scythe) -> None:
+    record = scythe_eperiodica.get_record(identifier="oai:agora.ch:aan-001:1962:0::58")
+    assert record.metadata["title"][0] == "Aarburg"

@@ -1,0 +1,52 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      Accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Host:
+      - www.e-periodica.ch
+      user-agent:
+      - oaipmh-scythe/0.14.0
+    method: GET
+    uri: https://www.e-periodica.ch/oai/dataprovider?verb=GetRecord&identifier=oai%3Aagora.ch%3Aaan-001%3A1962%3A0%3A%3A58&metadataPrefix=oai_dc
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAJbogA/7xV0W7bNhR9z1cwetjTJFJO6iQarcDosCVDgwRLhg59CSjyWmJBkRxJOe6+fpBE
+        W3LXYlkf+mLgHp57eXxxeESvd61CW3BeGr1K8owkCDQ3Qup6lfzx9Et6mVyXJ/R+fZs+3N2gXau0
+        XyVNCLbA+OXlJTMWNHO8kVvwmXE1vl/f4kVGcDKSi52XRw0vZwNtQUiO/7x798gbaFkqtQ9Mc0jQ
+        zsvCD+A7w1kYdL3mPvQaUvwf2c6LpDxBiDrw1mgPP7MA5YIslik5S/OLp/y8yElxtvxA8RFl7Pmr
+        Ax9Qv7dqlfwK4XfgxokESQE6yI0Et0oMkwWrjWMZbwrGdEpIXuRXy0VBiuLNZYJaCEywwB4cbORu
+        aHgWPCn7/+HjdiG14KQRkvdjsGES9y3Wma0U4Hpxg5ZB10FIXw06pwIh2gAT4PYlQnRSW/6HWIpn
+        3GmAYAF8YK3tN3eekmW6yJ/IRUHOijz/QPF0PvV4CI8WeCkEL64IoXgPRArFxzrpfk3lCR03VAge
+        rTXWr7PjyD24ctZmO6cGSwqOQUELOnicZ/l3d3CU+Cojj9zJx4IXQQYF5Zq5qnM1xQckHnMHLBhX
+        vme1BvcjWquN0Z7i2VFk+q76CDyUFM+KeCbAcydt/yzH8zkQObarlPQNuPImQ++NEUFJ9ANr7U/o
+        rckoPqLEHm50cLLqeoUUfwZETm+nsjflQBiqeBI+WSh/M53TTK1dkFzBwBnwyPGmc/ywH3DohnW+
+        YSqkj7xxIKuWWTu2RepRIy6/XpXpV9smvf976PkX2hTTdcdqGHd0qKJSB2oIzHIraw0hACrQPk2k
+        lJtMycox9ymD0Pzd54lcDDhe4FnQnDKmT3vZz4SQ05hcz3ugB5fZR1vjTafU+EOwgA3rVOhxiudK
+        ojJutuAOug/VXresm+APwTeWPrAwPsbB+FvDWYVv9VucZwSPlwy8/ZCNcS0LZYBdwE1oFcUTGCmz
+        ENvf1T/Iz0JWyLqSFd5KeLm2Uqz+nd0UHw87VsCsVXJ899iKzTfr4Dq0ur7uPbyyYjM8oG/R88qN
+        CCOLnGRv8uUV9sCUTy8uL66+MJzG8CnELLSnlO4RiqdvD8Wz7xLF9+vb9OHupvwHAAD//wMAD6Dx
+        jXoIAAA=
+    headers:
+      Content-Encoding:
+      - gzip
+      Content-Language:
+      - de
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Date:
+      - Tue, 17 Mar 2026 14:10:35 GMT
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+    status:
+      code: 200
+      message: OK
+version: 1
