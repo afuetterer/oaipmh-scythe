@@ -152,3 +152,44 @@ def test_valid_custom_retry_after(retry_after):
 def test_invalid_custom_retry_after(retry_after):
     with pytest.raises(ValueError, match="Invalid value for 'default_retry_after'"):
         Scythe("https://zenodo.org/oai2d", default_retry_after=retry_after)
+
+
+def test_list_records_with_custom_query(scythe: Scythe, respx_mock: MockRouter) -> None:
+    """Test that custom_query parameters are properly merged into the request."""
+    custom_params = {"customParam": "customValue", "anotherParam": "anotherValue"}
+    expected_params = {
+        "verb": "ListRecords",
+        "metadataPrefix": "oai_dc",
+        "customParam": "customValue",
+        "anotherParam": "anotherValue",
+    }
+
+    mock_xml = """<?xml version="1.0" encoding="UTF-8"?>
+    <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/">
+        <responseDate>2025-01-01T00:00:00Z</responseDate>
+        <request verb="ListRecords">https://zenodo.org/oai2d</request>
+        <ListRecords>
+            <record>
+                <header>
+                    <identifier>test:1</identifier>
+                    <datestamp>2025-01-01T00:00:00Z</datestamp>
+                </header>
+                <metadata>
+                    <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+                        <dc:title>Test Record</dc:title>
+                    </oai_dc:dc>
+                </metadata>
+            </record>
+        </ListRecords>
+    </OAI-PMH>"""
+
+    mock_route = respx_mock.get("https://zenodo.org/oai2d").mock(return_value=httpx.Response(200, text=mock_xml))
+
+    list(scythe.list_records(custom_query=custom_params))
+
+    assert mock_route.called
+    request = mock_route.calls[0].request
+    query_params = dict(request.url.params)
+
+    for key, value in expected_params.items():
+        assert query_params.get(key) == value, f"Expected {key}={value}, got {query_params.get(key)}"
