@@ -43,7 +43,7 @@ urls.Repository = "https://github.com/afuetterer/oaipmh-scythe.git"
 
 [dependency-groups]
 dev = [
-  "pre-commit-uv",
+  "prek",
 ]
 test = [
   "pytest",
