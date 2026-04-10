@@ -16,6 +16,7 @@ env:
   PYTHONUNBUFFERED: 1
   FORCE_COLOR: 1
   UV_LOCKED: true # do not update the lockfile during `uv sync` and `uv run` commands
+  UV_EXCLUDE_NEWER: 1 week # ignore packages published in the last week
 
 # Set permissions at the job level.
 permissions:
