@@ -6,7 +6,7 @@ updates:
 - package-ecosystem: github-actions
   directory: /
   schedule:
-    interval: monthly
+    interval: quarterly
   commit-message:
     prefix: ci
   labels:
@@ -19,7 +19,7 @@ updates:
 - package-ecosystem: pip
   directory: /
   schedule:
-    interval: monthly
+    interval: quarterly
   versioning-strategy: increase-if-necessary
   commit-message:
     prefix: build
@@ -27,12 +27,3 @@ updates:
   labels:
   - 'type: build'
   - 'deps: python'
-  groups:
-    docs:
-      patterns:
-      - mike
-      - mkdocs*
-    test:
-      patterns:
-      - pytest*
-      - respx
