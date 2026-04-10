@@ -6,8 +6,15 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
 
-## [Unreleased](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.0...main)
+## [Unreleased](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.1...main)
 
+
+
+## [0.14.1](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.0...0.14.1) (2026-04-10)
+
+### Documentation
+
+- **readme:** add uv install instructions ([`1d298e7`](https://github.com/afuetterer/oaipmh-scythe/commit/1d298e7528d54d0f8d2ff6ed1f67c42073be4eed))
 
 
 ## [0.14.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.13.0...0.14.0) (2026-02-15)

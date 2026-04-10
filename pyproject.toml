@@ -4,7 +4,7 @@ requires = [ "uv-build" ]
 
 [project]
 name = "oaipmh-scythe"
-version = "0.14.0"
+version = "0.14.1"
 description = "A Scythe for harvesting OAI-PMH repositories."
 readme = "README.md"
 keywords = [
