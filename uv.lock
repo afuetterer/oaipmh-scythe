@@ -3,7 +3,7 @@ revision = 3
 requires-python = ">=3.10"
 
 [options]
-exclude-newer = "2026-04-03T09:47:23.775986076Z"
+exclude-newer = "2026-04-03T17:22:48.809121758Z"
 exclude-newer-span = "P1W"
 
 [[package]]
@@ -837,7 +837,7 @@ wheels = [
 
 [[package]]
 name = "oaipmh-scythe"
-version = "0.14.0"
+version = "0.14.1"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },
