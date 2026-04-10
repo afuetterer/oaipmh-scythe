@@ -39,7 +39,13 @@ with Scythe("https://zenodo.org/oai2d") as scythe:
 
 ## Installation
 
-You can install `oaipmh-scythe` via pip from [PyPI][pypi-url]:
+You can install `oaipmh-scythe` from [PyPI][pypi-url] using [uv](https://docs.astral.sh/uv/):
+
+```console
+uv add oaipmh-scythe
+```
+
+or with [pip](https://github.com/pypa/pip):
 
 ```console
 python -m pip install oaipmh-scythe
