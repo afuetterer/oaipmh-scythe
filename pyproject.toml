@@ -129,6 +129,14 @@ ignore = [
 # add "spellchecker:disable-line" to ignore specific lines
 default.extend-ignore-re = [ "(?Rm)^.*# spellchecker:disable-line$" ]
 
+[tool.mypy]  # Ref: https://mypy.readthedocs.io/en/stable/config_file.html#using-a-pyproject-toml-file
+python_version = "3.10"
+pretty = true
+show_column_numbers = true
+show_error_context = true
+enable_error_code = [ "ignore-without-code", "redundant-expr", "truthy-bool" ]
+warn_unreachable = true
+
 [tool.pytest]
 # Ref: https://docs.pytest.org/en/stable/customize.html
 minversion = "9.0"
@@ -151,14 +159,6 @@ report.fail_under = 90
 report.show_missing = true
 report.skip_covered = true
 report.skip_empty = true
-
-[tool.mypy]  # Ref: https://mypy.readthedocs.io/en/stable/config_file.html#using-a-pyproject-toml-file
-python_version = "3.10"
-pretty = true
-show_column_numbers = true
-show_error_context = true
-enable_error_code = [ "ignore-without-code", "redundant-expr", "truthy-bool" ]
-warn_unreachable = true
 
 [tool.licensecheck]  # Ref: https://github.com/FHPythonUtils/LicenseCheck/#example-1-pyprojecttoml
 using = "PEP631"
