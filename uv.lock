@@ -2,10 +2,6 @@ version = 1
 revision = 3
 requires-python = ">=3.10"
 
-[options]
-exclude-newer = "2026-04-03T17:22:48.809121758Z"
-exclude-newer-span = "P1W"
-
 [[package]]
 name = "anyio"
 version = "4.13.0"
@@ -837,7 +833,7 @@ wheels = [
 
 [[package]]
 name = "oaipmh-scythe"
-version = "0.14.1"
+version = "0.14.2"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },

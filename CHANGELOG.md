@@ -6,8 +6,11 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
 
-## [Unreleased](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.1...main)
+## [Unreleased](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.2...main)
 
+
+
+## [0.14.2](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.1...0.14.2) (2026-04-10)
 
 
 ## [0.14.1](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.0...0.14.1) (2026-04-10)
