@@ -84,11 +84,10 @@ Here's how to set up `oaipmh-scythe` for local development.
 
     Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass `pre-commit` and the tests:
+5. When you're done making changes, check that your changes pass the `prek` hooks and the tests:
 
     ```console
-    $ just check
-    $ just cov
+    $ just qa
     ```
 
 6. Commit your changes and push your branch to GitHub:

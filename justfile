@@ -20,22 +20,25 @@ sync-docs:
 @project-version:
     uv version | awk '{print $2}'
 
-pre-commit := "pre-commit run --all-files --color=always --show-diff-on-failure"
+prek := "prek run --all-files --color=always --show-diff-on-failure"
 
-# Run all pre-commit checks except mypy
+# Run all all prek hooks and pytest tests
+qa: check test
+
+# Run all prek hooks except mypy
 [group('lint')]
 lint:
-    SKIP=mypy uv run {{ pre-commit }}
+    uv run {{ prek }} --skip mypy
 
-# Run only mypy through pre-commit
+# Run only mypy through prek
 [group('lint')]
 typecheck:
-    uv run {{ pre-commit }} mypy
+    uv run {{ prek }} mypy
 
-# Run a full pre-commit check including mypy
+# Run all prek hooks including mypy
 [group('lint')]
 check:
-    uv run {{ pre-commit }}
+    uv run {{ prek }}
 
 # Run pytest tests
 [group('test')]
