@@ -22,7 +22,7 @@ def test_list_identifiers_with_default_metadata_prefix(scythe: Scythe) -> None:
     assert isinstance(headers, Iterator)
     header = next(headers)
     assert isinstance(header, Header)
-    assert header.identifier == "oai:zenodo.org:2217771"
+    assert header.identifier == "oai:zenodo.org:8435696"
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
@@ -32,7 +32,7 @@ def test_list_identifiers_without_metadata_prefix(scythe: Scythe) -> None:
     assert isinstance(headers, Iterator)
     header = next(headers)
     assert isinstance(header, Header)
-    assert header.identifier == "oai:zenodo.org:2217771"
+    assert header.identifier == "oai:zenodo.org:8435696"
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
@@ -42,7 +42,7 @@ def test_list_identifiers_with_valid_metadata_prefix(scythe: Scythe) -> None:
     assert isinstance(headers, Iterator)
     header = next(headers)
     assert isinstance(header, Header)
-    assert header.identifier == "oai:zenodo.org:2217771"
+    assert header.identifier == "oai:zenodo.org:8435696"
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
@@ -57,27 +57,27 @@ def test_list_identifiers_with_invalid_metadata_prefix(scythe: Scythe) -> None:
 @pytest.mark.default_cassette("list_identifiers.yaml")
 @pytest.mark.vcr
 def test_list_identifiers_with_from(scythe: Scythe) -> None:
-    headers = scythe.list_identifiers(from_="2024-01-16")
+    headers = scythe.list_identifiers(from_="2026-04-01")
     assert isinstance(headers, Iterator)
     header = next(headers)
-    assert header.identifier == "oai:zenodo.org:10516016"
+    assert header.identifier == "oai:zenodo.org:17968692"
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
 @pytest.mark.vcr
 def test_list_identifiers_with_until(scythe: Scythe) -> None:
-    headers = scythe.list_identifiers(until="2024-01-17")
+    headers = scythe.list_identifiers(until="2026-04-02")
     assert isinstance(headers, Iterator)
     header = next(headers)
-    assert header.identifier == "oai:zenodo.org:2217771"
+    assert header.identifier == "oai:zenodo.org:8435696"
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
 @pytest.mark.vcr
 def test_list_identifiers_with_from_and_until(scythe: Scythe) -> None:
-    headers = scythe.list_identifiers(from_="2024-01-16", until="2024-01-17")
+    headers = scythe.list_identifiers(from_="2026-04-01", until="2026-04-02")
     header = next(headers)
-    assert header.identifier == "oai:zenodo.org:10517528"
+    assert header.identifier == "oai:zenodo.org:17968692"
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
@@ -85,7 +85,7 @@ def test_list_identifiers_with_from_and_until(scythe: Scythe) -> None:
 def test_list_identifiers_with_valid_set(scythe: Scythe) -> None:
     headers = scythe.list_identifiers(set_="software")
     header = next(headers)
-    assert header.identifier == "oai:zenodo.org:32712"
+    assert header.identifier == "oai:zenodo.org:8434414"
 
 
 @pytest.mark.default_cassette("list_identifiers.yaml")
@@ -100,7 +100,7 @@ def test_list_identifiers_with_invalid_set(scythe: Scythe) -> None:
 @pytest.mark.default_cassette("list_identifiers.yaml")
 @pytest.mark.vcr
 def test_list_identifiers_with_valid_resumption_token(scythe: Scythe) -> None:
-    token = "eJyNzt1ugjAYgOF7"
+    token = ".eJwtzN1ugjAYANB36bVZoFI"
     headers = scythe.list_identifiers(resumption_token=token)
     assert isinstance(headers, Iterator)
     header = next(headers)
@@ -120,7 +120,7 @@ def test_list_identifiers_with_invalid_resumption_token(scythe: Scythe) -> None:
 @pytest.mark.vcr
 def test_list_identifiers_raises_no_records_match(scythe: Scythe) -> None:
     # noRecordsMatch
-    headers = scythe.list_identifiers(from_="2025-01-15")
+    headers = scythe.list_identifiers(from_="2030-01-15")
     with pytest.raises(httpx.HTTPStatusError):
         next(headers)
 
