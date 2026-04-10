@@ -2,6 +2,8 @@
 # Ref: https://just.systems/man/en/
 # ------------------------------------------------------------------------------
 
+alias t := test
+
 export UV_LOCKED := "true" # do not update the lockfile during `uv sync` and `uv run` commands
 export UV_EXCLUDE_NEWER := "1 week" # ignore packages published in the last week
 
@@ -20,30 +22,28 @@ sync-docs:
 @project-version:
     uv version | awk '{print $2}'
 
-prek := "prek run --all-files --color=always --show-diff-on-failure"
-
 # Run all all prek hooks and pytest tests
 qa: check test
 
 # Run all prek hooks except mypy
 [group('lint')]
-lint:
-    uv run {{ prek }} --skip mypy
+@lint:
+    just check --skip=mypy
 
 # Run only mypy through prek
 [group('lint')]
-typecheck:
-    uv run {{ prek }} mypy
+@typecheck:
+    just check mypy
 
 # Run all prek hooks including mypy
 [group('lint')]
-check:
-    uv run {{ prek }}
+check *args:
+    uv run prek run --all-files --color=always --show-diff-on-failure {{ args }}
 
 # Run pytest tests
 [group('test')]
-test:
-    uv run pytest tests
+test *args:
+    uv run pytest {{ args }}
 
 # Run pytest tests with coverage
 [group('test')]
