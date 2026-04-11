@@ -178,7 +178,7 @@ sed -i "s/^version: .*/version: $NEW_VERSION/" CITATION.cff
 sed -i "s/^date-released: .*/date-released: $(date "+%Y-%m-%d")/" CITATION.cff
 git add CITATION.cff
 python -m pip install uv
-uv lock --upgrade-package "$PACKAGE_NAME"
+uv lock --upgrade-package "$PACKAGE_NAME" --exclude-newer="1 week"
 git add uv.lock
 uv build
 """
