@@ -84,6 +84,11 @@ repos:
   hooks:
   - id: sp-repo-review
 
+- repo: https://github.com/zizmorcore/zizmor-pre-commit
+  rev: ea2eb407b4cbce87cf0d502f36578950494f5ac9  # frozen: v1.23.1
+  hooks:
+  - id: zizmor
+
 - repo: https://github.com/crate-ci/typos
   rev: 02ea592e44b3a53c302f697cddca7641cd051c3d  # frozen: v1.45.0
   hooks:
