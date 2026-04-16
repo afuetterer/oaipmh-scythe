@@ -16,14 +16,3 @@ updates:
     github-actions:
       patterns:
       - '*'
-- package-ecosystem: pip
-  directory: /
-  schedule:
-    interval: quarterly
-  versioning-strategy: increase-if-necessary
-  commit-message:
-    prefix: build
-    include: scope
-  labels:
-  - 'type: build'
-  - 'deps: python'
