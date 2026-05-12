@@ -19,7 +19,7 @@ jobs:
       id-token: write
     steps:
     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-    - uses: hynek/build-and-inspect-python-package@fe0a0fb1925ca263d076ca4f2c13e93a6e92a33e # v2.17.0
+    - uses: hynek/build-and-inspect-python-package@d44ca7d91762de7a7d5436ddae667c6da6d1c3df # v2.18.0
       with:
         attest-build-provenance-github: 'true'
   upload:
@@ -37,7 +37,7 @@ jobs:
         name: Packages
         path: dist
     - name: Publish package distributions to GitHub Releases
-      uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2.6.1
+      uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3.0.0
       with:
         files: dist/*
   publish:
@@ -70,7 +70,7 @@ jobs:
       with:
         fetch-depth: 0 # fetch all commits and branches
     - name: Set up uv
-      uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57 # v8.0.0
+      uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
       with:
         python-version: '3.14'
         enable-cache: true
