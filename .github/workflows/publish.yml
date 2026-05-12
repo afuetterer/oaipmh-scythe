@@ -22,6 +22,7 @@ jobs:
     - uses: hynek/build-and-inspect-python-package@d44ca7d91762de7a7d5436ddae667c6da6d1c3df # v2.18.0
       with:
         attest-build-provenance-github: 'true'
+        skip-sdist: 'true'
   upload:
     name: Upload package distributions to GitHub Releases
     # disables this workflow from running in a repository that is not part of the indicated organization/user
