@@ -27,13 +27,22 @@ jobs:
       contents: read
     needs:
     - test
+    outputs:
+      released: ${{ steps.psr.outputs.released || 'false' }}
+      tag: ${{ steps.psr.outputs.tag }}
     steps:
     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       with:
         fetch-depth: 0 # get all commits and tags
-        token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+        persist-credentials: false
+    - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+      id: app-token
+      with:
+        client-id: ${{ secrets.APP_CLIENT_ID }}
+        private-key: ${{ secrets.APP_PRIVATE_KEY }}
     - name: Create semantic release
+      id: psr
       uses: python-semantic-release/python-semantic-release@350c48fcb3ffcdfd2e0a235206bc2ecea6b69df0 # v10.5.3
       with:
-        # allows for python-semantic-release to push to protected main branch
-        github_token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+        # allow python-semantic-release to push to protected main branch
+        github_token: ${{ steps.app-token.outputs.token }}
