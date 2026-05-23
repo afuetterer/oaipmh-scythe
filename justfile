@@ -61,19 +61,20 @@ cov-report-markdown:
     uv run python -m coverage json --quiet
     uv run python -c "import json;print(json.load(open('coverage.json'))['totals']['percent_covered_display'])"
 
+mkdocs := "uv run --group=docs mkdocs"
 config := "--config-file=docs/mkdocs.yml"
 
 # Build the documentation site
 [group('docs')]
 docs-build:
-    uv run mkdocs build {{ config }}
+    {{ mkdocs }} build {{ config }}
 
 # Serve documentation locally with live reload
 [group('docs')]
 docs-serve:
-    uv run mkdocs serve {{ config }} --verbose
+    {{ mkdocs }} serve {{ config }} --verbose
 
 # Deploy documentation to GitHub Pages using mike
 [group('docs')]
 docs-deploy:
-    uv run mike deploy {{ config }} --push --update-aliases $(just project-version) latest
+    uv run --group=docs mike deploy {{ config }} --push --update-aliases $(just project-version) latest
