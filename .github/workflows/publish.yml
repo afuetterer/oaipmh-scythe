@@ -76,7 +76,6 @@ jobs:
         enable-cache: true
         prune-cache: false
         cache-suffix: docs
-    - run: just sync-docs
     - run: just docs-deploy
       env:
         GIT_COMMITTER_NAME: github-actions[bot]
