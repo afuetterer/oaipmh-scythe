@@ -11,9 +11,9 @@ available.
 To report a security vulnerability, please follow these steps:
 
 - To report a security issue, please use the GitHub Security Advisory
-    [Report a Vulnerability](https://github.com/afuetterer/oaipmh-scythe/security/advisories/new) tab.
+  [Report a Vulnerability](https://github.com/afuetterer/oaipmh-scythe/security/advisories/new) tab.
 - Provide a clear and detailed account of the vulnerability, including the potential impact and steps required to
-    reproduce it.
+  reproduce it.
 
 Do not report security vulnerabilities through public GitHub issues.
 

@@ -8,7 +8,7 @@ You can contribute in many ways.
 
 ### Report Bugs
 
-Report bugs at https://github.com/afuetterer/oaipmh-scythe/issues.
+Report bugs at <https://github.com/afuetterer/oaipmh-scythe/issues>.
 
 If you are reporting a bug, please include:
 
@@ -41,7 +41,7 @@ If you are proposing a feature:
 - Keep the scope as narrow as possible, to make it easier to implement.
 - Remember that this is a volunteer-driven project, and that contributions are welcome.
 
-## Get Started!
+## Get Started
 
 Ready to contribute?
 
@@ -54,9 +54,9 @@ You’ll need the following tools installed:
 Follow the official installation instructions in each project's README:
 
 - **Install uv** – see the Installation section of the uv README:
-    https://github.com/astral-sh/uv?tab=readme-ov-file#installation
+  <https://github.com/astral-sh/uv?tab=readme-ov-file#installation>
 - **Install just** – see the Installation section of the just README:
-    https://github.com/casey/just?tab=readme-ov-file#installation
+  <https://github.com/casey/just?tab=readme-ov-file#installation>
 
 Here's how to set up `oaipmh-scythe` for local development.
 
@@ -65,21 +65,21 @@ Here's how to set up `oaipmh-scythe` for local development.
 2. Clone your fork locally:
 
     ```console
-    $ git clone git@github.com:username/oaipmh-scythe.git
+    git clone git@github.com:username/oaipmh-scythe.git
     ```
 
 3. Install your local copy into a virtual environment. Assuming you have `just` and `uv` installed, this is how you set
-    up your fork for local development:
+   up your fork for local development:
 
     ```console
-    $ cd oaipmh-scythe
-    $ just sync
+    cd oaipmh-scythe
+    just sync
     ```
 
 4. Create a branch for local development:
 
     ```console
-    $ git checkout -b name-of-your-bugfix-or-feature
+    git checkout -b name-of-your-bugfix-or-feature
     ```
 
     Now you can make your changes locally.
@@ -87,15 +87,15 @@ Here's how to set up `oaipmh-scythe` for local development.
 5. When you're done making changes, check that your changes pass the `prek` hooks and the tests:
 
     ```console
-    $ just qa
+    just qa
     ```
 
 6. Commit your changes and push your branch to GitHub:
 
     ```console
-    $ git add .
-    $ git commit -m "Your detailed description of your changes."
-    $ git push origin name-of-your-bugfix-or-feature
+    git add .
+    git commit -m "Your detailed description of your changes."
+    git push origin name-of-your-bugfix-or-feature
     ```
 
 7. Submit a pull request through the GitHub website.
@@ -106,9 +106,9 @@ Before you submit a pull request, check that it meets these guidelines:
 
 1. The pull request should include tests.
 2. If the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a
-    docstring.
-3. The pull request should work for Python >= 3.10. Check https://github.com/afuetterer/oaipmh-scythe/pulls and make
-    sure that all the tests pass.
+   docstring.
+3. The pull request should work for Python >= 3.10. Check <https://github.com/afuetterer/oaipmh-scythe/pulls> and make
+   sure that all the tests pass.
 
 ---
 

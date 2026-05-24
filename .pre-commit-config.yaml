@@ -53,14 +53,10 @@ repos:
   hooks:
   - id: pyproject-fmt
 
-- repo: https://github.com/hukkin/mdformat
-  rev: 82912cdaea4fb830f751504486a7879c70526547  # frozen: 1.0.0
+- repo: https://github.com/rvben/rumdl-pre-commit
+  rev: 3412145b1fabc79eaf5a2799747e6fdcb130d479  # frozen: v0.1.93
   hooks:
-  - id: mdformat
-    args: [--number, --wrap=120, --ignore-missing-references]
-    exclude: CHANGELOG.md|.changelog.md|docs/src/api
-    additional_dependencies:
-    - mdformat-mkdocs[recommended]==v5.1.4
+  - id: rumdl-fmt
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
   rev: c60c980e561ed3e73101667fe8365c609d19a438  # frozen: v0.15.9
