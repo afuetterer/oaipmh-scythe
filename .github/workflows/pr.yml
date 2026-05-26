@@ -29,7 +29,7 @@ jobs:
   docs:
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-slim
     steps:
     - name: Set up just
       uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3 # v4.0.0
@@ -48,7 +48,7 @@ jobs:
     needs:
     - test
     - docs
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-slim
     steps:
     - uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # v1.2.2
       with:
