@@ -15,7 +15,7 @@ jobs:
   label:
     permissions:
       issues: write
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-slim
     steps:
     # Ref: https://github.com/EndBug/label-sync
     - uses: EndBug/label-sync@52074158190acb45f3077f9099fea818aa43f97a # v2.3.3
