@@ -5,6 +5,7 @@ version: 2
 updates:
 - package-ecosystem: github-actions
   directory: /
+  open-pull-requests-limit: 1
   schedule:
     interval: quarterly
   commit-message:
@@ -16,3 +17,20 @@ updates:
     github-actions:
       patterns:
       - '*'
+  cooldown:
+    default-days: 7
+- package-ecosystem: pre-commit
+  directory: /
+  open-pull-requests-limit: 1
+  schedule:
+    interval: quarterly
+  commit-message:
+    prefix: build
+  labels:
+  - 'deps: pre-commit'
+  groups:
+    pre-commit:
+      patterns:
+      - '*'
+  cooldown:
+    default-days: 7
