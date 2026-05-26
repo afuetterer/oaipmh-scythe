@@ -43,13 +43,13 @@ repos:
     args: [--autofix, --indent, '2']
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 13614ab716a3113145f1294ed259d9fbe5678ff3  # frozen: 0.37.1
+  rev: f805888065fdb6162e1f800e50bb9460cbd223d6  # frozen: 0.37.2
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 6e10264313f53d6247a8b1b984f5b5ccf50ba539  # frozen: v2.21.0
+  rev: a007bb7dd9043d022292401abc3061cb1906b4bc  # frozen: v2.21.2
   hooks:
   - id: pyproject-fmt
 
@@ -66,7 +66,7 @@ repos:
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: 8e5c80792e2ec0c87804d8ef915bf35e2caea6da  # frozen: v1.20.0
+  rev: d2823d321df3af8f878f7ee3414dc94d037145b9  # frozen: v2.1.0
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
