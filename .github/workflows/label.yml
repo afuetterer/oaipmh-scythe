@@ -11,11 +11,16 @@ on:
 # Set permissions at the job level.
 permissions: {}
 
+concurrency:
+  group: label-${{ github.head_ref }}
+  cancel-in-progress: false
+
 jobs:
   label:
-    permissions:
-      issues: write
+    name: Set up common issue labels
     runs-on: ubuntu-slim
+    permissions:
+      issues: write # Needed to create issue labels
     steps:
     # Ref: https://github.com/EndBug/label-sync
     - uses: EndBug/label-sync@52074158190acb45f3077f9099fea818aa43f97a # v2.3.3

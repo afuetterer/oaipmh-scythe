@@ -12,6 +12,6 @@ permissions: {}
 jobs:
   upgrade:
     permissions:
-      contents: write
-      pull-requests: write
-    uses: afuetterer/.github/.github/workflows/_upgrade-requirements.yml@main
+      contents: write       # Needed to commit the updated lock file
+      pull-requests: write  # Needed to open a pull request for review
+    uses: afuetterer/.github/.github/workflows/_upgrade-requirements.yml@main # zizmor: ignore[unpinned-uses] this is my workflow

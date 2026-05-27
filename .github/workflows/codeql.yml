@@ -1,24 +1,31 @@
 # Ref: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/customizing-code-scanning
 name: CodeQL
 
-permissions:
-  contents: read
-
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
 
+# Set permissions at the job level.
+permissions: {}
+
+concurrency:
+  group: codeql-${{ github.head_ref }}
+  cancel-in-progress: true
+
 jobs:
   analyze:
+    name: Perform CodeQL Analysis
     runs-on: ubuntu-24.04
     permissions:
-      actions: read
-      contents: read
-      security-events: write
+      actions: read           # Needed to read workflow metadata and logs
+      contents: read          # Needed to checkout the repository code for scanning
+      security-events: write  # Needed to upload the scan results to the Security tab
     steps:
     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      with:
+        persist-credentials: false
       # Ref: https://github.com/github/codeql-action
     - name: Initialize CodeQL
       uses: github/codeql-action/init@9e0d7b8d25671d64c341c19c0152d693099fb5ba # v4.35.5

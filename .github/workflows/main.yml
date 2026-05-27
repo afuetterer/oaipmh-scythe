@@ -18,11 +18,13 @@ env:
 jobs:
   test:
     uses: ./.github/workflows/test.yml
-    secrets: inherit
+    secrets:
+      GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
   release:
+    name: Create release using python-semantic-release
+    runs-on: ubuntu-24.04
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
-    runs-on: ubuntu-24.04
     permissions:
       contents: read
     needs:
@@ -40,6 +42,7 @@ jobs:
       with:
         client-id: ${{ secrets.APP_CLIENT_ID }}
         private-key: ${{ secrets.APP_PRIVATE_KEY }}
+        permission-issues: write
     - name: Create semantic release
       id: psr
       uses: python-semantic-release/python-semantic-release@350c48fcb3ffcdfd2e0a235206bc2ecea6b69df0 # v10.5.3
