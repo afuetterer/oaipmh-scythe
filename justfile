@@ -61,6 +61,11 @@ cov-report-markdown:
     uv run python -m coverage json --quiet
     uv run python -c "import json;print(json.load(open('coverage.json'))['totals']['percent_covered_display'])"
 
+# Generate a changelog using git-cliff
+[group('docs')]
+changelog:
+     uvx git-cliff --config=.github/templates/changelog.toml --output
+
 mkdocs := "uv run --group=docs mkdocs"
 config := "--config-file=docs/mkdocs.yml"
 
