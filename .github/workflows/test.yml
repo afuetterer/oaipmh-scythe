@@ -2,6 +2,9 @@ name: Test
 
 on:
   workflow_call:
+    secrets:
+      GIST_TOKEN:
+        required: false
 
 env:
   PYTHONUNBUFFERED: 1
