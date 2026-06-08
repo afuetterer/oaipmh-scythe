@@ -3,10 +3,10 @@
 Welcome to `oaipmh-scythe`, an updated and modernized version of the original
 [sickle](https://github.com/mloesch/sickle), now with additional features and ongoing maintenance.
 
-| __CI__      | [![pre-commit.ci status][pre-commit-ci-badge]][pre-commit-ci-status] [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] [![codeql][codeql-badge]][codeql-workflow]                                             |
+| __CI__      | [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] [![codeql][codeql-badge]][codeql-workflow]                                             |
 | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | __Package__ | [![pypi-version][pypi-version-badge]][pypi-url] [![pypi-python-versions][pypi-python-versions-badge]][pypi-url] [![all-downloads][all-downloads-badge]][pepy-tech-url] [![monthly-downloads][monthly-downloads-badge]][pepy-tech-url] |
-| __Meta__    | [![doi][doi-badge]][doi-url] [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![uv][uv-badge]][uv] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![License][license-badge]][license]                                |
+| __Meta__    | [![doi][doi-badge]][doi-url] [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![uv][uv-badge]][uv] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![prek][prek-badge]][prek-url] [![License][license-badge]][license]                                |
 
 `oaipmh-scythe` is a lightweight [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html) client library
 written in Python. It has been designed for conveniently retrieving data from OAI interfaces the Pythonic way:
@@ -99,8 +99,8 @@ This is a fork of [sickle](https://github.com/mloesch/sickle) which was original
 [mypy]: https://mypy-lang.org
 [mypy-badge]: https://img.shields.io/badge/types-mypy-blue.svg
 [pepy-tech-url]: https://pepy.tech/project/oaipmh-scythe
-[pre-commit-ci-badge]: https://results.pre-commit.ci/badge/github/afuetterer/oaipmh-scythe/main.svg
-[pre-commit-ci-status]: https://results.pre-commit.ci/latest/github/afuetterer/oaipmh-scythe/main
+[prek-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/j178/prek/master/docs/assets/badge-v0.json
+[prek-url]: https://github.com/j178/prek
 [pypi-python-versions-badge]: https://img.shields.io/pypi/pyversions/oaipmh-scythe.svg?logo=python&label=Python
 [pypi-url]: https://pypi.org/project/oaipmh-scythe/
 [pypi-version-badge]: https://img.shields.io/pypi/v/oaipmh-scythe.svg?logo=pypi&label=PyPI
