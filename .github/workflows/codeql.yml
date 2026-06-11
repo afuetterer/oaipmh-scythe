@@ -17,7 +17,7 @@ concurrency:
 jobs:
   analyze:
     name: Perform CodeQL Analysis
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-slim
     permissions:
       actions: read           # Needed to read workflow metadata and logs
       contents: read          # Needed to checkout the repository code for scanning

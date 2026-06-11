@@ -22,7 +22,7 @@ jobs:
       GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
   release:
     name: Create release using python-semantic-release
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
     permissions:
