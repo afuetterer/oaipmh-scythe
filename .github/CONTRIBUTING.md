@@ -82,7 +82,7 @@ Here's how to set up `oaipmh-scythe` for local development.
     git checkout -b name-of-your-bugfix-or-feature
     ```
 
-    Now you can make your changes locally.
+   Now you can make your changes locally.
 
 5. When you're done making changes, check that your changes pass the `prek` hooks and the tests:
 

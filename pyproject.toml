@@ -35,6 +35,7 @@ classifiers = [
 dependencies = [
   "httpx>=0.27",
   "lxml>=5.3",
+  "typing-extensions>=4.16; python_version<'3.11'",
 ]
 urls.Changelog = "https://github.com/afuetterer/oaipmh-scythe/blob/main/CHANGELOG.md"
 urls.Documentation = "https://afuetterer.github.io/oaipmh-scythe"
@@ -101,6 +102,7 @@ lint.ignore = [
 ]
 lint.per-file-ignores."src/oaipmh_scythe/client.py" = [
   "PLR0913", # too-many-arguments
+  "PLR0917", # too-many-positional-arguments
 ]
 lint.per-file-ignores."tests/**.py" = [
   "D",       # pydocstyle

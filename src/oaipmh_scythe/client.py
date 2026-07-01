@@ -12,11 +12,16 @@ and supports customizable error handling and retry logic.
 
 from __future__ import annotations
 
-import inspect
 import logging
+import sys
 import time
 from importlib.metadata import version
 from typing import TYPE_CHECKING
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self
 
 import httpx
 
@@ -82,17 +87,17 @@ class Scythe:
         iterator: type[BaseOAIIterator] = OAIItemIterator,
         max_retries: int = 0,
         retry_status_codes: Iterable[int] | None = None,
-        default_retry_after: int | float = 60,
+        default_retry_after: float = 60,
         class_mapping: dict[str, type[OAIItem]] | None = None,
         encoding: str = "utf-8",
         auth: AuthTypes | None = None,
-        timeout: int | float = 60,
+        timeout: float = 60,
     ):
         self.endpoint = endpoint
         if http_method not in ("GET", "POST"):
             raise ValueError("Invalid HTTP method: %s! Must be GET or POST.")
         self.http_method = http_method
-        if inspect.isclass(iterator) and issubclass(iterator, BaseOAIIterator):
+        if issubclass(iterator, BaseOAIIterator):
             self.iterator = iterator
         else:
             raise TypeError(f"Argument 'iterator' must be subclass of {BaseOAIIterator.__name__}")
@@ -148,11 +153,14 @@ class Scythe:
         if self._client and not self._client.is_closed:
             self._client.close()
 
-    def __enter__(self) -> Scythe:
+    def __enter__(self) -> Self:
         return self
 
     def __exit__(
-        self, exc_type: type[BaseException] | None, exc_val: type[BaseException] | None, exc_tb: TracebackType | None
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: TracebackType | None,
     ) -> None:
         self.close()
 
