@@ -17,7 +17,7 @@ jobs:
     name: Build the package
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-slim
     permissions:
       attestations: write   # Needed to upload attestations - maybe remove this later
       id-token: write       # Needed to upload attestations - maybe remove this later
@@ -32,7 +32,7 @@ jobs:
     name: Upload package distributions to GitHub Release
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-slim
     needs: build
     permissions:
       contents: write # Needed to upload package distributions to GitHub Release
@@ -50,7 +50,7 @@ jobs:
     name: Publish package to PyPI
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-slim
     needs: build
     environment: publish
     permissions:
@@ -68,7 +68,7 @@ jobs:
     name: Deploy docs
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-slim
     permissions:
       contents: write # Needed to push to the docs branch
     steps:
