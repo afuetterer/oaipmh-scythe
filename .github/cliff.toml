@@ -1,0 +1,60 @@
+# git-cliff
+# Ref: https://git-cliff.org/docs/configuration
+# ---------------------------------------------
+
+[changelog]
+body = """
+{% if version %}\
+    {% if previous.version %}\
+        ## [{{ version }}](<REPO>/compare/{{ previous.version }}..{{ version }}) ({{ timestamp | date(format="%Y-%m-%d") }})
+    {% else %}\
+        ## {{ version }} ({{ timestamp | date(format="%Y-%m-%d") }})
+    {% endif %}\
+{% else %}\
+    ## [Unreleased]
+{% endif %}\
+{% for group, commits in commits | group_by(attribute="group") %}
+    ### {{ group | striptags | trim | upper_first }}
+    {% for commit in commits
+    | filter(attribute="scope")
+    | sort(attribute="scope") %}
+        - **{{commit.scope}}:**{% if commit.breaking %} [**breaking**]{% endif %} \
+            {{ commit.message }} ([{{ commit.id | truncate(length=7, end="") }}](<REPO>/commit/{{ commit.id }}))
+    {%- endfor -%}
+    {% raw %}\n{% endraw %}\
+    {%- for commit in commits %}
+        {%- if commit.scope -%}
+        {% else -%}
+            - {% if commit.breaking %} [**breaking**]{% endif %}\
+                {{ commit.message }} ([{{ commit.id | truncate(length=7, end="") }}](<REPO>/commit/{{ commit.id }}))
+        {% endif -%}
+    {% endfor -%}
+{% endfor %}\n
+"""
+header = """
+# Changelog\n
+All notable changes to this project will be documented in this file.\n
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
+[conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.\n
+"""
+postprocessors = [
+  {pattern = "<REPO>", replace = "https://github.com/afuetterer/oaipmh-scythe"}
+]
+trim = true
+
+[git]
+commit_parsers = [
+  {message = "^feat", group = "<!-- 0 -->Features"},
+  {message = "^fix", group = "<!-- 1 -->Bug Fixes"},
+  {message = "^perf", group = "<!-- 2 -->Performance improvements"},
+  {message = "^refactor", group = "<!-- 3 -->Code Refactoring"},
+  {message = "^test", group = "<!-- 4 -->Testing"},
+  {message = "^docs", group = "<!-- 5 -->Documentation"}
+]
+commit_preprocessors = [
+  {pattern = '\((\w+\s)?#([0-9]+)\)', replace = "([#${2}](<REPO>/pull/${2}))"}
+]
+conventional_commits = true
+filter_commits = true
+filter_unconventional = true
+sort_commits = "newest"
