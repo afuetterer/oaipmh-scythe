@@ -22,7 +22,7 @@ permissions: {}
 jobs:
   analysis:
     name: Scorecard analysis
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-26.04
     permissions:
       contents: read          # Needed to checkout the repository code for scanning
       security-events: write  # Needed to upload the scorecard report to the Security tab
