@@ -26,7 +26,7 @@ jobs:
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
     permissions:
-      contents: read
+      contents: write # Needed for psr to push to protected main branch
     needs:
     - test
     outputs:
@@ -42,7 +42,7 @@ jobs:
       with:
         client-id: ${{ secrets.APP_CLIENT_ID }}
         private-key: ${{ secrets.APP_PRIVATE_KEY }}
-        permission-issues: write
+        permission-contents: write
     - name: Create semantic release
       id: psr
       uses: python-semantic-release/python-semantic-release@350c48fcb3ffcdfd2e0a235206bc2ecea6b69df0 # v10.5.3
