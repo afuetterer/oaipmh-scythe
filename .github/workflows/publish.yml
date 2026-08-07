@@ -18,16 +18,11 @@ jobs:
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
     runs-on: ubuntu-slim
-    permissions:
-      attestations: write   # Needed to upload attestations - maybe remove this later
-      id-token: write       # Needed to upload attestations - maybe remove this later
     steps:
     - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       with:
         persist-credentials: false
     - uses: hynek/build-and-inspect-python-package@d44ca7d91762de7a7d5436ddae667c6da6d1c3df # v2.18.0
-      with:
-        attest-build-provenance-github: 'true'
   upload:
     name: Upload package distributions to GitHub Release
     # disables this workflow from running in a repository that is not part of the indicated organization/user
@@ -37,15 +32,21 @@ jobs:
     permissions:
       contents: write # Needed to upload package distributions to GitHub Release
     steps:
+    - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      with:
+        persist-credentials: false
     - name: Download package built by build job
       uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
       with:
         name: Packages
         path: dist
-    - name: Publish package distributions to GitHub Releases
-      uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3.0.0 # zizmor: ignore[superfluous-actions] will be removed, when switching to git-cliff for changelog generation
-      with:
-        files: dist/*
+    - name: Upload wheel to GitHub Release
+      run: |
+        gh_ref_name="${GH_REF_NAME}"
+        gh release upload "${gh_ref_name}" dist/*.whl
+      env:
+        GH_TOKEN: ${{ github.token }}
+        GH_REF_NAME: ${{ github.ref_name }}
   publish:
     name: Publish package to PyPI
     # disables this workflow from running in a repository that is not part of the indicated organization/user
@@ -63,7 +64,6 @@ jobs:
         path: dist
     - name: Publish package to PyPI
       uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b # v1.14.0
-
   docs:
     name: Deploy docs
     # disables this workflow from running in a repository that is not part of the indicated organization/user

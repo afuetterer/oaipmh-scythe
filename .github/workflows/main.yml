@@ -49,3 +49,16 @@ jobs:
       with:
         # allow python-semantic-release to push to protected main branch
         github_token: ${{ steps.app-token.outputs.token }}
+        changelog: false
+        vcs_release: false
+    - name: Create GitHub Release from changelog
+      if: steps.psr.outputs.released == 'true'
+      run: |
+        tag="${TAG}"
+        URL=$(grep "^## \\[$tag\\]" CHANGELOG.md | sed 's/.*(\(https:[^)]*\)).*/\1/')
+        awk '/^## \['"$tag"'\]/{p=1; next} /^## /{p=0} p' CHANGELOG.md > /tmp/release_notes.md
+        printf '**Full Changelog**: %s\n' "$URL" >> /tmp/release_notes.md
+        gh release create "${tag}" --title "${tag}" --notes-file /tmp/release_notes.md --target main --verify-tag 2>/dev/null || true
+      env:
+        GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        TAG: ${{ steps.psr.outputs.tag }}
