@@ -36,30 +36,30 @@ repos:
     args: [--autofix, --indent=2]
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: f805888065fdb6162e1f800e50bb9460cbd223d6  # frozen: 0.37.2
+  rev: 6b63472e72e1a91ed8a2f6d483790dfb644fa1d3  # frozen: 0.37.4
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 3a8ef795727fa946dfcb21c5d07b1442c2362c09  # frozen: v2.23.0
+  rev: d600c142bb19f521ae6a6a345f94a2efd7937759  # frozen: v2.26.0
   hooks:
   - id: pyproject-fmt
 
 - repo: https://github.com/rvben/rumdl-pre-commit
-  rev: 3412145b1fabc79eaf5a2799747e6fdcb130d479  # frozen: v0.1.93
+  rev: b28bdfeabf9f8b43c4a0f286bd5fdb5162fdb789  # frozen: v0.2.47
   hooks:
   - id: rumdl-fmt
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: c60c980e561ed3e73101667fe8365c609d19a438  # frozen: v0.15.9
+  rev: 39d9ac5938dadb73df0564a45f163e25ff9fa6e2  # frozen: v0.16.1
   hooks:
   - id: ruff-check
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: d2823d321df3af8f878f7ee3414dc94d037145b9  # frozen: v2.1.0
+  rev: 41e691678310dfd3833f7ab4e180ddb014310356  # frozen: v2.3.0
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -69,12 +69,12 @@ repos:
     exclude: tests
 
 - repo: https://github.com/scientific-python/cookie
-  rev: 04d0e44c1d3b036e9714aca375d965504ba5ea4a  # frozen: 2026.04.04
+  rev: 8f0581cc50b14023b14a9c77e9b358738ba637e7  # frozen: 2026.06.18
   hooks:
   - id: sp-repo-review
 
 - repo: https://github.com/zizmorcore/zizmor-pre-commit
-  rev: 9257c6050c0261b8c57e712f632dc4a8010109a9  # frozen: v1.25.2
+  rev: 067260dc5fe6ea86b7551bfd6f8b3ba4e6c93129  # frozen: v1.28.0
   hooks:
   - id: zizmor
     args:
@@ -83,14 +83,14 @@ repos:
     - --pedantic
 
 - repo: https://github.com/crate-ci/typos
-  rev: 02ea592e44b3a53c302f697cddca7641cd051c3d  # frozen: v1.45.0
+  rev: bee27e3a4fd1ea2111cf90ab89cd076c870fce14  # frozen: v1.48.0
   hooks:
   - id: typos
     args: [--force-exclude]
     exclude: CHANGELOG.md # the commit hashes in changelog trigger the spell checker
 
 - repo: https://github.com/FHPythonUtils/LicenseCheck/
-  rev: 1396d3408d6c08cad89229fa30ef17a35e35d5c4  # frozen: 2025.1.0
+  rev: 21abbebb654a297a8e7b62ddebe7a77504171386  # frozen: 2026.0.8
   hooks:
   - id: licensecheck
 
