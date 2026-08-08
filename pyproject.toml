@@ -141,7 +141,10 @@ pretty = true
 
 [tool.pytest]  # Ref: https://docs.pytest.org/en/stable/customize.html
 addopts = [ "-ra", "--showlocals", "--strict-config", "--strict-markers" ]
-filterwarnings = [ "error" ]
+filterwarnings = [
+  "error",
+  "ignore:Use the .* This method will be removed in version 0.17.0: DeprecationWarning", # see models.py
+]
 log_level = "INFO"
 minversion = "9.0"
 testpaths = [ "tests" ]

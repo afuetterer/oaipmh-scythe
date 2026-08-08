@@ -21,9 +21,14 @@ Classes:
 
 from __future__ import annotations
 
+import sys
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+if sys.version_info >= (3, 13):
+    from warnings import deprecated
+else:
+    from typing_extensions import deprecated
 from lxml import etree
 
 from oaipmh_scythe.utils import get_namespace, xml_to_dict
@@ -126,6 +131,9 @@ class Identify(OAIItem):
     def __repr__(self) -> str:
         return "<Identify>"
 
+    @deprecated(
+        "Use the dynamically set attributes of the Identify object instead. This method will be removed in version 0.17.0."
+    )
     def __iter__(self) -> Iterator:
         """Iterate over the Identify information, yielding key-value pairs."""
         return iter(self._identify_dict.items())
@@ -161,6 +169,9 @@ class Header(OAIItem):
     def __repr__(self) -> str:
         return f"<Header {self.identifier}{' [deleted]' if self.deleted else ''}>"
 
+    @deprecated(
+        "Use the 'identifier', 'datestamp', and 'setSpecs' attributes instead. This method will be removed in version 0.17.0."
+    )
     def __iter__(self) -> Iterator:
         """Iterate over the header information, yielding key-value pairs."""
         return iter(
@@ -205,6 +216,7 @@ class Record(OAIItem):
     def __repr__(self) -> str:
         return f"<Record {self.header.identifier}{' [deleted]' if self.header.deleted else ''}>"
 
+    @deprecated("Use the 'metadata' attribute instead. This method will be removed in version 0.17.0.")
     def __iter__(self) -> Iterator:
         """Iterate over the record's metadata, yielding key-value pairs."""
         return iter(self.metadata.items())
@@ -245,6 +257,9 @@ class Set(OAIItem):
     def __repr__(self) -> str:
         return f"<Set {self.setName}>"
 
+    @deprecated(
+        "Use the dynamically set attributes of the Set object instead. This method will be removed in version 0.17.0."
+    )
     def __iter__(self) -> Iterator:
         """Iterate over the set information, yielding key-value pairs."""
         return iter(self._set_dict.items())
@@ -275,6 +290,9 @@ class MetadataFormat(OAIItem):
     def __repr__(self) -> str:
         return f"<MetadataFormat {self.metadataPrefix}>"
 
+    @deprecated(
+        "Use the dynamically set attributes of the MetadataFormat object instead. This method will be removed in version 0.17.0."
+    )
     def __iter__(self) -> Iterator:
         """Iterate over the metadata format information, yielding key-value pairs."""
         return iter(self._mdf_dict.items())
