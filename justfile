@@ -5,7 +5,6 @@
 alias t := test
 
 export UV_LOCKED := "true" # do not update the lockfile during `uv sync` and `uv run` commands
-export UV_EXCLUDE_NEWER := "1 week" # ignore packages published in the last week
 
 _default:
     @just --list --unsorted
