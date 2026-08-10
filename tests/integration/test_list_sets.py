@@ -16,8 +16,7 @@ if TYPE_CHECKING:
     from oaipmh_scythe import Scythe
 
 
-@pytest.mark.default_cassette("list_sets.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_sets.yaml")
 def test_list_sets(scythe: Scythe) -> None:
     sets = scythe.list_sets()
     assert isinstance(sets, Iterator)
@@ -29,18 +28,16 @@ def test_list_sets(scythe: Scythe) -> None:
     assert s.setName == "Harmonic Radar"
 
 
-@pytest.mark.default_cassette("list_sets.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_sets.yaml")
 def test_list_sets_with_valid_resumption_token(scythe: Scythe) -> None:
-    token = "eyJzZWVkIjowLjM1ODM1NjU5NDkzNDU3MjE3LCJwYWdlIjoyLCJrd2FyZ3MiOnt9fQ.abZnTA.XmYCr7-cbxvBh7bSF42hlCtMVVI"  # spellchecker:disable-line
+    token = "eyJzZWVkIjowLjMyOTUxMjIzOTg3NzM4MzksInBhZ2UiOjIsImt3YXJncyI6e319.any5dw.kg_s6M1Kr5M3Ar7Z6EWcvbfu8Tg"  # spellchecker:disable-line
     sets = scythe.list_sets(resumption_token=token)
     sets = list(sets)
     # there are 5 canned responses in the second batch in list_identifiers.yaml
     assert len(sets) == 5
 
 
-@pytest.mark.default_cassette("list_sets.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_sets.yaml")
 def test_list_sets_with_invalid_resumption_token(scythe: Scythe) -> None:
     # badResumptionToken
     sets = scythe.list_sets(resumption_token="XXX")

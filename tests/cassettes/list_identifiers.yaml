@@ -1,57 +1,39 @@
+version: 1
 interactions:
 - request:
-    body: ''
+    method: GET
+    uri: >-
+      https://zenodo.org/oai2d?verb=ListIdentifiers&from=2026-04-01&metadataPrefix=oai_dc
     headers:
-      Accept:
+      accept:
       - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      Host:
+      host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.14.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc
-  response:
+      - oaipmh-scythe/0.14.2
     body:
-      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:24:53Z</responseDate>\n
-        \ <request verb=\"ListIdentifiers\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n
-        \ <ListIdentifiers>\n    <header status=\"deleted\">\n      <identifier>oai:zenodo.org:8435696</identifier>\n
-        \     <datestamp>2023-10-12T14:26:07Z</datestamp>\n      <setSpec>user-pyhep2023</setSpec>\n
-        \     <setSpec>openaire</setSpec>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:8435639</identifier>\n
-        \     <datestamp>2023-10-12T15:06:49Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
-        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:8433301</identifier>\n
-        \     <datestamp>2023-10-12T02:36:57Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
-        \   </header>\n    <resumptionToken expirationDate=\"2026-04-10T11:26:54Z\"
-        cursor=\"0\" completeListSize=\"7017764\">.eJwtzN1ugjAYANB36bVZoFI</resumptionToken>\n
-        \ </ListIdentifiers>\n</OAI-PMH>\n"
+      type: none
+  response:
+    status: 200
     headers:
-      content-length:
-      - '9440'
       content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Fri, 10 Apr 2026 11:24:54 GMT
+      - Wed, 12 Aug 2026 19:07:57 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '8'
+      - "6"
       server:
       - nginx
-      set-cookie:
-      - session=eee0ae3c36a8147e_69d8de06.FCD7l9r1P5qCnHX_PIvSdclhd7Y; Expires=Wed,
-        15 Apr 2026 11:24:54 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       transfer-encoding:
@@ -62,74 +44,296 @@ interactions:
       - nosniff
       x-frame-options:
       - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '26'
-      x-ratelimit-reset:
-      - '1775820303'
       x-source:
       - ui
       x-xss-protection:
       - 1; mode=block
-    status:
-      code: 200
-      message: OK
+    body:
+      type: text
+      content: |
+        <?xml version='1.0' encoding='UTF-8'?>
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?>
+        <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+          <responseDate>2026-08-12T19:07:57Z</responseDate>
+          <request verb="ListIdentifiers" from="2026-04-01T00:00:00Z" metadataPrefix="oai_dc">https://zenodo.org/oai2d</request>
+          <ListIdentifiers>
+            <header>
+              <identifier>oai:zenodo.org:20565184</identifier>
+              <datestamp>2026-06-06T08:25:39Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20565179</identifier>
+              <datestamp>2026-06-06T08:25:54Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20510666</identifier>
+              <datestamp>2026-06-02T13:19:56Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20540233</identifier>
+              <datestamp>2026-06-04T11:26:24Z</datestamp>
+              <setSpec>openaire</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20540610</identifier>
+              <datestamp>2026-06-04T11:34:12Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20538945</identifier>
+              <datestamp>2026-06-04T08:58:04Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20567359</identifier>
+              <datestamp>2026-06-06T06:46:38Z</datestamp>
+              <setSpec>user-jahsm</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20533029</identifier>
+              <datestamp>2026-06-03T20:47:34Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20510377</identifier>
+              <datestamp>2026-06-02T13:23:14Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20587219</identifier>
+              <datestamp>2026-06-08T02:42:01Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20518206</identifier>
+              <datestamp>2026-06-02T23:37:05Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20586814</identifier>
+              <datestamp>2026-06-08T01:34:35Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20589792</identifier>
+              <datestamp>2026-06-08T07:46:47Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20589790</identifier>
+              <datestamp>2026-06-08T07:46:44Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20513048</identifier>
+              <datestamp>2026-06-07T17:03:01Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20512849</identifier>
+              <datestamp>2026-06-07T17:10:10Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20591221</identifier>
+              <datestamp>2026-06-08T09:42:14Z</datestamp>
+              <setSpec>user-jahsm</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20587884</identifier>
+              <datestamp>2026-06-08T04:44:46Z</datestamp>
+              <setSpec>user-jahsm</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20588290</identifier>
+              <datestamp>2026-06-08T05:36:18Z</datestamp>
+              <setSpec>user-jahsm</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20589672</identifier>
+              <datestamp>2026-06-08T07:42:23Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20590449</identifier>
+              <datestamp>2026-06-08T08:46:03Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20565714</identifier>
+              <datestamp>2026-06-06T04:01:11Z</datestamp>
+              <setSpec>user-fishbot</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20593151</identifier>
+              <datestamp>2026-06-08T11:30:39Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20510711</identifier>
+              <datestamp>2026-06-02T13:22:19Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20592826</identifier>
+              <datestamp>2026-06-08T11:08:10Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20591354</identifier>
+              <datestamp>2026-06-08T09:49:35Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20591451</identifier>
+              <datestamp>2026-06-08T10:05:06Z</datestamp>
+              <setSpec>user-jahsm</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20593696</identifier>
+              <datestamp>2026-06-08T12:02:36Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20593557</identifier>
+              <datestamp>2026-06-08T12:12:14Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20595764</identifier>
+              <datestamp>2026-06-08T14:15:17Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20595822</identifier>
+              <datestamp>2026-06-08T14:18:15Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20594466</identifier>
+              <datestamp>2026-06-08T12:59:35Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20597830</identifier>
+              <datestamp>2026-06-08T16:48:24Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20596793</identifier>
+              <datestamp>2026-06-08T15:31:24Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20600074</identifier>
+              <datestamp>2026-06-08T19:55:56Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599554</identifier>
+              <datestamp>2026-06-08T19:18:06Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599588</identifier>
+              <datestamp>2026-06-08T19:21:24Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599635</identifier>
+              <datestamp>2026-06-08T19:25:40Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599641</identifier>
+              <datestamp>2026-06-08T19:25:41Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599707</identifier>
+              <datestamp>2026-06-08T19:28:25Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599709</identifier>
+              <datestamp>2026-06-08T19:28:25Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599720</identifier>
+              <datestamp>2026-06-08T19:29:15Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599766</identifier>
+              <datestamp>2026-06-08T19:30:32Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599760</identifier>
+              <datestamp>2026-06-08T19:30:32Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599769</identifier>
+              <datestamp>2026-06-08T19:30:32Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599762</identifier>
+              <datestamp>2026-06-08T19:30:32Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599845</identifier>
+              <datestamp>2026-06-08T19:32:57Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20599856</identifier>
+              <datestamp>2026-06-08T19:32:58Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20510425</identifier>
+              <datestamp>2026-06-02T13:04:29Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20513479</identifier>
+              <datestamp>2026-06-02T16:58:11Z</datestamp>
+            </header>
+            <resumptionToken expirationDate="2026-08-12T19:09:57Z" cursor="0" completeListSize="1337969">.eJwljU1zgjAARP9LztrJB2JhxoO2Ji0VLFESycWJBItNFEUdGDv977Xtzh728ObtFziXpQEhfPDJcDAMCBr6PsIBwj1w1B8lCO_Dtrr5OIPwC2ybeg9CgCH2-9DrQ7SEMPwr6IF9edFGX_R7U2533R2r9W5tCvDdA-eiqZ1b7-5PgDJ3zXGHFBPbHAdXw4RnaICMdPb5QJFaRQPBKrexyhmW1ONOpUpUJ46PE-WSyQK5AZcRUbCCG4nI-DeNvyKPnuRWVGWGXI55JmzAskOUFNi7zFdxl3JVp7cp3tgLWSCamJW4zsQkzW-cFS6Y_HlOLI_Wnlxa97ph3VNsj5lm6E0TSuNpMks-C6K6vI2Rw4UcxJLSBUdVKqeOLBjfzynl_x53m7-ksvjMW_6StdJ2WcFQrKGACqNtMj1Gph2NwPcPjVl3ng.anzEjQ.VJytlZkxunfYsLbCHOLcUuuCmeY</resumptionToken>
+          </ListIdentifiers>
+        </OAI-PMH>
+  recorded_at: 2026-08-12T19:07:57.380078+00:00
 - request:
-    body: ''
+    method: GET
+    uri: >-
+      https://zenodo.org/oai2d?verb=ListIdentifiers&from=2026-04-01&until=2026-04-02&metadataPrefix=oai_dc
     headers:
-      Accept:
+      accept:
       - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      Cookie:
-      - session=eee0ae3c36a8147e_69d8de06.FCD7l9r1P5qCnHX_PIvSdclhd7Y
-      Host:
+      host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.14.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&resumptionToken=.eJwtzN1ugjAYANB36bVZoFI
-  response:
+      - oaipmh-scythe/0.14.2
     body:
-      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:24:54Z</responseDate>\n
-        \ <request resumptionToken=\".eJwtzN1ugjAYANB36bVZoFIjJF6YyI9kEEXbSm9MxweCLUoEQ4Px3bdlOw9wXqgvS0Ce9bG0iIvd5dzFeEEWhMxQJy8l8vAMqVE-Lj3yXqgtBwlykLtHWTUGeegumzMU6D1DffG4a31ufjIUhPqZY2OLkFU5dp8QMgcC1wau1eYW2OIUExbW-ksJDWF6XxvxWUx1zdq0lzqNJa2lvKZ-dmLHo0rn61-BGqBLOFy3Dm3FDjYBPVi9U7QwgR8fEx4zYYTDI38Qt2DM7YxkeD8lOjWnSeyob7K_RytaLTnc8jnl8XbP4gPnlgOK7JOoG6Qfj2AETqaayCALhO3jRAPJj7pNlGlyDv9PEW0LyotrPmYRHbkytAjtRFrMEtiuUr-LYVyt0Psb4dp0Qw.adjeBg.YTPJoI52K7Ubkcg3PUBxnHpU-KA\"
-        verb=\"ListIdentifiers\">https://zenodo.org/oai2d</request>\n  <ListIdentifiers>\n
-        \   <header>\n      <identifier>oai:zenodo.org:8433364</identifier>\n      <datestamp>2023-10-12T03:01:25Z</datestamp>\n
-        \     <setSpec>software</setSpec>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:8333281</identifier>\n
-        \     <datestamp>2023-10-12T01:34:35Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
-        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:8321258</identifier>\n
-        \     <datestamp>2023-10-12T05:35:16Z</datestamp>\n      <setSpec>software</setSpec>\n
-        \   </header>\n    <resumptionToken expirationDate=\"2026-04-10T11:26:54Z\"
-        cursor=\"50\" completeListSize=\"7017764\">.eJwtzN1ugjAYANB36bVZKIJOkl2YyI_NIIqUSm9M1w8EW5QIhgbju2_Ldh7gPFFfloA8681yrIWFneUSz7GzwsvFDHXiXCJvPkNqFPdzj7wnastBgBjE7l5WjUEeuonmBBK9ZqiX95vWp-ZnQ0GoH4VtMA_zqrBXDwhzB4IVBqbV5hpgfiRuHtb6S3ENYXJbG_4pp7rO26QXOiGC1kJcEj895lmmkvn6V6AG6GIGl61DW76DTUAPVu_IFibwSRYzknPDHRb5A78GY4FTN7X3U6wTc5z4jvom_Xu0otU7g2sxp4xs9zk5MGY5oNx9HHWD8MkIhtvxVLsiSAOOfTvW4BaZbmNlmoLB_yOjraRMXooxjejIlKEyxLGwcovbuEr8jsD48YFe3wh7dF0.adjeBg.VfbQigADVJXHFu_2OoN71YPw2I4</resumptionToken>\n
-        \ </ListIdentifiers>\n</OAI-PMH>\n"
+      type: none
+  response:
+    status: 200
     headers:
-      content-length:
-      - '10252'
       content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Fri, 10 Apr 2026 11:24:54 GMT
+      - Wed, 12 Aug 2026 19:08:28 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '8'
+      - "29"
       server:
       - nginx
-      set-cookie:
-      - session=eee0ae3c36a8147e_69d8de06.FCD7l9r1P5qCnHX_PIvSdclhd7Y; Expires=Wed,
-        15 Apr 2026 11:24:54 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       transfer-encoding:
@@ -140,282 +344,397 @@ interactions:
       - nosniff
       x-frame-options:
       - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '25'
-      x-ratelimit-reset:
-      - '1775820303'
       x-source:
       - ui
       x-xss-protection:
       - 1; mode=block
-    status:
-      code: 200
-      message: OK
+    body:
+      type: text
+      content: |
+        <?xml version='1.0' encoding='UTF-8'?>
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?>
+        <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+          <responseDate>2026-08-12T19:08:28Z</responseDate>
+          <request verb="ListIdentifiers" from="2026-04-01T00:00:00Z" until="2026-04-02T00:00:00Z" metadataPrefix="oai_dc">https://zenodo.org/oai2d</request>
+          <ListIdentifiers>
+            <header>
+              <identifier>oai:zenodo.org:18842410</identifier>
+              <datestamp>2026-04-01T21:08:32Z</datestamp>
+              <setSpec>user-eu</setSpec>
+              <setSpec>user-transitproject</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19366126</identifier>
+              <datestamp>2026-04-01T08:37:55Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19354515</identifier>
+              <datestamp>2026-04-01T22:36:01Z</datestamp>
+              <setSpec>user-dgenerus</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19368134</identifier>
+              <datestamp>2026-04-01T11:09:21Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19302787</identifier>
+              <datestamp>2026-04-01T00:32:02Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:7323022</identifier>
+              <datestamp>2026-04-01T07:46:50Z</datestamp>
+              <setSpec>user-iors</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:17961879</identifier>
+              <datestamp>2026-04-01T00:02:25Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19365571</identifier>
+              <datestamp>2026-04-01T08:18:55Z</datestamp>
+              <setSpec>user-jpw</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19370017</identifier>
+              <datestamp>2026-04-01T15:01:20Z</datestamp>
+              <setSpec>openaire</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19370794</identifier>
+              <datestamp>2026-04-01T14:32:52Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19363771</identifier>
+              <datestamp>2026-04-01T04:41:26Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19368556</identifier>
+              <datestamp>2026-04-01T12:44:11Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19362670</identifier>
+              <datestamp>2026-04-01T00:47:45Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19138737</identifier>
+              <datestamp>2026-04-01T16:50:01Z</datestamp>
+              <setSpec>user-biosyslit</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19363865</identifier>
+              <datestamp>2026-04-01T04:54:35Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19363202</identifier>
+              <datestamp>2026-04-01T02:57:39Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19364692</identifier>
+              <datestamp>2026-04-01T06:40:58Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19104086</identifier>
+              <datestamp>2026-04-01T03:02:00Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19367687</identifier>
+              <datestamp>2026-04-01T10:38:07Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19376168</identifier>
+              <datestamp>2026-04-01T21:53:47Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19375658</identifier>
+              <datestamp>2026-04-01T21:04:26Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19364803</identifier>
+              <datestamp>2026-04-01T06:57:52Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19369792</identifier>
+              <datestamp>2026-04-01T13:30:59Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19372132</identifier>
+              <datestamp>2026-04-01T16:44:47Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19371886</identifier>
+              <datestamp>2026-04-01T16:19:07Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19366270</identifier>
+              <datestamp>2026-04-01T08:45:50Z</datestamp>
+              <setSpec>user-af4eu</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19369332</identifier>
+              <datestamp>2026-04-01T12:51:05Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19168240</identifier>
+              <datestamp>2026-04-01T21:08:29Z</datestamp>
+              <setSpec>user-eu</setSpec>
+              <setSpec>user-transitproject</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19368245</identifier>
+              <datestamp>2026-04-01T11:16:44Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19365785</identifier>
+              <datestamp>2026-04-01T08:10:06Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19365437</identifier>
+              <datestamp>2026-04-01T07:42:37Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19369077</identifier>
+              <datestamp>2026-04-01T12:31:30Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19376497</identifier>
+              <datestamp>2026-04-01T22:34:15Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19373088</identifier>
+              <datestamp>2026-04-01T18:24:44Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19362926</identifier>
+              <datestamp>2026-04-01T02:05:38Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19169696</identifier>
+              <datestamp>2026-04-01T21:08:31Z</datestamp>
+              <setSpec>user-eu</setSpec>
+              <setSpec>user-transitproject</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19362731</identifier>
+              <datestamp>2026-04-01T01:01:23Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19373659</identifier>
+              <datestamp>2026-04-01T19:59:12Z</datestamp>
+              <setSpec>user-biosyslit</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19362872</identifier>
+              <datestamp>2026-04-01T01:41:05Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19369934</identifier>
+              <datestamp>2026-04-01T13:38:10Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19376527</identifier>
+              <datestamp>2026-04-01T22:34:30Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19376706</identifier>
+              <datestamp>2026-04-01T22:43:02Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19368507</identifier>
+              <datestamp>2026-04-01T11:41:15Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19362067</identifier>
+              <datestamp>2026-04-01T00:03:45Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19370386</identifier>
+              <datestamp>2026-04-01T14:05:46Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:18842295</identifier>
+              <datestamp>2026-04-01T21:08:33Z</datestamp>
+              <setSpec>user-eu</setSpec>
+              <setSpec>user-transitproject</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19369646</identifier>
+              <datestamp>2026-04-01T13:29:08Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19376030</identifier>
+              <datestamp>2026-04-01T21:33:31Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19363016</identifier>
+              <datestamp>2026-04-01T02:23:35Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:19371271</identifier>
+              <datestamp>2026-04-01T15:07:55Z</datestamp>
+            </header>
+            <resumptionToken expirationDate="2026-08-12T19:10:28Z" cursor="0" completeListSize="6382">.eJxNjkFvgjAAhf9Lz7q0BXWSeNBJq0yYolDpxdQWFSnCEALR-N_ntosv7_a9fHl3cI1jBSz4hmB_MHgfQmj0TBP30aADCnGMgYU7IG1EebwC6w4OZZ4BC2CI-11odiHaQGj9FXRAfakS_UrxK83iSihRiWUZH5L2OctFslMSPDrgKstc613yPAII1XWEW8RpeIjwsFY0NBUZIsV0Or0QxLdOL6QnvU-5VtTLx23UuEhjyXouI2Tto9OK2dpYUz_7IsQf_-Zb35Z9yeQ5avxZ0LC0DSRFroAh5BgdPLtwVMvz1c3G-7Qy1oh4ahvWi3Cyim4-lXo4-ffQaFHkbJPq-Z62H25aBIKiT2EQ4trewjtLg7fcY1O9jWBVCOIxHypzxdxqCyvHC8J_TzmYJSVk6jw3g4wv1ZQEa3g1ZaZuynY2LnNC3oxG4PEDraqAHg.anzErA.cMK9LYbc-ZRE1IS2GwirDsafPEA</resumptionToken>
+          </ListIdentifiers>
+        </OAI-PMH>
+  recorded_at: 2026-08-12T19:08:28.497993+00:00
 - request:
-    body: ''
+    method: GET
+    uri: >-
+      https://zenodo.org/oai2d?verb=ListIdentifiers&from=2030-01-15&metadataPrefix=oai_dc
     headers:
-      Accept:
+      accept:
       - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      Cookie:
-      - session=eee0ae3c36a8147e_69d8de06.FCD7l9r1P5qCnHX_PIvSdclhd7Y
-      Host:
+      host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.14.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&resumptionToken=.eJwtzN1ugjAYANB36bVZKIJOkl2YyI_NIIqUSm9M1w8EW5QIhgbju2_Ldh7gPFFfloA8681yrIWFneUSz7GzwsvFDHXiXCJvPkNqFPdzj7wnastBgBjE7l5WjUEeuonmBBK9ZqiX95vWp-ZnQ0GoH4VtMA_zqrBXDwhzB4IVBqbV5hpgfiRuHtb6S3ENYXJbG_4pp7rO26QXOiGC1kJcEj895lmmkvn6V6AG6GIGl61DW76DTUAPVu_IFibwSRYzknPDHRb5A78GY4FTN7X3U6wTc5z4jvom_Xu0otU7g2sxp4xs9zk5MGY5oNx9HHWD8MkIhtvxVLsiSAOOfTvW4BaZbmNlmoLB_yOjraRMXooxjejIlKEyxLGwcovbuEr8jsD48YFe3wh7dF0.adjeBg.VfbQigADVJXHFu_2OoN71YPw2I4
-  response:
+      - oaipmh-scythe/0.14.2
     body:
-      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:24:54Z</responseDate>\n
-        \ <request resumptionToken=\".eJwtzN1ugjAYANB36bVZKIJOkl2YyI_NIIqUSm9M1w8EW5QIhgbju2_Ldh7gPFFfloA8681yrIWFneUSz7GzwsvFDHXiXCJvPkNqFPdzj7wnastBgBjE7l5WjUEeuonmBBK9ZqiX95vWp-ZnQ0GoH4VtMA_zqrBXDwhzB4IVBqbV5hpgfiRuHtb6S3ENYXJbG_4pp7rO26QXOiGC1kJcEj895lmmkvn6V6AG6GIGl61DW76DTUAPVu_IFibwSRYzknPDHRb5A78GY4FTN7X3U6wTc5z4jvom_Xu0otU7g2sxp4xs9zk5MGY5oNx9HHWD8MkIhtvxVLsiSAOOfTvW4BaZbmNlmoLB_yOjraRMXooxjejIlKEyxLGwcovbuEr8jsD48YFe3wh7dF0.adjeBg.VfbQigADVJXHFu_2OoN71YPw2I4\"
-        verb=\"ListIdentifiers\">https://zenodo.org/oai2d</request>\n  <ListIdentifiers>\n
-        \   <header>\n      <identifier>oai:zenodo.org:5523792</identifier>\n      <datestamp>2024-07-17T18:38:33Z</datestamp>\n
-        \     <setSpec>user-biosyslit</setSpec>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:946438</identifier>\n
-        \     <datestamp>2024-08-03T04:53:49Z</datestamp>\n      <setSpec>user-biosyslit</setSpec>\n
-        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:16290772</identifier>\n
-        \     <datestamp>2025-07-21T22:15:04Z</datestamp>\n      <setSpec>user-biosyslit</setSpec>\n
-        \     <setSpec>user-bhl-blr</setSpec>\n    </header>\n  </ListIdentifiers>\n</OAI-PMH>\n"
+      type: none
+  response:
+    status: 422
     headers:
       content-length:
-      - '11059'
+      - "411"
       content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Fri, 10 Apr 2026 11:24:54 GMT
+      - Wed, 12 Aug 2026 19:04:48 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '8'
+      - "60"
       server:
       - nginx
-      set-cookie:
-      - session=eee0ae3c36a8147e_69d8de06.FCD7l9r1P5qCnHX_PIvSdclhd7Y; Expires=Wed,
-        15 Apr 2026 11:24:54 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
       x-content-type-options:
       - nosniff
       x-frame-options:
       - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '24'
-      x-ratelimit-reset:
-      - '1775820303'
-      x-source:
-      - ui
       x-xss-protection:
       - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: ''
-    headers:
-      Accept:
-      - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.14.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=datacite
-  response:
     body:
-      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:31:14Z</responseDate>\n
-        \ <request verb=\"ListIdentifiers\" metadataPrefix=\"datacite\">https://zenodo.org/oai2d</request>\n
-        \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:8435696</identifier>\n
-        \     <datestamp>2023-10-12T14:26:07Z</datestamp>\n      <setSpec>user-pyhep2023</setSpec>\n
-        \     <setSpec>openaire</setSpec>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:8435639</identifier>\n
-        \     <datestamp>2023-10-12T15:06:49Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
-        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:8433301</identifier>\n
-        \     <datestamp>2023-10-12T02:36:57Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
-        \   </header>\n    <resumptionToken expirationDate=\"2026-04-10T11:33:15Z\"
-        cursor=\"0\" completeListSize=\"7017821\">.eJyNjk9vgjAcQL_L72wWQPAPiQcWKbEKc0qL9rJUWgUpsFAcBON338zuy97tXV7eHbSUAlzjZeqYk9nYcWxjYkxnY3sEn_wiwbVGUHS8uWhw71DKlgve8m0jz3kPLjwlzVsJjxHotKmV-sh_coACdTtavckCej5a85sIqC3Q3BSJKpYVMtkBOzTI1KlgSgRR7fVskw5ZRstIcxVhTjLOr5G_O9A4LqKx9wQpbxq_J-K6sknJtmKJyN7QdlqKQfg4DhNMWc9yStSaI9wRuupPidhElVrvBqyIRV9_O_VW37pElkiHgTNJC5PISn0dDNIJv7PefBOzf_-Ef_90iwU8vgEtAnXm.adjfgw.JY5er0Ky0tGWR6QSJALqjDmR5S8</resumptionToken>\n
-        \ </ListIdentifiers>\n</OAI-PMH>\n"
-    headers:
-      content-length:
-      - '9392'
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - text/xml; charset=utf-8
-      date:
-      - Fri, 10 Apr 2026 11:31:15 GMT
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '59'
-      server:
-      - nginx
-      set-cookie:
-      - session=d4e498770d9d2ec7_69d8df83.NNGPz31-VSdzlxwD2P7IIfIGYAs; Expires=Wed,
-        15 Apr 2026 11:31:15 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '29'
-      x-ratelimit-reset:
-      - '1775820735'
-      x-source:
-      - ui
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
+      type: text
+      content: >-
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH
+        xmlns="http://www.openarchives.org/OAI/2.0/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-08-12T19:04:48Z</responseDate><request>https://zenodo.org/oai2d</request><error code="noRecordsMatch"></error></OAI-PMH>
+  recorded_at: 2026-08-12T19:04:48.686194+00:00
 - request:
-    body: ''
-    headers:
-      Accept:
-      - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.14.0
     method: GET
     uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=XXX
-  response:
+    headers:
+      accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.2
     body:
-      string: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
+      type: none
+  response:
+    status: 422
+    headers:
+      content-length:
+      - "437"
+      content-security-policy:
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Wed, 12 Aug 2026 19:10:16 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - "60"
+      server:
+      - nginx
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-xss-protection:
+      - 1; mode=block
+    body:
+      type: text
+      content: >-
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH
+        xmlns="http://www.openarchives.org/OAI/2.0/"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-04-10T11:31:29Z</responseDate><request>https://zenodo.org/oai2d</request><error
-        code="badArgument">metadataPrefix does not exist</error></OAI-PMH>
-    headers:
-      content-length:
-      - '437'
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - text/xml; charset=utf-8
-      date:
-      - Fri, 10 Apr 2026 11:31:29 GMT
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '45'
-      server:
-      - nginx
-      set-cookie:
-      - session=11fd9621d6ba2780_69d8df91.OjuXPl_ZalHJqoieQNgVRPQZvkE; Expires=Wed,
-        15 Apr 2026 11:31:29 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '28'
-      x-ratelimit-reset:
-      - '1775820735'
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 422
-      message: UNPROCESSABLE ENTITY
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-08-12T19:10:16Z</responseDate><request>https://zenodo.org/oai2d</request><error code="badArgument">metadataPrefix does not exist</error></OAI-PMH>
+  recorded_at: 2026-08-12T19:10:16.073278+00:00
 - request:
-    body: ''
+    method: GET
+    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=datacite
     headers:
-      Accept:
+      accept:
       - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      Host:
+      host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.14.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&from=2026-04-01&metadataPrefix=oai_dc
-  response:
+      - oaipmh-scythe/0.14.2
     body:
-      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:31:42Z</responseDate>\n
-        \ <request verb=\"ListIdentifiers\" from=\"2026-04-01T00:00:00Z\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n
-        \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:17968692</identifier>\n
-        \     <datestamp>2026-04-01T00:32:18Z</datestamp>\n    </header>\n    <header>\n
-        \     <identifier>oai:zenodo.org:19302787</identifier>\n      <datestamp>2026-04-01T00:32:02Z</datestamp>\n
-        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:19360917</identifier>\n
-        \     <datestamp>2026-04-01T01:51:55Z</datestamp>\n    </header>\n   <resumptionToken expirationDate=\"2026-04-10T11:33:42Z\"
-        cursor=\"0\" completeListSize=\"79380\">.eJyNzV1vgjAYBeD_8l7j0hYwSOKFCx-zKjNKi3JjKq2CFFlAB9H43-e2-2Un5_LkOXdolZLgohfHdJBJTNtBDsE2sg34EEcFLjGg7ERzbMG9w6GpK3CBIDIcIGuAcIyQ-1MwoFIXIcVFLBt1KPrnrBbFTmbwMKDNmlrrXfF8giDU1y3pcRryw5aMrjLklgxGWCa69M4BTjfU5mGu92WqZRjVkz6dZ7c851XUCh1RwXIhTpG_2vA4LiNz8p1Ae0k9SeRparEqXUovYGvUWlklb9Kn8SKhPO3TgjM9EwHtGJ_2-0TOo7OerW5UM8Jff516_TY4JqoK2kVoD7MSM3XWnxvEOul35N3H9P8O-9vpxmN4fAF2N3rX.adjfng.305P_4JEJk4fjZzTgdQL2mzrvsA</resumptionToken>\n
-        \ </ListIdentifiers>\n</OAI-PMH>\n"
+      type: none
+  response:
+    status: 200
     headers:
-      content-length:
-      - '8846'
       content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Fri, 10 Apr 2026 11:31:42 GMT
+      - Wed, 12 Aug 2026 19:10:59 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '32'
+      - "17"
       server:
       - nginx
-      set-cookie:
-      - session=bcb6edb1defa9706_69d8df9e.7vSE4kXeWb4Cl3Tar-5ondE4sow; Expires=Wed,
-        15 Apr 2026 11:31:42 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       transfer-encoding:
@@ -426,72 +745,304 @@ interactions:
       - nosniff
       x-frame-options:
       - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '27'
-      x-ratelimit-reset:
-      - '1775820735'
       x-source:
       - ui
       x-xss-protection:
       - 1; mode=block
-    status:
-      code: 200
-      message: OK
+    body:
+      type: text
+      content: |
+        <?xml version='1.0' encoding='UTF-8'?>
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?>
+        <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+          <responseDate>2026-08-12T19:10:59Z</responseDate>
+          <request verb="ListIdentifiers" metadataPrefix="datacite">https://zenodo.org/oai2d</request>
+          <ListIdentifiers>
+            <header>
+              <identifier>oai:zenodo.org:8435696</identifier>
+              <datestamp>2023-10-12T14:26:07Z</datestamp>
+              <setSpec>user-pyhep2023</setSpec>
+              <setSpec>openaire</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435639</identifier>
+              <datestamp>2023-10-12T15:06:49Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433301</identifier>
+              <datestamp>2023-10-12T02:36:57Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433037</identifier>
+              <datestamp>2023-10-11T22:10:01Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433767</identifier>
+              <datestamp>2023-10-12T07:23:10Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8434414</identifier>
+              <datestamp>2023-10-12T09:38:57Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433354</identifier>
+              <datestamp>2023-10-12T03:06:13Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436799</identifier>
+              <datestamp>2023-10-12T21:51:23Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435907</identifier>
+              <datestamp>2023-10-12T16:14:51Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436014</identifier>
+              <datestamp>2023-10-12T15:47:58Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436315</identifier>
+              <datestamp>2023-10-12T17:24:23Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8434592</identifier>
+              <datestamp>2023-10-12T09:53:07Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435974</identifier>
+              <datestamp>2023-10-12T16:23:28Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8437424</identifier>
+              <datestamp>2023-10-13T04:36:11Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:6645396</identifier>
+              <datestamp>2023-10-12T05:34:03Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433329</identifier>
+              <datestamp>2023-10-12T02:48:38Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435744</identifier>
+              <datestamp>2023-10-12T14:39:12Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436080</identifier>
+              <datestamp>2023-10-12T16:07:33Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8434828</identifier>
+              <datestamp>2023-10-12T11:28:34Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435818</identifier>
+              <datestamp>2023-10-12T15:03:07Z</datestamp>
+              <setSpec>user-pyhep2023</setSpec>
+              <setSpec>openaire</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8415038</identifier>
+              <datestamp>2023-10-11T21:41:49Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433237</identifier>
+              <datestamp>2023-10-12T02:23:58Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435619</identifier>
+              <datestamp>2023-10-12T14:04:11Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435051</identifier>
+              <datestamp>2023-10-12T11:53:28Z</datestamp>
+              <setSpec>user-19eng02-futureenergy</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433925</identifier>
+              <datestamp>2023-10-12T07:43:55Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436593</identifier>
+              <datestamp>2023-10-12T19:09:56Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436036</identifier>
+              <datestamp>2023-10-12T15:55:01Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8406062</identifier>
+              <datestamp>2023-10-12T00:32:03Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435629</identifier>
+              <datestamp>2023-10-12T14:48:33Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436503</identifier>
+              <datestamp>2023-10-12T20:17:04Z</datestamp>
+              <setSpec>user-biosyslit</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436654</identifier>
+              <datestamp>2023-10-12T19:58:05Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8434673</identifier>
+              <datestamp>2023-10-12T10:18:48Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433929</identifier>
+              <datestamp>2023-10-12T08:40:12Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433947</identifier>
+              <datestamp>2023-10-12T07:51:38Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8437146</identifier>
+              <datestamp>2023-10-13T02:49:12Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435168</identifier>
+              <datestamp>2023-10-12T12:33:05Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8429699</identifier>
+              <datestamp>2023-10-13T06:06:03Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433407</identifier>
+              <datestamp>2023-10-12T04:02:43Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435503</identifier>
+              <datestamp>2023-10-12T13:43:46Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436288</identifier>
+              <datestamp>2023-10-12T17:37:21Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435680</identifier>
+              <datestamp>2023-10-12T14:26:21Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435813</identifier>
+              <datestamp>2023-10-12T15:38:01Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436282</identifier>
+              <datestamp>2023-10-12T17:46:01Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436292</identifier>
+              <datestamp>2023-10-12T18:02:43Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433069</identifier>
+              <datestamp>2023-10-11T22:59:57Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433712</identifier>
+              <datestamp>2023-10-12T06:30:21Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436180</identifier>
+              <datestamp>2023-10-12T16:44:07Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435160</identifier>
+              <datestamp>2023-10-12T12:36:47Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8437103</identifier>
+              <datestamp>2023-10-13T02:08:31Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433919</identifier>
+              <datestamp>2023-10-12T07:35:02Z</datestamp>
+            </header>
+            <resumptionToken expirationDate="2026-08-12T19:12:59Z" cursor="0" completeListSize="8084697">.eJyNjk9vgjAchr_L72wWCsUFEg86aSeTxn-00MtSKTqlTgY1Eo3fXc3uy97Dk7yXJ88V2rLUEDovvot9jIL-A33kYL8HtdqWELo9qM6q2bYQXuFQWqWVVbOm3Ow6COF5ip0t4daDtmiOxnzuHjog1Jxyt0OS8k3uBidNOdYkQFqYavxNkMxin9Mvs66k0ZQdh51kYmyy3LG1IkwsHI3nIrGZY2OW8tHwueb1HRet0PsJTg9ypsckXTotLg76oqN4lYiYy04e55fIXVfWWyLCdMZPUz6a55cFLUzw6_mh-TZKxaoykzXt3pKqThVFH8ojJInYlO0LT_675_x3z3kwgNsd3Whzdg.anzFQw.FUO95niRVS8d6CZUK2YmJ7198LU</resumptionToken>
+          </ListIdentifiers>
+        </OAI-PMH>
+  recorded_at: 2026-08-12T19:10:59.386354+00:00
 - request:
-    body: ''
+    method: GET
+    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc
     headers:
-      Accept:
+      accept:
       - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      Host:
+      host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.14.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&until=2026-04-02&metadataPrefix=oai_dc
-  response:
+      - oaipmh-scythe/0.14.2
     body:
-      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:32:02Z</responseDate>\n
-        \ <request verb=\"ListIdentifiers\" until=\"2026-04-02T00:00:00Z\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n
-        \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:8435696</identifier>\n
-        \     <datestamp>2023-10-12T14:26:07Z</datestamp>\n      <setSpec>user-pyhep2023</setSpec>\n
-        \     <setSpec>openaire</setSpec>\n    </header>\n    <header>\n      <identifier>oai:zenodo.org:8435639</identifier>\n
-        \     <datestamp>2023-10-12T15:06:49Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
-        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:8433301</identifier>\n
-        \     <datestamp>2023-10-12T02:36:57Z</datestamp>\n      <setSpec>openaire_data</setSpec>\n
-        \   </header>\n    <resumptionToken expirationDate=\"2026-04-10T11:34:04Z\"
-        cursor=\"0\" completeListSize=\"6949075\">.eJyNjlFvgjAYRf_L98yWUrqJJD64SRtRGuOgaF9MpShIESYaUeN_n9vel93cx5tzzw3aLNPgoWdiO5i4Dunhfs9FLiYWNGqbgYctKM_qsG3Bu8FpfywMeIARfn1C5AnhCCHvp2BBlR2VVkc1O2SbonvMalWsdAp3C9r0UBuzKh5fQJk5LXFnSyY2S9w_aSaIpn1bJ6Yc7aktF8GLYLlZl9JoxuthJ6fpNc9FxVtleKDiXKkd9-cLEUUld4bfoYZSUid6NyZxJWd6ROMP1JK00lftB1GYBEJ2y7N2TJBWouVifFGReYt93sjrfCIXZv7L-WwuoZtEpRmvWfcelk2smD1RDqWhz6d8lzry3z7t3z7nwQDuX6tOfCA.adjftA.D-yCXbkOta_RThi65mYso2bJxQU</resumptionToken>\n
-        \ </ListIdentifiers>\n</OAI-PMH>\n"
+      type: none
+  response:
+    status: 200
     headers:
-      content-length:
-      - '9446'
       content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Fri, 10 Apr 2026 11:32:04 GMT
+      - Wed, 12 Aug 2026 18:59:56 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '10'
+      - "60"
       server:
       - nginx
-      set-cookie:
-      - session=3b434e9177c79f7c_69d8dfb4.FkP1bzAMn_1pu52yVkcZetWli4E; Expires=Wed,
-        15 Apr 2026 11:32:04 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       transfer-encoding:
@@ -502,349 +1053,909 @@ interactions:
       - nosniff
       x-frame-options:
       - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '26'
-      x-ratelimit-reset:
-      - '1775820735'
       x-source:
       - ui
       x-xss-protection:
       - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: ''
-    headers:
-      Accept:
-      - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.14.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&from=2026-04-01&until=2026-04-02&metadataPrefix=oai_dc
-  response:
     body:
-      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:32:20Z</responseDate>\n
-        \ <request verb=\"ListIdentifiers\" from=\"2026-04-01T00:00:00Z\" until=\"2026-04-02T00:00:00Z\"
-        metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n  <ListIdentifiers>\n
-        \   <header>\n      <identifier>oai:zenodo.org:17968692</identifier>\n      <datestamp>2026-04-01T00:32:18Z</datestamp>\n
-        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:19302787</identifier>\n
-        \     <datestamp>2026-04-01T00:32:02Z</datestamp>\n    </header>\n    <header>\n
-        \     <identifier>oai:zenodo.org:19360917</identifier>\n      <datestamp>2026-04-01T01:51:55Z</datestamp>\n
-        \   </header>\n    <resumptionToken expirationDate=\"2026-04-10T11:34:20Z\"
-        cursor=\"0\" completeListSize=\"10632\">.eJxNjkFvgjAAhf9Lz7i0FZyQeHCRMlGYYbRIL6ZSEKSAER0E43-fmxdf3u17-fJuoE1TCSz4Zo51832so_Fkik0TTjVwEocUWFgDZSfOhxZYN5CdmwpYAEM8GUF9BFEIofVfoIFrfSnUK8WvtEovQoqL2JzTrOgfs0YUO5mAuwba5NwotSsePwBx1DXGPeIOy2JsXqXDdElMJCNVLmqC-NY1mJOrfcmVdPxm3vN1MuQ5q_xWKN8VNBfi6NvBloVh6Y_nfyHKOfk0kselTiu-kQtCv2GrJ5UcpO2GXuQy3vOCUbUSxO0oW_b7SK79Wq2CwVUUs4-np2H71TxKK9J6jjFJSkTTWv1sIe2k3eEvG7kPD_aG3BAkIBzZ2FPSiENVeWVfxJEMnp4kqww7So5xF3zSLip7mjjIE5BBjlHm2ydXdrMZuP8CpBmBuA.adjfxA.mZ-iaNb6BTHyy-wWnUXSwL8SUe0</resumptionToken>\n
-        \ </ListIdentifiers>\n</OAI-PMH>\n"
-    headers:
-      content-length:
-      - '8945'
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - text/xml; charset=utf-8
-      date:
-      - Fri, 10 Apr 2026 11:32:20 GMT
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '9'
-      server:
-      - nginx
-      set-cookie:
-      - session=80dba74c97559396_69d8dfc4.Cr9LOADb3LwlQ1MqoV7K44jmnPY; Expires=Wed,
-        15 Apr 2026 11:32:20 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '26'
-      x-ratelimit-reset:
-      - '1775820750'
-      x-source:
-      - ui
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
+      type: text
+      content: |
+        <?xml version='1.0' encoding='UTF-8'?>
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?>
+        <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+          <responseDate>2026-08-12T18:59:56Z</responseDate>
+          <request verb="ListIdentifiers" metadataPrefix="oai_dc">https://zenodo.org/oai2d</request>
+          <ListIdentifiers>
+            <header status="deleted">
+              <identifier>oai:zenodo.org:8435696</identifier>
+              <datestamp>2023-10-12T14:26:07Z</datestamp>
+              <setSpec>user-pyhep2023</setSpec>
+              <setSpec>openaire</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435639</identifier>
+              <datestamp>2023-10-12T15:06:49Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433301</identifier>
+              <datestamp>2023-10-12T02:36:57Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <resumptionToken expirationDate="2026-08-12T19:01:56Z" cursor="0" completeListSize="8084640">.eJyNzt1ugjAYgOF76bFZCitzkHigwXY2gYiMFnpiOr7qGAUdYCAa730_F7DsvYAn7w31xgAK8MMTdjDxnskcE9_3sDdDZ300KHBnqB51d-xRcEONGTToQW87c6gmFKCTrvZQovsM9WV3snZffWOIMnsp3MlRTBwK178AEwSo74C0ddhSR-XcE-zdvtXKAotPy0nFMrR5gYezprHcYSCJjIYcDzzOxGr5Uzdn1ZhJ-NiQrFFbCGmW4p6UDVxhzV8jyYWaVJRehSuw3wiHJ1ErViaH0VCaKrZrf51PXrhQSmiLx0zyTSJ4KiUmUHtJ9HIe9JqP8O-f4u-fcbFA9y_FWHLa.anzCrA.HYTjAR6aK3nMkiSvAqpnJ_bXURc</resumptionToken>
+          </ListIdentifiers>
+        </OAI-PMH>
+  recorded_at: 2026-08-12T18:59:56.672945+00:00
 - request:
-    body: ''
-    headers:
-      Accept:
-      - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.14.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc&set=software
-  response:
-    body:
-      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-04-10T11:32:33Z</responseDate>\n
-        \ <request verb=\"ListIdentifiers\" set=\"software\" metadataPrefix=\"oai_dc\">https://zenodo.org/oai2d</request>\n
-        \ <ListIdentifiers>\n    <header>\n      <identifier>oai:zenodo.org:8434414</identifier>\n
-        \     <datestamp>2023-10-12T09:38:57Z</datestamp>\n      <setSpec>software</setSpec>\n
-        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:8433354</identifier>\n
-        \     <datestamp>2023-10-12T03:06:13Z</datestamp>\n      <setSpec>software</setSpec>\n
-        \   </header>\n    <header>\n      <identifier>oai:zenodo.org:8434592</identifier>\n
-        \     <datestamp>2023-10-12T09:53:07Z</datestamp>\n      <setSpec>software</setSpec>\n
-        \   </header>\n    <resumptionToken expirationDate=\"2026-04-10T11:34:34Z\"
-        cursor=\"0\" completeListSize=\"567110\">.eJwtzE2PgjAYBOD_0jPZFAQVEg8m8mEjRFCo9GK6vCBIASMYGoz_fdnEOc5Mnjfq8xyQhX80jPHaMExztVRX6-VCQQ9-y5GlKage-fPWI-s9nwdkob4rhrnKkYKafODAB3585kUl563j1RUy9FFQnz07Ia7VrCPHFa9UkypzkyLVzBe4iQ6OqQIV9a51VHYhRuKW4rdmAtyg20p2yKayTJqg5yIgPC45vwd2dEnO5zpYbP_jCA-3IYX7Xo8bdoSdE59wr2cNTGCTs09JwiTTqWcPrHXGVI2MSAsnXwTyMrFjbMvo61wP255Cmy5iSvZhQk6UYh1qI_S9x8BtMoJkmj-VBncih6m25gsw0rNo_FpWKYWvk93GtU2zezpGXjzSWsaZq_ocJ5hpahHYDwLjZoM-f3P4eZY.adjf0g.R4p826MfHYHqxebjviB-edXOhmU</resumptionToken>\n
-        \ </ListIdentifiers>\n</OAI-PMH>\n"
-    headers:
-      content-length:
-      - '9474'
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - text/xml; charset=utf-8
-      date:
-      - Fri, 10 Apr 2026 11:32:34 GMT
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '8'
-      server:
-      - nginx
-      set-cookie:
-      - session=d77ad20945583868_69d8dfd2.vhJCpceVMqwbp9RyKA5j93qYm88; Expires=Wed,
-        15 Apr 2026 11:32:34 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '26'
-      x-ratelimit-reset:
-      - '1775820763'
-      x-source:
-      - ui
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: ''
-    headers:
-      Accept:
-      - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.14.0
     method: GET
     uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc&set=XXX
-  response:
+    headers:
+      accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.2
     body:
-      string: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-04-10T11:32:43Z</responseDate><request>https://zenodo.org/oai2d</request><error
-        code="noRecordsMatch"></error></OAI-PMH>
+      type: none
+  response:
+    status: 422
     headers:
       content-length:
-      - '411'
+      - "411"
       content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Fri, 10 Apr 2026 11:32:43 GMT
+      - Wed, 12 Aug 2026 19:07:03 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '19'
+      - "60"
       server:
       - nginx
-      set-cookie:
-      - session=9f3eccca1e09cb4d_69d8dfdb._bbZbfm84XE9MtgmxE0uFwzYWhI; Expires=Wed,
-        15 Apr 2026 11:32:43 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       x-content-type-options:
       - nosniff
       x-frame-options:
       - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '26'
-      x-ratelimit-reset:
-      - '1775820783'
       x-xss-protection:
       - 1; mode=block
-    status:
-      code: 422
-      message: UNPROCESSABLE ENTITY
+    body:
+      type: text
+      content: >-
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH
+        xmlns="http://www.openarchives.org/OAI/2.0/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-08-12T19:07:03Z</responseDate><request>https://zenodo.org/oai2d</request><error code="noRecordsMatch"></error></OAI-PMH>
+  recorded_at: 2026-08-12T19:07:03.658719+00:00
 - request:
-    body: ''
+    method: GET
+    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc&set=software
     headers:
-      Accept:
+      accept:
       - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      Host:
+      host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.14.0
+      - oaipmh-scythe/0.14.2
+    body:
+      type: none
+  response:
+    status: 200
+    headers:
+      content-security-policy:
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Wed, 12 Aug 2026 19:11:14 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - "2"
+      server:
+      - nginx
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-source:
+      - ui
+      x-xss-protection:
+      - 1; mode=block
+    body:
+      type: text
+      content: |
+        <?xml version='1.0' encoding='UTF-8'?>
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?>
+        <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+          <responseDate>2026-08-12T19:11:13Z</responseDate>
+          <request verb="ListIdentifiers" set="software" metadataPrefix="oai_dc">https://zenodo.org/oai2d</request>
+          <ListIdentifiers>
+            <header>
+              <identifier>oai:zenodo.org:8434414</identifier>
+              <datestamp>2023-10-12T09:38:57Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433354</identifier>
+              <datestamp>2023-10-12T03:06:13Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8434592</identifier>
+              <datestamp>2023-10-12T09:53:07Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8406062</identifier>
+              <datestamp>2023-10-12T00:32:03Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433364</identifier>
+              <datestamp>2023-10-12T03:01:25Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8321258</identifier>
+              <datestamp>2023-10-12T05:35:16Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8417283</identifier>
+              <datestamp>2023-10-12T11:30:31Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8406758</identifier>
+              <datestamp>2023-10-12T19:56:55Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20510666</identifier>
+              <datestamp>2026-06-02T13:19:56Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20644460</identifier>
+              <datestamp>2026-06-11T13:32:25Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20611585</identifier>
+              <datestamp>2026-06-09T13:13:15Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20607363</identifier>
+              <datestamp>2026-06-09T09:21:17Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20632116</identifier>
+              <datestamp>2026-06-10T18:37:50Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20524549</identifier>
+              <datestamp>2026-06-03T09:38:08Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20612488</identifier>
+              <datestamp>2026-06-09T14:12:00Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20588202</identifier>
+              <datestamp>2026-06-08T05:18:34Z</datestamp>
+              <setSpec>software</setSpec>
+              <setSpec>user-sonisanjay93570-research</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20519353</identifier>
+              <datestamp>2026-06-03T02:49:12Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20532710</identifier>
+              <datestamp>2026-06-03T19:26:16Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20619331</identifier>
+              <datestamp>2026-06-10T02:10:54Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20653104</identifier>
+              <datestamp>2026-06-12T02:35:55Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20603330</identifier>
+              <datestamp>2026-06-09T05:22:21Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20643832</identifier>
+              <datestamp>2026-06-12T13:00:26Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20667235</identifier>
+              <datestamp>2026-06-12T13:28:55Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20691420</identifier>
+              <datestamp>2026-06-14T16:25:23Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20694337</identifier>
+              <datestamp>2026-06-14T23:57:30Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20694473</identifier>
+              <datestamp>2026-06-15T00:22:54Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20695147</identifier>
+              <datestamp>2026-06-15T02:50:50Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20546040</identifier>
+              <datestamp>2026-06-04T16:49:31Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20549034</identifier>
+              <datestamp>2026-06-04T22:09:18Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20715356</identifier>
+              <datestamp>2026-06-16T09:38:10Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20717589</identifier>
+              <datestamp>2026-06-16T11:59:12Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20538796</identifier>
+              <datestamp>2026-06-04T08:29:08Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20339136</identifier>
+              <datestamp>2026-06-16T15:31:57Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20719248</identifier>
+              <datestamp>2026-06-16T14:08:23Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20714737</identifier>
+              <datestamp>2026-06-16T09:04:35Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20720461</identifier>
+              <datestamp>2026-06-16T15:45:26Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20720944</identifier>
+              <datestamp>2026-06-16T16:40:02Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20719593</identifier>
+              <datestamp>2026-06-16T14:33:03Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20685718</identifier>
+              <datestamp>2026-06-14T04:42:11Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20713286</identifier>
+              <datestamp>2026-06-16T07:28:28Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20709074</identifier>
+              <datestamp>2026-06-15T22:21:27Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20722327</identifier>
+              <datestamp>2026-06-16T18:42:42Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20690856</identifier>
+              <datestamp>2026-06-14T15:30:41Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20724008</identifier>
+              <datestamp>2026-06-16T22:29:39Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20723219</identifier>
+              <datestamp>2026-06-16T20:31:34Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20719569</identifier>
+              <datestamp>2026-06-16T14:32:53Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20612638</identifier>
+              <datestamp>2026-06-09T14:20:02Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20587103</identifier>
+              <datestamp>2026-06-08T02:24:34Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20740334</identifier>
+              <datestamp>2026-06-18T03:10:04Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20750437</identifier>
+              <datestamp>2026-06-18T17:33:55Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <resumptionToken expirationDate="2026-08-12T19:13:14Z" cursor="0" completeListSize="677775">.eJyNjl1vgjAYhf_Le00WWoQFEi90o92csImDWm5MbcGPVnGCgWD872PZ_bJzec7Jk-cGdVEoCOwHz3VGvod8z_YRfkSuBWexLSDAFuhWXLY1BLfh3EAAdVU2Q1WABceiEUo04uNSlPtu2CqxXysJdwtqeamMWe8HOhBqrhx3KKdZybF_VTQbKeIjxYx-PhGUr2ZuRndmo3OjaFxNOt5GyGDJ3IgRskzQbsFC4yxpcnwnJJn85Mv0J8WZPPA2eUlbprtUUhQJO7NzjMo4PM9Ul1eLPsQb3ThLRGK1yq7zbLrgfUKl8ae_HMq33oR9avO6od1TpM-poOhNOIREYTyPD9LJ_-2T_u3Tjsdw_waaT3g0.anzFUg.vj-8ZOLLr002BdoAN1oj9CGdf3A</resumptionToken>
+          </ListIdentifiers>
+        </OAI-PMH>
+  recorded_at: 2026-08-12T19:11:14.286986+00:00
+- request:
+    method: GET
+    uri: >-
+      https://zenodo.org/oai2d?verb=ListIdentifiers&resumptionToken=.eJyNjkFvgjAYQP9Lz2YpWHWQeNBoO5tAREYLvZiOrzpGQQcYiMb_rtsPWPZO7
+    headers:
+      accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.2
+    body:
+      type: none
+  response:
+    status: 200
+    headers:
+      content-security-policy:
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Wed, 12 Aug 2026 18:59:57 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - "59"
+      server:
+      - nginx
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-source:
+      - ui
+      x-xss-protection:
+      - 1; mode=block
+    body:
+      type: text
+      content: |
+        <?xml version='1.0' encoding='UTF-8'?>
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?>
+        <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+          <responseDate>2026-08-12T18:59:56Z</responseDate>
+          <request resumptionToken=".eJyNjkFvgjAYQP9Lz2YpWHWQeNBoO5tAREYLvZiOrzpGQQcYiMb_rtsPWPZO7" verb="ListIdentifiers">https://zenodo.org/oai2d</request>
+          <ListIdentifiers>
+            <header>
+              <identifier>oai:zenodo.org:8242804</identifier>
+              <datestamp>2023-08-13T10:06:46Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20516515</identifier>
+              <datestamp>2026-06-02T20:03:05Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:20598207</identifier>
+              <datestamp>2026-06-08T17:18:58Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+          </ListIdentifiers>
+        </OAI-PMH>
+  recorded_at: 2026-08-12T18:59:57.129522+00:00
+- request:
+    method: GET
+    uri: >-
+      https://zenodo.org/oai2d?verb=ListIdentifiers&resumptionToken=.eJyNzt1ugjAYgOF76bFZCitzkHigwXY2gYiMFnpiOr7qGAUdYCAa730_F7DsvYAn7w31xgAK8MMTdjDxnskcE9_3sDdDZ300KHBnqB51d-xRcEONGTToQW87c6gmFKCTrvZQovsM9WV3snZffWOIMnsp3MlRTBwK178AEwSo74C0ddhSR-XcE-zdvtXKAotPy0nFMrR5gYezprHcYSCJjIYcDzzOxGr5Uzdn1ZhJ-NiQrFFbCGmW4p6UDVxhzV8jyYWaVJRehSuw3wiHJ1ErViaH0VCaKrZrf51PXrhQSmiLx0zyTSJ4KiUmUHtJ9HIe9JqP8O-f4u-fcbFA9y_FWHLa.anzCrA.HYTjAR6aK3nMkiSvAqpnJ_bXURc
+    headers:
+      accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.2
+    body:
+      type: none
+  response:
+    status: 200
+    headers:
+      content-security-policy:
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Wed, 12 Aug 2026 18:59:56 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - "60"
+      server:
+      - nginx
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-source:
+      - ui
+      x-xss-protection:
+      - 1; mode=block
+    body:
+      type: text
+      content: |
+        <?xml version='1.0' encoding='UTF-8'?>
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?>
+        <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+          <responseDate>2026-08-12T18:59:56Z</responseDate>
+          <request resumptionToken=".eJyNzt1ugjAYgOF76bFZCitzkHigwXY2gYiMFnpiOr7qGAUdYCAa730_F7DsvYAn7w31xgAK8MMTdjDxnskcE9_3sDdDZ300KHBnqB51d-xRcEONGTToQW87c6gmFKCTrvZQovsM9WV3snZffWOIMnsp3MlRTBwK178AEwSo74C0ddhSR-XcE-zdvtXKAotPy0nFMrR5gYezprHcYSCJjIYcDzzOxGr5Uzdn1ZhJ-NiQrFFbCGmW4p6UDVxhzV8jyYWaVJRehSuw3wiHJ1ErViaH0VCaKrZrf51PXrhQSmiLx0zyTSJ4KiUmUHtJ9HIe9JqP8O-f4u-fcbFA9y_FWHLa.anzCrA.HYTjAR6aK3nMkiSvAqpnJ_bXURc" verb="ListIdentifiers">https://zenodo.org/oai2d</request>
+          <ListIdentifiers>
+            <header>
+              <identifier>oai:zenodo.org:8433364</identifier>
+              <datestamp>2023-10-12T03:01:25Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8333281</identifier>
+              <datestamp>2023-10-12T01:34:35Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8321258</identifier>
+              <datestamp>2023-10-12T05:35:16Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <resumptionToken expirationDate="2026-08-12T19:01:56Z" cursor="50" completeListSize="8084640">.eJyNjkFvgjAYQP9Lz2YpWHWQeNBoO5tAREYLvZiOrzpGQQcYiMb_rtsPWPZO7</resumptionToken>
+          </ListIdentifiers>
+        </OAI-PMH>
+  recorded_at: 2026-08-12T18:59:56.933845+00:00
+- request:
     method: GET
     uri: https://zenodo.org/oai2d?verb=ListIdentifiers&resumptionToken=XXX
-  response:
-    body:
-      string: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-04-10T11:34:05Z</responseDate><request>https://zenodo.org/oai2d</request><error
-        code="badResumptionToken">The value of the resumptionToken argument is invalid
-        or expired.</error></OAI-PMH>
     headers:
-      content-length:
-      - '479'
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - text/xml; charset=utf-8
-      date:
-      - Fri, 10 Apr 2026 11:34:05 GMT
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '60'
-      server:
-      - nginx
-      set-cookie:
-      - session=6c62920d03c46873_69d8e02d.zwercO56cfwE8K8-ugV6FXh7vUg; Expires=Wed,
-        15 Apr 2026 11:34:05 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '29'
-      x-ratelimit-reset:
-      - '1775820906'
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 422
-      message: UNPROCESSABLE ENTITY
-- request:
-    body: ''
-    headers:
-      Accept:
+      accept:
       - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      Host:
+      host:
       - zenodo.org
       user-agent:
-      - oaipmh-scythe/0.14.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListIdentifiers&from=2030-01-15&metadataPrefix=oai_dc
-  response:
+      - oaipmh-scythe/0.14.2
     body:
-      string: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-04-10T11:34:18Z</responseDate><request>https://zenodo.org/oai2d</request><error
-        code="noRecordsMatch"></error></OAI-PMH>
+      type: none
+  response:
+    status: 422
     headers:
       content-length:
-      - '411'
+      - "479"
       content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Fri, 10 Apr 2026 11:34:18 GMT
+      - Wed, 12 Aug 2026 19:06:00 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '47'
+      - "60"
       server:
       - nginx
-      set-cookie:
-      - session=d751a66e5f5edad3_69d8e03a.KVrMUo_lYLknyGeH4ySReyiSPMI; Expires=Wed,
-        15 Apr 2026 11:34:18 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       x-content-type-options:
       - nosniff
       x-frame-options:
       - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '28'
-      x-ratelimit-reset:
-      - '1775820906'
       x-xss-protection:
       - 1; mode=block
-    status:
-      code: 422
-      message: UNPROCESSABLE ENTITY
-version: 1
+    body:
+      type: text
+      content: >-
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH
+        xmlns="http://www.openarchives.org/OAI/2.0/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-08-12T19:06:00Z</responseDate><request>https://zenodo.org/oai2d</request><error code="badResumptionToken">The value of the resumptionToken argument is invalid or expired.</error></OAI-PMH>
+  recorded_at: 2026-08-12T19:06:00.955446+00:00
+- request:
+    method: GET
+    uri: >-
+      https://zenodo.org/oai2d?verb=ListIdentifiers&until=2026-04-02&metadataPrefix=oai_dc
+    headers:
+      accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.2
+    body:
+      type: none
+  response:
+    status: 200
+    headers:
+      content-security-policy:
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Wed, 12 Aug 2026 19:08:17 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - "40"
+      server:
+      - nginx
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-source:
+      - ui
+      x-xss-protection:
+      - 1; mode=block
+    body:
+      type: text
+      content: |
+        <?xml version='1.0' encoding='UTF-8'?>
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?>
+        <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+          <responseDate>2026-08-12T19:08:17Z</responseDate>
+          <request verb="ListIdentifiers" until="2026-04-02T00:00:00Z" metadataPrefix="oai_dc">https://zenodo.org/oai2d</request>
+          <ListIdentifiers>
+            <header>
+              <identifier>oai:zenodo.org:8435696</identifier>
+              <datestamp>2023-10-12T14:26:07Z</datestamp>
+              <setSpec>user-pyhep2023</setSpec>
+              <setSpec>openaire</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435639</identifier>
+              <datestamp>2023-10-12T15:06:49Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433301</identifier>
+              <datestamp>2023-10-12T02:36:57Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433037</identifier>
+              <datestamp>2023-10-11T22:10:01Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433767</identifier>
+              <datestamp>2023-10-12T07:23:10Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8434414</identifier>
+              <datestamp>2023-10-12T09:38:57Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433354</identifier>
+              <datestamp>2023-10-12T03:06:13Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436799</identifier>
+              <datestamp>2023-10-12T21:51:23Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435907</identifier>
+              <datestamp>2023-10-12T16:14:51Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436014</identifier>
+              <datestamp>2023-10-12T15:47:58Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436315</identifier>
+              <datestamp>2023-10-12T17:24:23Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8434592</identifier>
+              <datestamp>2023-10-12T09:53:07Z</datestamp>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435974</identifier>
+              <datestamp>2023-10-12T16:23:28Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8437424</identifier>
+              <datestamp>2023-10-13T04:36:11Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:6645396</identifier>
+              <datestamp>2023-10-12T05:34:03Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433329</identifier>
+              <datestamp>2023-10-12T02:48:38Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435744</identifier>
+              <datestamp>2023-10-12T14:39:12Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436080</identifier>
+              <datestamp>2023-10-12T16:07:33Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8434828</identifier>
+              <datestamp>2023-10-12T11:28:34Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435818</identifier>
+              <datestamp>2023-10-12T15:03:07Z</datestamp>
+              <setSpec>user-pyhep2023</setSpec>
+              <setSpec>openaire</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8415038</identifier>
+              <datestamp>2023-10-11T21:41:49Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433237</identifier>
+              <datestamp>2023-10-12T02:23:58Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435619</identifier>
+              <datestamp>2023-10-12T14:04:11Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435051</identifier>
+              <datestamp>2023-10-12T11:53:28Z</datestamp>
+              <setSpec>user-19eng02-futureenergy</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433925</identifier>
+              <datestamp>2023-10-12T07:43:55Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436593</identifier>
+              <datestamp>2023-10-12T19:09:56Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436036</identifier>
+              <datestamp>2023-10-12T15:55:01Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8406062</identifier>
+              <datestamp>2023-10-12T00:32:03Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>software</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435629</identifier>
+              <datestamp>2023-10-12T14:48:33Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436503</identifier>
+              <datestamp>2023-10-12T20:17:04Z</datestamp>
+              <setSpec>user-biosyslit</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436654</identifier>
+              <datestamp>2023-10-12T19:58:05Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8434673</identifier>
+              <datestamp>2023-10-12T10:18:48Z</datestamp>
+              <setSpec>user-dryad</setSpec>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433929</identifier>
+              <datestamp>2023-10-12T08:40:12Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433947</identifier>
+              <datestamp>2023-10-12T07:51:38Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8437146</identifier>
+              <datestamp>2023-10-13T02:49:12Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435168</identifier>
+              <datestamp>2023-10-12T12:33:05Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8429699</identifier>
+              <datestamp>2023-10-13T06:06:03Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433407</identifier>
+              <datestamp>2023-10-12T04:02:43Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435503</identifier>
+              <datestamp>2023-10-12T13:43:46Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436288</identifier>
+              <datestamp>2023-10-12T17:37:21Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435680</identifier>
+              <datestamp>2023-10-12T14:26:21Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435813</identifier>
+              <datestamp>2023-10-12T15:38:01Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436282</identifier>
+              <datestamp>2023-10-12T17:46:01Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436292</identifier>
+              <datestamp>2023-10-12T18:02:43Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433069</identifier>
+              <datestamp>2023-10-11T22:59:57Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433712</identifier>
+              <datestamp>2023-10-12T06:30:21Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8436180</identifier>
+              <datestamp>2023-10-12T16:44:07Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8435160</identifier>
+              <datestamp>2023-10-12T12:36:47Z</datestamp>
+              <setSpec>openaire_data</setSpec>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8437103</identifier>
+              <datestamp>2023-10-13T02:08:31Z</datestamp>
+            </header>
+            <header>
+              <identifier>oai:zenodo.org:8433919</identifier>
+              <datestamp>2023-10-12T07:35:02Z</datestamp>
+            </header>
+            <resumptionToken expirationDate="2026-08-12T19:10:17Z" cursor="0" completeListSize="6753098">.eJyNjktvgkAYRf_Lt6bNMFAUEhdanakoxBev2ZiRQUUGsTBEovG_17b7pjd3eXPuuUOTZQIc9Gr3LAuZum7YVr_Xx30NLvyQgYM1KK68PjTg3KE9q1yCAxhh6wWZLwhvEHJ-ChqUmeKCK76os33ePWcVz7cihYcGTVpXUm7z5xUQKtsEdzqj4T7BditoaApi6yKSxfhMdBa7byE9yl3BpKB-NeyYH41lnCB14cSPVkiYy8hTMVKuH4Sj4Xfq3sexDiJxmppByRZiTII1asy0FDcxcTde5IasY9XyNsG7QhlrnfgiDtt5OFomtxVNpf3L-aTJrGyiTSGnO9q9e8Ul4FSfcYMQb-LP_VNqsH_7JH_7XAcDeHwBWH16DQ.anzEoQ.Vnt5dviUnBdERc_BSu8QUZhI4bg</resumptionToken>
+          </ListIdentifiers>
+        </OAI-PMH>
+  recorded_at: 2026-08-12T19:08:17.698707+00:00

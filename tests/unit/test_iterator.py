@@ -13,15 +13,13 @@ from oaipmh_scythe.models import Header
 query = {"verb": "ListIdentifiers", "metadataPrefix": "oai_dc"}
 
 
-@pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_identifiers.yaml")
 def test_iterator_str(scythe: Scythe) -> None:
     iterator = OAIResponseIterator(scythe, query)
     assert str(iterator) == "<OAIResponseIterator ListIdentifiers>"
 
 
-@pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_identifiers.yaml")
 def test_oai_response_iterator(scythe: Scythe) -> None:
     iterator = OAIResponseIterator(scythe, query)
     responses = list(iterator)
@@ -30,8 +28,7 @@ def test_oai_response_iterator(scythe: Scythe) -> None:
     assert len(responses) == 3
 
 
-@pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_identifiers.yaml")
 def test_oai_item_iterator(scythe: Scythe) -> None:
     iterator = OAIItemIterator(scythe, query)
     headers = list(iterator)
@@ -40,8 +37,7 @@ def test_oai_item_iterator(scythe: Scythe) -> None:
     assert len(headers) == 9
 
 
-@pytest.mark.default_cassette("list_identifiers.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_identifiers.yaml")
 def test_oai_item_iterator_ignore_deleted(scythe: Scythe) -> None:
     iterator = OAIItemIterator(scythe, query, ignore_deleted=True)
     headers = list(iterator)

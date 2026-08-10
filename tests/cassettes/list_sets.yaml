@@ -1,97 +1,38 @@
+version: 1
 interactions:
 - request:
-    body: ''
-    headers:
-      Accept:
-      - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.14.0
     method: GET
     uri: https://zenodo.org/oai2d?verb=ListSets
-  response:
-    body:
-      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-03-15T08:01:16Z</responseDate>\n
-        \ <request verb=\"ListSets\">https://zenodo.org/oai2d</request>\n  <ListSets>\n
-        \   <set>\n      <setSpec>user-harmonic-radar</setSpec>\n      <setName>Harmonic
-        Radar</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\"
-        xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n
-        \         <dc:description>&lt;p&gt;Radar using a non-linear element with the
-        radar receiver at a multiple of the transmitter frequency.&lt;/p&gt;\n</dc:description>\n
-        \       </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-eliminatinewq</setSpec>\n
-        \     <setName>Eliminating Flies</setName>\n    </set>\n    <set>\n      <setSpec>user-sciencedomain-international</setSpec>\n
-        \     <setName>Sciencedomain international</setName>\n      <setDescription>\n
-        \       <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\"
-        xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n
-        \         <dc:description>&lt;p style=\"text-align: justify;\"&gt;\n\t&lt;strong&gt;SCIENCEDOMAIN&lt;em&gt;
-        international&lt;/em&gt; (SDI)&lt;/strong&gt; publishes high-quality, &lt;a
-        href=\"http://www.sciencedomain.org/page.php?id=sdi-general-editorial-policy#SDI_Peer_review_mechanism\"&gt;OPEN&amp;nbsp;peer
-        reviewed&lt;/a&gt;, OPEN access international journals in various sectors
-        of science, technology and medicine (STM). Fast and Open access principle
-        of SDI help to promote rapid propagation of most up-to-date research findings
-        to the researchers worldwide without any financial barrier.&lt;/p&gt;\n</dc:description>\n
-        \       </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-elife</setSpec>\n
-        \     <setName>eLife journal collection. </setName>\n      <setDescription>\n
-        \       <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\"
-        xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n
-        \         <dc:description>&lt;p&gt;\n\t&amp;nbsp;&lt;/p&gt;\n&lt;p style=\"margin:
-        0px 0px 1.25em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline;
-        color: rgb(109, 110, 112); font-family: Helvetica, Arial, Verdana, sans-serif;
-        line-height: 18px; -webkit-text-size-adjust: none;\"&gt;\n\t&amp;nbsp;eLife
-        is a&amp;nbsp;&lt;a href=\"http://www.elifesciences.org/about/background/\"
-        style=\"margin: 0px; padding: 0px; vertical-align: baseline; background-color:
-        transparent; color: rgb(34, 160, 216); text-decoration: none; -webkit-transition:
-        color 0.25s ease-in; transition: color 0.25s ease-in;\" target=\"_blank\"
-        title=\"Background\"&gt;joint initiative&lt;/a&gt;&amp;nbsp;of the Howard
-        Hughes Medical Institute, the Max Planck Society, and the Wellcome Trust.&amp;nbsp;&lt;/p&gt;\n&lt;p
-        style=\"margin: 0px 0px 1.25em; padding: 0px; border: 0px; outline: 0px; vertical-align:
-        baseline; color: rgb(109, 110, 112); font-family: Helvetica, Arial, Verdana,
-        sans-serif; line-height: 18px; -webkit-text-size-adjust: none;\"&gt;\n\tThe&amp;nbsp;&lt;em
-        style=\"margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align:
-        baseline; background-color: transparent;\"&gt;eLife&lt;/em&gt;&amp;nbsp;journal
-        is a platform for extending the reach and influence of new discoveries and
-        to showcase new approaches to the presentation, use, and assessment of research.
-        This zenodo community is for research objects connected to eLife articles.&lt;/p&gt;\n</dc:description>\n
-        \       </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-wiredrivenparallelrobots</setSpec>\n
-        \     <setName>Wire-driven parallel robots</setName>\n      <setDescription>\n
-        \       <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\"
-        xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n
-        \         <dc:description>&lt;p&gt;\n\tCommunity that is interested in the
-        study, analysis and applications of wire-driven parallel robots (known also
-        as cable robots)&lt;/p&gt;\n</dc:description>\n        </oai_dc:dc>\n      </setDescription>\n
-        \   </set>\n <resumptionToken expirationDate=\"2026-03-15T08:03:16Z\" cursor=\"0\"
-        completeListSize=\"35347\">eyJzZWVkIjowLjM1ODM1NjU5NDkzNDU3MjE3LCJwYWdlIjoyLCJrd2FyZ3MiOnt9fQ.abZnTA.XmYCr7-cbxvBh7bSF42hlCtMVVI</resumptionToken>\n
-        \ </ListSets>\n</OAI-PMH>\n"
     headers:
-      content-length:
-      - '57127'
+      accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.2
+    body:
+      type: none
+  response:
+    status: 200
+    headers:
       content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Sun, 15 Mar 2026 08:01:16 GMT
+      - Wed, 12 Aug 2026 18:20:39 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '60'
+      - "34"
       server:
       - nginx
-      set-cookie:
-      - session=b14da1349c1f4943_69b6674c.PmePvFoIDNLCiYNu2NvYlXTuBss; Expires=Fri,
-        20 Mar 2026 08:01:16 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       transfer-encoding:
@@ -102,165 +43,222 @@ interactions:
       - nosniff
       x-frame-options:
       - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '29'
-      x-ratelimit-reset:
-      - '1773561737'
       x-source:
       - ui
       x-xss-protection:
       - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: ''
-    headers:
-      Accept:
-      - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Cookie:
-      - session=b14da1349c1f4943_69b6674c.PmePvFoIDNLCiYNu2NvYlXTuBss
-      Host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.14.0
-    method: GET
-    uri: https://zenodo.org/oai2d?verb=ListSets&resumptionToken=eyJzZWVkIjowLjM1ODM1NjU5NDkzNDU3MjE3LCJwYWdlIjoyLCJrd2FyZ3MiOnt9fQ.abZnTA.XmYCr7-cbxvBh7bSF42hlCtMVVI
-  response:
     body:
-      string: "<?xml version='1.0' encoding='UTF-8'?>\n<?xml-stylesheet type=\"text/xsl\"
-        href=\"/static/oai2.xsl\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\"
-        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n  <responseDate>2026-03-15T08:01:16Z</responseDate>\n
-        \ <request resumptionToken=\"eyJzZWVkIjowLjM1ODM1NjU5NDkzNDU3MjE3LCJwYWdlIjoyLCJrd2FyZ3MiOnt9fQ.abZnTA.XmYCr7-cbxvBh7bSF42hlCtMVVI\"
-        verb=\"ListSets\">https://zenodo.org/oai2d</request>\n  <ListSets>\n    <set>\n
-        \     <setSpec>user-envin-umr</setSpec>\n      <setName>Environmental Informatics
-        Marburg</setName>\n      <setDescription>\n        <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\"
-        xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n
-        \         <dc:description>&lt;p&gt;Community repository of the environmental
-        informatics working group at Marburg University.&lt;/p&gt;\n\n&lt;p&gt;http://environmentalinformatics-marburg.de/&lt;/p&gt;\n</dc:description>\n
-        \       </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-macrophage-gene-expression-genetics</setSpec>\n
-        \     <setName>Genetics of gene expression and chromatin accessibility in
-        macrophage immune response</setName>\n    </set>\n    <set>\n      <setSpec>user-digiclass</setSpec>\n
-        \     <setName>Digital Classics</setName>\n      <setDescription>\n        <oai_dc:dc
-        xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\"
-        xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\">\n          <dc:description>&lt;p&gt;A
-        community to share open access publications about&amp;nbsp;the use of digital
-        methods and technologies to study the ancient world at large.&amp;nbsp;&lt;/p&gt;\n</dc:description>\n
-        \       </oai_dc:dc>\n      </setDescription>\n    </set>\n    <set>\n      <setSpec>user-gsc</setSpec>\n
-        \     <setName>Global Science Citation</setName>\n    </set>\n    <set>\n
-        \     <setSpec>user-dewa</setSpec>\n      <setName>DEWA Demo Admin</setName>\n
-        \   </set>\n  </ListSets>\n</OAI-PMH>\n"
-    headers:
-      content-length:
-      - '33855'
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - text/xml; charset=utf-8
-      date:
-      - Sun, 15 Mar 2026 08:01:17 GMT
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '59'
-      server:
-      - nginx
-      set-cookie:
-      - session=b14da1349c1f4943_69b6674c.PmePvFoIDNLCiYNu2NvYlXTuBss; Expires=Fri,
-        20 Mar 2026 08:01:17 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '28'
-      x-ratelimit-reset:
-      - '1773561737'
-      x-source:
-      - ui
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
+      type: text
+      content: |
+        <?xml version='1.0' encoding='UTF-8'?>
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?>
+        <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+          <responseDate>2026-08-12T18:20:39Z</responseDate>
+          <request verb="ListSets">https://zenodo.org/oai2d</request>
+          <ListSets>
+            <set>
+              <setSpec>user-harmonic-radar</setSpec>
+              <setName>Harmonic Radar</setName>
+              <setDescription>
+                <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/">
+                  <dc:description>&lt;p&gt;Radar using a non-linear element with the radar receiver at a multiple of the transmitter frequency.&lt;/p&gt;
+        </dc:description>
+                </oai_dc:dc>
+              </setDescription>
+            </set>
+            <set>
+              <setSpec>user-eliminatinewq</setSpec>
+              <setName>Eliminating Flies</setName>
+            </set>
+            <set>
+              <setSpec>user-sciencedomain-international</setSpec>
+              <setName>Sciencedomain international</setName>
+              <setDescription>
+                <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/">
+                  <dc:description>&lt;p style="text-align: justify;"&gt;
+        	&lt;strong&gt;SCIENCEDOMAIN&lt;em&gt; international&lt;/em&gt; (SDI)&lt;/strong&gt; publishes high-quality, &lt;a href="http://www.sciencedomain.org/page.php?id=sdi-general-editorial-policy#SDI_Peer_review_mechanism"&gt;OPEN&amp;nbsp;peer reviewed&lt;/a&gt;, OPEN access international journals in various sectors of science, technology and medicine (STM). Fast and Open access principle of SDI help to promote rapid propagation of most up-to-date research findings to the researchers worldwide without any financial barrier.&lt;/p&gt;
+        </dc:description>
+                </oai_dc:dc>
+              </setDescription>
+            </set>
+            <set>
+              <setSpec>user-elife</setSpec>
+              <setName>eLife journal collection. </setName>
+              <setDescription>
+                <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/">
+                  <dc:description>&lt;p&gt;
+        	&amp;nbsp;&lt;/p&gt;
+        &lt;p style="margin: 0px 0px 1.25em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; color: rgb(109, 110, 112); font-family: Helvetica, Arial, Verdana, sans-serif; line-height: 18px; -webkit-text-size-adjust: none;"&gt;
+        	&amp;nbsp;eLife is a&amp;nbsp;&lt;a href="http://www.elifesciences.org/about/background/" style="margin: 0px; padding: 0px; vertical-align: baseline; background-color: transparent; color: rgb(34, 160, 216); text-decoration: none; -webkit-transition: color 0.25s ease-in; transition: color 0.25s ease-in;" target="_blank" title="Background"&gt;joint initiative&lt;/a&gt;&amp;nbsp;of the Howard Hughes Medical Institute, the Max Planck Society, and the Wellcome Trust.&amp;nbsp;&lt;/p&gt;
+        &lt;p style="margin: 0px 0px 1.25em; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; color: rgb(109, 110, 112); font-family: Helvetica, Arial, Verdana, sans-serif; line-height: 18px; -webkit-text-size-adjust: none;"&gt;
+        	The&amp;nbsp;&lt;em style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;"&gt;eLife&lt;/em&gt;&amp;nbsp;journal is a platform for extending the reach and influence of new discoveries and to showcase new approaches to the presentation, use, and assessment of research. This zenodo community is for research objects connected to eLife articles.&lt;/p&gt;
+        </dc:description>
+                </oai_dc:dc>
+              </setDescription>
+            </set>
+            <set>
+              <setSpec>user-wiredrivenparallelrobots</setSpec>
+              <setName>Wire-driven parallel robots</setName>
+              <setDescription>
+                <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/">
+                  <dc:description>&lt;p&gt;
+        	Community that is interested in the study, analysis and applications of wire-driven parallel robots (known also as cable robots)&lt;/p&gt;
+        </dc:description>
+                </oai_dc:dc>
+              </setDescription>
+            </set>
+            <resumptionToken expirationDate="2026-08-12T18:22:39Z" cursor="0" completeListSize="42068">eyJzZWVkIjowLjMyOTUxMjIzOTg3NzM4MzksInBhZ2UiOjIsImt3YXJncyI6e319.any5dw.kg_s6M1Kr5M3Ar7Z6EWcvbfu8Tg</resumptionToken>
+          </ListSets>
+        </OAI-PMH>
+  recorded_at: 2026-08-12T18:20:39.965080+00:00
 - request:
-    body: ''
-    headers:
-      Accept:
-      - text/xml; charset=utf-8, application/xml; charset=utf-8
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Host:
-      - zenodo.org
-      user-agent:
-      - oaipmh-scythe/0.14.0
     method: GET
     uri: https://zenodo.org/oai2d?verb=ListSets&resumptionToken=XXX
-  response:
+    headers:
+      accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.2
     body:
-      string: <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
-        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-03-15T08:19:57Z</responseDate><request>https://zenodo.org/oai2d</request><error
-        code="badResumptionToken">The value of the resumptionToken argument is invalid
-        or expired.</error></OAI-PMH>
+      type: none
+  response:
+    status: 422
     headers:
       content-length:
-      - '479'
+      - "479"
       content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
       content-type:
       - text/xml; charset=utf-8
       date:
-      - Sun, 15 Mar 2026 08:19:57 GMT
+      - Wed, 12 Aug 2026 18:20:40 GMT
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '60'
+      - "33"
       server:
       - nginx
-      set-cookie:
-      - session=22087264239ec60e_69b66bad.gr-DVCivP7E6YIz-N2wFAnvXbt8; Expires=Fri,
-        20 Mar 2026 08:19:57 GMT; Secure; HttpOnly; Path=/; SameSite=Lax
       strict-transport-security:
       - max-age=31556926; includeSubDomains
       x-content-type-options:
       - nosniff
       x-frame-options:
       - sameorigin
-      x-ratelimit-limit:
-      - '30'
-      x-ratelimit-remaining:
-      - '29'
-      x-ratelimit-reset:
-      - '1773562858'
       x-xss-protection:
       - 1; mode=block
-    status:
-      code: 422
-      message: UNPROCESSABLE ENTITY
-version: 1
+    body:
+      type: text
+      content: >-
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?><OAI-PMH
+        xmlns="http://www.openarchives.org/OAI/2.0/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+        http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-08-12T18:20:40Z</responseDate><request>https://zenodo.org/oai2d</request><error code="badResumptionToken">The value of the resumptionToken argument is invalid or expired.</error></OAI-PMH>
+  recorded_at: 2026-08-12T18:20:40.244749+00:00
+- request:
+    method: GET
+    uri: >-
+      https://zenodo.org/oai2d?verb=ListSets&resumptionToken=eyJzZWVkIjowLjMyOTUxMjIzOTg3NzM4MzksInBhZ2UiOjIsImt3YXJncyI6e319.any5dw.kg_s6M1Kr5M3Ar7Z6EWcvbfu8Tg
+    headers:
+      accept:
+      - text/xml; charset=utf-8, application/xml; charset=utf-8
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - oaipmh-scythe/0.14.2
+    body:
+      type: none
+  response:
+    status: 200
+    headers:
+      content-security-policy:
+      - "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+      content-type:
+      - text/xml; charset=utf-8
+      date:
+      - Wed, 12 Aug 2026 18:20:39 GMT
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - "34"
+      server:
+      - nginx
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-source:
+      - ui
+      x-xss-protection:
+      - 1; mode=block
+    body:
+      type: text
+      content: |
+        <?xml version='1.0' encoding='UTF-8'?>
+        <?xml-stylesheet type="text/xsl" href="/static/oai2.xsl"?>
+        <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+          <responseDate>2026-08-12T18:20:39Z</responseDate>
+          <request resumptionToken="eyJzZWVkIjowLjMyOTUxMjIzOTg3NzM4MzksInBhZ2UiOjIsImt3YXJncyI6e319.any5dw.kg_s6M1Kr5M3Ar7Z6EWcvbfu8Tg" verb="ListSets">https://zenodo.org/oai2d</request>
+          <ListSets>
+            <set>
+              <setSpec>user-young-bds</setSpec>
+              <setName>Young Brown Dwarfs</setName>
+              <setDescription>
+                <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/">
+                  <dc:description>&lt;p&gt;This community is dedicated to the census and study of young brown dwarfs.&lt;/p&gt;
+        </dc:description>
+                </oai_dc:dc>
+              </setDescription>
+            </set>
+            <set>
+              <setSpec>user-envin-umr</setSpec>
+              <setName>Environmental Informatics Marburg</setName>
+              <setDescription>
+                <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/">
+                  <dc:description>&lt;p&gt;Community repository of the environmental informatics working group at Marburg University.&lt;/p&gt;
+        
+        &lt;p&gt;http://environmentalinformatics-marburg.de/&lt;/p&gt;
+        </dc:description>
+                </oai_dc:dc>
+              </setDescription>
+            </set>
+            <set>
+              <setSpec>user-macrophage-gene-expression-genetics</setSpec>
+              <setName>Genetics of gene expression and chromatin accessibility in macrophage immune response</setName>
+            </set>
+            <set>
+              <setSpec>user-digiclass</setSpec>
+              <setName>Digital Classics</setName>
+              <setDescription>
+                <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/">
+                  <dc:description>&lt;p&gt;A community to share open access publications about&amp;nbsp;the use of digital methods and technologies to study the ancient world at large.&amp;nbsp;&lt;/p&gt;
+        </dc:description>
+                </oai_dc:dc>
+              </setDescription>
+            </set>
+            <set>
+              <setSpec>user-gsc</setSpec>
+              <setName>Global Science Citation</setName>
+            </set>
+          </ListSets>
+        </OAI-PMH>
+  recorded_at: 2026-08-12T18:20:40.047257+00:00

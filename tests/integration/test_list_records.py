@@ -21,8 +21,7 @@ if TYPE_CHECKING:
 TITLE = "PocketCoffea: a configuration layer for CMS analyses with Coffea"
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_with_default_metadata_prefix(scythe: Scythe) -> None:
     records = scythe.list_records(metadata_prefix="oai_dc")
     assert isinstance(records, Iterator)
@@ -31,8 +30,7 @@ def test_list_records_with_default_metadata_prefix(scythe: Scythe) -> None:
     assert record.metadata["title"][0] == TITLE
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_without_metadata_prefix(scythe: Scythe) -> None:
     records = scythe.list_records()
     assert isinstance(records, Iterator)
@@ -41,8 +39,7 @@ def test_list_records_without_metadata_prefix(scythe: Scythe) -> None:
     assert record.metadata["title"][0] == TITLE
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_with_valid_metadata_prefix(scythe: Scythe) -> None:
     records = scythe.list_records(metadata_prefix="datacite")
     assert isinstance(records, Iterator)
@@ -51,8 +48,7 @@ def test_list_records_with_valid_metadata_prefix(scythe: Scythe) -> None:
     assert record.metadata["title"][0] == TITLE
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_with_invalid_metadata_prefix(scythe: Scythe) -> None:
     # cannotDisseminateFormat
     records = scythe.list_records(metadata_prefix="XXX")
@@ -60,18 +56,16 @@ def test_list_records_with_invalid_metadata_prefix(scythe: Scythe) -> None:
         next(records)
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_with_from(scythe: Scythe) -> None:
     records = scythe.list_records(from_="2026-04-01")
     assert isinstance(records, Iterator)
     record = next(records)
-    expected_title = "Visual Summary (हिन्दी): चेचक वैश्विक (1994-2024)"
+    expected_title = "Meika4/mabs_mds7_gaussians: mAbs.MDS7 Gaussians"
     assert record.metadata["title"][0] == expected_title
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_with_until(scythe: Scythe) -> None:
     records = scythe.list_records(until="2026-04-02")
     assert isinstance(records, Iterator)
@@ -79,25 +73,22 @@ def test_list_records_with_until(scythe: Scythe) -> None:
     assert record.metadata["title"][0] == TITLE
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_with_from_and_until(scythe: Scythe) -> None:
     records = scythe.list_records(from_="2026-04-01", until="2026-04-02")
     record = next(records)
-    expected_title = "Science, Systèmes et Cécité Structurelle👀"
+    expected_title = "O artesanal e o ordinário: tramas e pitadas da experiência das mulheres com o trabalho"  # spellchecker:disable-line
     assert record.metadata["title"][0] == expected_title
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_with_valid_set(scythe: Scythe) -> None:
     records = scythe.list_records(set_="software")
     record = next(records)
     assert record.metadata["title"][0] == "Figure generation TCR self-reactivity"
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_with_invalid_set(scythe: Scythe) -> None:
     # noRecordsMatch
     records = scythe.list_records(set_="XXX")
@@ -105,18 +96,16 @@ def test_list_records_with_invalid_set(scythe: Scythe) -> None:
         next(records)
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_with_valid_resumption_token(scythe: Scythe) -> None:
-    token = ".eJwtzNtugjAAANB"
+    token = ".eJwlzEuOgjAAANC7dG0mLeAMkMwCRmlEqYLSQjemUBRtFRSMROPd5"
     records = scythe.list_records(resumption_token=token)
     assert isinstance(records, Iterator)
     record = next(records)
     assert record
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_with_invalid_resumption_token(scythe: Scythe) -> None:
     # badResumptionToken
     records = scythe.list_records(resumption_token="XXX")
@@ -124,8 +113,7 @@ def test_list_records_with_invalid_resumption_token(scythe: Scythe) -> None:
         next(records)
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_raises_no_records_match(scythe: Scythe) -> None:
     # noRecordsMatch
     records = scythe.list_records(from_="2030-01-01")
@@ -133,8 +121,7 @@ def test_list_records_raises_no_records_match(scythe: Scythe) -> None:
         next(records)
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_ignore_deleted(scythe: Scythe) -> None:
     records = scythe.list_records(ignore_deleted=True)
     records = list(records)
@@ -143,8 +130,7 @@ def test_list_records_ignore_deleted(scythe: Scythe) -> None:
     assert len(records) == 8
 
 
-@pytest.mark.default_cassette("list_records.yaml")
-@pytest.mark.vcr
+@pytest.mark.vcr("list_records.yaml")
 def test_list_records_oai_response(scythe: Scythe) -> None:
     scythe.iterator = OAIResponseIterator
     responses = scythe.list_records()
