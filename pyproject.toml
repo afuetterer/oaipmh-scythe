@@ -67,6 +67,7 @@ docs = [
 
 [tool.uv]
 default-groups = [ "dev", "test" ]
+exclude-newer = "1 week"  # ignore packages published in the last week
 
 [tool.ruff]  # Ref: https://docs.astral.sh/ruff/configuration/
 line-length = 120
