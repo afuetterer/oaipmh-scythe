@@ -47,12 +47,12 @@ dev = [
   "prek",
 ]
 test = [
+  "cassetter",
   "pytest",
   "pytest-asyncio",
   "pytest-cov",
   "pytest-mock",
   "pytest-randomly",
-  "pytest-recording",
   "pytest-xdist",
   "respx",
 ]
@@ -68,6 +68,7 @@ docs = [
 [tool.uv]
 default-groups = [ "dev", "test" ]
 exclude-newer = "1 week"  # ignore packages published in the last week
+exclude-newer-package = { cassetter = false }
 
 [tool.ruff]  # Ref: https://docs.astral.sh/ruff/configuration/
 line-length = 120

@@ -5,16 +5,24 @@
 from __future__ import annotations
 
 import pytest
+from cassetter import Cassetter
 
 from oaipmh_scythe import Scythe
 
 
 @pytest.fixture(scope="session")
-def vcr_config() -> dict[str, str]:
-    return {
-        "cassette_library_dir": "tests/cassettes",
-        "decode_compressed_response": True,
-    }
+def vcr_config() -> Cassetter:
+    return Cassetter(
+        cassette_library_dir="tests/cassettes",
+        record_mode="none",
+        filter_headers=[
+            "x-powered-by",
+            "x-ratelimit-limit",
+            "x-ratelimit-remaining",
+            "x-ratelimit-reset",
+            "via",
+        ],
+    )
 
 
 @pytest.fixture
