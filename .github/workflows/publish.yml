@@ -51,7 +51,7 @@ jobs:
     name: Publish package to PyPI
     # disables this workflow from running in a repository that is not part of the indicated organization/user
     if: github.repository_owner == 'afuetterer'
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-26.04
     needs: build
     environment: publish
     permissions:
