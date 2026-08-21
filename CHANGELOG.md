@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [0.14.3](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.2...0.14.3) (2026-08-21)
+
+### Performance improvements
+
+- **utils:** pre-compile regex pattern for namespace handling ([#515](https://github.com/afuetterer/oaipmh-scythe/pull/515)) ([62f3201](https://github.com/afuetterer/oaipmh-scythe/commit/62f3201c29919f61810dac9a4bba35b9da85d7c3))
+
+### Code Refactoring
+
+- **models:** deprecate unused __iter__ methods ([#467](https://github.com/afuetterer/oaipmh-scythe/pull/467)) ([6e2b72b](https://github.com/afuetterer/oaipmh-scythe/commit/6e2b72b7c612474a0ac924fc6514fdb7c994878b))
+
+### Testing
+
+- switch from pytest-recording to cassetter ([#513](https://github.com/afuetterer/oaipmh-scythe/pull/513)) ([8bf8475](https://github.com/afuetterer/oaipmh-scythe/commit/8bf8475a67ebc15091b5ad00f5bc934757cb9c42))
+
 ## [0.14.2](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.1...0.14.2) (2026-04-10)
 
 ### Performance improvements
