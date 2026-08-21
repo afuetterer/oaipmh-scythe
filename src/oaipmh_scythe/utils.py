@@ -86,7 +86,7 @@ def filter_dict_except_resumption_token(d: dict[str, Any | None]) -> dict[str, A
     return d
 
 
-NAMESPACE_PATTERN = re.compile(r"(\{.*\})")
+NAMESPACE_PATTERN = re.compile(r"\{.*\}")
 
 
 def get_namespace(element: etree._Element) -> str | None:
@@ -103,7 +103,7 @@ def get_namespace(element: etree._Element) -> str | None:
         The namespace URI as a string if the element has a namespace, otherwise `None`.
     """
     match = NAMESPACE_PATTERN.search(element.tag)
-    return match.group(1) if match else None
+    return match.group(0) if match else None
 
 
 def xml_to_dict(
@@ -137,6 +137,6 @@ def xml_to_dict(
     for path in paths:
         elements = tree.findall(path, nsmap)
         for element in elements:
-            tag = re.sub(r"\{.*\}", "", element.tag) if strip_ns else element.tag
+            tag = NAMESPACE_PATTERN.sub("", element.tag) if strip_ns else element.tag
             fields[tag].append(element.text)
     return dict(fields)
