@@ -58,15 +58,11 @@ repos:
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
-- repo: https://github.com/pre-commit/mirrors-mypy
-  rev: 7ff8d35ae36a7d2b968f2f90b4c723e292e594ee  # frozen: v2.3.1
+- repo: https://github.com/astral-sh/ty-pre-commit
+  rev: 94e5ef6a17c7b84d9c5a45457a66b2c23a13b532  # frozen: v0.0.71
   hooks:
-  - id: mypy
-    args: [--config-file=pyproject.toml]
-    additional_dependencies:
-    - httpx==0.28.1
-    - lxml-stubs==0.5.1
-    exclude: tests
+  - id: ty
+    args: [--group=types]
 
 - repo: https://github.com/scientific-python/cookie
   rev: 1589a99867d6cac494ac7545fe6a83108580a3ee  # frozen: 2026.08.14

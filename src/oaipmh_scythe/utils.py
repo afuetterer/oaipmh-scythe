@@ -25,6 +25,7 @@ from collections import defaultdict
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from collections.abc import Mapping
     from typing import Any
 
     import httpx
@@ -50,7 +51,7 @@ def log_response(response: httpx.Response) -> None:
     )
 
 
-def remove_none_values(d: dict[str, Any | None]) -> dict[str, Any]:
+def remove_none_values(d: Mapping[str, Any | None]) -> dict[str, Any]:
     """Remove keys from the dictionary where the value is `None`.
 
     Args:
@@ -62,7 +63,7 @@ def remove_none_values(d: dict[str, Any | None]) -> dict[str, Any]:
     return {key: value for key, value in d.items() if value is not None}
 
 
-def filter_dict_except_resumption_token(d: dict[str, Any | None]) -> dict[str, Any]:
+def filter_dict_except_resumption_token(d: Mapping[str, Any | None]) -> dict[str, Any]:
     """Filter out keys with None values from a dictionary, with special handling for 'resumptionToken'.
 
     If 'resumptionToken' is present and not None, and there are other non-None keys, log a warning and
@@ -70,10 +71,10 @@ def filter_dict_except_resumption_token(d: dict[str, Any | None]) -> dict[str, A
     with None values.
 
     Args:
-        d (dict[str, Any | None]): The dictionary to filter.
+        d: The dictionary to filter.
 
     Returns:
-        dict[str, Any]: A filtered dictionary based on the defined criteria.
+        A filtered dictionary based on the defined criteria.
     """
     allowed_keys = ("verb", "resumptionToken")
     resumption_token_present = d["resumptionToken"] is not None
@@ -137,6 +138,6 @@ def xml_to_dict(
     for path in paths:
         elements = tree.findall(path, nsmap)
         for element in elements:
-            tag = NAMESPACE_PATTERN.sub("", element.tag) if strip_ns else element.tag
+            tag = NAMESPACE_PATTERN.sub("", str(element.tag)) if strip_ns else element.tag
             fields[tag].append(element.text)
     return dict(fields)
