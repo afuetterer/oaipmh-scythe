@@ -56,18 +56,18 @@ cov-report-markdown:
 changelog:
      uvx git-cliff --config=.github/templates/changelog.toml --output
 
-mkdocs := "uv run --group=docs mkdocs"
-config := "--config-file=docs/mkdocs.yml"
+zensical := "uv run --group=docs zensical"
+config := "--config-file=docs/zensical.toml"
 
 # Build the documentation site
 [group('docs')]
 docs-build:
-    {{ mkdocs }} build {{ config }}
+    {{ zensical }} build {{ config }}
 
 # Serve documentation locally with live reload
 [group('docs')]
 docs-serve:
-    {{ mkdocs }} serve {{ config }} --verbose
+    {{ zensical }} serve {{ config }}
 
 # Deploy documentation to GitHub Pages using mike
 [group('docs')]
