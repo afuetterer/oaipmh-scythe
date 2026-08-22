@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [0.14.4](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.3...0.14.4) (2026-08-22)
+
+### Bug Fixes
+
+- **utils:** filter none values in filter_dict_except_resumption_token ([#517](https://github.com/afuetterer/oaipmh-scythe/pull/517)) ([cc77d98](https://github.com/afuetterer/oaipmh-scythe/commit/cc77d98f0ccb16876aa3704094173ba4fa832b38))
+
 ## [0.14.3](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.2...0.14.3) (2026-08-21)
 
 ### Performance improvements
