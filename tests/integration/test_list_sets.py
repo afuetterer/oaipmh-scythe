@@ -8,7 +8,7 @@ from collections.abc import Iterator
 from typing import TYPE_CHECKING
 
 import pytest
-from httpx import HTTPStatusError
+from httpx2 import HTTPStatusError
 
 from oaipmh_scythe.models import Set
 

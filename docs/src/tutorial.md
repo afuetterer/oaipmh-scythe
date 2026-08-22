@@ -317,9 +317,9 @@ scythe = Scythe("https://example.org/oai2d", auth=auth)
 
 !!! note
 
-    `oaipmh-scythe` uses [httpx](https://www.python-httpx.org) under the hood. The `auth` parameter accepts subclasses of
-    `httpx.Auth`, e.g. `httpx.BasicAuth`, `httpx.DigestAuth`, or `httpx.NetRCAuth`, see
-    [Authentication - HTTPX](https://www.python-httpx.org/advanced/authentication/) for further information
+    `oaipmh-scythe` uses [httpx2](https://github.com/pydantic/httpx2) under the hood. The `auth` parameter accepts subclasses of
+    `httpx2.Auth`, e.g. `httpx2.BasicAuth`, `httpx2.DigestAuth`, or `httpx2.NetRCAuth`, see
+    [Authentication - HTTPX2](https://httpx2.pydantic.dev/advanced/authentication/) for further information
 
 Once the authentication method is set, Scythe will use it to authenticate requests made by the client. This allows you
 to access restricted data or functionality from an OAI-PMH repository without having to handle authentication manually.

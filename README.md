@@ -34,7 +34,7 @@ with Scythe("https://zenodo.org/oai2d") as scythe:
 
 `oaipmh-scythe` is built with:
 
-- [httpx](https://github.com/encode/httpx) for issuing HTTP requests
+- [httpx2](https://github.com/pydantic/httpx2) for issuing HTTP requests
 - [lxml](https://github.com/lxml/lxml) for parsing XML responses
 
 ## Installation

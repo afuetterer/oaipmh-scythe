@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import pytest
-from httpx import HTTPStatusError
+from httpx2 import HTTPStatusError
 
 from oaipmh_scythe.models import Record
 

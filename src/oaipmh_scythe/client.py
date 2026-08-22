@@ -23,7 +23,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import Self
 
-import httpx
+import httpx2
 
 from oaipmh_scythe.iterator import BaseOAIIterator, OAIItemIterator
 from oaipmh_scythe.models import Header, Identify, MetadataFormat, OAIItem, Record, Set
@@ -34,7 +34,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterable, Iterator
     from types import TracebackType
 
-    from httpx._types import AuthTypes
+    from httpx2._types import AuthTypes
 
 logger = logging.getLogger(__name__)
 
@@ -115,13 +115,13 @@ class Scythe:
         if timeout <= 0:
             raise ValueError(f"Invalid value for 'timeout': {timeout}. Timeout must be positive int or float.")
         self.timeout = timeout
-        self._client: httpx.Client | None = None
+        self._client: httpx2.Client | None = None
 
     @property
-    def client(self) -> httpx.Client:
+    def client(self) -> httpx2.Client:
         """Provide a reusable HTTP client instance for making requests.
 
-        This property ensures that an `httpx.Client` instance is created and maintained for
+        This property ensures that an `httpx2.Client` instance is created and maintained for
         the lifecycle of the `Scythe` instance. It handles the creation of the client and
         ensures that a new client is created if the existing one is closed.
 
@@ -130,7 +130,7 @@ class Scythe:
         """
         if self._client is None or self._client.is_closed:
             headers = {"Accept": "text/xml; charset=utf-8, application/xml; charset=utf-8", "user-agent": USER_AGENT}
-            self._client = httpx.Client(
+            self._client = httpx2.Client(
                 headers=headers,
                 timeout=self.timeout,
                 auth=self.auth,
@@ -142,7 +142,7 @@ class Scythe:
     def close(self) -> None:
         """Close the internal HTTP client if it exists and is open.
 
-        This method is responsible for explicitly closing the `httpx.Client` instance used
+        This method is responsible for explicitly closing the `httpx2.Client` instance used
         by the `Scythe` class. It should be called when the client is no longer needed, to
         ensure proper cleanup and release of resources.
 
@@ -177,11 +177,14 @@ class Scythe:
             An OAIResponse object encapsulating the server's response.
 
         Raises:
-            httpx.HTTPError: If the HTTP request fails after the maximum number of retries.
+            httpx2.HTTPError: If the HTTP request fails after the maximum number of retries.
         """
         http_response = self._request(query)
         for _ in range(self.max_retries):
-            if httpx.codes.is_error(http_response.status_code) and http_response.status_code in self.retry_status_codes:
+            if (
+                httpx2.codes.is_error(http_response.status_code)
+                and http_response.status_code in self.retry_status_codes
+            ):
                 retry_after = self.get_retry_after(http_response)
                 logger.warning("HTTP %d! Retrying after %d seconds...", http_response.status_code, retry_after)
                 time.sleep(retry_after)
@@ -189,7 +192,7 @@ class Scythe:
         http_response.raise_for_status()
         return OAIResponse(http_response, params=query)
 
-    def _request(self, query: dict[str, str]) -> httpx.Response:
+    def _request(self, query: dict[str, str]) -> httpx2.Response:
         """Send an HTTP request to the OAI server using the configured HTTP method and given query parameters.
 
         Args:
@@ -403,7 +406,7 @@ class Scythe:
         query = remove_none_values(_query)
         yield from self.iterator(self, query)
 
-    def get_retry_after(self, http_response: httpx.Response) -> int | float:
+    def get_retry_after(self, http_response: httpx2.Response) -> int | float:
         """Determine the appropriate time to wait before retrying a request, based on the server's response.
 
         Check the status code of the provided HTTP response. If it's 503 (Service Unavailable),
@@ -416,9 +419,8 @@ class Scythe:
         Returns:
             An integer representing the number of seconds to wait before retrying the request.
         """
-        if http_response.status_code == httpx.codes.SERVICE_UNAVAILABLE:
-            try:
-                return int(http_response.headers.get("retry-after"))
-            except TypeError:
-                return self.default_retry_after
+        if http_response.status_code == httpx2.codes.SERVICE_UNAVAILABLE:
+            retry_after = http_response.headers.get("retry-after")
+            if retry_after is not None:
+                return int(retry_after)
         return self.default_retry_after
