@@ -78,12 +78,12 @@ def filter_dict_except_resumption_token(d: dict[str, Any | None]) -> dict[str, A
     allowed_keys = ("verb", "resumptionToken")
     resumption_token_present = d["resumptionToken"] is not None
     non_empty_keys = [k for k, v in d.items() if v is not None and k not in allowed_keys]
-    if resumption_token_present and resumption_token_present:
+    if resumption_token_present and non_empty_keys:
         logger.warning(
             "`resumption_token` should not be used in combination with other parameters. Dropping %s", non_empty_keys
         )
         return {k: v for k, v in d.items() if k in allowed_keys}
-    return d
+    return remove_none_values(d)
 
 
 NAMESPACE_PATTERN = re.compile(r"\{.*\}")

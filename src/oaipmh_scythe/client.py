@@ -247,7 +247,7 @@ class Scythe:
             "set": set_,
             "resumptionToken": resumption_token,
         }
-        query = remove_none_values(filter_dict_except_resumption_token(_query))
+        query = filter_dict_except_resumption_token(_query)
         yield from self.iterator(self, query, ignore_deleted=ignore_deleted)
 
     def list_identifiers(
@@ -296,7 +296,7 @@ class Scythe:
             "resumptionToken": resumption_token,
         }
 
-        query = remove_none_values(filter_dict_except_resumption_token(_query))
+        query = filter_dict_except_resumption_token(_query)
         yield from self.iterator(self, query, ignore_deleted=ignore_deleted)
 
     def list_sets(self, resumption_token: str | None = None) -> Iterator[OAIResponse | Set]:
@@ -323,7 +323,7 @@ class Scythe:
             "verb": "ListSets",
             "resumptionToken": resumption_token,
         }
-        query = remove_none_values(filter_dict_except_resumption_token(_query))
+        query = filter_dict_except_resumption_token(_query)
         yield from self.iterator(self, query)
 
     def identify(self) -> Identify:
