@@ -1021,7 +1021,7 @@ wheels = [
 
 [[package]]
 name = "oaipmh-scythe"
-version = "0.14.4"
+version = "0.15.0"
 source = { editable = "." }
 dependencies = [
     { name = "httpx2" },
@@ -1058,7 +1058,7 @@ types = [
 
 [package.metadata]
 requires-dist = [
-    { name = "httpx2", specifier = ">=2.10.0" },
+    { name = "httpx2", specifier = ">=2.10" },
     { name = "lxml", specifier = ">=5.3" },
     { name = "typing-extensions", marker = "python_full_version < '3.11'", specifier = ">=4.16" },
 ]
