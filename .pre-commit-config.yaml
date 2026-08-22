@@ -36,30 +36,30 @@ repos:
     args: [--autofix, --indent=2]
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 6b63472e72e1a91ed8a2f6d483790dfb644fa1d3  # frozen: 0.37.4
+  rev: 12e63946db2c5cfcc9030fac21c3883ba88c6ed8  # frozen: 0.38.0
   hooks:
   - id: check-dependabot
   - id: check-github-workflows
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: d600c142bb19f521ae6a6a345f94a2efd7937759  # frozen: v2.26.0
+  rev: 807836a33bb2d3f17df12e8a6d10e4e24cd80564  # frozen: v2.27.1
   hooks:
   - id: pyproject-fmt
 
 - repo: https://github.com/rvben/rumdl-pre-commit
-  rev: b28bdfeabf9f8b43c4a0f286bd5fdb5162fdb789  # frozen: v0.2.47
+  rev: 4f7fb84c204d04a8b458ad18ca6cd63417d524a9  # frozen: v0.2.55
   hooks:
   - id: rumdl-fmt
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 39d9ac5938dadb73df0564a45f163e25ff9fa6e2  # frozen: v0.16.1
+  rev: 65dbdb59d2f2d9c3bdc343c566821ad3319ddaa3  # frozen: v0.16.3
   hooks:
   - id: ruff-check
     args: [--fix, --show-fixes, --exit-non-zero-on-fix]
   - id: ruff-format
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: 41e691678310dfd3833f7ab4e180ddb014310356  # frozen: v2.3.0
+  rev: 7ff8d35ae36a7d2b968f2f90b4c723e292e594ee  # frozen: v2.3.1
   hooks:
   - id: mypy
     args: [--config-file=pyproject.toml]
@@ -69,12 +69,12 @@ repos:
     exclude: tests
 
 - repo: https://github.com/scientific-python/cookie
-  rev: 8f0581cc50b14023b14a9c77e9b358738ba637e7  # frozen: 2026.06.18
+  rev: 1589a99867d6cac494ac7545fe6a83108580a3ee  # frozen: 2026.08.14
   hooks:
   - id: sp-repo-review
 
 - repo: https://github.com/zizmorcore/zizmor-pre-commit
-  rev: 067260dc5fe6ea86b7551bfd6f8b3ba4e6c93129  # frozen: v1.28.0
+  rev: 451b56af716f9f0d0c2b816503a3fd0cf8b036fa  # frozen: v1.29.0
   hooks:
   - id: zizmor
     args:
@@ -83,7 +83,7 @@ repos:
     - --pedantic
 
 - repo: https://github.com/crate-ci/typos
-  rev: bee27e3a4fd1ea2111cf90ab89cd076c870fce14  # frozen: v1.48.0
+  rev: 8a48f81b6c64dcfea44b3633223084c4be58ac5f  # frozen: v1.49.0
   hooks:
   - id: typos
     args: [--force-exclude]
