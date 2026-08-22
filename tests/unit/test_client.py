@@ -14,6 +14,7 @@ import pytest
 from oaipmh_scythe import Scythe
 
 if TYPE_CHECKING:
+    from pytest_mock import MockerFixture
     from respx.router import MockRouter
 
 
@@ -72,7 +73,7 @@ def test_no_retry(scythe: Scythe, respx_mock: MockRouter) -> None:
     assert mock_route.call_count == 1
 
 
-def test_retry_on_503(scythe: Scythe, respx_mock: MockRouter, mocker) -> None:
+def test_retry_on_503(scythe: Scythe, respx_mock: MockRouter, mocker: MockerFixture) -> None:
     scythe.max_retries = 3
     scythe.default_retry_after = 0
     mock_sleep = mocker.patch("time.sleep")
@@ -86,7 +87,7 @@ def test_retry_on_503(scythe: Scythe, respx_mock: MockRouter, mocker) -> None:
     mock_sleep.assert_called_with(10)
 
 
-def test_retry_on_503_without_retry_after_header(scythe: Scythe, respx_mock: MockRouter, mocker) -> None:
+def test_retry_on_503_without_retry_after_header(scythe: Scythe, respx_mock: MockRouter, mocker: MockerFixture) -> None:
     scythe.max_retries = 3
     scythe.default_retry_after = 0
     mock_sleep = mocker.patch("time.sleep")
@@ -99,7 +100,7 @@ def test_retry_on_503_without_retry_after_header(scythe: Scythe, respx_mock: Moc
     assert mock_sleep.call_count == 3
 
 
-def test_retry_on_custom_code(scythe: Scythe, respx_mock: MockRouter, mocker) -> None:
+def test_retry_on_custom_code(scythe: Scythe, respx_mock: MockRouter, mocker: MockerFixture) -> None:
     mock_route = respx_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
         return_value=httpx.Response(500)
     )
@@ -113,12 +114,12 @@ def test_retry_on_custom_code(scythe: Scythe, respx_mock: MockRouter, mocker) ->
     assert mock_sleep.call_count == 3
 
 
-def test_no_auth_arguments():
+def test_no_auth_arguments() -> None:
     with Scythe("https://zenodo.org/oai2d") as scythe:
         assert scythe.client.auth is None
 
 
-def test_auth_arguments():
+def test_auth_arguments() -> None:
     with Scythe("https://zenodo.org/oai2d", auth=auth) as scythe:
         assert scythe.client.auth
 
@@ -131,30 +132,30 @@ def test_auth_arguments_usage(respx_mock: MockRouter) -> None:
 
 
 @pytest.mark.parametrize("timeout", [10, 10.0, 0.1])
-def test_valid_custom_timeout(timeout):
+def test_valid_custom_timeout(timeout: float) -> None:
     with Scythe("https://zenodo.org/oai2d", timeout=timeout) as scythe:
         assert scythe.client.timeout
 
 
 @pytest.mark.parametrize("timeout", [-1, -1.0, 0, 0.0])
-def test_invalid_custom_timeout(timeout):
+def test_invalid_custom_timeout(timeout: float) -> None:
     with pytest.raises(ValueError, match="Invalid value for 'timeout'"):
         Scythe("https://zenodo.org/oai2d", timeout=timeout)
 
 
 @pytest.mark.parametrize("retry_after", [10, 10.0, 0.1])
-def test_valid_custom_retry_after(retry_after):
+def test_valid_custom_retry_after(retry_after: float) -> None:
     with Scythe("https://zenodo.org/oai2d", default_retry_after=retry_after) as scythe:
         assert scythe.default_retry_after
 
 
 @pytest.mark.parametrize("retry_after", [-1, -1.0, 0, 0.0])
-def test_invalid_custom_retry_after(retry_after):
+def test_invalid_custom_retry_after(retry_after: float) -> None:
     with pytest.raises(ValueError, match="Invalid value for 'default_retry_after'"):
         Scythe("https://zenodo.org/oai2d", default_retry_after=retry_after)
 
 
-def test_server_with_application_xml_header(scythe: Scythe, respx_mock: MockRouter, mocker) -> None:
+def test_server_with_application_xml_header(scythe: Scythe, respx_mock: MockRouter, mocker: MockerFixture) -> None:
     mock_route = respx_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
         return_value=httpx.Response(200, headers={"Content-Type": "application/xml; charset=utf-8"})
     )

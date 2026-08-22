@@ -78,6 +78,7 @@ format.docstring-code-format = true
 # Ref: https://docs.astral.sh/ruff/rules/
 lint.extend-select = [
   "A",    # flake8-builtins
+  "ANN",  # flake8-annotations
   "B",    # flake8-bugbear
   "C4",   # flake8-comprehensions
   "D",    # pydocstyle
@@ -109,9 +110,6 @@ lint.per-file-ignores."src/oaipmh_scythe/client.py" = [
 lint.per-file-ignores."tests/**.py" = [
   "D",       # pydocstyle
   "PLR2004", # magic-value-comparison
-]
-lint.unfixable = [
-  "F401", # unused-import
 ]
 lint.isort.known-first-party = [ "oaipmh_scythe" ]
 lint.pydocstyle.convention = "google"

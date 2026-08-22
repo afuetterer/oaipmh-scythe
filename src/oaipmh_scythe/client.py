@@ -92,7 +92,7 @@ class Scythe:
         encoding: str = "utf-8",
         auth: AuthTypes | None = None,
         timeout: float = 60,
-    ):
+    ) -> None:
         self.endpoint = endpoint
         if http_method not in ("GET", "POST"):
             raise ValueError("Invalid HTTP method: %s! Must be GET or POST.")

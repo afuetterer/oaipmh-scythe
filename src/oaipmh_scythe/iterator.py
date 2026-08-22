@@ -26,6 +26,7 @@ from oaipmh_scythe.models import ResumptionToken
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
+    from typing import Any
 
     from oaipmh_scythe import Scythe
     from oaipmh_scythe.models import OAIItem
@@ -72,7 +73,7 @@ class BaseOAIIterator(ABC):
         self._next_response()
 
     @abstractmethod
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Any]:
         pass
 
     def __repr__(self) -> str:

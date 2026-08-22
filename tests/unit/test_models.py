@@ -2,8 +2,12 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
+from unittest.mock import MagicMock
+
 import pytest
 from lxml import etree
+from lxml.etree import _Element
+from pytest_mock import MockerFixture
 
 from oaipmh_scythe import OAIResponse
 from oaipmh_scythe.models import Header, Identify, MetadataFormat, Record, ResumptionToken, Set
@@ -15,7 +19,7 @@ def test_resumption_token_repr() -> None:
 
 
 @pytest.fixture
-def identify_response(mocker):
+def identify_response(mocker: MockerFixture) -> MagicMock:
     xml = """
     <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/">
         <responseDate>2023-11-09T09:53:46Z</responseDate>
@@ -33,36 +37,36 @@ def identify_response(mocker):
 
 
 @pytest.fixture
-def identify(identify_response) -> Identify:
+def identify(identify_response: MagicMock) -> Identify:
     return Identify(identify_response)
 
 
-def test_identify_bytes(identify):
+def test_identify_bytes(identify: Identify) -> None:
     assert isinstance(identify.__bytes__(), bytes)
     assert b"<baseURL>https://zenodo.org/oai2d</baseURL>" in identify.__bytes__()
 
 
-def test_identify_str(identify):
+def test_identify_str(identify: Identify) -> None:
     assert isinstance(identify.__str__(), str)
     assert "<baseURL>https://zenodo.org/oai2d</baseURL>" in str(identify)
 
 
-def test_identify_raw(identify):
+def test_identify_raw(identify: Identify) -> None:
     assert isinstance(identify.raw, str)
     assert "<baseURL>https://zenodo.org/oai2d</baseURL>" in identify.raw
 
 
-def test_identify_repr(identify):
+def test_identify_repr(identify: Identify) -> None:
     assert repr(identify) == "<Identify>"
 
 
-def test_identify_attributes(identify):
+def test_identify_attributes(identify: Identify) -> None:
     assert identify.repositoryName == "Zenodo"
     assert identify.baseURL == "https://zenodo.org/oai2d"
     assert identify.protocolVersion == "2.0"
 
 
-def test_identify_iter(identify):
+def test_identify_iter(identify: Identify) -> None:
     identify_items = dict(identify)
     assert identify_items["repositoryName"] == ["Zenodo"]
     assert identify_items["baseURL"] == ["https://zenodo.org/oai2d"]
@@ -70,7 +74,7 @@ def test_identify_iter(identify):
 
 
 @pytest.fixture(scope="session")
-def header_element():
+def header_element() -> _Element:
     xml = """
     <header xmlns="http://www.openarchives.org/OAI/2.0/">
         <identifier>oai:zenodo.org:6538892</identifier>
@@ -81,7 +85,7 @@ def header_element():
 
 
 @pytest.fixture(scope="session")
-def deleted_header_element():
+def deleted_header_element() -> _Element:
     xml = """
     <header xmlns="http://www.openarchives.org/OAI/2.0/" status="deleted">
         <identifier>oai:zenodo.org:6538892</identifier>
@@ -92,39 +96,39 @@ def deleted_header_element():
 
 
 @pytest.fixture
-def header(header_element):
+def header(header_element: _Element) -> Header:
     return Header(header_element)
 
 
 @pytest.fixture
-def deleted_header(deleted_header_element):
+def deleted_header(deleted_header_element: _Element) -> Header:
     return Header(deleted_header_element)
 
 
-def test_header_init(header):
+def test_header_init(header: Header) -> None:
     assert header.identifier == "oai:zenodo.org:6538892"
     assert header.datestamp == "2022-05-11T13:49:36Z"
     assert not header.deleted
 
 
-def test_header_init_with_deleted(deleted_header):
+def test_header_init_with_deleted(deleted_header: Header) -> None:
     assert deleted_header.identifier == "oai:zenodo.org:6538892"
     assert deleted_header.datestamp == "2022-05-11T13:49:36Z"
     assert deleted_header.deleted
 
 
-def test_header_repr(header, deleted_header):
+def test_header_repr(header: Header, deleted_header: Header) -> None:
     assert repr(header) == "<Header oai:zenodo.org:6538892>"
     assert repr(deleted_header) == "<Header oai:zenodo.org:6538892 [deleted]>"
 
 
-def test_header_iter(header):
+def test_header_iter(header: Header) -> None:
     items = dict(header)
     assert items == {"identifier": "oai:zenodo.org:6538892", "datestamp": "2022-05-11T13:49:36Z", "setSpecs": []}
 
 
 @pytest.fixture
-def record_element():
+def record_element() -> _Element:
     xml = """
     <record xmlns="http://www.openarchives.org/OAI/2.0/">
         <header>
@@ -144,7 +148,7 @@ def record_element():
 
 
 @pytest.fixture
-def deleted_record_element():
+def deleted_record_element() -> _Element:
     xml = """
     <record xmlns="http://www.openarchives.org/OAI/2.0/">
         <header status="deleted">
@@ -164,16 +168,16 @@ def deleted_record_element():
 
 
 @pytest.fixture
-def record(record_element):
+def record(record_element: _Element) -> Record:
     return Record(record_element)
 
 
 @pytest.fixture
-def deleted_record(deleted_record_element):
+def deleted_record(deleted_record_element: _Element) -> Record:
     return Record(deleted_record_element)
 
 
-def test_record_init(record):
+def test_record_init(record: Record) -> None:
     assert isinstance(record.header, Header)
     assert record.header.identifier == "oai:example.org:record1"
     assert not record.deleted
@@ -181,28 +185,28 @@ def test_record_init(record):
     assert record.metadata["title"] == ["Example Title"]
 
 
-def test_record_repr(record):
+def test_record_repr(record: Record) -> None:
     assert repr(record) == "<Record oai:example.org:record1>"
 
 
-def test_deleted_record_repr(deleted_record):
+def test_deleted_record_repr(deleted_record: Record) -> None:
     assert repr(deleted_record) == "<Record oai:example.org:record1 [deleted]>"
 
 
-def test_record_iter(record):
+def test_record_iter(record: Record) -> None:
     record_metadata = dict(record)
     assert record_metadata["title"] == ["Example Title"]
     assert record_metadata["creator"] == ["Example Creator"]
 
 
-def test_deleted_record_no_metadata(deleted_record):
+def test_deleted_record_no_metadata(deleted_record: Record) -> None:
     assert deleted_record.deleted
     with pytest.raises(AttributeError):
         _ = record.metadata
 
 
 @pytest.fixture
-def set_element():
+def set_element() -> _Element:
     xml = """
     <set>
         <setSpec>user-emi</setSpec>
@@ -214,27 +218,27 @@ def set_element():
 
 
 @pytest.fixture
-def oai_set(set_element):
+def oai_set(set_element: _Element) -> Set:
     return Set(set_element)
 
 
-def test_set_init(oai_set):
+def test_set_init(oai_set: Set) -> None:
     assert oai_set.setName == "European Middleware Initiative"
     assert "ser-emi" in oai_set.setSpec  # spellchecker:disable-line
 
 
-def test_set_repr(oai_set):
+def test_set_repr(oai_set: Set) -> None:
     assert repr(oai_set) == "<Set European Middleware Initiative>"
 
 
-def test_set_iter(oai_set):
+def test_set_iter(oai_set: Set) -> None:
     set_items = dict(oai_set)
     assert set_items["setName"] == ["European Middleware Initiative"]
     assert set_items["setSpec"] == ["user-emi"]
 
 
 @pytest.fixture
-def mdf_element():
+def mdf_element() -> _Element:
     xml = """
     <metadataFormat>
         <metadataPrefix>marcxml</metadataPrefix>
@@ -246,21 +250,21 @@ def mdf_element():
 
 
 @pytest.fixture
-def mdf(mdf_element):
+def mdf(mdf_element: _Element) -> MetadataFormat:
     return MetadataFormat(mdf_element)
 
 
-def test_metadata_format_init(mdf):
+def test_metadata_format_init(mdf: MetadataFormat) -> None:
     assert mdf.metadataPrefix == "marcxml"
     assert mdf.schema == "https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"
     assert mdf.metadataNamespace == "https://www.loc.gov/standards/marcxml/"
 
 
-def test_metadata_format_repr(mdf):
+def test_metadata_format_repr(mdf: MetadataFormat) -> None:
     assert repr(mdf) == "<MetadataFormat marcxml>"
 
 
-def test_metadata_format_iter(mdf):
+def test_metadata_format_iter(mdf: MetadataFormat) -> None:
     mdf_items = dict(mdf)
     assert mdf_items["metadataPrefix"] == ["marcxml"]
     assert mdf_items["schema"] == ["https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"]
