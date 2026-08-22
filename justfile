@@ -3,6 +3,7 @@
 # ------------------------------------------------------------------------------
 
 alias t := test
+alias lint := check
 
 export UV_LOCKED := "true" # do not update the lockfile during `uv sync` and `uv run` commands
 
@@ -24,17 +25,7 @@ sync-docs:
 # Run all all prek hooks and pytest tests
 qa: check test
 
-# Run all prek hooks except mypy
-[group('lint')]
-@lint:
-    just check --skip=mypy
-
-# Run only mypy through prek
-[group('lint')]
-@typecheck:
-    just check mypy
-
-# Run all prek hooks including mypy
+# Run all prek hooks
 [group('lint')]
 check *args:
     uv run prek run --all-files --color=always --show-diff-on-failure {{ args }}

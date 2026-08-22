@@ -29,7 +29,7 @@ def test_invalid_http_method() -> None:
 
 def test_invalid_iterator() -> None:
     with pytest.raises(TypeError):
-        Scythe("https://localhost", iterator=None)  # type: ignore [arg-type]
+        Scythe("https://localhost", iterator=None)  # ty: ignore [invalid-argument-type]
 
 
 def test_client_property(scythe: Scythe) -> None:

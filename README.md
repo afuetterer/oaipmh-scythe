@@ -6,7 +6,7 @@ Welcome to `oaipmh-scythe`, an updated and modernized version of the original
 | __CI__      | [![ci][ci-badge]][ci-workflow] [![coverage][coverage-badge]][ci-workflow] [![codeql][codeql-badge]][codeql-workflow]                                             |
 | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | __Package__ | [![pypi-version][pypi-version-badge]][pypi-url] [![pypi-python-versions][pypi-python-versions-badge]][pypi-url] [![all-downloads][all-downloads-badge]][pepy-tech-url] [![monthly-downloads][monthly-downloads-badge]][pepy-tech-url] |
-| __Meta__    | [![doi][doi-badge]][doi-url] [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![uv][uv-badge]][uv] [![ruff][ruff-badge]][ruff] [![mypy][mypy-badge]][mypy] [![prek][prek-badge]][prek-url] [![License][license-badge]][license]                                |
+| __Meta__    | [![doi][doi-badge]][doi-url] [![OpenSSF Scorecard][scorecard-badge]][scorecard-url] [![uv][uv-badge]][uv] [![ruff][ruff-badge]][ruff] [![ty][ty-badge]][ty] [![prek][prek-badge]][prek-url] [![License][license-badge]][license]                                |
 
 `oaipmh-scythe` is a lightweight [OAI-PMH](http://www.openarchives.org/OAI/openarchivesprotocol.html) client library
 written in Python. It has been designed for conveniently retrieving data from OAI interfaces the Pythonic way:
@@ -96,8 +96,6 @@ This is a fork of [sickle](https://github.com/mloesch/sickle) which was original
 [license]: https://spdx.org/licenses/BSD-3-Clause.html
 [license-badge]: https://img.shields.io/badge/License-BSD_3--Clause-blue.svg
 [monthly-downloads-badge]: https://static.pepy.tech/badge/oaipmh-scythe/month
-[mypy]: https://mypy-lang.org
-[mypy-badge]: https://img.shields.io/badge/types-mypy-blue.svg
 [pepy-tech-url]: https://pepy.tech/project/oaipmh-scythe
 [prek-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/j178/prek/master/docs/assets/badge-v0.json
 [prek-url]: https://github.com/j178/prek
@@ -108,5 +106,7 @@ This is a fork of [sickle](https://github.com/mloesch/sickle) which was original
 [ruff-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json
 [scorecard-badge]: https://api.securityscorecards.dev/projects/github.com/afuetterer/oaipmh-scythe/badge
 [scorecard-url]: https://securityscorecards.dev/viewer/?uri=github.com/afuetterer/oaipmh-scythe
+[ty]: https://docs.astral.sh/ty
+[ty-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ty/main/assets/badge/v0.json
 [uv]: https://github.com/astral-sh/uv
 [uv-badge]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json
