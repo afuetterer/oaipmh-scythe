@@ -40,10 +40,11 @@ def test_filter_dict_except_resumption_token() -> None:
     assert result == expected
 
 
-def test_filter_dict_except_resumption_token_noop() -> None:
+def test_filter_dict_except_resumption_token_with_empty_token() -> None:
     d = {"resumptionToken": None, "verb": "ListRecords"}
+    expected = {"verb": "ListRecords"}
     result = filter_dict_except_resumption_token(d)
-    assert result == d
+    assert result == expected
 
 
 def test_get_namespace(xml_element_with_namespace: etree._Element) -> None:
