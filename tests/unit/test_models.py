@@ -224,7 +224,8 @@ def oai_set(set_element: _Element) -> Set:
 
 def test_set_init(oai_set: Set) -> None:
     assert oai_set.setName == "European Middleware Initiative"
-    assert "ser-emi" in oai_set.setSpec  # spellchecker:disable-line
+    assert oai_set.setSpec == "user-emi"
+    assert oai_set.setDescription is None
 
 
 def test_set_repr(oai_set: Set) -> None:

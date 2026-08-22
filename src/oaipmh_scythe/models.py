@@ -109,7 +109,9 @@ class Identify(OAIItem):
 
     Attributes:
         xml: The XML element representing the Identify response.
-        _identify_dict: A dictionary containing the parsed Identify information.
+        baseURL: The base URL of the repository.
+        protocolVersion: The OAI-PMH protocol version supported by the repository.
+        repositoryName: The human-readable name of the repository.
         Dynamic Attributes: Based on the content of the Identify response, additional attributes
                             are dynamically set on this object. These can include attributes like
                             repository name, base URL, protocol version, etc.
@@ -124,6 +126,11 @@ class Identify(OAIItem):
         if identify_element is None:
             raise ValueError("Identify element not found in the XML.")
         self.xml = identify_element
+
+        self.baseURL: str | None = None
+        self.protocolVersion: str | None = None
+        self.repositoryName: str | None = None
+
         self._identify_dict = xml_to_dict(self.xml, strip_ns=True)
         for k, v in self._identify_dict.items():
             setattr(self, k.replace("-", "_"), v[0])
@@ -244,13 +251,18 @@ class Set(OAIItem):
 
     Attributes:
         setName: The name of the set, extracted from the set's XML element.
-        _set_dict: A dictionary containing the parsed set information.
+        setSpec: The set specification identifier.
+        setDescription: The description of the set (if any).
     """
 
     def __init__(self, set_element: etree._Element) -> None:
         super().__init__(set_element, strip_ns=True)
-        self._set_dict = xml_to_dict(self.xml, strip_ns=True)
+
         self.setName: str | None = None
+        self.setSpec: str | None = None
+        self.setDescription: str | None = None
+
+        self._set_dict = xml_to_dict(self.xml, strip_ns=True)
         for k, v in self._set_dict.items():
             setattr(self, k.replace("-", "_"), v[0])
 
@@ -277,13 +289,18 @@ class MetadataFormat(OAIItem):
 
     Attributes:
         metadataPrefix: The prefix of the metadata format, extracted from the XML element.
-        _mdf_dict: A dictionary containing the parsed metadata format details.
+        schema: The URL of the XML schema for the metadata format.
+        metadataNamespace: The XML namespace URI for the metadata format.
     """
 
     def __init__(self, mdf_element: etree._Element) -> None:
         super().__init__(mdf_element, strip_ns=True)
-        self._mdf_dict = xml_to_dict(self.xml, strip_ns=True)
+
         self.metadataPrefix: str | None = None
+        self.schema: str | None = None
+        self.metadataNamespace: str | None = None
+
+        self._mdf_dict = xml_to_dict(self.xml, strip_ns=True)
         for k, v in self._mdf_dict.items():
             setattr(self, k.replace("-", "_"), v[0])
 
