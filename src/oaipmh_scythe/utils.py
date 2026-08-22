@@ -89,21 +89,21 @@ def filter_dict_except_resumption_token(d: dict[str, Any | None]) -> dict[str, A
 NAMESPACE_PATTERN = re.compile(r"\{.*\}")
 
 
-def get_namespace(element: etree._Element) -> str | None:
+def get_namespace(element: etree._Element) -> str:
     """Return the namespace URI of an XML element.
 
     Extracts and returns the namespace URI from the tag of the given XML element.
     The namespace URI is enclosed in curly braces at the start of the tag.
-    If the element does not have a namespace, `None` is returned.
+    If the element does not have a namespace, an empty string is returned.
 
     Args:
         element: The XML element from which to extract the namespace.
 
     Returns:
-        The namespace URI as a string if the element has a namespace, otherwise `None`.
+        The namespace URI as a string if the element has a namespace, otherwise an empty string.
     """
-    match = NAMESPACE_PATTERN.search(element.tag)
-    return match.group(0) if match else None
+    match = NAMESPACE_PATTERN.search(str(element.tag))
+    return match.group(0) if match else ""
 
 
 def xml_to_dict(
