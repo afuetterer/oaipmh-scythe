@@ -12,6 +12,8 @@ from lxml import etree
 from oaipmh_scythe.response import OAIResponse
 
 if TYPE_CHECKING:
+    from unittest.mock import Mock
+
     from pytest_mock import MockerFixture
 
 
@@ -30,27 +32,27 @@ IDENTIFY_XML: str = """
 
 
 @pytest.fixture
-def mock_response(mocker: MockerFixture):
+def mock_response(mocker: MockerFixture) -> Mock:
     response = mocker.Mock()
     response.text = IDENTIFY_XML
     response.content = response.text.encode()
     return response
 
 
-def test_oai_response_raw(mock_response) -> None:
+def test_oai_response_raw(mock_response: Mock) -> None:
     params = {"verb": "Identify"}
     oai_response = OAIResponse(http_response=mock_response, params=params)
     assert oai_response.raw == mock_response.text
 
 
-def test_oai_response_xml(mock_response):
+def test_oai_response_xml(mock_response: Mock) -> None:
     params = {"verb": "Identify"}
     oai_response = OAIResponse(http_response=mock_response, params=params)
     assert isinstance(oai_response.xml, etree._Element)
     assert oai_response.xml.tag == "{http://www.openarchives.org/OAI/2.0/}OAI-PMH"
 
 
-def test_oai_response_str(mock_response):
+def test_oai_response_str(mock_response: Mock) -> None:
     params = {"verb": "Identify"}
     oai_response = OAIResponse(http_response=mock_response, params=params)
     assert str(oai_response) == "<OAIResponse Identify>"

@@ -221,7 +221,7 @@ class Record(OAIItem):
         """Iterate over the record's metadata, yielding key-value pairs."""
         return iter(self.metadata.items())
 
-    def get_metadata(self):
+    def get_metadata(self) -> dict[str, list[str | None]]:
         """Extract and return the record's metadata as a dictionary."""
         # We want to get record/metadata/<container>/*
         # <container> would be the element ``dc``
