@@ -54,7 +54,7 @@ def test_get_namespace(xml_element_with_namespace: etree._Element) -> None:
 
 def test_get_namespace_without_namespace(xml_element_without_namespace: etree._Element) -> None:
     namespace = get_namespace(xml_element_without_namespace)
-    assert namespace is None
+    assert namespace == ""
 
 
 def test_xml_to_dict_default(xml_element_with_namespace: etree._Element) -> None:
