@@ -193,7 +193,7 @@ class OAIItemIterator(BaseOAIIterator):
         while True:
             for item in self._items:
                 mapped = self.mapper(item)
-                if self.ignore_deleted and mapped.deleted:
+                if self.ignore_deleted and getattr(mapped, "deleted", False):
                     continue
                 yield mapped
             if self.resumption_token and self.resumption_token.token:
