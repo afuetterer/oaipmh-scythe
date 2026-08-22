@@ -55,6 +55,7 @@ def test_list_identifiers_with_from(scythe: Scythe) -> None:
     headers = scythe.list_identifiers(from_="2026-04-01")
     assert isinstance(headers, Iterator)
     header = next(headers)
+    assert isinstance(header, Header)
     assert header.identifier == "oai:zenodo.org:20565184"
 
 
@@ -63,6 +64,7 @@ def test_list_identifiers_with_until(scythe: Scythe) -> None:
     headers = scythe.list_identifiers(until="2026-04-02")
     assert isinstance(headers, Iterator)
     header = next(headers)
+    assert isinstance(header, Header)
     assert header.identifier == "oai:zenodo.org:8435696"
 
 
@@ -70,6 +72,7 @@ def test_list_identifiers_with_until(scythe: Scythe) -> None:
 def test_list_identifiers_with_from_and_until(scythe: Scythe) -> None:
     headers = scythe.list_identifiers(from_="2026-04-01", until="2026-04-02")
     header = next(headers)
+    assert isinstance(header, Header)
     assert header.identifier == "oai:zenodo.org:18842410"
 
 
@@ -77,6 +80,7 @@ def test_list_identifiers_with_from_and_until(scythe: Scythe) -> None:
 def test_list_identifiers_with_valid_set(scythe: Scythe) -> None:
     headers = scythe.list_identifiers(set_="software")
     header = next(headers)
+    assert isinstance(header, Header)
     assert header.identifier == "oai:zenodo.org:8434414"
 
 

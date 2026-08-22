@@ -202,7 +202,7 @@ def test_record_iter(record: Record) -> None:
 def test_deleted_record_no_metadata(deleted_record: Record) -> None:
     assert deleted_record.deleted
     with pytest.raises(AttributeError):
-        _ = record.metadata
+        _ = deleted_record.metadata
 
 
 @pytest.fixture

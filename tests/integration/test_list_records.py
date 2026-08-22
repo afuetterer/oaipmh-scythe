@@ -61,6 +61,7 @@ def test_list_records_with_from(scythe: Scythe) -> None:
     records = scythe.list_records(from_="2026-04-01")
     assert isinstance(records, Iterator)
     record = next(records)
+    assert isinstance(record, Record)
     expected_title = "Meika4/mabs_mds7_gaussians: mAbs.MDS7 Gaussians"
     assert record.metadata["title"][0] == expected_title
 
@@ -70,6 +71,7 @@ def test_list_records_with_until(scythe: Scythe) -> None:
     records = scythe.list_records(until="2026-04-02")
     assert isinstance(records, Iterator)
     record = next(records)
+    assert isinstance(record, Record)
     assert record.metadata["title"][0] == TITLE
 
 
@@ -77,6 +79,7 @@ def test_list_records_with_until(scythe: Scythe) -> None:
 def test_list_records_with_from_and_until(scythe: Scythe) -> None:
     records = scythe.list_records(from_="2026-04-01", until="2026-04-02")
     record = next(records)
+    assert isinstance(record, Record)
     expected_title = "O artesanal e o ordinário: tramas e pitadas da experiência das mulheres com o trabalho"  # spellchecker:disable-line
     assert record.metadata["title"][0] == expected_title
 
@@ -85,6 +88,7 @@ def test_list_records_with_from_and_until(scythe: Scythe) -> None:
 def test_list_records_with_valid_set(scythe: Scythe) -> None:
     records = scythe.list_records(set_="software")
     record = next(records)
+    assert isinstance(record, Record)
     assert record.metadata["title"][0] == "Figure generation TCR self-reactivity"
 
 
