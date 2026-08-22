@@ -7,8 +7,8 @@ from __future__ import annotations
 from collections.abc import Iterator
 from typing import TYPE_CHECKING
 
-import httpx
 import pytest
+from httpx2 import HTTPStatusError
 from lxml import etree
 
 from oaipmh_scythe.iterator import OAIResponseIterator
@@ -52,7 +52,7 @@ def test_list_records_with_valid_metadata_prefix(scythe: Scythe) -> None:
 def test_list_records_with_invalid_metadata_prefix(scythe: Scythe) -> None:
     # cannotDisseminateFormat
     records = scythe.list_records(metadata_prefix="XXX")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(HTTPStatusError):
         next(records)
 
 
@@ -96,7 +96,7 @@ def test_list_records_with_valid_set(scythe: Scythe) -> None:
 def test_list_records_with_invalid_set(scythe: Scythe) -> None:
     # noRecordsMatch
     records = scythe.list_records(set_="XXX")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(HTTPStatusError):
         next(records)
 
 
@@ -113,7 +113,7 @@ def test_list_records_with_valid_resumption_token(scythe: Scythe) -> None:
 def test_list_records_with_invalid_resumption_token(scythe: Scythe) -> None:
     # badResumptionToken
     records = scythe.list_records(resumption_token="XXX")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(HTTPStatusError):
         next(records)
 
 
@@ -121,7 +121,7 @@ def test_list_records_with_invalid_resumption_token(scythe: Scythe) -> None:
 def test_list_records_raises_no_records_match(scythe: Scythe) -> None:
     # noRecordsMatch
     records = scythe.list_records(from_="2030-01-01")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(HTTPStatusError):
         next(records)
 
 

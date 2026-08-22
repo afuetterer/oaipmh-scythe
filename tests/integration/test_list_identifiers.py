@@ -6,8 +6,8 @@ from __future__ import annotations
 
 from collections.abc import Iterator
 
-import httpx
 import pytest
+from httpx2 import HTTPStatusError
 from lxml import etree
 
 from oaipmh_scythe import OAIResponse, Scythe
@@ -46,7 +46,7 @@ def test_list_identifiers_with_valid_metadata_prefix(scythe: Scythe) -> None:
 def test_list_identifiers_with_invalid_metadata_prefix(scythe: Scythe) -> None:
     # cannotDisseminateFormat
     headers = scythe.list_identifiers(metadata_prefix="XXX")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(HTTPStatusError):
         next(headers)
 
 
@@ -88,7 +88,7 @@ def test_list_identifiers_with_valid_set(scythe: Scythe) -> None:
 def test_list_identifiers_with_invalid_set(scythe: Scythe) -> None:
     # noRecordsMatch
     headers = scythe.list_identifiers(set_="XXX")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(HTTPStatusError):
         next(headers)
 
 
@@ -105,7 +105,7 @@ def test_list_identifiers_with_valid_resumption_token(scythe: Scythe) -> None:
 def test_list_identifiers_with_invalid_resumption_token(scythe: Scythe) -> None:
     # badResumptionToken
     headers = scythe.list_identifiers(resumption_token="XXX")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(HTTPStatusError):
         next(headers)
 
 
@@ -113,7 +113,7 @@ def test_list_identifiers_with_invalid_resumption_token(scythe: Scythe) -> None:
 def test_list_identifiers_raises_no_records_match(scythe: Scythe) -> None:
     # noRecordsMatch
     headers = scythe.list_identifiers(from_="2030-01-15")
-    with pytest.raises(httpx.HTTPStatusError):
+    with pytest.raises(HTTPStatusError):
         next(headers)
 
 

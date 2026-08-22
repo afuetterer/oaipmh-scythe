@@ -28,13 +28,13 @@ if TYPE_CHECKING:
     from collections.abc import Mapping
     from typing import Any
 
-    import httpx
+    import httpx2
     from lxml import etree
 
 logger = logging.getLogger(__name__)
 
 
-def log_response(response: httpx.Response) -> None:
+def log_response(response: httpx2.Response) -> None:
     """Log the details of an HTTP response.
 
     This function logs the HTTP method, URL, and status code of the response for debugging purposes.

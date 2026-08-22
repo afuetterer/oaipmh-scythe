@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-import httpx
+import httpx2
 import pytest
 
 from oaipmh_scythe import Scythe
@@ -40,7 +40,7 @@ def test_non_oai_pmh_url() -> None:
 
 def test_non_url() -> None:
     scythe = Scythe("XXX")
-    with pytest.raises(httpx.UnsupportedProtocol):
+    with pytest.raises(httpx2.UnsupportedProtocol):
         scythe.identify()
     scythe.close()
 
