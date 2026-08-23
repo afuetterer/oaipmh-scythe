@@ -55,7 +55,7 @@ body:
     description: Please tell us about your environment. Provide the output of the following commands.
     value: |
       - Python version used (`python --version`):
-      - python-re3data version used (`python -m pip show oaipmh-scythe | grep "^Version:"`):
+      - oaipmh-scythe version used:
       - Operating system and version:
   validations:
     required: false
