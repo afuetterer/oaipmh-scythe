@@ -70,7 +70,6 @@ types = [
 default-groups = [ "dev", "test" ]
 sources.mike = { git = "https://github.com/squidfunk/mike.git" }
 exclude-newer = "1 week"  # ignore packages published in the last week
-exclude-newer-package = { cassetter = false }
 
 [tool.ruff]  # Ref: https://docs.astral.sh/ruff/configuration/
 line-length = 120
