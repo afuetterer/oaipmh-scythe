@@ -58,12 +58,9 @@ test = [
   "respx",
 ]
 docs = [
-  "mike",
-  "mkdocs",
-  "mkdocs-include-markdown-plugin",
-  "mkdocs-material",
-  "mkdocs-minify-plugin",
-  "mkdocstrings[python]",
+  "mike",                # fork of mike (for Zensical): https://github.com/squidfunk/mike
+  "mkdocstrings-python",
+  "zensical",
 ]
 types = [
   "types-lxml",
@@ -71,6 +68,7 @@ types = [
 
 [tool.uv]
 default-groups = [ "dev", "test" ]
+sources.mike = { git = "https://github.com/squidfunk/mike.git" }
 exclude-newer = "1 week"  # ignore packages published in the last week
 exclude-newer-package = { cassetter = false }
 

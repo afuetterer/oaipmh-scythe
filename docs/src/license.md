@@ -1,1 +1,1 @@
-{% include-markdown "../../LICENSE" %}
+--8<-- "LICENSE"

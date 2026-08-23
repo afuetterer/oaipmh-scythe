@@ -1,0 +1,113 @@
+# Zensical
+# Ref: <https://zensical.org/docs/setup/basics>
+# ------------------------------------------------------------------------------
+
+[project]
+site_name = "oaipmh-scythe"
+site_author = "Heinz-Alexander Fütterer"
+site_description = "A Scythe for harvesting OAI-PMH repositories."
+copyright = "Copyright &copy; 2023&ndash;2026 Heinz-Alexander Fütterer"
+site_url = "https://afuetterer.github.io/oaipmh-scythe/"
+repo_name = "afuetterer/oaipmh-scythe"
+repo_url = "https://github.com/afuetterer/oaipmh-scythe"
+docs_dir = "src"
+edit_uri = "edit/main/docs/"
+strict = true
+use_directory_urls = true
+nav = [
+  { "Home" = "index.md" },
+  { "Tutorial" = "tutorial.md" },
+  { "OAI-PMH Primer" = "oaipmh.md" },
+  { "Harvesting other Metadata Formats than OAI-DC" = "customizing.md" },
+  { "API" = [
+    { "Client" = "api/client.md" },
+    { "Iterator" = "api/iterator.md" },
+    { "Models" = "api/models.md" },
+    { "Response" = "api/response.md" },
+    { "Utils" = "api/utils.md" },
+    { "Exceptions" = "api/exceptions.md" },
+  ] },
+  { "Meta" = [
+    { "Contributor Guide" = "contributing.md" },
+    { "Changelog" = "changelog.md" },
+    { "License" = "license.md" },
+  ] },
+]
+
+# Theme
+# Ref: <https://zensical.org/docs/setup/colors>
+# ------------------------------------------------------------------------------
+
+[project.theme]
+custom_dir = "src/overrides"
+language = "en"
+variant = "modern"
+features = [
+  "content.action.edit",
+  "content.action.view",
+  "content.code.annotate",
+  "content.code.copy",
+  "navigation.footer",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+# mkdocstrings
+# Ref: <https://zensical.org/docs/setup/extensions/mkdocstrings>
+# ------------------------------------------------------------------------------
+
+[project.plugins.mkdocstrings.handlers.python]
+inventories = ["https://docs.python.org/3/objects.inv"]
+paths = ["src"]
+options.docstring_style = "google"
+options.inherited_members = true
+options.show_source = true
+options.show_root_heading = false
+options.show_root_toc_entry = false
+
+# Markdown Extensions
+# Ref: <https://zensical.org/docs/setup/extensions/python-markdown-extensions>
+# ------------------------------------------------------------------------------
+
+[project.markdown_extensions]
+admonition = {}
+pymdownx.details = {}
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.snippets.base_path = "."
+pymdownx.snippets.check_paths = true
+pymdownx.superfences = {}
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/afuetterer/oaipmh-scythe"
+
+[[project.extra.social]]
+icon = "simple/pypi"
+link = "https://pypi.org/project/oaipmh-scythe"
+
+# Versioning
+# Ref: <https://zensical.org/docs/setup/versioning>
+# ------------------------------------------------------------------------------
+
+[project.extra.version]
+provider = "mike"
+alias = "true"
