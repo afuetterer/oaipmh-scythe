@@ -66,13 +66,13 @@ Among them are these implementations in Python:
 | -------------------------------------------------------------------------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | [sickle](https://github.com/mloesch/sickle)                                      | `oaipmh-scythe` is a fork of `sickle` | ![last-commit](https://img.shields.io/github/last-commit/mloesch/sickle)                              |
 | [pyoai](https://github.com/infrae/pyoai)                                         | `sickle` was inspired by `pyoai`      | ![last-commit](https://img.shields.io/github/last-commit/infrae/pyoai)                                |
+| [oaipmh](https://github.com/eth-library/oaipmh)                                  | `oaipmh` is a fork of `pyoai`         | ![last-commit](https://img.shields.io/github/last-commit/eth-library/oaipmh)                          |
 | [pyoaiharvester](https://github.com/vphill/pyoaiharvester)                       | oai-pmh harvester CLI                 | ![last-commit](https://img.shields.io/github/last-commit/vphill/pyoaiharvester)                       |
 | [ddblabs-ometha](https://github.com/Deutsche-Digitale-Bibliothek/ddblabs-ometha) | oai-pmh harvester with CLI and TUI    | ![last-commit](https://img.shields.io/github/last-commit/Deutsche-Digitale-Bibliothek/ddblabs-ometha) |
 | [oai-harvest](https://github.com/bloomonkey/oai-harvest)                         | uses `pyoai` internally               | ![last-commit](https://img.shields.io/github/last-commit/bloomonkey/oai-harvest)                      |
 | [oai-pmh-harvester](https://github.com/MITLibraries/oai-pmh-harvester)           | uses `sickle` internally              | ![last-commit](https://img.shields.io/github/last-commit/MITLibraries/oai-pmh-harvester)              |
 
-There are also similar projects available in [Java](https://github.com/topics/oai-pmh-client?l=java) and
-[PHP](https://github.com/topics/oai-pmh-client?l=php).
+There are also similar projects available in [Java](https://github.com/topics/oai-pmh-client?l=java), [PHP](https://github.com/topics/oai-pmh-client?l=php) and [Rust](https://crates.io/crates/oai-pmh).
 
 ## Acknowledgments
 
