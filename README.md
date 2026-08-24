@@ -53,7 +53,7 @@ python -m pip install oaipmh-scythe
 
 ## Documentation
 
-The [documentation][docs-url] is made with [Material for MkDocs](https://github.com/squidfunk/mkdocs-material) and is
+The [documentation][docs-url] is made with [Zensical](https://github.com/zensical/zensical) and is
 hosted by [GitHub Pages](https://docs.github.com/en/pages).
 
 ## Similar Projects
