@@ -48,7 +48,7 @@ def test_oai_response_raw(mock_response: Mock) -> None:
 def test_oai_response_xml(mock_response: Mock) -> None:
     params = {"verb": "Identify"}
     oai_response = OAIResponse(http_response=mock_response, params=params)
-    assert isinstance(oai_response.xml, etree._Element)
+    assert isinstance(oai_response.xml, etree.Element)
     assert oai_response.xml.tag == "{http://www.openarchives.org/OAI/2.0/}OAI-PMH"
 
 
