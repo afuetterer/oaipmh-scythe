@@ -80,6 +80,9 @@ options.inherited_members = true
 options.show_source = false
 options.show_root_heading = false
 options.show_root_toc_entry = false
+options.extensions = [
+  "griffe_warnings_deprecated",
+]
 
 # Markdown Extensions
 # Ref: <https://zensical.org/docs/setup/extensions/python-markdown-extensions>

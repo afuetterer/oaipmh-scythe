@@ -58,7 +58,8 @@ test = [
   "respx",
 ]
 docs = [
-  "mike",                # fork of mike (for Zensical): https://github.com/squidfunk/mike
+  "griffe-warnings-deprecated",
+  "mike",                       # fork of mike (for Zensical): https://github.com/squidfunk/mike
   "mkdocstrings-python",
   "zensical",
 ]
