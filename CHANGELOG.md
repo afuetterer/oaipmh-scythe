@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [0.15.1](https://github.com/afuetterer/oaipmh-scythe/compare/0.15.0...0.15.1) (2026-08-25)
+
+### Bug Fixes
+
+- **warnings:** use futurewarning instead of deprecationwarning ([#542](https://github.com/afuetterer/oaipmh-scythe/pull/542)) ([18bab4c](https://github.com/afuetterer/oaipmh-scythe/commit/18bab4c93c72ad00399ed847b7a684c19ea531eb))
+
+### Documentation
+
+- display deprecated section as admonition ins api docs ([#541](https://github.com/afuetterer/oaipmh-scythe/pull/541)) ([e35b70e](https://github.com/afuetterer/oaipmh-scythe/commit/e35b70e57a54570b2409d8da5a13cf93226d49a5))
+
 ## [0.15.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.4...0.15.0) (2026-08-22)
 
 ### Features
