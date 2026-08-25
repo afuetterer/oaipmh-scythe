@@ -137,7 +137,7 @@ default.extend-ignore-re = [ "(?Rm)^.*# spellchecker:disable-line$" ]
 addopts = [ "-ra", "--showlocals", "--strict-config", "--strict-markers", "-p pytest_httpx2" ]
 filterwarnings = [
   "error",
-  "ignore:Use the .* This method will be removed in version 0.17.0: DeprecationWarning", # see models.py
+  "ignore:Use the .* This method will be removed in version 0.17.0: FutureWarning", # see models.py
 ]
 log_level = "INFO"
 minversion = "9.0"
