@@ -22,6 +22,10 @@ if sys.version_info >= (3, 11):
     from typing import Self
 else:
     from typing_extensions import Self
+if sys.version_info >= (3, 13):
+    from warnings import deprecated
+else:
+    from typing_extensions import deprecated
 
 import httpx2
 
@@ -185,7 +189,7 @@ class Scythe:
                 httpx2.codes.is_error(http_response.status_code)
                 and http_response.status_code in self.retry_status_codes
             ):
-                retry_after = self.get_retry_after(http_response)
+                retry_after = self._get_retry_after(http_response)
                 logger.warning("HTTP %d! Retrying after %d seconds...", http_response.status_code, retry_after)
                 time.sleep(retry_after)
                 http_response = self._request(query)
@@ -406,12 +410,13 @@ class Scythe:
         query = remove_none_values(_query)
         yield from self.iterator(self, query)
 
-    def get_retry_after(self, http_response: httpx2.Response) -> int | float:
+    def _get_retry_after(self, http_response: httpx2.Response) -> int | float:
         """Determine the appropriate time to wait before retrying a request, based on the server's response.
 
-        Check the status code of the provided HTTP response. If it's 503 (Service Unavailable),
-        attempt to parse the 'retry-after' header to find the suggested wait time. If parsing fails
-        or a different status code is received, use the default retry time.
+        Check the status code of the provided HTTP response. If it's 503 (Service Unavailable), attempt to parse
+        the [Retry-After](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Retry-After)
+        response header to find the suggested wait time. If parsing fails or a different status code is received,
+        use the default retry time.
 
         Args:
             http_response: The HTTP response received from the server.
@@ -424,3 +429,13 @@ class Scythe:
             if retry_after is not None:
                 return int(retry_after)
         return self.default_retry_after
+
+    @deprecated(
+        "Scythe.get_retry_after() is not part of the public API. There is no public replacement. "
+        "To customize retries, use the max_retries, retry_status_codes, and default_retry_after parameters instead. "
+        "This method will be removed in version 0.18.0.",
+        category=FutureWarning,
+    )
+    def get_retry_after(self, http_response: httpx2.Response) -> int | float:
+        """See _get_retry_after."""
+        return self._get_retry_after(http_response)
