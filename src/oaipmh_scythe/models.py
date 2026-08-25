@@ -139,7 +139,8 @@ class Identify(OAIItem):
         return "<Identify>"
 
     @deprecated(
-        "Use the dynamically set attributes of the Identify object instead. This method will be removed in version 0.17.0."
+        "Use the dynamically set attributes of the Identify object instead. This method will be removed in version 0.17.0.",
+        category=FutureWarning,
     )
     def __iter__(self) -> Iterator:
         """Iterate over the Identify information, yielding key-value pairs."""
@@ -177,7 +178,8 @@ class Header(OAIItem):
         return f"<Header {self.identifier}{' [deleted]' if self.deleted else ''}>"
 
     @deprecated(
-        "Use the 'identifier', 'datestamp', and 'setSpecs' attributes instead. This method will be removed in version 0.17.0."
+        "Use the 'identifier', 'datestamp', and 'setSpecs' attributes instead. This method will be removed in version 0.17.0.",
+        category=FutureWarning,
     )
     def __iter__(self) -> Iterator:
         """Iterate over the header information, yielding key-value pairs."""
@@ -223,7 +225,9 @@ class Record(OAIItem):
     def __repr__(self) -> str:
         return f"<Record {self.header.identifier}{' [deleted]' if self.header.deleted else ''}>"
 
-    @deprecated("Use the 'metadata' attribute instead. This method will be removed in version 0.17.0.")
+    @deprecated(
+        "Use the 'metadata' attribute instead. This method will be removed in version 0.17.0.", category=FutureWarning
+    )
     def __iter__(self) -> Iterator:
         """Iterate over the record's metadata, yielding key-value pairs."""
         return iter(self.metadata.items())
@@ -270,7 +274,8 @@ class Set(OAIItem):
         return f"<Set {self.setName}>"
 
     @deprecated(
-        "Use the dynamically set attributes of the Set object instead. This method will be removed in version 0.17.0."
+        "Use the dynamically set attributes of the Set object instead. This method will be removed in version 0.17.0.",
+        category=FutureWarning,
     )
     def __iter__(self) -> Iterator:
         """Iterate over the set information, yielding key-value pairs."""
@@ -308,7 +313,8 @@ class MetadataFormat(OAIItem):
         return f"<MetadataFormat {self.metadataPrefix}>"
 
     @deprecated(
-        "Use the dynamically set attributes of the MetadataFormat object instead. This method will be removed in version 0.17.0."
+        "Use the dynamically set attributes of the MetadataFormat object instead. This method will be removed in version 0.17.0.",
+        category=FutureWarning,
     )
     def __iter__(self) -> Iterator:
         """Iterate over the metadata format information, yielding key-value pairs."""
