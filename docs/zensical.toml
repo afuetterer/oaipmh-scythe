@@ -77,7 +77,7 @@ inventories = ["https://docs.python.org/3/objects.inv"]
 paths = ["src"]
 options.docstring_style = "google"
 options.inherited_members = true
-options.show_source = true
+options.show_source = false
 options.show_root_heading = false
 options.show_root_toc_entry = false
 
