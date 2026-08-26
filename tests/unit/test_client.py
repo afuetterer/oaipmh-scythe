@@ -233,3 +233,13 @@ def test_unknown_oaipmh_error_code(scythe: Scythe, httpx2_mock: MockRouter, erro
     with pytest.raises(exceptions.GeneralOAIPMHError, match="An unknown error occurred"):
         next(scythe.list_identifiers())
     assert mock_route.called
+
+
+def test_positional_arguments() -> None:
+    scythe = Scythe("https://zenodo.org/oai2d")
+    assert scythe
+
+
+def test_keyword_arguments() -> None:
+    scythe = Scythe("https://zenodo.org/oai2d", http_method="GET")
+    assert scythe
