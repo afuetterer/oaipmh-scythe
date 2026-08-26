@@ -20,7 +20,10 @@ from lxml import etree
 if TYPE_CHECKING:
     from httpx2 import Response
 
+from oaipmh_scythe import exceptions
+
 XMLParser = etree.XMLParser(remove_blank_text=True, recover=True, resolve_entities=False)
+OAI_NAMESPACE: str = "{http://www.openarchives.org/OAI/2.0/}"
 
 
 @dataclass
@@ -48,6 +51,37 @@ class OAIResponse:
     def xml(self) -> etree.Element:
         """Parse the server's response content and return it as an `etree.Element` object."""
         return etree.XML(self.http_response.content, parser=XMLParser)
+
+    def raise_for_oaipmh_error(self) -> None:
+        """Check for OAI-PMH error elements in the XML response and raise the corresponding exception.
+
+        Parses the response XML to detect <error> elements. If found, extracts the error code and message,
+        then raises the appropriate exception from oaipmh_scythe.exceptions based on the error code.
+        Non-XML responses are silently ignored.
+
+        Raises:
+            IdDoesNotExist: When the OAI response contains an error with code="idDoesNotExist".
+            BadArgument: When the OAI response contains an error with code="badArgument".
+            BadResumptionToken: When the OAI response contains an error with code="badResumptionToken".
+            CannotDisseminateFormat: When the OAI response contains an error with code="cannotDisseminateFormat".
+            NoRecordsMatch: When the OAI response contains an error with code="noRecordsMatch".
+            GeneralOAIPMHError: When the error code is unknown, empty, or the exception class cannot be resolved.
+        """
+        try:
+            error = self.xml.find(f"{OAI_NAMESPACE}error")
+        except etree.XMLSyntaxError:
+            # Response is not XML, treat as non-error
+            return
+        if error is None:
+            return
+        code = error.attrib.get("code", "")
+        description = error.text or ""
+        exception_name = code[0].upper() + code[1:] if code else ""
+        try:
+            error_class = getattr(exceptions, exception_name)
+        except AttributeError:
+            error_class = exceptions.GeneralOAIPMHError
+        raise error_class(description)
 
     def __str__(self) -> str:
         verb = self.params.get("verb")

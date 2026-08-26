@@ -7,10 +7,9 @@ from __future__ import annotations
 from collections.abc import Iterator
 
 import pytest
-from httpx2 import HTTPStatusError
 from lxml import etree
 
-from oaipmh_scythe import OAIResponse, Scythe
+from oaipmh_scythe import OAIResponse, Scythe, exceptions
 from oaipmh_scythe.iterator import OAIResponseIterator
 from oaipmh_scythe.models import Header
 
@@ -44,9 +43,8 @@ def test_list_identifiers_with_valid_metadata_prefix(scythe: Scythe) -> None:
 
 @pytest.mark.vcr("list_identifiers.yaml")
 def test_list_identifiers_with_invalid_metadata_prefix(scythe: Scythe) -> None:
-    # cannotDisseminateFormat
     headers = scythe.list_identifiers(metadata_prefix="XXX")
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(exceptions.BadArgument):
         next(headers)
 
 
@@ -86,9 +84,8 @@ def test_list_identifiers_with_valid_set(scythe: Scythe) -> None:
 
 @pytest.mark.vcr("list_identifiers.yaml")
 def test_list_identifiers_with_invalid_set(scythe: Scythe) -> None:
-    # noRecordsMatch
     headers = scythe.list_identifiers(set_="XXX")
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(exceptions.NoRecordsMatch):
         next(headers)
 
 
@@ -103,17 +100,15 @@ def test_list_identifiers_with_valid_resumption_token(scythe: Scythe) -> None:
 
 @pytest.mark.vcr("list_identifiers.yaml")
 def test_list_identifiers_with_invalid_resumption_token(scythe: Scythe) -> None:
-    # badResumptionToken
     headers = scythe.list_identifiers(resumption_token="XXX")
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(exceptions.BadResumptionToken):
         next(headers)
 
 
 @pytest.mark.vcr("list_identifiers.yaml")
 def test_list_identifiers_raises_no_records_match(scythe: Scythe) -> None:
-    # noRecordsMatch
     headers = scythe.list_identifiers(from_="2030-01-15")
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(exceptions.NoRecordsMatch):
         next(headers)
 
 

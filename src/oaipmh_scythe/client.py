@@ -46,7 +46,6 @@ __version__ = version("oaipmh-scythe")
 USER_AGENT: str = f"oaipmh-scythe/{__version__}"
 OAI_NAMESPACE: str = "{http://www.openarchives.org/OAI/2.0/}"
 
-
 # Map OAI verbs to class representations
 DEFAULT_CLASS_MAP = {
     "GetRecord": Record,
@@ -181,6 +180,8 @@ class Scythe:
             An OAIResponse object encapsulating the server's response.
 
         Raises:
+            OAIPMHException: If the response contains an OAI-PMH <error> element, regardless of the HTTP
+                status code. The exception type corresponds to the error code (e.g. IdDoesNotExist).
             httpx2.HTTPError: If the HTTP request fails after the maximum number of retries.
         """
         http_response = self._request(query)
@@ -193,8 +194,11 @@ class Scythe:
                 logger.warning("HTTP %d! Retrying after %d seconds...", http_response.status_code, retry_after)
                 time.sleep(retry_after)
                 http_response = self._request(query)
+
+        oai_response = OAIResponse(http_response, params=query)
+        oai_response.raise_for_oaipmh_error()
         http_response.raise_for_status()
-        return OAIResponse(http_response, params=query)
+        return oai_response
 
     def _request(self, query: dict[str, str]) -> httpx2.Response:
         """Send an HTTP request to the OAI server using the configured HTTP method and given query parameters.
@@ -419,7 +423,7 @@ class Scythe:
         use the default retry time.
 
         Args:
-            http_response: The HTTP response received from the server.
+            http_response: The HTTP response received from the OAI server.
 
         Returns:
             An integer representing the number of seconds to wait before retrying the request.

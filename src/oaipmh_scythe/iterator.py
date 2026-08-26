@@ -21,7 +21,6 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
-from oaipmh_scythe import exceptions
 from oaipmh_scythe.models import ResumptionToken
 
 if TYPE_CHECKING:
@@ -106,21 +105,10 @@ class BaseOAIIterator(ABC):
 
         This method is used internally to handle the pagination of OAI-PMH responses. It updates the `oai_response`
         attribute with the next batch of data from the server.
-
-        If an error is encountered in the OAI response, an appropriate exception is raised.
         """
         if self.resumption_token and self.resumption_token.token:
             self.query = {"verb": self.verb, "resumptionToken": self.resumption_token.token}
         self.oai_response = self.scythe.harvest(self.query)
-
-        if (error := self.oai_response.xml.find(f".//{self.scythe.oai_namespace}error")) is not None:
-            code = str(error.attrib.get("code", "UNKNOWN"))
-            description = error.text or ""
-            try:
-                exception_name = code[0].upper() + code[1:]
-                raise getattr(exceptions, exception_name)(description)
-            except AttributeError as exc:
-                raise exceptions.GeneralOAIPMHError(description) from exc
         self.resumption_token = self._get_resumption_token()
 
 

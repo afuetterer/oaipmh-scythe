@@ -8,9 +8,9 @@ from collections.abc import Iterator
 from typing import TYPE_CHECKING
 
 import pytest
-from httpx2 import HTTPStatusError
 from lxml import etree
 
+from oaipmh_scythe import exceptions
 from oaipmh_scythe.iterator import OAIResponseIterator
 from oaipmh_scythe.models import Record
 from oaipmh_scythe.response import OAIResponse
@@ -50,9 +50,8 @@ def test_list_records_with_valid_metadata_prefix(scythe: Scythe) -> None:
 
 @pytest.mark.vcr("list_records.yaml")
 def test_list_records_with_invalid_metadata_prefix(scythe: Scythe) -> None:
-    # cannotDisseminateFormat
     records = scythe.list_records(metadata_prefix="XXX")
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(exceptions.BadArgument):
         next(records)
 
 
@@ -96,7 +95,7 @@ def test_list_records_with_valid_set(scythe: Scythe) -> None:
 def test_list_records_with_invalid_set(scythe: Scythe) -> None:
     # noRecordsMatch
     records = scythe.list_records(set_="XXX")
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(exceptions.NoRecordsMatch):
         next(records)
 
 
@@ -111,17 +110,15 @@ def test_list_records_with_valid_resumption_token(scythe: Scythe) -> None:
 
 @pytest.mark.vcr("list_records.yaml")
 def test_list_records_with_invalid_resumption_token(scythe: Scythe) -> None:
-    # badResumptionToken
     records = scythe.list_records(resumption_token="XXX")
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(exceptions.BadResumptionToken):
         next(records)
 
 
 @pytest.mark.vcr("list_records.yaml")
 def test_list_records_raises_no_records_match(scythe: Scythe) -> None:
-    # noRecordsMatch
     records = scythe.list_records(from_="2030-01-01")
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(exceptions.NoRecordsMatch):
         next(records)
 
 
