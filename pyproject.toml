@@ -143,7 +143,8 @@ terminal.error-on-warning = true
 addopts = [ "-ra", "--showlocals", "--strict-config", "--strict-markers", "-p pytest_httpx2" ]
 filterwarnings = [
   "error",
-  "ignore:Use the .* This method will be removed in version 0.17.0: FutureWarning", # see models.py
+  "ignore:.* This method will be removed in version 0.17.0: FutureWarning", # see models.py
+  "ignore:.* This method will be removed in version 0.18.0: FutureWarning", # see client.py
 ]
 log_level = "INFO"
 minversion = "9.0"
