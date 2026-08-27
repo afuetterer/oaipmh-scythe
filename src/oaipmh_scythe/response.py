@@ -45,8 +45,8 @@ class OAIResponse:
         return self.http_response.text
 
     @property
-    def xml(self) -> etree._Element:
-        """Parse the server's response content and return it as an `etree._Element` object."""
+    def xml(self) -> etree.Element:
+        """Parse the server's response content and return it as an `etree.Element` object."""
         return etree.XML(self.http_response.content, parser=XMLParser)
 
     def __str__(self) -> str:

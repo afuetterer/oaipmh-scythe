@@ -90,7 +90,7 @@ def filter_dict_except_resumption_token(d: Mapping[str, Any | None]) -> dict[str
 NAMESPACE_PATTERN = re.compile(r"\{.*\}")
 
 
-def get_namespace(element: etree._Element) -> str:
+def get_namespace(element: etree.Element) -> str:
     """Return the namespace URI of an XML element.
 
     Extracts and returns the namespace URI from the tag of the given XML element.
@@ -108,7 +108,7 @@ def get_namespace(element: etree._Element) -> str:
 
 
 def xml_to_dict(
-    tree: etree._Element, paths: list[str] | None = None, nsmap: dict[str, str] | None = None, strip_ns: bool = False
+    tree: etree.Element, paths: list[str] | None = None, nsmap: dict[str, str] | None = None, strip_ns: bool = False
 ) -> dict[str, list[str | None]]:
     """Convert an XML tree to a dictionary, with options for custom XPath and namespace handling.
 

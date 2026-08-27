@@ -6,7 +6,6 @@ from unittest.mock import MagicMock
 
 import pytest
 from lxml import etree
-from lxml.etree import _Element
 from pytest_mock import MockerFixture
 
 from oaipmh_scythe import OAIResponse
@@ -74,7 +73,7 @@ def test_identify_iter(identify: Identify) -> None:
 
 
 @pytest.fixture(scope="session")
-def header_element() -> _Element:
+def header_element() -> etree.Element:
     xml = """
     <header xmlns="http://www.openarchives.org/OAI/2.0/">
         <identifier>oai:zenodo.org:6538892</identifier>
@@ -85,7 +84,7 @@ def header_element() -> _Element:
 
 
 @pytest.fixture(scope="session")
-def deleted_header_element() -> _Element:
+def deleted_header_element() -> etree.Element:
     xml = """
     <header xmlns="http://www.openarchives.org/OAI/2.0/" status="deleted">
         <identifier>oai:zenodo.org:6538892</identifier>
@@ -96,12 +95,12 @@ def deleted_header_element() -> _Element:
 
 
 @pytest.fixture
-def header(header_element: _Element) -> Header:
+def header(header_element: etree.Element) -> Header:
     return Header(header_element)
 
 
 @pytest.fixture
-def deleted_header(deleted_header_element: _Element) -> Header:
+def deleted_header(deleted_header_element: etree.Element) -> Header:
     return Header(deleted_header_element)
 
 
@@ -128,7 +127,7 @@ def test_header_iter(header: Header) -> None:
 
 
 @pytest.fixture
-def record_element() -> _Element:
+def record_element() -> etree.Element:
     xml = """
     <record xmlns="http://www.openarchives.org/OAI/2.0/">
         <header>
@@ -148,7 +147,7 @@ def record_element() -> _Element:
 
 
 @pytest.fixture
-def deleted_record_element() -> _Element:
+def deleted_record_element() -> etree.Element:
     xml = """
     <record xmlns="http://www.openarchives.org/OAI/2.0/">
         <header status="deleted">
@@ -168,12 +167,12 @@ def deleted_record_element() -> _Element:
 
 
 @pytest.fixture
-def record(record_element: _Element) -> Record:
+def record(record_element: etree.Element) -> Record:
     return Record(record_element)
 
 
 @pytest.fixture
-def deleted_record(deleted_record_element: _Element) -> Record:
+def deleted_record(deleted_record_element: etree.Element) -> Record:
     return Record(deleted_record_element)
 
 
@@ -206,7 +205,7 @@ def test_deleted_record_no_metadata(deleted_record: Record) -> None:
 
 
 @pytest.fixture
-def set_element() -> _Element:
+def set_element() -> etree.Element:
     xml = """
     <set>
         <setSpec>user-emi</setSpec>
@@ -218,7 +217,7 @@ def set_element() -> _Element:
 
 
 @pytest.fixture
-def oai_set(set_element: _Element) -> Set:
+def oai_set(set_element: etree.Element) -> Set:
     return Set(set_element)
 
 
@@ -239,7 +238,7 @@ def test_set_iter(oai_set: Set) -> None:
 
 
 @pytest.fixture
-def mdf_element() -> _Element:
+def mdf_element() -> etree.Element:
     xml = """
     <metadataFormat>
         <metadataPrefix>marcxml</metadataPrefix>
@@ -251,7 +250,7 @@ def mdf_element() -> _Element:
 
 
 @pytest.fixture
-def mdf(mdf_element: _Element) -> MetadataFormat:
+def mdf(mdf_element: etree.Element) -> MetadataFormat:
     return MetadataFormat(mdf_element)
 
 

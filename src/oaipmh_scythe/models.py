@@ -77,7 +77,7 @@ class OAIItem:
         _oai_namespace: The namespace URI extracted from the XML element.
     """
 
-    def __init__(self, xml: etree._Element, strip_ns: bool = True) -> None:
+    def __init__(self, xml: etree.Element, strip_ns: bool = True) -> None:
         super().__init__()
         self.xml = xml
         self._strip_ns = strip_ns
@@ -164,7 +164,7 @@ class Header(OAIItem):
         setSpecs: A list of set specifications that the record belongs to.
     """
 
-    def __init__(self, header_element: etree._Element) -> None:
+    def __init__(self, header_element: etree.Element) -> None:
         super().__init__(header_element, strip_ns=True)
         self.deleted = self.xml.attrib.get("status") == "deleted"
         _identifier_element = self.xml.find(f"{self._oai_namespace}identifier")
@@ -212,7 +212,7 @@ class Record(OAIItem):
         ValueError: If the header element is not found in the provided XML.
     """
 
-    def __init__(self, record_element: etree._Element, strip_ns: bool = True) -> None:
+    def __init__(self, record_element: etree.Element, strip_ns: bool = True) -> None:
         super().__init__(record_element, strip_ns=strip_ns)
         header_element = self.xml.find(f".//{self._oai_namespace}header")
         if header_element is None:
@@ -259,7 +259,7 @@ class Set(OAIItem):
         setDescription: The description of the set (if any).
     """
 
-    def __init__(self, set_element: etree._Element) -> None:
+    def __init__(self, set_element: etree.Element) -> None:
         super().__init__(set_element, strip_ns=True)
 
         self.setName: str | None = None
@@ -298,7 +298,7 @@ class MetadataFormat(OAIItem):
         metadataNamespace: The XML namespace URI for the metadata format.
     """
 
-    def __init__(self, mdf_element: etree._Element) -> None:
+    def __init__(self, mdf_element: etree.Element) -> None:
         super().__init__(mdf_element, strip_ns=True)
 
         self.metadataPrefix: str | None = None

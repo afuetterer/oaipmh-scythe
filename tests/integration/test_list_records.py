@@ -145,5 +145,5 @@ def test_list_records_oai_response(scythe: Scythe) -> None:
     response = responses[0]
     assert isinstance(response, OAIResponse)
     assert response.params == {"metadataPrefix": "oai_dc", "verb": "ListRecords"}
-    assert isinstance(response.xml, etree._Element)
+    assert isinstance(response.xml, etree.Element)
     assert response.xml.tag == "{http://www.openarchives.org/OAI/2.0/}OAI-PMH"
