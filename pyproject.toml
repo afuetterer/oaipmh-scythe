@@ -133,6 +133,12 @@ ignore = [
 # add "spellchecker:disable-line" to ignore specific lines
 default.extend-ignore-re = [ "(?Rm)^.*# spellchecker:disable-line$" ]
 
+[tool.ty]  # Ref: <https://docs.astral.sh/ty/configuration>
+rules.blanket-ignore-comment = "error"
+rules.missing-type-argument = "error"
+rules.possibly-unresolved-reference = "warn"
+terminal.error-on-warning = true
+
 [tool.pytest]  # Ref: https://docs.pytest.org/en/stable/customize.html
 addopts = [ "-ra", "--showlocals", "--strict-config", "--strict-markers", "-p pytest_httpx2" ]
 filterwarnings = [

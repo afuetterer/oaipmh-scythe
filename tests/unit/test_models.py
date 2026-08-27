@@ -31,7 +31,7 @@ def identify_response(mocker: MockerFixture) -> MagicMock:
         </Identify>
     </OAI-PMH>
     """
-    mock_response = mocker.MagicMock(spec=OAIResponse)
+    mock_response: MagicMock = mocker.MagicMock(spec=OAIResponse)
     mock_response.xml = etree.fromstring(xml)
     return mock_response
 

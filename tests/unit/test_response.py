@@ -33,7 +33,7 @@ IDENTIFY_XML: str = """
 
 @pytest.fixture
 def mock_response(mocker: MockerFixture) -> Mock:
-    response = mocker.Mock()
+    response: Mock = mocker.Mock()
     response.text = IDENTIFY_XML
     response.content = response.text.encode()
     return response

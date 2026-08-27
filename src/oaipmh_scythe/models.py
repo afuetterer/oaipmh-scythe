@@ -142,7 +142,7 @@ class Identify(OAIItem):
         "Use the dynamically set attributes of the Identify object instead. This method will be removed in version 0.17.0.",
         category=FutureWarning,
     )
-    def __iter__(self) -> Iterator:
+    def __iter__(self) -> Iterator:  # ty: ignore[missing-type-argument] - will be removed in 0.17.0
         """Iterate over the Identify information, yielding key-value pairs."""
         return iter(self._identify_dict.items())
 
@@ -181,7 +181,7 @@ class Header(OAIItem):
         "Use the 'identifier', 'datestamp', and 'setSpecs' attributes instead. This method will be removed in version 0.17.0.",
         category=FutureWarning,
     )
-    def __iter__(self) -> Iterator:
+    def __iter__(self) -> Iterator:  # ty: ignore[missing-type-argument] - will be removed in 0.17.0
         """Iterate over the header information, yielding key-value pairs."""
         return iter(
             [
@@ -228,7 +228,7 @@ class Record(OAIItem):
     @deprecated(
         "Use the 'metadata' attribute instead. This method will be removed in version 0.17.0.", category=FutureWarning
     )
-    def __iter__(self) -> Iterator:
+    def __iter__(self) -> Iterator:  # ty: ignore[missing-type-argument] - will be removed in 0.17.0
         """Iterate over the record's metadata, yielding key-value pairs."""
         return iter(self.metadata.items())
 
@@ -277,7 +277,7 @@ class Set(OAIItem):
         "Use the dynamically set attributes of the Set object instead. This method will be removed in version 0.17.0.",
         category=FutureWarning,
     )
-    def __iter__(self) -> Iterator:
+    def __iter__(self) -> Iterator:  # ty: ignore[missing-type-argument] - will be removed in 0.17.0
         """Iterate over the set information, yielding key-value pairs."""
         return iter(self._set_dict.items())
 
@@ -316,6 +316,6 @@ class MetadataFormat(OAIItem):
         "Use the dynamically set attributes of the MetadataFormat object instead. This method will be removed in version 0.17.0.",
         category=FutureWarning,
     )
-    def __iter__(self) -> Iterator:
+    def __iter__(self) -> Iterator:  # ty: ignore[missing-type-argument] - will be removed in 0.17.0
         """Iterate over the metadata format information, yielding key-value pairs."""
         return iter(self._mdf_dict.items())
