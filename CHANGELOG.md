@@ -13,7 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Documentation
 
-- display deprecated section as admonition ins api docs ([#541](https://github.com/afuetterer/oaipmh-scythe/pull/541)) ([e35b70e](https://github.com/afuetterer/oaipmh-scythe/commit/e35b70e57a54570b2409d8da5a13cf93226d49a5))
+- display deprecated section as admonition in api docs ([#541](https://github.com/afuetterer/oaipmh-scythe/pull/541)) ([e35b70e](https://github.com/afuetterer/oaipmh-scythe/commit/e35b70e57a54570b2409d8da5a13cf93226d49a5))
 
 ## [0.15.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.14.4...0.15.0) (2026-08-22)
 
@@ -24,7 +24,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Code Refactoring
 
 - **iterator:** use getattr to handle optional deleted attribute ([#523](https://github.com/afuetterer/oaipmh-scythe/pull/523)) ([7e4ec74](https://github.com/afuetterer/oaipmh-scythe/commit/7e4ec74c60b419401ba21b4560caae4cd154bc47))
-- **models:** declare explicit attributes in identify, set, metadataformat) ([#525](https://github.com/afuetterer/oaipmh-scythe/pull/525)) ([46d5075](https://github.com/afuetterer/oaipmh-scythe/commit/46d507501dac528ca3f8c99bc0624e9ab24802fa))
+- **models:** declare explicit attributes in identify, set, metadataformat ([#525](https://github.com/afuetterer/oaipmh-scythe/pull/525)) ([46d5075](https://github.com/afuetterer/oaipmh-scythe/commit/46d507501dac528ca3f8c99bc0624e9ab24802fa))
 - **models:** fix type error in record.get_metadata namespace handling ([#522](https://github.com/afuetterer/oaipmh-scythe/pull/522)) ([a978135](https://github.com/afuetterer/oaipmh-scythe/commit/a9781352ee5bf8a8a90fd85018e123959c0a20c4))
 - **types:** add isinstance checks for type narrowing ([#524](https://github.com/afuetterer/oaipmh-scythe/pull/524)) ([c6b9f77](https://github.com/afuetterer/oaipmh-scythe/commit/c6b9f77cd463d918a68173926ce88d14d90cd052))
 - **types:** ensure get_namespace always returns str ([#519](https://github.com/afuetterer/oaipmh-scythe/pull/519)) ([fe14463](https://github.com/afuetterer/oaipmh-scythe/commit/fe144633d6f6a1a662b3b71d495b1bd002344fcb))
