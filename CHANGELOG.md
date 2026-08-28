@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [0.15.2](https://github.com/afuetterer/oaipmh-scythe/compare/0.15.1...0.15.2) (2026-08-28)
+
+### Bug Fixes
+
+- **client:** check oai-pmh errors before http status codes ([#549](https://github.com/afuetterer/oaipmh-scythe/pull/549)) ([8ec9821](https://github.com/afuetterer/oaipmh-scythe/commit/8ec9821d3890e0422a4079c9848fc9192bd55b7e))
+
+### Code Refactoring
+
+- **client:** deprecate get_retry_after method ([#548](https://github.com/afuetterer/oaipmh-scythe/pull/548)) ([ab536d0](https://github.com/afuetterer/oaipmh-scythe/commit/ab536d0c7f03350a89e6c93570919f18131ccc00))
+- **types:** replace _Element with etree.Element in type annotations ([#545](https://github.com/afuetterer/oaipmh-scythe/pull/545)) ([91593df](https://github.com/afuetterer/oaipmh-scythe/commit/91593dfccc07396eb81a12b878e96fd95f4a8a50))
+
 ## [0.15.1](https://github.com/afuetterer/oaipmh-scythe/compare/0.15.0...0.15.1) (2026-08-25)
 
 ### Bug Fixes
