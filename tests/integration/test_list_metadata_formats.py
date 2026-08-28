@@ -8,8 +8,8 @@ from collections.abc import Iterator
 from typing import TYPE_CHECKING
 
 import pytest
-from httpx2 import HTTPStatusError
 
+from oaipmh_scythe import exceptions
 from oaipmh_scythe.models import MetadataFormat
 
 if TYPE_CHECKING:
@@ -36,7 +36,6 @@ def test_list_metadata_formats_with_valid_identifier(scythe: Scythe) -> None:
 
 @pytest.mark.vcr("list_metadata_formats.yaml")
 def test_list_metadata_formats_with_invalid_identifier(scythe: Scythe) -> None:
-    # idDoesNotExist
     metadata_formats = scythe.list_metadata_formats(identifier="oai:zenodo.org:XXX")
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(exceptions.IdDoesNotExist):
         next(metadata_formats)

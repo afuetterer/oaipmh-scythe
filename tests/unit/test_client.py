@@ -13,15 +13,29 @@ import httpx2
 import pytest
 from httpx2 import HTTPStatusError
 
-from oaipmh_scythe import Scythe
+from oaipmh_scythe import Scythe, exceptions
 
 if TYPE_CHECKING:
     from pytest_mock import MockerFixture
     from respx.router import MockRouter
 
-
 query = {"verb": "ListIdentifiers", "metadataPrefix": "oai_dc"}
 auth = ("username", "password")
+
+
+def build_oaipmh_error_response(error_code: str, error_message: str) -> httpx.Response:
+    """Generate an OAI-PMH error response with the given code and message."""
+    xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+    <OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/">
+        <responseDate>2026-08-10T09:18:29Z</responseDate>
+        <request>https://zenodo.org/oai2d</request>
+        <error code="{error_code}">{error_message}</error>
+    </OAI-PMH>"""
+    return httpx.Response(
+        422,
+        content=xml.encode(),
+        headers={"Content-Type": "application/xml; charset=utf-8"},
+    )
 
 
 def test_invalid_http_method() -> None:
@@ -164,4 +178,58 @@ def test_server_with_application_xml_header(scythe: Scythe, httpx2_mock: MockRou
         return_value=httpx.Response(200, headers={"Content-Type": "application/xml; charset=utf-8"})
     )
     scythe.harvest(query)
+    assert mock_route.called
+
+
+def test_bad_verb_response(scythe: Scythe, httpx2_mock: MockRouter) -> None:
+    error_response = build_oaipmh_error_response(
+        "badVerb",
+        "Value of the verb argument is not a legal OAI-PMH verb, the verb argument is missing, or the verb argument is repeated.",
+    )
+    mock_route = httpx2_mock.get("https://zenodo.org/oai2d?verb=ListMetadataFormats").mock(return_value=error_response)
+    with pytest.raises(exceptions.BadVerb):
+        next(scythe.list_metadata_formats())
+    assert mock_route.called
+
+
+def test_no_set_hierarchy_response(scythe: Scythe, httpx2_mock: MockRouter) -> None:
+    error_response = build_oaipmh_error_response("noSetHierarchy", "This repository does not support sets.")
+    mock_route = httpx2_mock.get("https://zenodo.org/oai2d?verb=ListSets").mock(return_value=error_response)
+    with pytest.raises(exceptions.NoSetHierarchy):
+        next(scythe.list_sets())
+    assert mock_route.called
+
+
+def test_no_metadata_formats_response(scythe: Scythe, httpx2_mock: MockRouter) -> None:
+    error_response = build_oaipmh_error_response(
+        "noMetadataFormats",
+        "There are no metadata formats available for the specified item.",
+    )
+    mock_route = httpx2_mock.get("https://zenodo.org/oai2d?verb=ListMetadataFormats").mock(return_value=error_response)
+    with pytest.raises(exceptions.NoMetadataFormats):
+        next(scythe.list_metadata_formats())
+    assert mock_route.called
+
+
+def test_cannot_disseminate_format_response(scythe: Scythe, httpx2_mock: MockRouter) -> None:
+    error_response = build_oaipmh_error_response(
+        "cannotDisseminateFormat",
+        "The metadata format identified by the value given for the metadataPrefix argument is not supported by the item or by the repository.",
+    )
+    mock_route = httpx2_mock.get(
+        "https://zenodo.org/oai2d?verb=GetRecord&identifier=oai%3Aexample.org%3A123&metadataPrefix=XXX"
+    ).mock(return_value=error_response)
+    with pytest.raises(exceptions.CannotDisseminateFormat):
+        scythe.get_record(identifier="oai:example.org:123", metadata_prefix="XXX")
+    assert mock_route.called
+
+
+@pytest.mark.parametrize("error_code", ["unknownCode", ""])
+def test_unknown_oaipmh_error_code(scythe: Scythe, httpx2_mock: MockRouter, error_code: str) -> None:
+    error_response = build_oaipmh_error_response(error_code, "An unknown error occurred.")
+    mock_route = httpx2_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
+        return_value=error_response
+    )
+    with pytest.raises(exceptions.GeneralOAIPMHError, match="An unknown error occurred"):
+        next(scythe.list_identifiers())
     assert mock_route.called

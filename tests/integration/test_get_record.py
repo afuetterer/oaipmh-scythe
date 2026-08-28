@@ -7,8 +7,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import pytest
-from httpx2 import HTTPStatusError
 
+from oaipmh_scythe import exceptions
 from oaipmh_scythe.models import Record
 
 if TYPE_CHECKING:
@@ -41,13 +41,11 @@ def test_get_record_with_valid_metadata_prefix(scythe: Scythe) -> None:
 
 @pytest.mark.vcr("get_record.yaml")
 def test_get_record_with_invalid_metadata_prefix(scythe: Scythe) -> None:
-    with pytest.raises(HTTPStatusError):
-        # cannotDisseminateFormat
+    with pytest.raises(exceptions.BadArgument):
         scythe.get_record(identifier=IDENTIFIER, metadata_prefix="XXX")
 
 
 @pytest.mark.vcr("id_does_not_exist.yaml")
 def test_get_record_with_invalid_identifier(scythe: Scythe) -> None:
-    # idDoesNotExist
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(exceptions.IdDoesNotExist):
         scythe.get_record(identifier="oai:zenodo.org:XXX", metadata_prefix="oai_dc")

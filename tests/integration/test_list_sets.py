@@ -8,8 +8,8 @@ from collections.abc import Iterator
 from typing import TYPE_CHECKING
 
 import pytest
-from httpx2 import HTTPStatusError
 
+from oaipmh_scythe import exceptions
 from oaipmh_scythe.models import Set
 
 if TYPE_CHECKING:
@@ -39,7 +39,6 @@ def test_list_sets_with_valid_resumption_token(scythe: Scythe) -> None:
 
 @pytest.mark.vcr("list_sets.yaml")
 def test_list_sets_with_invalid_resumption_token(scythe: Scythe) -> None:
-    # badResumptionToken
     sets = scythe.list_sets(resumption_token="XXX")
-    with pytest.raises(HTTPStatusError):
+    with pytest.raises(exceptions.BadResumptionToken):
         sets = list(sets)
