@@ -30,7 +30,7 @@ else:
 
 import httpx2
 
-from oaipmh_scythe.config import RetryConfig
+from oaipmh_scythe.config import HTTPConfig, RetryConfig
 from oaipmh_scythe.iterator import BaseOAIIterator, OAIItemIterator
 from oaipmh_scythe.models import Header, Identify, MetadataFormat, OAIItem, Record, Set
 from oaipmh_scythe.response import OAIResponse
@@ -67,16 +67,17 @@ class Scythe:
 
     Attributes:
         endpoint: The base URL of the OAI-PMH service.
+        http_config: A HTTPConfig instance controlling how HTTP requests are made.
         retry_config: A RetryConfig instance controlling the retry behavior for failed requests.
-        http_method: The HTTP method to use for requests (either 'GET' or 'POST').
+        http_method: (Deprecated, will be removed in version 0.19.0) Use `http_config.http_method` instead.
         iterator: The iterator class to be used for iterating over responses.
         max_retries: (Deprecated, will be removed in version 0.19.0) Use `retry_config.max_retries` instead.
         retry_status_codes: (Deprecated, will be removed in version 0.19.0) Use `retry_config.retry_status_codes` instead.
         default_retry_after: (Deprecated, will be removed in version 0.19.0) Use `retry_config.default_retry_after` instead.
         class_mapping: A mapping from OAI verbs to classes representing OAI items.
-        encoding: The character encoding for decoding responses. Defaults to the server's specified encoding.
-        auth: Optional authentication credentials for accessing the OAI-PMH interface.
-        timeout: The timeout (in seconds) for HTTP requests.
+        encoding: (Deprecated, will be removed in version 0.19.0) Use `http_config.encoding` instead.
+        auth: (Deprecated, will be removed in version 0.19.0) Use `http_config.auth` instead.
+        timeout: (Deprecated, will be removed in version 0.19.0) Use `http_config.timeout` instead.
 
     Examples:
         >>> with Scythe("https://zenodo.org/oai2d") as scythe:
@@ -90,6 +91,7 @@ class Scythe:
         self,
         endpoint: str,
         *,
+        http_config: HTTPConfig | None = None,
         retry_config: RetryConfig | None = None,
         http_method: str = "GET",
         iterator: type[BaseOAIIterator] = OAIItemIterator,
@@ -102,28 +104,25 @@ class Scythe:
         timeout: float = 60,
     ) -> None:
         self.endpoint = endpoint
-        if http_method not in ("GET", "POST"):
-            raise ValueError("Invalid HTTP method: %s! Must be GET or POST.")
-        self.http_method = http_method
         if issubclass(iterator, BaseOAIIterator):
             self.iterator = iterator
         else:
             raise TypeError(f"Argument 'iterator' must be subclass of {BaseOAIIterator.__name__}")
-        defaults = RetryConfig()
-        legacy_arguments_used = (
-            max_retries != defaults.max_retries
+        retry_defaults = RetryConfig()
+        legacy_retry_arguments_used = (
+            max_retries != retry_defaults.max_retries
             or retry_status_codes is not None
-            or default_retry_after != defaults.default_retry_after
+            or default_retry_after != retry_defaults.default_retry_after
         )
         if retry_config is not None:
-            if legacy_arguments_used:
+            if legacy_retry_arguments_used:
                 raise ValueError(
                     "Cannot specify both 'retry_config' and the deprecated arguments 'max_retries', 'retry_status_codes', "
                     "or 'default_retry_after'. Use only the 'retry_config' argument."
                 )
             self.retry_config = retry_config
         else:
-            if legacy_arguments_used:
+            if legacy_retry_arguments_used:
                 warnings.warn(
                     "The arguments 'max_retries', 'retry_status_codes', and 'default_retry_after' are deprecated. "
                     "Use the 'retry_config' argument with a RetryConfig instance instead. "
@@ -134,20 +133,43 @@ class Scythe:
             self.retry_config = RetryConfig(
                 max_retries=max_retries,
                 retry_status_codes=(
-                    tuple(retry_status_codes) if retry_status_codes is not None else defaults.retry_status_codes
+                    tuple(retry_status_codes) if retry_status_codes is not None else retry_defaults.retry_status_codes
                 ),
                 default_retry_after=default_retry_after,
             )
         self.max_retries = self.retry_config.max_retries
         self.retry_status_codes = self.retry_config.retry_status_codes
         self.default_retry_after = self.retry_config.default_retry_after
+        http_defaults = HTTPConfig()
+        legacy_http_arguments_used = (
+            http_method != http_defaults.http_method
+            or timeout != http_defaults.timeout
+            or auth is not None
+            or encoding != http_defaults.encoding
+        )
+        if http_config is not None:
+            if legacy_http_arguments_used:
+                raise ValueError(
+                    "Cannot specify both 'http_config' and the deprecated arguments 'http_method', 'timeout', 'auth', "
+                    "or 'encoding'. Use only the 'http_config' argument."
+                )
+            self.http_config = http_config
+        else:
+            if legacy_http_arguments_used:
+                warnings.warn(
+                    "The arguments 'http_method', 'timeout', 'auth', and 'encoding' are deprecated. "
+                    "Use the 'http_config' argument with an HTTPConfig instance instead. "
+                    "These arguments will be removed in version 0.19.0.",
+                    FutureWarning,
+                    stacklevel=2,
+                )
+            self.http_config = HTTPConfig(http_method=http_method, timeout=timeout, auth=auth, encoding=encoding)
+        self.http_method = self.http_config.http_method
+        self.timeout = self.http_config.timeout
+        self.auth = self.http_config.auth
+        self.encoding = self.http_config.encoding
         self.oai_namespace = OAI_NAMESPACE
         self.class_mapping = class_mapping or DEFAULT_CLASS_MAP
-        self.encoding = encoding
-        self.auth = auth
-        if timeout <= 0:
-            raise ValueError(f"Invalid value for 'timeout': {timeout}. Timeout must be positive int or float.")
-        self.timeout = timeout
         self._client: httpx2.Client | None = None
 
     @property
