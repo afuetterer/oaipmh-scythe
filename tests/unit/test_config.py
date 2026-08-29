@@ -19,6 +19,10 @@ def test_invalid_timeout(timeout: float) -> None:
         HTTPConfig(timeout=timeout)
 
 
+def test_default_user_agent() -> None:
+    assert HTTPConfig().user_agent.startswith("oaipmh-scythe/")
+
+
 @pytest.mark.parametrize("retry_after", [-1, -1.0, 0, 0.0])
 def test_invalid_default_retry_after(retry_after: float) -> None:
     with pytest.raises(ValueError, match="Invalid value for 'default_retry_after'"):

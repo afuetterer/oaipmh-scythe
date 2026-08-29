@@ -16,7 +16,6 @@ import logging
 import sys
 import time
 import warnings
-from importlib.metadata import version
 from typing import TYPE_CHECKING
 
 if sys.version_info >= (3, 11):
@@ -44,8 +43,6 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
-__version__ = version("oaipmh-scythe")
-USER_AGENT: str = f"oaipmh-scythe/{__version__}"
 OAI_NAMESPACE: str = "{http://www.openarchives.org/OAI/2.0/}"
 
 # Map OAI verbs to class representations
@@ -184,7 +181,10 @@ class Scythe:
             A reusable HTTP client instance for making HTTP requests.
         """
         if self._client is None or self._client.is_closed:
-            headers = {"Accept": "text/xml; charset=utf-8, application/xml; charset=utf-8", "user-agent": USER_AGENT}
+            headers = {
+                "Accept": "text/xml; charset=utf-8, application/xml; charset=utf-8",
+                "user-agent": self.http_config.user_agent,
+            }
             self._client = httpx2.Client(
                 headers=headers,
                 timeout=self.timeout,
