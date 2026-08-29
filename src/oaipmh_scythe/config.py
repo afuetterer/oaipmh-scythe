@@ -8,12 +8,43 @@ This module includes configuration data classes that group related Scythe argume
 simplifying the construction of the Scythe class.
 
 Classes:
+    HTTPConfig: Groups the HTTP arguments controlling how requests are made.
     RetryConfig: Groups the retry arguments controlling how failed requests are retried.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from httpx2._types import AuthTypes
+
+
+@dataclass
+class HTTPConfig:
+    """A data class grouping the HTTP arguments of the Scythe client.
+
+    The HTTP configuration controls how requests are made. It determines the HTTP method, the request
+    timeout, optional authentication credentials, and the character encoding used for decoding responses.
+
+    Attributes:
+        http_method: The HTTP method to use for requests. Must be "GET" or "POST". Default is "GET".
+        timeout: The timeout (in seconds) for HTTP requests. Default is 60.
+        auth: Optional authentication credentials for accessing the OAI-PMH interface.
+        encoding: The character encoding for decoding responses. Default is "utf-8".
+    """
+
+    http_method: str = "GET"
+    timeout: float = 60
+    auth: AuthTypes | None = None
+    encoding: str = "utf-8"
+
+    def __post_init__(self) -> None:
+        if self.http_method not in ("GET", "POST"):
+            raise ValueError(f"Invalid value for 'http_method': {self.http_method}. Must be GET or POST.")
+        if self.timeout <= 0:
+            raise ValueError(f"Invalid value for 'timeout': {self.timeout}. Timeout must be positive int or float.")
 
 
 @dataclass

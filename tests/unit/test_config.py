@@ -4,7 +4,19 @@
 
 import pytest
 
-from oaipmh_scythe import RetryConfig
+from oaipmh_scythe import HTTPConfig, RetryConfig
+
+
+@pytest.mark.parametrize("http_method", ["DELETE", "PATCH"])
+def test_invalid_http_method(http_method: str) -> None:
+    with pytest.raises(ValueError, match="Invalid value for 'http_method'"):
+        HTTPConfig(http_method=http_method)
+
+
+@pytest.mark.parametrize("timeout", [-1, -1.0, 0, 0.0])
+def test_invalid_timeout(timeout: float) -> None:
+    with pytest.raises(ValueError, match="Invalid value for 'timeout'"):
+        HTTPConfig(timeout=timeout)
 
 
 @pytest.mark.parametrize("retry_after", [-1, -1.0, 0, 0.0])
