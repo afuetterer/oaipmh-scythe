@@ -47,6 +47,8 @@ class ResumptionToken:
     harvest requests. This class encapsulates the typical components of a resumption token,
     including the token itself, cursor, complete list size, and an expiration date.
 
+    Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#FlowControl>
+
     Attributes:
         token: The actual resumption token used for continuing the iteration in subsequent OAI-PMH requests.
             Default is None.
@@ -102,6 +104,8 @@ class Identify(OAIItem):
     It differs from other OAI entities in that it is initialized with an OAIResponse object
     rather than a direct XML element. The class parses the Identify information from the
     response and provides access to its individual components.
+
+    Ref: Response Format under <https://openarchives.org/OAI/openarchivesprotocol.html#Identify>
 
     Args:
         identify_response: The response object from an Identify request.
@@ -199,6 +203,8 @@ class Record(OAIItem):
     structured access to its details, such as header information and metadata. It checks for the presence of
     the header and metadata elements and raises an error if the header is not found.
 
+    Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#Record>
+
     Args:
         record_element: The XML element representing the OAI record.
         strip_ns: If True, namespaces are removed from the element names in the parsed metadata. Defaults to True.
@@ -249,6 +255,8 @@ class Set(OAIItem):
     This class encapsulates a set element from an OAI-PMH response and provides structured access to its details.
     It parses the set information from the provided XML element and dynamically sets attributes
     based on the parsed content.
+
+    Ref: <https://openarchives.org/OAI/openarchivesprotocol.html#Set>
 
     Args:
         set_element: The XML element representing the OAI set. The element is parsed to extract set details.
