@@ -86,6 +86,7 @@ class Scythe:
     def __init__(
         self,
         endpoint: str,
+        *,
         http_method: str = "GET",
         iterator: type[BaseOAIIterator] = OAIItemIterator,
         max_retries: int = 0,
