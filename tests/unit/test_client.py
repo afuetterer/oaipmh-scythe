@@ -13,7 +13,7 @@ import httpx2
 import pytest
 from httpx2 import HTTPStatusError
 
-from oaipmh_scythe import Scythe, exceptions
+from oaipmh_scythe import RetryConfig, Scythe, exceptions
 
 if TYPE_CHECKING:
     from pytest_mock import MockerFixture
@@ -161,9 +161,67 @@ def test_invalid_custom_timeout(timeout: float) -> None:
         Scythe("https://zenodo.org/oai2d", timeout=timeout)
 
 
+def test_retry_config() -> None:
+    retry_config = RetryConfig(max_retries=3, retry_status_codes=(503, 500), default_retry_after=5)
+    with Scythe("https://zenodo.org/oai2d", retry_config=retry_config) as scythe:
+        assert scythe.retry_config is retry_config
+        assert scythe.max_retries == 3
+        assert scythe.retry_status_codes == (503, 500)
+        assert scythe.default_retry_after == 5
+
+
+def test_default_retry_config() -> None:
+    scythe = Scythe("https://zenodo.org/oai2d")
+    assert scythe.retry_config == RetryConfig()
+    assert scythe.max_retries == 0
+    assert scythe.retry_status_codes == (503,)
+    assert scythe.default_retry_after == 60
+
+
+@pytest.mark.parametrize(
+    ("legacy_kwargs", "expected"),
+    [
+        ({"max_retries": 2}, RetryConfig(max_retries=2)),
+        ({"retry_status_codes": (503, 500)}, RetryConfig(retry_status_codes=(503, 500))),
+        ({"default_retry_after": 10}, RetryConfig(default_retry_after=10)),
+        (
+            {"max_retries": 2, "retry_status_codes": (503, 500), "default_retry_after": 10},
+            RetryConfig(max_retries=2, retry_status_codes=(503, 500), default_retry_after=10),
+        ),
+    ],
+)
+def test_legacy_retry_arguments_warn(legacy_kwargs: dict[str, object], expected: RetryConfig) -> None:
+    with pytest.warns(FutureWarning, match="removed in version 0.19.0"):
+        scythe = Scythe("https://zenodo.org/oai2d", **legacy_kwargs)  # ty: ignore [invalid-argument-type]
+    assert scythe.retry_config == expected
+
+
+def test_legacy_retry_arguments_defaults_do_not_warn() -> None:
+    scythe = Scythe("https://zenodo.org/oai2d", max_retries=0, retry_status_codes=None, default_retry_after=60)
+    assert scythe.retry_config == RetryConfig()
+
+
+def test_retry_config_conflict_with_legacy_arguments() -> None:
+    with pytest.raises(ValueError, match="Cannot specify both"):
+        Scythe("https://zenodo.org/oai2d", retry_config=RetryConfig(), max_retries=2)
+
+
+def test_retry_with_retry_config(httpx2_mock: MockRouter, mocker: MockerFixture) -> None:
+    scythe = Scythe("https://zenodo.org/oai2d", retry_config=RetryConfig(max_retries=3, default_retry_after=0.1))
+    mock_sleep = mocker.patch("time.sleep")
+    mock_route = httpx2_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
+        return_value=httpx.Response(503, headers={"retry-after": "10"})
+    )
+    with suppress(HTTPStatusError):
+        scythe.harvest(query)
+    assert mock_route.call_count == 4
+    assert mock_sleep.call_count == 3
+    mock_sleep.assert_called_with(10)
+
+
 @pytest.mark.parametrize("retry_after", [10, 10.0, 0.1])
 def test_valid_custom_retry_after(retry_after: float) -> None:
-    with Scythe("https://zenodo.org/oai2d", default_retry_after=retry_after) as scythe:
+    with Scythe("https://zenodo.org/oai2d", retry_config=RetryConfig(default_retry_after=retry_after)) as scythe:
         assert scythe.default_retry_after
 
 
