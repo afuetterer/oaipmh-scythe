@@ -60,11 +60,14 @@ class OAIResponse:
         Non-XML responses are silently ignored.
 
         Raises:
-            IdDoesNotExist: When the OAI response contains an error with code="idDoesNotExist".
             BadArgument: When the OAI response contains an error with code="badArgument".
             BadResumptionToken: When the OAI response contains an error with code="badResumptionToken".
+            BadVerb: When the OAI response contains an error with code="badVerb".
             CannotDisseminateFormat: When the OAI response contains an error with code="cannotDisseminateFormat".
+            IdDoesNotExist: When the OAI response contains an error with code="idDoesNotExist".
+            NoMetadataFormats: When the OAI response contains an error with code="noMetadataFormats".
             NoRecordsMatch: When the OAI response contains an error with code="noRecordsMatch".
+            NoSetHierarchy: When the OAI response contains an error with code="noSetHierarchy".
             GeneralOAIPMHError: When the error code is unknown, empty, or the exception class cannot be resolved.
         """
         try:
