@@ -6,6 +6,7 @@
 """oaipmh-scythe: A Scythe for harvesting OAI-PMH repositories."""
 
 from oaipmh_scythe.client import Scythe
+from oaipmh_scythe.config import RetryConfig
 from oaipmh_scythe.exceptions import (
     BadArgument,
     BadResumptionToken,
@@ -32,5 +33,6 @@ __all__ = [
     "NoSetHierarchy",
     "OAIPMHException",
     "OAIResponse",
+    "RetryConfig",
     "Scythe",
 ]
