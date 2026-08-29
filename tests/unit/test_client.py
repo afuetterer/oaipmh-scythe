@@ -169,6 +169,13 @@ def test_default_http_config() -> None:
     assert scythe.encoding == "utf-8"
 
 
+def test_custom_user_agent(httpx2_mock: MockRouter) -> None:
+    scythe = Scythe("https://zenodo.org/oai2d", http_config=HTTPConfig(user_agent="custom-agent/1.0"))
+    httpx2_mock.get("https://zenodo.org/oai2d").mock(return_value=httpx.Response(200))
+    oai_response = scythe.harvest(query)
+    assert oai_response.http_response.request.headers["user-agent"] == "custom-agent/1.0"
+
+
 @pytest.mark.parametrize(
     ("legacy_kwargs", "expected"),
     [

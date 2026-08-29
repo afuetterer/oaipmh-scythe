@@ -15,6 +15,7 @@ Classes:
 from __future__ import annotations
 
 from dataclasses import dataclass
+from importlib.metadata import version
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -26,19 +27,22 @@ class HTTPConfig:
     """A data class grouping the HTTP arguments of the Scythe client.
 
     The HTTP configuration controls how requests are made. It determines the HTTP method, the request
-    timeout, optional authentication credentials, and the character encoding used for decoding responses.
+    timeout, optional authentication credentials, the character encoding used for decoding responses,
+    and the user agent string sent with every request.
 
     Attributes:
         http_method: The HTTP method to use for requests. Must be "GET" or "POST". Default is "GET".
         timeout: The timeout (in seconds) for HTTP requests. Default is 60.
         auth: Optional authentication credentials for accessing the OAI-PMH interface.
         encoding: The character encoding for decoding responses. Default is "utf-8".
+        user_agent: The user agent string sent with every request. Defaults to "oaipmh-scythe/<version>".
     """
 
     http_method: str = "GET"
     timeout: float = 60
     auth: AuthTypes | None = None
     encoding: str = "utf-8"
+    user_agent: str = f"oaipmh-scythe/{version('oaipmh-scythe')}"
 
     def __post_init__(self) -> None:
         if self.http_method not in ("GET", "POST"):
