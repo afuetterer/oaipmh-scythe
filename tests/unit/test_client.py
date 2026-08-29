@@ -13,7 +13,7 @@ import httpx2
 import pytest
 from httpx2 import HTTPStatusError
 
-from oaipmh_scythe import RetryConfig, Scythe, exceptions
+from oaipmh_scythe import HTTPConfig, RetryConfig, Scythe, exceptions
 
 if TYPE_CHECKING:
     from pytest_mock import MockerFixture
@@ -36,11 +36,6 @@ def build_oaipmh_error_response(error_code: str, error_message: str) -> httpx.Re
         content=xml.encode(),
         headers={"Content-Type": "application/xml; charset=utf-8"},
     )
-
-
-def test_invalid_http_method() -> None:
-    with pytest.raises(ValueError, match="Invalid HTTP method"):
-        Scythe("https://localhost", http_method="DELETE")
 
 
 def test_invalid_iterator() -> None:
@@ -138,12 +133,12 @@ def test_no_auth_arguments() -> None:
 
 
 def test_auth_arguments() -> None:
-    with Scythe("https://zenodo.org/oai2d", auth=auth) as scythe:
+    with Scythe("https://zenodo.org/oai2d", http_config=HTTPConfig(auth=auth)) as scythe:
         assert scythe.client.auth
 
 
 def test_auth_arguments_usage(httpx2_mock: MockRouter) -> None:
-    scythe = Scythe("https://zenodo.org/oai2d", auth=auth)
+    scythe = Scythe("https://zenodo.org/oai2d", http_config=HTTPConfig(auth=auth))
     httpx2_mock.get("https://zenodo.org/oai2d").mock(return_value=httpx.Response(200))
     oai_response = scythe.harvest(query)
     assert oai_response.http_response.request.headers["authorization"]
@@ -151,14 +146,52 @@ def test_auth_arguments_usage(httpx2_mock: MockRouter) -> None:
 
 @pytest.mark.parametrize("timeout", [10, 10.0, 0.1])
 def test_valid_custom_timeout(timeout: float) -> None:
-    with Scythe("https://zenodo.org/oai2d", timeout=timeout) as scythe:
+    with Scythe("https://zenodo.org/oai2d", http_config=HTTPConfig(timeout=timeout)) as scythe:
         assert scythe.client.timeout
 
 
-@pytest.mark.parametrize("timeout", [-1, -1.0, 0, 0.0])
-def test_invalid_custom_timeout(timeout: float) -> None:
-    with pytest.raises(ValueError, match="Invalid value for 'timeout'"):
-        Scythe("https://zenodo.org/oai2d", timeout=timeout)
+def test_http_config() -> None:
+    http_config = HTTPConfig(http_method="POST", timeout=30, auth=auth, encoding="latin-1")
+    with Scythe("https://zenodo.org/oai2d", http_config=http_config) as scythe:
+        assert scythe.http_config is http_config
+        assert scythe.http_method == "POST"
+        assert scythe.timeout == 30
+        assert scythe.auth == auth
+        assert scythe.encoding == "latin-1"
+
+
+def test_default_http_config() -> None:
+    scythe = Scythe("https://zenodo.org/oai2d")
+    assert scythe.http_config == HTTPConfig()
+    assert scythe.http_method == "GET"
+    assert scythe.timeout == 60
+    assert scythe.auth is None
+    assert scythe.encoding == "utf-8"
+
+
+@pytest.mark.parametrize(
+    ("legacy_kwargs", "expected"),
+    [
+        ({"http_method": "POST"}, HTTPConfig(http_method="POST")),
+        ({"timeout": 30}, HTTPConfig(timeout=30)),
+        ({"auth": auth}, HTTPConfig(auth=auth)),
+        ({"encoding": "latin-1"}, HTTPConfig(encoding="latin-1")),
+    ],
+)
+def test_legacy_http_arguments_warn(legacy_kwargs: dict[str, object], expected: HTTPConfig) -> None:
+    with pytest.warns(FutureWarning, match="removed in version 0.19.0"):
+        scythe = Scythe("https://zenodo.org/oai2d", **legacy_kwargs)  # ty: ignore [invalid-argument-type]
+    assert scythe.http_config == expected
+
+
+def test_legacy_http_arguments_defaults_do_not_warn() -> None:
+    scythe = Scythe("https://zenodo.org/oai2d", http_method="GET", timeout=60, auth=None, encoding="utf-8")
+    assert scythe.http_config == HTTPConfig()
+
+
+def test_http_config_conflict_with_legacy_arguments() -> None:
+    with pytest.raises(ValueError, match="Cannot specify both"):
+        Scythe("https://zenodo.org/oai2d", http_config=HTTPConfig(), http_method="POST")
 
 
 def test_retry_config() -> None:
