@@ -15,6 +15,7 @@ from __future__ import annotations
 import logging
 import sys
 import time
+import warnings
 from importlib.metadata import version
 from typing import TYPE_CHECKING
 
@@ -29,6 +30,7 @@ else:
 
 import httpx2
 
+from oaipmh_scythe.config import RetryConfig
 from oaipmh_scythe.iterator import BaseOAIIterator, OAIItemIterator
 from oaipmh_scythe.models import Header, Identify, MetadataFormat, OAIItem, Record, Set
 from oaipmh_scythe.response import OAIResponse
@@ -65,11 +67,12 @@ class Scythe:
 
     Attributes:
         endpoint: The base URL of the OAI-PMH service.
+        retry_config: A RetryConfig instance controlling the retry behavior for failed requests.
         http_method: The HTTP method to use for requests (either 'GET' or 'POST').
         iterator: The iterator class to be used for iterating over responses.
-        max_retries: The maximum number of retries for a request in case of failures.
-        retry_status_codes: The HTTP status codes on which to retry the request.
-        default_retry_after: The default wait time (in seconds) between retries if no 'retry-after' header is present.
+        max_retries: (Deprecated, will be removed in version 0.19.0) Use `retry_config.max_retries` instead.
+        retry_status_codes: (Deprecated, will be removed in version 0.19.0) Use `retry_config.retry_status_codes` instead.
+        default_retry_after: (Deprecated, will be removed in version 0.19.0) Use `retry_config.default_retry_after` instead.
         class_mapping: A mapping from OAI verbs to classes representing OAI items.
         encoding: The character encoding for decoding responses. Defaults to the server's specified encoding.
         auth: Optional authentication credentials for accessing the OAI-PMH interface.
@@ -87,6 +90,7 @@ class Scythe:
         self,
         endpoint: str,
         *,
+        retry_config: RetryConfig | None = None,
         http_method: str = "GET",
         iterator: type[BaseOAIIterator] = OAIItemIterator,
         max_retries: int = 0,
@@ -105,13 +109,38 @@ class Scythe:
             self.iterator = iterator
         else:
             raise TypeError(f"Argument 'iterator' must be subclass of {BaseOAIIterator.__name__}")
-        self.max_retries = max_retries
-        self.retry_status_codes = retry_status_codes or (503,)
-        if default_retry_after <= 0:
-            raise ValueError(
-                f"Invalid value for 'default_retry_after': {default_retry_after}. default_retry_after must be positive int or float."
+        defaults = RetryConfig()
+        legacy_arguments_used = (
+            max_retries != defaults.max_retries
+            or retry_status_codes is not None
+            or default_retry_after != defaults.default_retry_after
+        )
+        if retry_config is not None:
+            if legacy_arguments_used:
+                raise ValueError(
+                    "Cannot specify both 'retry_config' and the deprecated arguments 'max_retries', 'retry_status_codes', "
+                    "or 'default_retry_after'. Use only the 'retry_config' argument."
+                )
+            self.retry_config = retry_config
+        else:
+            if legacy_arguments_used:
+                warnings.warn(
+                    "The arguments 'max_retries', 'retry_status_codes', and 'default_retry_after' are deprecated. "
+                    "Use the 'retry_config' argument with a RetryConfig instance instead. "
+                    "These arguments will be removed in version 0.19.0.",
+                    FutureWarning,
+                    stacklevel=2,
+                )
+            self.retry_config = RetryConfig(
+                max_retries=max_retries,
+                retry_status_codes=(
+                    tuple(retry_status_codes) if retry_status_codes is not None else defaults.retry_status_codes
+                ),
+                default_retry_after=default_retry_after,
             )
-        self.default_retry_after = default_retry_after
+        self.max_retries = self.retry_config.max_retries
+        self.retry_status_codes = self.retry_config.retry_status_codes
+        self.default_retry_after = self.retry_config.default_retry_after
         self.oai_namespace = OAI_NAMESPACE
         self.class_mapping = class_mapping or DEFAULT_CLASS_MAP
         self.encoding = encoding
@@ -437,7 +466,7 @@ class Scythe:
 
     @deprecated(
         "Scythe.get_retry_after() is not part of the public API. There is no public replacement. "
-        "To customize retries, use the max_retries, retry_status_codes, and default_retry_after parameters instead. "
+        "To customize retries, use the retry_config argument instead. "
         "This method will be removed in version 0.18.0.",
         category=FutureWarning,
     )

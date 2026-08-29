@@ -21,6 +21,7 @@ nav = [
   { "Harvesting other Metadata Formats than OAI-DC" = "customizing.md" },
   { "API" = [
     { "Client" = "api/client.md" },
+    { "Config" = "api/config.md" },
     { "Iterator" = "api/iterator.md" },
     { "Models" = "api/models.md" },
     { "Response" = "api/response.md" },
