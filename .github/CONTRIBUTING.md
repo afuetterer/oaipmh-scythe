@@ -47,7 +47,7 @@ Ready to contribute?
 
 You’ll need the following tools installed:
 
-- Python ≥ 3.10
+- Python ≥ 3.11
 - [uv](https://github.com/astral-sh/uv) – a fast Python package and project manager
 - [just](https://github.com/casey/just) – a command‑runner similar to make
 
@@ -107,7 +107,7 @@ Before you submit a pull request, check that it meets these guidelines:
 1. The pull request should include tests.
 2. If the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a
    docstring.
-3. The pull request should work for Python >= 3.10. Check <https://github.com/afuetterer/oaipmh-scythe/pulls> and make
+3. The pull request should work for Python >= 3.11. Check <https://github.com/afuetterer/oaipmh-scythe/pulls> and make
    sure that all the tests pass.
 
 ---
