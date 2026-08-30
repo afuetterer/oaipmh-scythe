@@ -1,0 +1,2989 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Scythe for harvesting OAI-PMH repositories.">
+      
+      
+        <meta name="author" content="Heinz-Alexander Fütterer">
+      
+      
+        <link rel="canonical" href="https://afuetterer.github.io/oaipmh-scythe/0.16.0/changelog/">
+      
+      
+        <link rel="prev" href="../contributing/">
+      
+      
+        <link rel="next" href="../license/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.55">
+    
+    
+      
+        <title>Changelog - oaipmh-scythe</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.20815dad.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changelog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  You're not viewing the latest version.
+  <a href="../..">
+    <strong>Click here to go to latest.</strong>
+  </a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL(".."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="oaipmh-scythe" class="md-header__button md-logo" aria-label="oaipmh-scythe" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            oaipmh-scythe
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Changelog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun-moon" viewBox="0 0 24 24"><path d="M12 2v2M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715M16 12a4 4 0 0 0-4-4M19 5l-1.256 1.256M20 12h2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/afuetterer/oaipmh-scythe" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    afuetterer/oaipmh-scythe
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="oaipmh-scythe" class="md-nav__button md-logo" aria-label="oaipmh-scythe" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    oaipmh-scythe
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/afuetterer/oaipmh-scythe" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    afuetterer/oaipmh-scythe
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Home
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Tutorial
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oaipmh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  OAI-PMH Primer
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../customizing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Harvesting other Metadata Formats than OAI-DC
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  API
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Client
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Config
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/iterator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Iterator
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Models
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Utils
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exceptions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Meta
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Meta
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Contributor Guide
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Changelog
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Changelog
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0160-2026-08-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.16.0 (2026-08-30)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.16.0 (2026-08-30)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Performance improvements
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0152-2026-08-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.15.2 (2026-08-28)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.15.2 (2026-08-28)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Bug Fixes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0151-2026-08-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.15.1 (2026-08-25)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.15.1 (2026-08-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Bug Fixes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0150-2026-08-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.15.0 (2026-08-22)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.15.0 (2026-08-22)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0144-2026-08-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.14.4 (2026-08-22)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.4 (2026-08-22)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Bug Fixes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0143-2026-08-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.14.3 (2026-08-21)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.3 (2026-08-21)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-improvements_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Performance improvements
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Testing
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0142-2026-04-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.14.2 (2026-04-10)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.2 (2026-04-10)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-improvements_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Performance improvements
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0141-2026-04-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.14.1 (2026-04-10)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.1 (2026-04-10)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Bug Fixes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0140-2026-02-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.14.0 (2026-02-15)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.0 (2026-02-15)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0130-2024-05-07" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.13.0 (2024-05-07)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.13.0 (2024-05-07)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0121-2024-04-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.12.1 (2024-04-25)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.12.1 (2024-04-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Bug Fixes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0120-2024-04-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.12.0 (2024-04-04)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.12.0 (2024-04-04)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110-2024-01-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.11.0 (2024-01-25)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.11.0 (2024-01-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0100-2024-01-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.10.0 (2024-01-22)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.10.0 (2024-01-22)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Testing
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#090-2023-11-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.9.0 (2023-11-18)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.9.0 (2023-11-18)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-improvements_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Performance improvements
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#080-2023-11-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.8.0 (2023-11-16)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.8.0 (2023-11-16)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Breaking Changes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-improvements_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Performance Improvements
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Testing
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Other
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#070-2020-05-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.7.0 (2020-05-17)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#065-2020-01-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.6.5 (2020-01-12)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#064-2018-10-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.6.4 (2018-10-02)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#063-2018-04-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.6.3 (2018-04-08)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#062-2017-08-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.6.2 (2017-08-11)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#061-2016-11-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.6.1 (2016-11-13)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#050-2015-11-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.5.0 (2015-11-12)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#040-2015-05-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.4.0 (2015-05-31)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#030-2013-04-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.3.0 (2013-04-17)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#020-2013-02-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.2.0 (2013-02-26)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#010-2013-02-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.1.0 (2013-02-20)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  License
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0160-2026-08-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.16.0 (2026-08-30)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.16.0 (2026-08-30)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Performance improvements
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0152-2026-08-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.15.2 (2026-08-28)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.15.2 (2026-08-28)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Bug Fixes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0151-2026-08-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.15.1 (2026-08-25)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.15.1 (2026-08-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Bug Fixes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0150-2026-08-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.15.0 (2026-08-22)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.15.0 (2026-08-22)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0144-2026-08-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.14.4 (2026-08-22)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.4 (2026-08-22)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Bug Fixes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0143-2026-08-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.14.3 (2026-08-21)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.3 (2026-08-21)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-improvements_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Performance improvements
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Testing
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0142-2026-04-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.14.2 (2026-04-10)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.2 (2026-04-10)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-improvements_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Performance improvements
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0141-2026-04-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.14.1 (2026-04-10)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.1 (2026-04-10)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Bug Fixes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0140-2026-02-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.14.0 (2026-02-15)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.0 (2026-02-15)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0130-2024-05-07" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.13.0 (2024-05-07)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.13.0 (2024-05-07)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0121-2024-04-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.12.1 (2024-04-25)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.12.1 (2024-04-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Bug Fixes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0120-2024-04-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.12.0 (2024-04-04)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.12.0 (2024-04-04)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110-2024-01-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.11.0 (2024-01-25)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.11.0 (2024-01-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0100-2024-01-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.10.0 (2024-01-22)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.10.0 (2024-01-22)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Testing
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#090-2023-11-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.9.0 (2023-11-18)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.9.0 (2023-11-18)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-improvements_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Performance improvements
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#080-2023-11-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.8.0 (2023-11-16)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.8.0 (2023-11-16)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Breaking Changes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Features
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-improvements_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Performance Improvements
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-refactoring_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Code Refactoring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Testing
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Other
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#070-2020-05-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.7.0 (2020-05-17)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#065-2020-01-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.6.5 (2020-01-12)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#064-2018-10-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.6.4 (2018-10-02)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#063-2018-04-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.6.3 (2018-04-08)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#062-2017-08-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.6.2 (2017-08-11)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#061-2016-11-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.6.1 (2016-11-13)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#050-2015-11-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.5.0 (2015-11-12)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#040-2015-05-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.4.0 (2015-05-31)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#030-2013-04-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.3.0 (2013-04-17)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#020-2013-02-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.2.0 (2013-02-26)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#010-2013-02-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        0.1.0 (2013-02-20)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+    <a href="https://github.com/afuetterer/oaipmh-scythe/edit/main/docs/changelog.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/afuetterer/oaipmh-scythe/raw/main/docs/changelog.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-code-2" viewBox="0 0 24 24"><path d="M4 12.15V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2h-3.35"/><path d="M14 2v5a1 1 0 0 0 1 1h5M5 16l-3 3 3 3M9 22l3-3-3-3"/></svg>
+    </a>
+  
+
+
+<h1 id="changelog">Changelog</h1>
+<p>All notable changes to this project will be documented in this file.</p>
+<p>This project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>. See
+<a href="https://www.conventionalcommits.org/en/v1.0.0/">conventional commits</a> for commit guidelines.</p>
+<h2 id="0160-2026-08-30"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.15.2...0.16.0">0.16.0</a> (2026-08-30)</h2>
+<h3 id="features">Features</h3>
+<ul>
+<li><strong>client:</strong> add transport error retries to retryconfig (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/555">#555</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/abed96f72204883b338d41a949650197bf9ffe08">abed96f</a>)</li>
+<li><strong>client:</strong> add httpconfig.user_agent (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/b5ab996b6e83d8a617f1a399835603da9b3e7cb2">b5ab996</a>)</li>
+<li><strong>client:</strong> add HTTPConfig and deprecate http arguments (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/7f54b6087d39fa6f495e2cca40c9c819f12d1d25">7f54b60</a>)</li>
+<li><strong>client:</strong> add retryconfig and deprecate retry arguments (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/45652bfd402d12c4de10fd00dd8a8be8602bb786">45652bf</a>)</li>
+</ul>
+<h3 id="performance-improvements">Performance improvements</h3>
+<ul>
+<li><strong>config:</strong> replace tuple lookup to set lookup (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/556">#556</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/a626a717c4c0c2d0fc660c2662574fb2f8bdfeb1">a626a71</a>)</li>
+</ul>
+<h3 id="code-refactoring">Code Refactoring</h3>
+<ul>
+<li><strong>client:</strong> [<strong>breaking</strong>] enforce keyword-only arguments in <strong>init</strong> (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/543">#543</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/18a9ee050aacaa1f9f6e13279dbcbb6bf29437d9">18a9ee0</a>)</li>
+</ul>
+<h2 id="0152-2026-08-28"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.15.1...0.15.2">0.15.2</a> (2026-08-28)</h2>
+<h3 id="bug-fixes">Bug Fixes</h3>
+<ul>
+<li><strong>client:</strong> check oai-pmh errors before http status codes (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/549">#549</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/8ec9821d3890e0422a4079c9848fc9192bd55b7e">8ec9821</a>)</li>
+</ul>
+<h3 id="code-refactoring_1">Code Refactoring</h3>
+<ul>
+<li><strong>client:</strong> deprecate get_retry_after method (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/548">#548</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/ab536d0c7f03350a89e6c93570919f18131ccc00">ab536d0</a>)</li>
+<li><strong>types:</strong> replace _Element with etree.Element in type annotations (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/545">#545</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/91593dfccc07396eb81a12b878e96fd95f4a8a50">91593df</a>)</li>
+</ul>
+<h2 id="0151-2026-08-25"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.15.0...0.15.1">0.15.1</a> (2026-08-25)</h2>
+<h3 id="bug-fixes_1">Bug Fixes</h3>
+<ul>
+<li><strong>warnings:</strong> use futurewarning instead of deprecationwarning (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/542">#542</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/18bab4c93c72ad00399ed847b7a684c19ea531eb">18bab4c</a>)</li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<ul>
+<li>display deprecated section as admonition in api docs (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/541">#541</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/e35b70e57a54570b2409d8da5a13cf93226d49a5">e35b70e</a>)</li>
+</ul>
+<h2 id="0150-2026-08-22"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.14.4...0.15.0">0.15.0</a> (2026-08-22)</h2>
+<h3 id="features_1">Features</h3>
+<ul>
+<li><strong>client:</strong> [<strong>breaking</strong>] replace httpx with httpx2 (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/527">#527</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/4cf79fd0f972f6a84b5ec55648f6b3700c2f984e">4cf79fd</a>)</li>
+</ul>
+<h3 id="code-refactoring_2">Code Refactoring</h3>
+<ul>
+<li><strong>iterator:</strong> use getattr to handle optional deleted attribute (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/523">#523</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/7e4ec74c60b419401ba21b4560caae4cd154bc47">7e4ec74</a>)</li>
+<li><strong>models:</strong> declare explicit attributes in identify, set, metadataformat (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/525">#525</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/46d507501dac528ca3f8c99bc0624e9ab24802fa">46d5075</a>)</li>
+<li><strong>models:</strong> fix type error in record.get_metadata namespace handling (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/522">#522</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/a9781352ee5bf8a8a90fd85018e123959c0a20c4">a978135</a>)</li>
+<li><strong>types:</strong> add isinstance checks for type narrowing (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/524">#524</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/c6b9f77cd463d918a68173926ce88d14d90cd052">c6b9f77</a>)</li>
+<li><strong>types:</strong> ensure get_namespace always returns str (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/519">#519</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/fe144633d6f6a1a662b3b71d495b1bd002344fcb">fe14463</a>)</li>
+<li>enable flake8-annotations rule and add type annotations (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/518">#518</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/351b3df02dda12b3184ac2475d075471fce38c32">351b3df</a>)</li>
+</ul>
+<h2 id="0144-2026-08-22"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.14.3...0.14.4">0.14.4</a> (2026-08-22)</h2>
+<h3 id="bug-fixes_2">Bug Fixes</h3>
+<ul>
+<li><strong>utils:</strong> filter none values in filter_dict_except_resumption_token (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/517">#517</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/cc77d98f0ccb16876aa3704094173ba4fa832b38">cc77d98</a>)</li>
+</ul>
+<h2 id="0143-2026-08-21"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.14.2...0.14.3">0.14.3</a> (2026-08-21)</h2>
+<h3 id="performance-improvements_1">Performance improvements</h3>
+<ul>
+<li><strong>utils:</strong> pre-compile regex pattern for namespace handling (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/515">#515</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/62f3201c29919f61810dac9a4bba35b9da85d7c3">62f3201</a>)</li>
+</ul>
+<h3 id="code-refactoring_3">Code Refactoring</h3>
+<ul>
+<li><strong>models:</strong> deprecate unused <strong>iter</strong> methods (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/467">#467</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/6e2b72b7c612474a0ac924fc6514fdb7c994878b">6e2b72b</a>)</li>
+</ul>
+<h3 id="testing">Testing</h3>
+<ul>
+<li>switch from pytest-recording to cassetter (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/513">#513</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/8bf8475a67ebc15091b5ad00f5bc934757cb9c42">8bf8475</a>)</li>
+</ul>
+<h2 id="0142-2026-04-10"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.14.1...0.14.2">0.14.2</a> (2026-04-10)</h2>
+<h3 id="performance-improvements_2">Performance improvements</h3>
+<ul>
+<li>pre-compile regex pattern in get_namespace (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/451">#451</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/42bd6b1eb39131d20281be0d445962101ba347b8">42bd6b1</a>)</li>
+</ul>
+<h2 id="0141-2026-04-10"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.14.0...0.14.1">0.14.1</a> (2026-04-10)</h2>
+<h3 id="bug-fixes_3">Bug Fixes</h3>
+<ul>
+<li><strong>client:</strong> add application/xml to headers (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/462">#462</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/0d65ebe91e843f752fe8263c2e8a61b22afcf213">0d65ebe</a>)</li>
+</ul>
+<h3 id="documentation_1">Documentation</h3>
+<ul>
+<li><strong>readme:</strong> add uv install instructions (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/460">#460</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/1d298e7528d54d0f8d2ff6ed1f67c42073be4eed">1d298e7</a>)</li>
+</ul>
+<h2 id="0140-2026-02-15"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.13.0...0.14.0">0.14.0</a> (2026-02-15)</h2>
+<h3 id="features_2">Features</h3>
+<ul>
+<li>add support for python 3.14 (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/433">#433</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/9614533a0f5b9753638a1fac82dafbb856899b97">9614533</a>)</li>
+</ul>
+<h3 id="documentation_2">Documentation</h3>
+<ul>
+<li><strong>citation:</strong> add concept doi to citation.cff (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/368">#368</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/41e38350fe42a0281a993adf1daa7e0b81232a4b">41e3835</a>)</li>
+<li><strong>readme:</strong> add doi badge (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/367">#367</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/609211da61f2b99c3856dd04e927ae3178cfde0b">609211d</a>)</li>
+<li>set up versioned docs with mike (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/374">#374</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/347f7dc96873bd08d6d5c9770e0a1c93940c5800">347f7dc</a>)</li>
+</ul>
+<h2 id="0130-2024-05-07"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.12.1...0.13.0">0.13.0</a> (2024-05-07)</h2>
+<h3 id="features_3">Features</h3>
+<ul>
+<li><strong>client:</strong> make numeric arguments accept 'int | float' (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/366">#366</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/b53bbed65440f974b6c09b161a66a303fb57c3bd">b53bbed</a>)</li>
+</ul>
+<h3 id="documentation_3">Documentation</h3>
+<ul>
+<li><strong>readme:</strong> add codeql badge (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/365">#365</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/eca3e3b221bebdb47d72112c0e5f529298eadf77">eca3e3b</a>)</li>
+<li><strong>tutorial:</strong> fix typo (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/353">#353</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/65f75b82515cc772d82cf745b8763cb291d3ff2a">65f75b8</a>)</li>
+<li>add references to exceptions in docstrings (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/351">#351</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/4df8491502bc65ae0589c6686b71756d205f4411">4df8491</a>)</li>
+</ul>
+<h2 id="0121-2024-04-25"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.12.0...0.12.1">0.12.1</a> (2024-04-25)</h2>
+<h3 id="bug-fixes_4">Bug Fixes</h3>
+<ul>
+<li><strong>exceptions:</strong> rename nometadataformat to nometadataformats (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/349">#349</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/255acb257a35533e78b0eb1aed85704c386e4e0a">255acb2</a>)</li>
+</ul>
+<h3 id="code-refactoring_4">Code Refactoring</h3>
+<ul>
+<li><strong>client:</strong> set up explicit default encoding in httpx.Client (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/330">#330</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/25ef4cbde2488426b7736e1240b5de798bd6fe34">25ef4cb</a>)</li>
+<li><strong>iterator:</strong> rename params argument to query in itemiterator (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/329">#329</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/1de6cd57efbf64dc44762243024b1b81bdcaac32">1de6cd5</a>)</li>
+<li>make all exceptions available in the main init file (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/348">#348</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/bad60ff61f6a8ceb96134e97e321eca93cbc6eab">bad60ff</a>)</li>
+</ul>
+<h3 id="documentation_4">Documentation</h3>
+<ul>
+<li>add api reference pages for all modules (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/344">#344</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/8578031a21fd35ae7f8e0cd66fc955b8cc84bea0">8578031</a>)</li>
+<li>add python standard library inventory (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/338">#338</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/20d176cc1bbf00e40f19c836681d3bb6b46f5390">20d176c</a>)</li>
+</ul>
+<h2 id="0120-2024-04-04"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.11.0...0.12.0">0.12.0</a> (2024-04-04)</h2>
+<h3 id="features_4">Features</h3>
+<ul>
+<li><strong>client:</strong> add authentication parameter (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/316">#316</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/035c0fe4af20c1a749ce3dc02d1f5174aa13c57c">035c0fe</a>)</li>
+</ul>
+<h3 id="documentation_5">Documentation</h3>
+<ul>
+<li><strong>readme:</strong> add download badges to readme (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/294">#294</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/c375ea935e226b3fc8a16ae9e2e023b7713c32b5">c375ea9</a>)</li>
+<li>add pypi project version to release notes template (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/282">#282</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/c9d37ea6e698f2706ac6cf893e9e97f4f2cd1c3c">c9d37ea</a>)</li>
+<li>update environment section in bug report template (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/281">#281</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/a2c225a3fc38ada61386a6abd8310bec79c6e482">a2c225a</a>)</li>
+<li>add ci to types of changes in pr template (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/272">#272</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/f2745e74eaf2714eee8b6133924d15b050cc9ac9">f2745e7</a>)</li>
+<li>rename code of conduct (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/270">#270</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/1994bf39cf76321dad509c189d1b7757f7bd21fb">1994bf3</a>)</li>
+<li>add license headers to documentation (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/258">#258</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/63aa318d94607571e4852315c310c71593257791">63aa318</a>)</li>
+</ul>
+<h2 id="0110-2024-01-25"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.10.0...0.11.0">0.11.0</a> (2024-01-25)</h2>
+<h3 id="features_5">Features</h3>
+<ul>
+<li>set up logging of http requests (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/250">#250</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/3df5ba1c3247b38bc8fa0414b070296fc309a5ef">3df5ba1</a>)</li>
+</ul>
+<h3 id="documentation_6">Documentation</h3>
+<ul>
+<li><strong>readme:</strong> add pypi downloads badge to readme (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/243">#243</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/1f87b18913f4ffc3c97303f41b577f402eabece7">1f87b18</a>)</li>
+<li><strong>readme:</strong> add pypi package information to readme (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/237">#237</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/ada4dcfc84b1a7591098fb343f30815aa7efa7e6">ada4dcf</a>)</li>
+<li><strong>readme:</strong> add minor improvements to readme (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/234">#234</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/9871491c065d9b98c06c71f83df7ae3e1fed2fa0">9871491</a>)</li>
+<li>update python version in contributor guide (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/248">#248</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/81366d8ffa25eceec5c18fa487a4705ccbb58d6a">81366d8</a>)</li>
+<li>add initial citation.cff (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/240">#240</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/135a4332bd7f0d0ae79406990a6d2e095618dd4f">135a433</a>)</li>
+<li>make urls in docstrings clickable (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/233">#233</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/55bf699998483e6b43908242bc59dc7834bcb977">55bf699</a>)</li>
+</ul>
+<h2 id="0100-2024-01-22"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.9.0...0.10.0">0.10.0</a> (2024-01-22)</h2>
+<h3 id="features_6">Features</h3>
+<ul>
+<li>[<strong>breaking</strong>] make request arguments explicit (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/212">#212</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/c61fab3126a33d0d793d5a07f0c88b37e83f0378">c61fab3</a>)</li>
+<li>[<strong>breaking</strong>] remove request_args from scythe class and _request method (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/199">#199</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/2be27aa837e4d9590150e6e36492d2910a88d7c9">2be27aa</a>)</li>
+<li>[<strong>breaking</strong>] drop support for oai-pmh version 1.0 (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/183">#183</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/8644c4b82abd91f4d847912fad811c0936f5d0b1">8644c4b</a>)</li>
+<li>[<strong>breaking</strong>] drop support for python &lt; 3.10 (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/180">#180</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/cb3b99cd1946b577ede8f5b471f32a3b1508c5ad">cb3b99c</a>)</li>
+</ul>
+<h3 id="code-refactoring_5">Code Refactoring</h3>
+<ul>
+<li><strong>client:</strong> remove obsolete is_error_code() (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/177">#177</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/1e6dfe19487874969f0d0c76ca69934d66dd1446">1e6dfe1</a>)</li>
+<li>add accept text/xml headers to client config (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/155">#155</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/4d92818573d39797fd83544e942b5e186db4bdf2">4d92818</a>)</li>
+</ul>
+<h3 id="testing_1">Testing</h3>
+<ul>
+<li>update getrecord example (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/200">#200</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/77c8ee64c58f4bbbb976139fed5c44666e644c99">77c8ee6</a>)</li>
+</ul>
+<h3 id="documentation_7">Documentation</h3>
+<ul>
+<li><strong>readme:</strong> update required python version (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/8237d2cfb3add763d199ba40a3da65fa9e91ddd7">8237d2c</a>)</li>
+<li><strong>readme:</strong> restyle project metadata table (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/214">#214</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/e2487ccf9c6887ada9ee684e577fd1c5bef3afba">e2487cc</a>)</li>
+<li><strong>readme:</strong> rephrase introduction about fork (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/202">#202</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/de654186aefbdbb075a64ad1986f9f489cd6e9a0">de65418</a>)</li>
+<li>update author name (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/5f286e1006f94ff7559586e0541a4d47f4f9d5a1">5f286e1</a>)</li>
+<li>add more alternatives (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/192">#192</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/5062a3887fe5c72c44c918dab8d5ccc3e534e8e8">5062a38</a>)</li>
+<li>add full changelog to release notes (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/149">#149</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/19a98f5e498016989e506bfa29384143dfc3c781">19a98f5</a>)</li>
+</ul>
+<h2 id="090-2023-11-18"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.8.0...0.9.0">0.9.0</a> (2023-11-18)</h2>
+<h3 id="features_7">Features</h3>
+<ul>
+<li>add context manager to scythe class (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/144">#144</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/d660f77715b35a847828929b63373f9a759d5a59">d660f77</a>)</li>
+</ul>
+<h3 id="performance-improvements_3">Performance improvements</h3>
+<ul>
+<li>set up internal httpx.Client (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/140">#140</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/969e868ab844be62db0fadef2326aa51d6682a58">969e868</a>)</li>
+</ul>
+<h3 id="documentation_8">Documentation</h3>
+<ul>
+<li><strong>readme:</strong> add similar projects section (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/f45781f405b5122507ef92d0f0e679c7709d5bc8">f45781f</a>)</li>
+<li><strong>readme:</strong> add acknowledgments section (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/20ecd641831a7a4dcd457726490c5c5591d022a1">20ecd64</a>)</li>
+<li><strong>readme:</strong> add short descriptions of requirements (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/a573150ff8d16c14c2d4271b912387172f0225cd">a573150</a>)</li>
+<li>remove outdated credits page (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/47c80e8fbd99281193a175dcd2c905a1ff0bfb8b">47c80e8</a>)</li>
+<li>rename api docs page to client (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/cf77d5757e1a8a4ddfecb3c22fba01dfddf3bd79">cf77d57</a>)</li>
+<li>change breaking changes heading (<a href="https://github.com/afuetterer/oaipmh-scythe/pull/138">#138</a>) (<a href="https://github.com/afuetterer/oaipmh-scythe/commit/69a8572345a2f582ad6ec01a434df5dfc327f037">69a8572</a>)</li>
+</ul>
+<h2 id="080-2023-11-16"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.7.0...0.8.0">0.8.0</a> (2023-11-16)</h2>
+<p>First release of <code>oaipmh-scythe</code>, a fork of <a href="https://github.com/mloesch/sickle"><code>sickle</code></a>. Forked from <code>sickle 0.7.0</code> (commit <a href="https://github.com/mloesch/sickle/commit/14ef88e1aecce1b767ef7a3824e90c009899e1f7"><code>14ef88e</code></a>).</p>
+<h3 id="breaking-changes">Breaking Changes</h3>
+<ul>
+<li>drop support for Python 2</li>
+<li>drop support for EOL Python 3.7 and below</li>
+<li>rename Sickle class to Scythe to reflect the change of the project name</li>
+<li>switch to PEP8 compliant names for methods (ListRecords() -&gt; list_records())</li>
+<li>remove .next() method from iterator classes</li>
+</ul>
+<h3 id="features_8">Features</h3>
+<ul>
+<li>set up default custom user agent (oaipmh-scythe/{version})</li>
+</ul>
+<h3 id="performance-improvements_4">Performance Improvements</h3>
+<ul>
+<li>make iterator classes yield their responses</li>
+</ul>
+<h3 id="code-refactoring_6">Code Refactoring</h3>
+<ul>
+<li>switch from requests to httpx</li>
+<li>make BaseOAIIterator an ABC</li>
+<li>move version information to <code>__about__.py</code></li>
+<li>add a custom base exception</li>
+</ul>
+<h3 id="testing_2">Testing</h3>
+<ul>
+<li>switch from nose to pytest</li>
+<li>add tests for Python 3.8 - 3.12 in CI</li>
+<li>use canned responses from Zenodo to test harvesting logic (vcr.py)</li>
+</ul>
+<h3 id="documentation_9">Documentation</h3>
+<ul>
+<li>update license text</li>
+<li>update authors and contributors</li>
+<li>update copyright notice in src files</li>
+<li>add contributor guide</li>
+<li>add security policy</li>
+<li>add issue and pull request templates</li>
+<li>add custom GitHub labels</li>
+<li>switch from Sphinx to mkdocs-material</li>
+<li>switch from Read the Docs to GitHub pages</li>
+<li>switch from reStructuredText to Markdown</li>
+<li>switch to Zenodo for harvesting examples</li>
+<li>update README badges</li>
+</ul>
+<h3 id="other">Other</h3>
+<ul>
+<li>switch from Travis CI to Github actions for CI</li>
+<li>add scheduled dependency updates with Dependabot</li>
+<li>add pre-commit hooks (e.g. ruff, mypy)</li>
+<li>switch to src layout</li>
+<li>switch from setup.py to pyproject.toml</li>
+<li>switch to hatch for project setup</li>
+<li>add type annotations</li>
+<li>switch to Google style docstrings</li>
+<li>rename first tags of sickle project for consistency (e.g. v0.5 -&gt; 0.5.0)</li>
+<li>enable CodeQL scanning</li>
+<li>add OpenSSF Scorecard report</li>
+</ul>
+<hr />
+<p>Entries below are from upstream <a href="https://github.com/mloesch/sickle">https://github.com/mloesch/sickle</a>.</p>
+<h2 id="070-2020-05-17"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.6.5...0.7.0">0.7.0</a> (2020-05-17)</h2>
+<ul>
+<li>method for record metadata extraction has been extracted (<code>Record.get_metadata()</code>) to make subclassing easier (<a href="https://github.com/mloesch/sickle/pull/38">mloesch/sickle#38</a>)</li>
+<li>retryable HTTP status codes and default wait time between retries can be customized (<a href="https://github.com/mloesch/sickle/issues/21">mloesch/sickle#21</a> <a href="https://github.com/mloesch/sickle/pull/41">mloesch/sickle#41</a>)</li>
+<li>retry logic has been fixed: <code>max_retries</code> parameter now refers to no. of retries, not counting the initial request anymore</li>
+<li>the default number of HTTP retries has been set to 0 (= no retries)</li>
+<li>fix for <a href="https://github.com/mloesch/sickle/pull/39">mloesch/sickle#39</a></li>
+</ul>
+<h2 id="065-2020-01-12"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.6.4...0.6.5">0.6.5</a> (2020-01-12)</h2>
+<ul>
+<li>fix: repr methods where causing an exception on Python 3 (<a href="https://github.com/mloesch/sickle/issues/30">mloesch/sickle#30</a>)</li>
+</ul>
+<h2 id="064-2018-10-02"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.6.3...0.6.4">0.6.4</a> (2018-10-02)</h2>
+<ul>
+<li>fix: resumption token with empty body indicates last response (<a href="https://github.com/mloesch/sickle/issues/25">mloesch/sickle#25</a>)</li>
+</ul>
+<h2 id="063-2018-04-08"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.6.2...0.6.3">0.6.3</a> (2018-04-08)</h2>
+<ul>
+<li>fix unicode problems (issues 20 &amp; 22)</li>
+</ul>
+<h2 id="062-2017-08-11"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.6.1...0.6.2">0.6.2</a> (2017-08-11)</h2>
+<ul>
+<li>missing datestamp and identifier elements in record header don\'t break harvesting</li>
+<li>lxml resolve_entities disabled (<a href="http://lxml.de/FAQ.html#how-do-i-use-lxml-safely-as-a-web-service-endpoint">http://lxml.de/FAQ.html#how-do-i-use-lxml-safely-as-a-web-service-endpoint</a>)</li>
+</ul>
+<h2 id="061-2016-11-13"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.5.0...0.6.1">0.6.1</a> (2016-11-13)</h2>
+<ul>
+<li>it is now possible to pass any keyword arguments to requests</li>
+<li>the encoding used to decode the server response can be overridden</li>
+</ul>
+<h2 id="050-2015-11-12"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.4.0...0.5.0">0.5.0</a> (2015-11-12)</h2>
+<ul>
+<li>support for Python 3</li>
+<li>consider resumption tokens with empty tag bodies</li>
+</ul>
+<h2 id="040-2015-05-31"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.3.0...0.4.0">0.4.0</a> (2015-05-31)</h2>
+<ul>
+<li>bug fix: resumptionToken parameter is exclusive</li>
+<li>added support for harvesting complete OAI-XML responses</li>
+</ul>
+<h2 id="030-2013-04-17"><a href="https://github.com/afuetterer/oaipmh-scythe/compare/0.2.0...0.3.0">0.3.0</a> (2013-04-17)</h2>
+<ul>
+<li>added support for protected OAI interfaces (basic authentication)</li>
+<li>made class mapping for OAI elements configurable</li>
+<li>added options for HTTP timeout and max retries</li>
+<li>added handling of HTTP 503 responses</li>
+</ul>
+<h2 id="020-2013-02-26">0.2.0 (2013-02-26)</h2>
+<ul>
+<li>OAI items are now represented as their own classes instead of XML elements</li>
+<li>library raises OAI-specific exceptions</li>
+<li>made lxml a required dependency</li>
+</ul>
+<h2 id="010-2013-02-20">0.1.0 (2013-02-20)</h2>
+<p>First public release.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../contributing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Contributor Guide">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Contributor Guide
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../license/" class="md-footer__link md-footer__link--next" aria-label="Next: License">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                License
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023&ndash;2026 Heinz-Alexander Fütterer
+    </div>
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/afuetterer/oaipmh-scythe" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-46.5 108-113.5 116.5 17 11 28.5 35 28.5 62.5v52c0 15 12.5 23.5 27.5 17.5C441 459.5 512 369 512 257 512 115.5 397 0 255.5 0S0 115.5 0 257c0 111 70.5 203 165.5 237.5 13.5 5 26.5-4 26.5-17.5v-40c-7 3-16 5-24 5-33 0-52.5-18-66.5-51.5-5.5-13.5-11.5-21.5-23-23-6-.5-8-3-8-6 0-6 10-10.5 20-10.5 14.5 0 27 9 40 27.5 10 14.5 20.5 21 33 21s20.5-4.5 32-16c8.5-8.5 15-16 21-21"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://pypi.org/project/oaipmh-scythe" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>PyPI</title><path d="M23.922 13.58v3.912L20.55 18.72l-.078.055.052.037 3.45-1.256.026-.036v-3.997l-.053-.036-.025.092zm-.301-7.962-3.04 1.107v3.912l3.339-1.215V5.509zm.299 7.839V9.544l-3.336 1.215v3.913zm-3.45 1.253V10.8l-3.3 1.2v3.913zm-3.436 5.286v-3.912l-3.313 1.206v3.912zm.136-3.939v3.868l3.314-1.206V14.85zm2.093 1.882c-.367.134-.663-.074-.663-.463s.296-.814.663-.947c.365-.133.662.075.662.464s-.297.814-.662.946m-6.038-8.624.365-.132-3.285-1.197-3.323 1.21.102.037 3.184 1.16zm7.282 1.349V6.751L17.17 7.965v3.913zm-3.449 1.254V8.005l-3.302 1.202v3.912zm-3.415-2.672-3.336 1.215v3.913l3.336-1.215zm-6.736 3.919 3.322 1.209v-3.913L6.907 9.252zm3.433-5.292 3.281 1.193V5.198l-3.28-1.193zm10.167-5.158L17.19 3.922v3.913l3.317-1.207zM16.95 3.903 13.724 2.73l-3.269 1.19 3.225 1.174zm-1.585.703-1.624.592v3.868l3.317-1.207V3.991zm-.391 2.778c-.367.134-.662-.074-.662-.464s.295-.813.662-.946c.366-.133.663.074.663.464s-.297.813-.663.946M10.229 18.41v-3.914l-3.322-1.209V17.2zm3.449-1.228v-3.913l-3.371 1.227v3.913zm.078-.028 3.3-1.2V12.04l-3.3 1.2zm-.078 4.063-3.371 1.227v-3.912h-.078v3.912l-3.322-1.209v-3.913l-.053-.058-.025-.06-3.336-1.21v-3.948l.034.013 3.287 1.196.015-.078-3.261-1.187 3.26-1.187v-.109L3.876 9.62l-.307-.112 3.26-1.188v.877l.079-.055V6.769l3.257 1.185.058-.061L7.084 6.75l-.102-.037 3.24-1.179v-.083L6.854 6.677v.018l-.025.018v1.523L3.44 9.47v.02l-.025.017v4.007l-3.39 1.233v.019L0 14.784v3.995l.025.037 3.4 1.237.008-.006.007.01 3.4 1.238.008-.006.006.01 3.4 1.237.014-.009.012.01 3.45-1.256.026-.037zM3.493 9.563l3.257 1.185-3.257 1.187V9.562zM3.4 19.96.078 18.752v-3.913l2.361.86.96.349zm.015-3.99-3.08-1.12-.182-.066 3.262-1.187zm3.399 5.231-3.321-1.209V16.08l3.321 1.209zM23.791 5.434l-3.21-1.17v2.338zm-3.404-2.791-3.24-1.18-3.27 1.19 3.247 1.182z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.action.edit","content.action.view","content.code.annotate","content.code.copy","navigation.footer","search.highlight"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"alias":"true","provider":"mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e886cdf1.min.js"></script>
+      
+    
+  </body>
+</html>
