@@ -19,10 +19,6 @@ import time
 import warnings
 from typing import TYPE_CHECKING
 
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self
 if sys.version_info >= (3, 13):
     from warnings import deprecated
 else:
@@ -39,6 +35,7 @@ from oaipmh_scythe.utils import filter_dict_except_resumption_token, log_respons
 if TYPE_CHECKING:
     from collections.abc import Iterable, Iterator
     from types import TracebackType
+    from typing import Self
 
     from httpx2._types import AuthTypes
 
