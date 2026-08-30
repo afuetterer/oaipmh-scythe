@@ -32,3 +32,9 @@ def test_invalid_default_retry_after(retry_after: float) -> None:
 def test_invalid_max_retries() -> None:
     with pytest.raises(ValueError, match="Invalid value for 'max_retries'"):
         RetryConfig(max_retries=-1)
+
+
+@pytest.mark.parametrize("initial_backoff", [-1, -1.0, 0, 0.0])
+def test_invalid_initial_backoff(initial_backoff: float) -> None:
+    with pytest.raises(ValueError, match="Invalid value for 'initial_backoff'"):
+        RetryConfig(initial_backoff=initial_backoff)

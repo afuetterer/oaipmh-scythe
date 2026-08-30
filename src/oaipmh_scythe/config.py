@@ -57,18 +57,26 @@ class RetryConfig:
 
     The retry configuration controls how failed HTTP requests are retried. It determines the number
     of retries, the HTTP status codes that trigger a retry, and the default wait time between retries
-    if the server does not provide a 'retry-after' header.
+    if the server does not provide a 'retry-after' header. Optionally, requests failing with a transport
+    error (e.g. connection failures or timeouts) can be retried using exponential backoff.
 
     Attributes:
         max_retries: The maximum number of retries for a request in case of failures. Default is 0 (no retries).
         retry_status_codes: The HTTP status codes on which to retry the request. Default is (503,).
         default_retry_after: The default wait time (in seconds) between retries if no 'retry-after' header is
             present. Default is 60.
+        retry_on_transport_error: Whether to retry requests failing with a transport error (e.g. connection
+            failures or timeouts). Default is False. Only effective if max_retries is greater than 0.
+        initial_backoff: The initial wait time (in seconds) between retries after a transport error. The wait
+            time doubles with each retry (exponential backoff), is capped at default_retry_after, and is
+            randomized between 50% and 100% of the computed value (jitter). Default is 1.0.
     """
 
     max_retries: int = 0
     retry_status_codes: tuple[int, ...] = (503,)
     default_retry_after: float = 60
+    retry_on_transport_error: bool = False
+    initial_backoff: float = 1.0
 
     def __post_init__(self) -> None:
         if self.max_retries < 0:
@@ -79,4 +87,9 @@ class RetryConfig:
             raise ValueError(
                 f"Invalid value for 'default_retry_after': {self.default_retry_after}. "
                 "default_retry_after must be positive int or float."
+            )
+        if self.initial_backoff <= 0:
+            raise ValueError(
+                f"Invalid value for 'initial_backoff': {self.initial_backoff}. "
+                "initial_backoff must be positive int or float."
             )
