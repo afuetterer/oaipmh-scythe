@@ -13,6 +13,7 @@ and supports customizable error handling and retry logic.
 from __future__ import annotations
 
 import logging
+import random
 import sys
 import time
 import warnings
@@ -236,21 +237,56 @@ class Scythe:
                 status code. The exception type corresponds to the error code (e.g. IdDoesNotExist).
             httpx2.HTTPError: If the HTTP request fails after the maximum number of retries.
         """
-        http_response = self._request(query)
-        for _ in range(self.max_retries):
-            if (
-                httpx2.codes.is_error(http_response.status_code)
-                and http_response.status_code in self.retry_status_codes
-            ):
-                retry_after = self._get_retry_after(http_response)
-                logger.warning("HTTP %d! Retrying after %d seconds...", http_response.status_code, retry_after)
-                time.sleep(retry_after)
-                http_response = self._request(query)
+        http_response = self._request_with_retry(query)
 
         oai_response = OAIResponse(http_response, params=query)
         oai_response.raise_for_oaipmh_error()
         http_response.raise_for_status()
         return oai_response
+
+    def _request_with_retry(self, query: dict[str, str]) -> httpx2.Response:
+        """Send an HTTP request, retrying failed requests according to the retry configuration.
+
+        Retries are triggered by HTTP status codes in ``retry_status_codes`` (waiting for the 'retry-after' header
+        or ``default_retry_after`` seconds) and, when ``retry_on_transport_error`` is enabled, by
+        ``httpx2.TransportError`` exceptions (waiting with exponential backoff starting at ``initial_backoff``
+        seconds, capped at ``default_retry_after``, and randomized between 50% and 100% of the computed wait).
+        Both retry types share the ``max_retries`` budget.
+
+        Args:
+            query: A dictionary containing the request parameters.
+
+        Returns:
+            A Response object representing the server's response to the HTTP request.
+
+        Raises:
+            httpx2.TransportError: If a transport error occurs and retries are disabled or the retry budget is
+                exhausted.
+        """
+        attempt = 0
+        while True:
+            try:
+                http_response = self._request(query)
+            except httpx2.TransportError as error:
+                if not (self.retry_config.retry_on_transport_error and attempt < self.max_retries):
+                    raise
+                backoff = min(self.retry_config.initial_backoff * 2**attempt, self.default_retry_after)
+                sleep_for = random.uniform(backoff / 2, backoff)
+                logger.warning("Transport error: %s! Retrying after %.2f seconds...", error, sleep_for)
+                time.sleep(sleep_for)
+                attempt += 1
+                continue
+            if (
+                httpx2.codes.is_error(http_response.status_code)
+                and http_response.status_code in self.retry_status_codes
+                and attempt < self.max_retries
+            ):
+                retry_after = self._get_retry_after(http_response)
+                logger.warning("HTTP %d! Retrying after %d seconds...", http_response.status_code, retry_after)
+                time.sleep(retry_after)
+                attempt += 1
+                continue
+            return http_response
 
     def _request(self, query: dict[str, str]) -> httpx2.Response:
         """Send an HTTP request to the OAI server using the configured HTTP method and given query parameters.

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from contextlib import suppress
 from typing import TYPE_CHECKING
+from unittest.mock import call
 
 import httpx  # We still need legacy httpx for using httpx.Response as return value in the mocks. There is an open issue about this in https://github.com/lundberg/pytest-httpx2/issues/3
 import httpx2
@@ -125,6 +126,96 @@ def test_retry_on_custom_code(scythe: Scythe, httpx2_mock: MockRouter, mocker: M
         scythe.harvest(query)
     assert mock_route.call_count == 4
     assert mock_sleep.call_count == 3
+
+
+@pytest.mark.parametrize("initial_backoff", [1.0, 0.5])
+def test_retry_on_transport_error(initial_backoff: float, httpx2_mock: MockRouter, mocker: MockerFixture) -> None:
+    scythe = Scythe(
+        "https://zenodo.org/oai2d",
+        retry_config=RetryConfig(max_retries=3, retry_on_transport_error=True, initial_backoff=initial_backoff),
+    )
+    mock_sleep = mocker.patch("time.sleep")
+    mocker.patch("random.uniform", side_effect=lambda low, high: high)
+    mock_route = httpx2_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
+        side_effect=[httpx2.ConnectError("connection failed")] * 3 + [httpx.Response(200)]
+    )
+    oai_response = scythe.harvest(query)
+    assert mock_route.call_count == 4
+    mock_sleep.assert_has_calls([call(initial_backoff), call(2 * initial_backoff), call(4 * initial_backoff)])
+    assert oai_response.http_response.status_code == 200
+
+
+def test_transport_error_not_retried_by_default(scythe: Scythe, httpx2_mock: MockRouter, mocker: MockerFixture) -> None:
+    scythe.max_retries = 3
+    mock_sleep = mocker.patch("time.sleep")
+    mock_route = httpx2_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
+        side_effect=httpx2.ConnectError("connection failed")
+    )
+    with pytest.raises(httpx2.TransportError):
+        scythe.harvest(query)
+    assert mock_route.call_count == 1
+    mock_sleep.assert_not_called()
+
+
+def test_transport_error_not_retried_with_zero_max_retries(httpx2_mock: MockRouter, mocker: MockerFixture) -> None:
+    scythe = Scythe(
+        "https://zenodo.org/oai2d",
+        retry_config=RetryConfig(max_retries=0, retry_on_transport_error=True),
+    )
+    mock_sleep = mocker.patch("time.sleep")
+    mock_route = httpx2_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
+        side_effect=httpx2.ConnectError("connection failed")
+    )
+    with pytest.raises(httpx2.TransportError):
+        scythe.harvest(query)
+    assert mock_route.call_count == 1
+    mock_sleep.assert_not_called()
+
+
+def test_transport_error_exhausts_retries(httpx2_mock: MockRouter, mocker: MockerFixture) -> None:
+    scythe = Scythe(
+        "https://zenodo.org/oai2d",
+        retry_config=RetryConfig(max_retries=3, retry_on_transport_error=True),
+    )
+    mock_sleep = mocker.patch("time.sleep")
+    mocker.patch("random.uniform", side_effect=lambda low, high: high)
+    mock_route = httpx2_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
+        side_effect=httpx2.ConnectError("connection failed")
+    )
+    with pytest.raises(httpx2.TransportError):
+        scythe.harvest(query)
+    assert mock_route.call_count == 4
+    assert mock_sleep.call_count == 3
+
+
+def test_backoff_capped_at_default_retry_after(httpx2_mock: MockRouter, mocker: MockerFixture) -> None:
+    scythe = Scythe(
+        "https://zenodo.org/oai2d",
+        retry_config=RetryConfig(max_retries=2, retry_on_transport_error=True, initial_backoff=30),
+    )
+    mock_sleep = mocker.patch("time.sleep")
+    mocker.patch("random.uniform", side_effect=lambda low, high: high)
+    mock_route = httpx2_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
+        side_effect=[httpx2.ConnectError("connection failed")] * 2 + [httpx.Response(200)]
+    )
+    scythe.harvest(query)
+    assert mock_route.call_count == 3
+    mock_sleep.assert_has_calls([call(30), call(60)])
+
+
+def test_transport_and_status_retries_share_budget(httpx2_mock: MockRouter, mocker: MockerFixture) -> None:
+    scythe = Scythe(
+        "https://zenodo.org/oai2d",
+        retry_config=RetryConfig(max_retries=2, retry_on_transport_error=True),
+    )
+    mock_sleep = mocker.patch("time.sleep")
+    mocker.patch("random.uniform", side_effect=lambda low, high: high)
+    mock_route = httpx2_mock.get("https://zenodo.org/oai2d?verb=ListIdentifiers&metadataPrefix=oai_dc").mock(
+        side_effect=[httpx2.ConnectError("connection failed"), httpx.Response(503), httpx.Response(200)]
+    )
+    scythe.harvest(query)
+    assert mock_route.call_count == 3
+    mock_sleep.assert_has_calls([call(1.0), call(60)])
 
 
 def test_no_auth_arguments() -> None:
