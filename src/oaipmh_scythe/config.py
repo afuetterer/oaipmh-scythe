@@ -45,7 +45,7 @@ class HTTPConfig:
     user_agent: str = f"oaipmh-scythe/{version('oaipmh-scythe')}"
 
     def __post_init__(self) -> None:
-        if self.http_method not in ("GET", "POST"):
+        if self.http_method not in {"GET", "POST"}:
             raise ValueError(f"Invalid value for 'http_method': {self.http_method}. Must be GET or POST.")
         if self.timeout <= 0:
             raise ValueError(f"Invalid value for 'timeout': {self.timeout}. Timeout must be positive int or float.")
