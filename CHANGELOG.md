@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [0.16.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.15.2...0.16.0) (2026-08-30)
+
+### Features
+
+- **client:** add transport error retries to retryconfig ([#555](https://github.com/afuetterer/oaipmh-scythe/pull/555)) ([abed96f](https://github.com/afuetterer/oaipmh-scythe/commit/abed96f72204883b338d41a949650197bf9ffe08))
+- **client:** add httpconfig.user_agent ([b5ab996](https://github.com/afuetterer/oaipmh-scythe/commit/b5ab996b6e83d8a617f1a399835603da9b3e7cb2))
+- **client:** add HTTPConfig and deprecate http arguments ([7f54b60](https://github.com/afuetterer/oaipmh-scythe/commit/7f54b6087d39fa6f495e2cca40c9c819f12d1d25))
+- **client:** add retryconfig and deprecate retry arguments ([45652bf](https://github.com/afuetterer/oaipmh-scythe/commit/45652bfd402d12c4de10fd00dd8a8be8602bb786))
+
+### Performance improvements
+
+- **config:** replace tuple lookup to set lookup ([#556](https://github.com/afuetterer/oaipmh-scythe/pull/556)) ([a626a71](https://github.com/afuetterer/oaipmh-scythe/commit/a626a717c4c0c2d0fc660c2662574fb2f8bdfeb1))
+
+### Code Refactoring
+
+- **client:** [**breaking**] enforce keyword-only arguments in __init__ ([#543](https://github.com/afuetterer/oaipmh-scythe/pull/543)) ([18a9ee0](https://github.com/afuetterer/oaipmh-scythe/commit/18a9ee050aacaa1f9f6e13279dbcbb6bf29437d9))
+
 ## [0.15.2](https://github.com/afuetterer/oaipmh-scythe/compare/0.15.1...0.15.2) (2026-08-28)
 
 ### Bug Fixes

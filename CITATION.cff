@@ -18,5 +18,5 @@ identifiers:
 - description: This is the collection of archived snapshots of all versions of oaipmh-scythe
   type: doi
   value: 10.5281/zenodo.11125401
-version: 0.15.2
-date-released: 2026-08-28
+version: 0.16.0
+date-released: 2026-08-30
