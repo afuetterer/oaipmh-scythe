@@ -153,17 +153,17 @@ testpaths = [ "tests" ]
 xfail_strict = true
 
 [tool.coverage]  # Ref: https://coverage.readthedocs.io/en/latest/config.html
+run.source = [ "oaipmh_scythe" ]
 run.branch = true
 run.parallel = true
-run.source = [ "oaipmh_scythe" ]
+report.fail_under = 90
 report.exclude_also = [
   "@abstractmethod",
   "if TYPE_CHECKING:",
 ]
-report.fail_under = 90
-report.show_missing = true
 report.skip_covered = true
 report.skip_empty = true
+report.show_missing = true
 
 [tool.semantic_release]  # Ref: https://python-semantic-release.readthedocs.io/en/latest/configuration/configuration.html#semantic-release-settings
 tag_format = "{version}"
