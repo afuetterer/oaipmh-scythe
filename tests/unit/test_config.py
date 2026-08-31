@@ -2,9 +2,17 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+import httpx2
 import pytest
 
 from oaipmh_scythe import HTTPConfig, RetryConfig
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
 
 
 @pytest.mark.parametrize("http_method", ["DELETE", "PATCH"])
@@ -38,3 +46,31 @@ def test_invalid_max_retries() -> None:
 def test_invalid_initial_backoff(initial_backoff: float) -> None:
     with pytest.raises(ValueError, match="Invalid value for 'initial_backoff'"):
         RetryConfig(initial_backoff=initial_backoff)
+
+
+@pytest.mark.parametrize(
+    "codes",
+    [
+        [500, 502, 503],
+        (500, 502, 503),
+        {500, 502, 503},
+        [httpx2.codes.INTERNAL_SERVER_ERROR, httpx2.codes.BAD_GATEWAY, httpx2.codes.SERVICE_UNAVAILABLE],
+    ],
+)
+def test_normalize_retry_codes_valid(codes: Iterable[int]) -> None:
+    retry_config = RetryConfig(retry_status_codes=codes)  # ty: ignore[invalid-argument-type]
+    assert retry_config.retry_status_codes == {
+        httpx2.codes.INTERNAL_SERVER_ERROR,
+        httpx2.codes.BAD_GATEWAY,
+        httpx2.codes.SERVICE_UNAVAILABLE,
+    }
+
+
+def test_normalize_retry_codes_invalid() -> None:
+    with pytest.raises(ValueError, match="Invalid HTTP status code: 999"):
+        RetryConfig(retry_status_codes={999})
+
+
+def test_normalize_retry_codes_default() -> None:
+    retry_config = RetryConfig()
+    assert retry_config.retry_status_codes == {httpx2.codes.SERVICE_UNAVAILABLE}

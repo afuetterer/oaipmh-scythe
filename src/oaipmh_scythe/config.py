@@ -14,11 +14,15 @@ Classes:
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from importlib.metadata import version
 from typing import TYPE_CHECKING
 
+import httpx2
+
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from httpx2._types import AuthTypes
 
 
@@ -62,7 +66,7 @@ class RetryConfig:
 
     Attributes:
         max_retries: The maximum number of retries for a request in case of failures. Default is 0 (no retries).
-        retry_status_codes: The HTTP status codes on which to retry the request. Default is (503,).
+        retry_status_codes: The HTTP status codes on which to retry the request. Default is {httpx2.codes.SERVICE_UNAVAILABLE}.
         default_retry_after: The default wait time (in seconds) between retries if no 'retry-after' header is
             present. Default is 60.
         retry_on_transport_error: Whether to retry requests failing with a transport error (e.g. connection
@@ -73,7 +77,7 @@ class RetryConfig:
     """
 
     max_retries: int = 0
-    retry_status_codes: tuple[int, ...] = (503,)
+    retry_status_codes: set[int] = field(default_factory=lambda: {httpx2.codes.SERVICE_UNAVAILABLE})
     default_retry_after: float = 60
     retry_on_transport_error: bool = False
     initial_backoff: float = 1.0
@@ -93,3 +97,27 @@ class RetryConfig:
                 f"Invalid value for 'initial_backoff': {self.initial_backoff}. "
                 "initial_backoff must be positive int or float."
             )
+        self.retry_status_codes = self._normalize_retry_codes(self.retry_status_codes)
+
+    def _normalize_retry_codes(self, codes: Iterable[int]) -> set[int]:
+        """Normalize retry status codes to httpx2.codes enum values.
+
+        Validates that codes are valid HTTP status codes. Raises ValueError for invalid codes.
+
+        Args:
+            codes: Iterable of HTTP status codes (int or httpx2.codes enum).
+
+        Returns:
+            Set of httpx2.codes enum values.
+
+        Raises:
+            ValueError: If any code is not a valid HTTP status code.
+        """
+        normalized: set[int] = set()
+        code: int | httpx2.codes | None = None
+        try:
+            for code in codes:
+                normalized.add(httpx2.codes(code))
+        except ValueError as exc:
+            raise ValueError(f"Invalid HTTP status code: {code}") from exc
+        return normalized
