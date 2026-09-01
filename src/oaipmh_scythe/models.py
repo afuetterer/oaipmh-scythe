@@ -21,21 +21,14 @@ Classes:
 
 from __future__ import annotations
 
-import sys
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-if sys.version_info >= (3, 13):
-    from warnings import deprecated
-else:
-    from typing_extensions import deprecated
 from lxml import etree
 
 from oaipmh_scythe.utils import get_namespace, xml_to_dict
 
 if TYPE_CHECKING:
-    from collections.abc import Iterator
-
     from oaipmh_scythe.response import OAIResponse
 
 
@@ -142,14 +135,6 @@ class Identify(OAIItem):
     def __repr__(self) -> str:
         return "<Identify>"
 
-    @deprecated(
-        "Use the dynamically set attributes of the Identify object instead. This method will be removed in version 0.17.0.",
-        category=FutureWarning,
-    )
-    def __iter__(self) -> Iterator:  # ty: ignore[missing-type-argument] - will be removed in 0.17.0
-        """Iterate over the Identify information, yielding key-value pairs."""
-        return iter(self._identify_dict.items())
-
 
 class Header(OAIItem):
     """A class representing an OAI Header in the OAI-PMH protocol.
@@ -180,20 +165,6 @@ class Header(OAIItem):
 
     def __repr__(self) -> str:
         return f"<Header {self.identifier}{' [deleted]' if self.deleted else ''}>"
-
-    @deprecated(
-        "Use the 'identifier', 'datestamp', and 'setSpecs' attributes instead. This method will be removed in version 0.17.0.",
-        category=FutureWarning,
-    )
-    def __iter__(self) -> Iterator:  # ty: ignore[missing-type-argument] - will be removed in 0.17.0
-        """Iterate over the header information, yielding key-value pairs."""
-        return iter(
-            [
-                ("identifier", self.identifier),
-                ("datestamp", self.datestamp),
-                ("setSpecs", self.setSpecs),
-            ]
-        )
 
 
 class Record(OAIItem):
@@ -230,13 +201,6 @@ class Record(OAIItem):
 
     def __repr__(self) -> str:
         return f"<Record {self.header.identifier}{' [deleted]' if self.header.deleted else ''}>"
-
-    @deprecated(
-        "Use the 'metadata' attribute instead. This method will be removed in version 0.17.0.", category=FutureWarning
-    )
-    def __iter__(self) -> Iterator:  # ty: ignore[missing-type-argument] - will be removed in 0.17.0
-        """Iterate over the record's metadata, yielding key-value pairs."""
-        return iter(self.metadata.items())
 
     def get_metadata(self) -> dict[str, list[str | None]]:
         """Extract and return the record's metadata as a dictionary."""
@@ -281,14 +245,6 @@ class Set(OAIItem):
     def __repr__(self) -> str:
         return f"<Set {self.setName}>"
 
-    @deprecated(
-        "Use the dynamically set attributes of the Set object instead. This method will be removed in version 0.17.0.",
-        category=FutureWarning,
-    )
-    def __iter__(self) -> Iterator:  # ty: ignore[missing-type-argument] - will be removed in 0.17.0
-        """Iterate over the set information, yielding key-value pairs."""
-        return iter(self._set_dict.items())
-
 
 class MetadataFormat(OAIItem):
     """A class representing a metadata format in the OAI-PMH protocol.
@@ -319,11 +275,3 @@ class MetadataFormat(OAIItem):
 
     def __repr__(self) -> str:
         return f"<MetadataFormat {self.metadataPrefix}>"
-
-    @deprecated(
-        "Use the dynamically set attributes of the MetadataFormat object instead. This method will be removed in version 0.17.0.",
-        category=FutureWarning,
-    )
-    def __iter__(self) -> Iterator:  # ty: ignore[missing-type-argument] - will be removed in 0.17.0
-        """Iterate over the metadata format information, yielding key-value pairs."""
-        return iter(self._mdf_dict.items())
