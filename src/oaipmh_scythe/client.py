@@ -127,9 +127,9 @@ class Scythe:
                 )
             self.retry_config = RetryConfig(
                 max_retries=max_retries,
-                retry_status_codes=(
-                    tuple(retry_status_codes) if retry_status_codes is not None else retry_defaults.retry_status_codes
-                ),
+                retry_status_codes=set(retry_status_codes)
+                if retry_status_codes is not None
+                else retry_defaults.retry_status_codes,
                 default_retry_after=default_retry_after,
             )
         self.max_retries = self.retry_config.max_retries
