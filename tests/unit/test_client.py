@@ -121,7 +121,7 @@ def test_retry_on_custom_code(scythe: Scythe, httpx2_mock: MockRouter, mocker: M
     scythe.max_retries = 3
     scythe.default_retry_after = 0
     mock_sleep = mocker.patch("time.sleep")
-    scythe.retry_status_codes = (503, 500)
+    scythe.retry_status_codes = {503, 500}
     with suppress(HTTPStatusError):
         scythe.harvest(query)
     assert mock_route.call_count == 4
@@ -293,11 +293,11 @@ def test_http_config_conflict_with_legacy_arguments() -> None:
 
 
 def test_retry_config() -> None:
-    retry_config = RetryConfig(max_retries=3, retry_status_codes=(503, 500), default_retry_after=5)
+    retry_config = RetryConfig(max_retries=3, retry_status_codes={503, 500}, default_retry_after=5)
     with Scythe("https://zenodo.org/oai2d", retry_config=retry_config) as scythe:
         assert scythe.retry_config is retry_config
         assert scythe.max_retries == 3
-        assert scythe.retry_status_codes == (503, 500)
+        assert scythe.retry_status_codes == {503, 500}
         assert scythe.default_retry_after == 5
 
 
@@ -305,7 +305,7 @@ def test_default_retry_config() -> None:
     scythe = Scythe("https://zenodo.org/oai2d")
     assert scythe.retry_config == RetryConfig()
     assert scythe.max_retries == 0
-    assert scythe.retry_status_codes == (503,)
+    assert scythe.retry_status_codes == {503}
     assert scythe.default_retry_after == 60
 
 
@@ -313,11 +313,11 @@ def test_default_retry_config() -> None:
     ("legacy_kwargs", "expected"),
     [
         ({"max_retries": 2}, RetryConfig(max_retries=2)),
-        ({"retry_status_codes": (503, 500)}, RetryConfig(retry_status_codes=(503, 500))),
+        ({"retry_status_codes": (503, 500)}, RetryConfig(retry_status_codes={503, 500})),
         ({"default_retry_after": 10}, RetryConfig(default_retry_after=10)),
         (
             {"max_retries": 2, "retry_status_codes": (503, 500), "default_retry_after": 10},
-            RetryConfig(max_retries=2, retry_status_codes=(503, 500), default_retry_after=10),
+            RetryConfig(max_retries=2, retry_status_codes={503, 500}, default_retry_after=10),
         ),
     ],
 )
