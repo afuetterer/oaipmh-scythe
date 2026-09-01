@@ -2,8 +2,8 @@ name: Upgrade requirements
 
 on:
   schedule:
-    # run once a month at midnight of the first day of the month
-  - cron: 0 0 1 * *
+    # run once per quarter at midnight
+  - cron: 0 0 1 1,4,7,10 *
   workflow_dispatch: # run manually from actions tab
 
 # Set permissions at the job level.
