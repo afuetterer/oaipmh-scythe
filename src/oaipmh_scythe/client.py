@@ -19,10 +19,6 @@ import time
 import warnings
 from typing import TYPE_CHECKING
 
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self
 if sys.version_info >= (3, 13):
     from warnings import deprecated
 else:
@@ -39,6 +35,7 @@ from oaipmh_scythe.utils import filter_dict_except_resumption_token, log_respons
 if TYPE_CHECKING:
     from collections.abc import Iterable, Iterator
     from types import TracebackType
+    from typing import Self
 
     from httpx2._types import AuthTypes
 
@@ -130,9 +127,9 @@ class Scythe:
                 )
             self.retry_config = RetryConfig(
                 max_retries=max_retries,
-                retry_status_codes=(
-                    tuple(retry_status_codes) if retry_status_codes is not None else retry_defaults.retry_status_codes
-                ),
+                retry_status_codes=set(retry_status_codes)
+                if retry_status_codes is not None
+                else retry_defaults.retry_status_codes,
                 default_retry_after=default_retry_after,
             )
         self.max_retries = self.retry_config.max_retries

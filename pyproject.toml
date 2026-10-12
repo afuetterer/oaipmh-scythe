@@ -17,13 +17,12 @@ license-files = [ "LICENSE" ]
 authors = [
   { name = "Heinz-Alexander Fütterer" },
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 classifiers = [
   "Development Status :: 4 - Beta",
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
@@ -35,7 +34,7 @@ classifiers = [
 dependencies = [
   "httpx2>=2.10",
   "lxml>=5.3",
-  "typing-extensions>=4.16; python_version<'3.11'",
+  "typing-extensions>=4.16; python_version<'3.13'",
 ]
 urls.Changelog = "https://github.com/afuetterer/oaipmh-scythe/blob/main/CHANGELOG.md"
 urls.Documentation = "https://afuetterer.github.io/oaipmh-scythe"
@@ -143,7 +142,6 @@ terminal.error-on-warning = true
 addopts = [ "-ra", "--showlocals", "--strict-config", "--strict-markers", "-p pytest_httpx2" ]
 filterwarnings = [
   "error",
-  "ignore:.* This method will be removed in version 0.17.0: FutureWarning",     # see models.py
   "ignore:.* This method will be removed in version 0.18.0: FutureWarning",     # see client.py
   "ignore:.* These arguments will be removed in version 0.19.0: FutureWarning", # see client.py
 ]

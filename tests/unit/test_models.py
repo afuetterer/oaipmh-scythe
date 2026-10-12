@@ -65,13 +65,6 @@ def test_identify_attributes(identify: Identify) -> None:
     assert identify.protocolVersion == "2.0"
 
 
-def test_identify_iter(identify: Identify) -> None:
-    identify_items = dict(identify)
-    assert identify_items["repositoryName"] == ["Zenodo"]
-    assert identify_items["baseURL"] == ["https://zenodo.org/oai2d"]
-    assert identify_items["protocolVersion"] == ["2.0"]
-
-
 @pytest.fixture(scope="session")
 def header_element() -> etree.Element:
     xml = """
@@ -119,11 +112,6 @@ def test_header_init_with_deleted(deleted_header: Header) -> None:
 def test_header_repr(header: Header, deleted_header: Header) -> None:
     assert repr(header) == "<Header oai:zenodo.org:6538892>"
     assert repr(deleted_header) == "<Header oai:zenodo.org:6538892 [deleted]>"
-
-
-def test_header_iter(header: Header) -> None:
-    items = dict(header)
-    assert items == {"identifier": "oai:zenodo.org:6538892", "datestamp": "2022-05-11T13:49:36Z", "setSpecs": []}
 
 
 @pytest.fixture
@@ -192,12 +180,6 @@ def test_deleted_record_repr(deleted_record: Record) -> None:
     assert repr(deleted_record) == "<Record oai:example.org:record1 [deleted]>"
 
 
-def test_record_iter(record: Record) -> None:
-    record_metadata = dict(record)
-    assert record_metadata["title"] == ["Example Title"]
-    assert record_metadata["creator"] == ["Example Creator"]
-
-
 def test_deleted_record_no_metadata(deleted_record: Record) -> None:
     assert deleted_record.deleted
     with pytest.raises(AttributeError):
@@ -231,12 +213,6 @@ def test_set_repr(oai_set: Set) -> None:
     assert repr(oai_set) == "<Set European Middleware Initiative>"
 
 
-def test_set_iter(oai_set: Set) -> None:
-    set_items = dict(oai_set)
-    assert set_items["setName"] == ["European Middleware Initiative"]
-    assert set_items["setSpec"] == ["user-emi"]
-
-
 @pytest.fixture
 def mdf_element() -> etree.Element:
     xml = """
@@ -262,10 +238,3 @@ def test_metadata_format_init(mdf: MetadataFormat) -> None:
 
 def test_metadata_format_repr(mdf: MetadataFormat) -> None:
     assert repr(mdf) == "<MetadataFormat marcxml>"
-
-
-def test_metadata_format_iter(mdf: MetadataFormat) -> None:
-    mdf_items = dict(mdf)
-    assert mdf_items["metadataPrefix"] == ["marcxml"]
-    assert mdf_items["schema"] == ["https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"]
-    assert mdf_items["metadataNamespace"] == ["https://www.loc.gov/standards/marcxml/"]
