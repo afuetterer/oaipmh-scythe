@@ -32,11 +32,8 @@ jobs:
     runs-on: ubuntu-26.04
     strategy:
       matrix:
-        python-version: ['3.11', '3.12', '3.14', '3.15']
+        python-version: ['3.11', '3.12', '3.15']
     steps:
-    - name: Install system dependencies needed to build lxml
-      if: matrix.python-version == '3.15'
-      run: sudo apt-get update && sudo apt-get install --yes libxml2-dev libxslt1-dev
     - name: Set up just
       uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3 # v4.0.0
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -60,7 +57,7 @@ jobs:
         just cov-report-markdown
         echo "### Total coverage: ${TOTAL_COV}%" >> $GITHUB_STEP_SUMMARY
         cat coverage.md >> $GITHUB_STEP_SUMMARY
-      if: matrix.python-version == '3.14'
+      if: matrix.python-version == '3.15'
     - name: Generate coverage badge
       uses: schneegans/dynamic-badges-action@28b0fa8bdeb46170ac397105ece0c1fe58f68910 # v1.9.0
       with:
@@ -98,7 +95,7 @@ jobs:
       uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
       with:
         version: latest-known
-        python-version: '3.14'
+        python-version: '3.15'
         enable-cache: true
         prune-cache: false
     - run: just sync
