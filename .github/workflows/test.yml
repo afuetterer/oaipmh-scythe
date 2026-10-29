@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-26.04
     strategy:
       matrix:
-        python-version: ['3.11', '3.12', '3.15']
+        python-version: ['3.11', '3.13', '3.15']
     steps:
     - name: Set up just
       uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3 # v4.0.0
