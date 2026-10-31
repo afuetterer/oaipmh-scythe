@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). See
 [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit guidelines.
 
+## [0.17.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.16.0...0.17.0) (2026-10-31)
+
+### Features
+
+- add support for python 3.15 ([#570](https://github.com/afuetterer/oaipmh-scythe/pull/570)) ([e88983a](https://github.com/afuetterer/oaipmh-scythe/commit/e88983a88ac5df598041dbca9424a99b81540018))
+
+### Code Refactoring
+
+- **config:** normalize retry_status_codes to httpx2.codes ([#560](https://github.com/afuetterer/oaipmh-scythe/pull/560)) ([627c75f](https://github.com/afuetterer/oaipmh-scythe/commit/627c75f9ed702c1cf0b00c58a5f4845ace228c02))
+- **models:** [**breaking**] remove deprecated __iter__ methods ([#566](https://github.com/afuetterer/oaipmh-scythe/pull/566)) ([dee9c49](https://github.com/afuetterer/oaipmh-scythe/commit/dee9c49ee56b4cb9bbf8e3bf31c37206f771674e))
+- [**breaking**] drop support for python 3.10 ([#532](https://github.com/afuetterer/oaipmh-scythe/pull/532)) ([a7806f7](https://github.com/afuetterer/oaipmh-scythe/commit/a7806f7341035520ed97e659fa7afa2c9e4c3cd3))
+
 ## [0.16.0](https://github.com/afuetterer/oaipmh-scythe/compare/0.15.2...0.16.0) (2026-08-30)
 
 ### Features
